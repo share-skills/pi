@@ -1,7 +1,7 @@
-# PI — 智行合一引擎 v19
+# PI — 智行合一引擎 v20
 
 <p>
-  <img src="https://img.shields.io/badge/version-19.0.0-blue?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/badge/version-20.0.0-blue?style=flat-square" alt="Version">
   <img src="https://img.shields.io/badge/license-Apache_2.0-green?style=flat-square" alt="License">
   <img src="https://img.shields.io/badge/lang-中文_|_English-orange?style=flat-square" alt="Language">
 </p>
@@ -316,18 +316,17 @@ PI 提供两个版本，适配不同模型能力：
 
 ### 渐进式披露
 
-中文版 `skills/pi/` 采用渐进式披露架构：
+渐进式版本将完整 SKILL.md 拆为核心文件 + 4 个按需加载的参考文件，首次加载节省 ~43% token：
 
 | 文件 | 内容 | 加载时机 |
 |------|------|---------|
-| `SKILL.md` | 核心操作指令 (~350行) | 启动时自动加载 |
-| `references/methodology.md` | 五略+场景链+九令洞鉴+Loop/Auto详细规则 | 标准/深度任务 |
-| `references/four-dojos.md` | 四大道场完整定义 | 对应场景激活 |
-| `references/battle-momentum.md` | 战势详解+灵兽全鉴 | 失败升级时 |
-| `references/resonance-forms.md` | 共振五式格式+示例 | 标准/深度模式 |
-| `references/team-protocol.md` | Agent Team 协作协议 | 多Agent场景 |
+| `SKILL.md` | 核心指令（强制令+决策表+智慧矩阵+方法体系+人机共振） | 启动时自动加载 |
+| `references/four-dojos.md` | 四大道场完整定义（编程·测试·产品·运营） | 对应场景激活 |
+| `references/battle-momentum.md` | 六阶战势+肃阵+天行+截教+十二灵兽 | 失败升级时 |
+| `references/resonance-forms.md` | 共振五式详细输出格式+示例 | 标准/深度模式 |
+| `references/team-protocol.md` | Agent Team 协作协议+决策三权+Coach巡检 | 多Agent场景 |
 
-> 安装时 `references/` 目录会自动复制。Cursor/Kiro 不支持 references/，使用核心版单文件。
+支持渐进式的平台：Claude Code · Copilot CLI · OpenClaw。Cursor/Kiro 不支持 references/，使用完整单文件版。
 
 ---
 

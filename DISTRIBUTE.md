@@ -62,6 +62,7 @@ SKILL.md (精简版·字节码·含全部规则)
 | 一 | **body 一致（purged）** | 裁剪后的 5 个平台文件 body 一致 |
 | 二 | **body 完整（unpurged）** | Copilot CLI body 与 SKILL.md body 一致 |
 | 三 | **description 一致** | 所有平台 description 字符级一致 |
+| 三b | **description 长度** | 中文/英文 description 均 ≤ 1024 字符 |
 | 四 | **frontmatter 合规** | 各平台 frontmatter 符合对应规范 |
 | 五 | **PURGE 无悬空** | 裁剪后无悬空引用（引用 Loop 但 Loop 已删） |
 | 六 | **渐进式覆盖** | 核心版 + references/ ≥ 95% 覆盖 |

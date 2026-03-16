@@ -1,6 +1,6 @@
 ---
 name: pi-coach-en
-description: "PI Wisdom-in-Action Coach v20 — monitors teammate progress with classical Chinese wisdom and MBTI cognitive strategies, detects anti-pattern signals (from the Ten Commandments), three-tier precision intervention. Recommended for 5+ teammate teams."
+description: "PI Wisdom-in-Action Coach v20 — monitors teammate progress with classical Chinese wisdom and MBTI cognitive strategies, detects anti-pattern signals (from the Ten Commandments), three-tier precision intervention. Recommended for 5+ teammate teams © He-Pin"
 model: sonnet
 tools:
   - Read

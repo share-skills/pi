@@ -123,7 +123,7 @@ Fusing Eastern Nine Schools classical wisdom + Chan/Jiejiao/Agriculturalist cult
 | 🔧→🖥️→🧪 | Bug fix full-chain pipeline |
 | 📈→📊→🖥️ | Data-driven product improvement |
 
-### 🏁 Delivery Quality Gates (new in v7)
+### 🏁 Delivery Quality Gates
 
 | Arena | Quality Standard | Verification Method |
 |-------|-----------------|-------------------|
@@ -313,6 +313,20 @@ Send SKILL.md + COMPILER_LITE.md to your model →
 Prompt: "Compile SKILL.md into SKILL_LITE.md following COMPILER_LITE.md rules" →
 Your model generates the version it understands best
 ```
+
+### Progressive Disclosure
+
+The progressive version splits the full SKILL.md into a core file + 4 on-demand reference files, saving ~43% tokens on first load:
+
+| File | Content | When Loaded |
+|------|---------|-------------|
+| `SKILL.md` | Core instructions (directives + decision table + wisdom matrix + methods + resonance) | Auto-loaded at startup |
+| `references/four-dojos.md` | Four arenas full definition (Programming · Testing · Product · Operations) | When corresponding scene activates |
+| `references/battle-momentum.md` | Six battle stages + stern mode + skyward + Jiejiao + twelve spirit totems | On failure escalation |
+| `references/resonance-forms.md` | Five resonance forms detailed output formats + examples | Standard/Deep mode |
+| `references/team-protocol.md` | Agent Team collaboration protocol + three decision rights + Coach patrol | Multi-agent scenarios |
+
+Platforms supporting progressive disclosure: Claude Code · Copilot CLI · OpenClaw. Cursor/Kiro do not support references/ and use the full single-file version.
 
 ---
 

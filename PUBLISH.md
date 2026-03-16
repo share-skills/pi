@@ -215,7 +215,7 @@
 步骤 3.11 Description 内容校验：
           - description 中提到的概念在 SKILL.md 中均有定义
           - 已删除的章节（Ch2/Ch9）不应在 description 中被引用
-          - 字符数 ≤ 1024
+          - 中文/英文 description 均 ≤ 1024 字符
           - LITE 版 description 中提到的概念在 SKILL_LITE.md 中均有定义
 ```
 
@@ -282,7 +282,7 @@
 
 步骤 4.7  Frontmatter 合规：
           - 英文版 name: pi-en
-          - 英文版 description ≤ 1024 字符
+          - 英文版 description ≤ 1024 字符（中文版同理）
 
 步骤 4.8  Emoji 保留：
           - 所有 emoji 在英文版中保留不变
@@ -395,7 +395,7 @@
 |------|------|
 | 编译后行为指令丢失 | 从 SKILL_META.md 补回，重新编译 |
 | PURGE 后悬空引用 | 检查裁剪规则，修复引用 |
-| Description 超 1024 字符 | 压缩 description，保留核心索引 |
+| Description 超 1024 字符 | 压缩 description，保留核心索引（中文/英文均需 ≤ 1024 字符） |
 | 平台文件不存在 | 创建目录和文件，使用对应 frontmatter 模板 |
 | 翻译后结构不一致 | 逐章比对，补齐缺失部分 |
 | 用户中途要求停止 | 输出当前进度，标注已完成/未完成阶段 |

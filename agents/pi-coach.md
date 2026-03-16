@@ -1,6 +1,6 @@
 ---
 name: pi-coach
-description: "PI 智行合一教练 v19 — 以中华经典智慧与 MBTI 认知策略监控 teammate 执行进度，检测松懈模式（反模式十戒信号），三档精准介入。建议 5+ teammate 的团队配置。"
+description: "PI 智行合一教练 v19 — 以中华经典智慧与 MBTI 认知策略监控 teammate 执行进度，检测松懈模式（反模式十戒信号），三档精准介入。建议 5+ teammate 的团队配置 © He-Pin"
 model: sonnet
 tools:
   - Read

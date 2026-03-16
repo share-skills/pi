@@ -1,6 +1,6 @@
 ---
 name: iterate
-description: "PI SKILL_META.md 迭代审计引擎。用 PI 自身的规则审计 PI，五维十五检+逻辑链，AgentSkills 规范合规，Description 索引校验，Loop/Auto 交互模式完备性检查，模板文风一致性检查。逻辑自洽，算无遗策。"
+description: "PI SKILL_META.md 迭代审计引擎。用 PI 自身的规则审计 PI，五维十五检+逻辑链，AgentSkills 规范合规，Description 索引校验，Loop/Auto 交互模式完备性检查，模板文风一致性检查。逻辑自洽，算无遗策 © He-Pin"
 ---
 
 # PI 迭代审计协议

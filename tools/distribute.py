@@ -26,6 +26,7 @@ variant:
 import sys
 import os
 import re
+import shutil
 from pathlib import Path
 
 # --- 项目根目录 ---
@@ -87,16 +88,49 @@ VARIANTS = {
     "prog": {
         "name": "pi-progressive",
         "lang": "cn",
+        "progressive": True,
+        "refs_source": "skills/pi-progressive/references",
         "targets": [
-            ("skills/pi-progressive",      "skills/pi-progressive/SKILL.md",      True),
-            ("claude-code/pi-progressive",  "claude-code/pi-progressive/SKILL.md", True),
+            ("skills/pi-progressive",          "skills/pi-progressive/SKILL.md",           True),
+            ("claude-code/pi-progressive",      "claude-code/pi-progressive/SKILL.md",      True),
+            ("copilot-cli/pi-progressive",      "copilot-cli/pi-progressive/SKILL.md",      False),
+            ("openclaw/pi-progressive",         "openclaw/pi-progressive/SKILL.md",         True),
+        ],
+    },
+    "prog-lite": {
+        "name": "pi-progressive",
+        "lang": "cn",
+        "progressive": True,
+        "refs_source": "skills/pi-progressive/references",
+        "targets": [
+            ("skills/pi-progressive",          "skills/pi-progressive/SKILL_LITE.md",      True),
+            ("claude-code/pi-progressive",      "claude-code/pi-progressive/SKILL_LITE.md", True),
+            ("copilot-cli/pi-progressive",      "copilot-cli/pi-progressive/SKILL_LITE.md", False),
+            ("openclaw/pi-progressive",         "openclaw/pi-progressive/SKILL_LITE.md",    True),
         ],
     },
     "prog-en": {
-        "name": "pi-progressive-en",
+        "name": "pi-en-progressive",
         "lang": "en",
+        "progressive": True,
+        "refs_source": "skills/pi-en-progressive/references",
         "targets": [
-            # 预留：英文渐进式版本
+            ("skills/pi-en-progressive",        "skills/pi-en-progressive/SKILL.md",        True),
+            ("claude-code/pi-en-progressive",    "claude-code/pi-en-progressive/SKILL.md",   True),
+            ("copilot-cli/pi-en-progressive",    "copilot-cli/pi-en-progressive/SKILL.md",   False),
+            ("openclaw/pi-en-progressive",       "openclaw/pi-en-progressive/SKILL.md",      True),
+        ],
+    },
+    "prog-en-lite": {
+        "name": "pi-en-progressive",
+        "lang": "en",
+        "progressive": True,
+        "refs_source": "skills/pi-en-progressive/references",
+        "targets": [
+            ("skills/pi-en-progressive",        "skills/pi-en-progressive/SKILL_LITE.md",   True),
+            ("claude-code/pi-en-progressive",    "claude-code/pi-en-progressive/SKILL_LITE.md", True),
+            ("copilot-cli/pi-en-progressive",    "copilot-cli/pi-en-progressive/SKILL_LITE.md", False),
+            ("openclaw/pi-en-progressive",       "openclaw/pi-en-progressive/SKILL_LITE.md", True),
         ],
     },
 }
@@ -326,6 +360,42 @@ def distribute(source_file: str, variant: str):
         status = "purged" if needs_purge else "full"
         lines = len(output.splitlines())
         print(f"   ✅ {output_path} ({status}, {lines} lines)")
+
+    # --- 渐进式版本：复制 references/ ---
+    refs_source = config.get("refs_source")
+    if refs_source:
+        refs_src_path = ROOT / refs_source
+        if refs_src_path.exists():
+            # 先读入内存，防止源目录被覆盖
+            ref_files = {}
+            for ref_file in sorted(refs_src_path.glob("*.md")):
+                with open(ref_file, 'r', encoding='utf-8') as f:
+                    ref_files[ref_file.name] = f.read()
+
+            print()
+            print(f"   📂 Copying references/ ({len(ref_files)} files) from {refs_source}")
+
+            for fm_dir, output_path, needs_purge in targets:
+                target_dir = (ROOT / output_path).parent
+                target_refs = target_dir / "references"
+
+                # 清空已有 references/
+                if target_refs.exists():
+                    shutil.rmtree(target_refs)
+                target_refs.mkdir(parents=True, exist_ok=True)
+
+                # 写入每个 reference 文件，按需 PURGE
+                for ref_name, ref_content in ref_files.items():
+                    if needs_purge:
+                        ref_content = purge_loop(ref_content, lang)
+
+                    with open(target_refs / ref_name, 'w', encoding='utf-8') as f:
+                        f.write(ref_content)
+
+                purge_tag = "purged" if needs_purge else "full"
+                print(f"   ✅ {target_dir.relative_to(ROOT)}/references/ ({len(ref_files)} files, {purge_tag})")
+        else:
+            print(f"   ⚠️  refs_source not found: {refs_source}")
 
     print()
     print("✅ Distribution complete.")

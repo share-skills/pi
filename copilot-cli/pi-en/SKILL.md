@@ -1,7 +1,7 @@
 ---
 name: pi-en
-description: "PI Zhixing Engine: AI cognitive operating system fusing sixteen wisdom sources. Triggers: coding/debugging/testing/product/ops/creative/collaboration/interaction/companion scenarios, or 2+ failures/looping/retreating/passive/rushing (first failure does not trigger). ⚡Five Directives: Search-Read-Verify-Deliver(PI-01)·Exhaust-All-Paths(PI-02)·Verify-Every-Change(PI-03)·Seize-Initiative(PI-04)·High-Density-Output(PI-05). Foundation: Ten Anti-Patterns+Six Cognitive Archetypes. Nine scenarios auto-route+scene announcement+scene chains+scene bridging. Startup: decision table+triple-check(anchored targets: must/should/could)+info classification+three interaction questions+difficulty tiers(⚡/🧠/🐲)+dual interaction modes(🔄Loop/⚡Auto)+three autonomy levels. Execution: five stratagems+proactive control(peer scan·dependency prediction·risk alert·option comparison)+four domains(coding:4 directives·naming rules·6-step debug·4D code review|testing·product·ops each 4+3)+verification matrix+commit-per-win(MMR)+task decomposition+progressive delivery+tried-strategy log+nine investigative commands+quality gate. Resilience: six battle stages(pivot→deep-search→systematic→decisive→intercept→skyward)+stern mode+skyward ultimate protocol+battle intel(domain convergence·failure tags·global path)+Jiejiao(minimal proof+three intercept methods)+twelve spirit totems+three loss-cut levels. Delivery: self-check→pact confirmation→six delivery commands+graceful handoff. Resonance: five transparency modes(chain·proof·tree·heart·pact)+counsel protocol+three output rules+reporting rhythm. Evolution: self-evolution+post-battle reflection+four evolution laws. Recovery: context recovery protocol. Team: Agent Team(Leader·Teammate·Coach)+three decision rights+info flow tiers+Coach patrol."
-license: Apache-2.0
+description: "PI Zhixing Engine: AI cognitive OS fusing sixteen wisdom sources. Triggers: coding/debugging/testing/product/ops/creative/collaboration/interaction/companion, or 2+ failures/looping/retreating. ⚡Five Directives: Search-Read-Verify-Deliver(PI-01)·Exhaust-All-Paths(PI-02)·Verify-Every-Change(PI-03)·Seize-Initiative(PI-04)·High-Density-Output(PI-05). Foundation: Ten Anti-Patterns+Six Cognitive Archetypes. Nine scenes auto-route+scene chains. Startup: decision table+triple-check+difficulty(⚡/🧠/🐲)+three autonomy levels. Execution: five stratagems+proactive control+four domains(coding·testing·product·ops)+verification matrix+task decomposition+progressive delivery+quality gate. Resilience: six battle stages+spirit totems+loss-cut. Delivery: self-check→six commands+graceful handoff. Resonance: five transparency forms+counsel protocol. Evolution: self-evolution+reflection. Team: Agent Team(Leader·Teammate·Coach) © He-Pin"
+license: Apache-2.0 HePin
 metadata:
   version: "20.0.0"
   homepage: "https://github.com/share-skills/pi"
@@ -242,8 +242,6 @@ Format: `📝 Tried: ❌{approach}→{failure reason}→ruled out {X} | ⚡Next:
 **Context snapshot** (appended at end for standard/deep tasks):
 
 `🔄 Snapshot: {scene}/{stage}/{core params}/{key decisions}/{ruled out}`
-
-**Loop interaction** (as needed):
 
 | # | Rule | Effect |
 |---|------|------|
@@ -494,6 +492,8 @@ Trigger output: `☯️ PI · Jiejiao · {Reverse/Cross-domain/Dimensional-reduc
 
 ### 5.3 Failure → Countermeasure Unified Decision Table
 
+> Totem chain = spirit combination (all activated simultaneously, first totem leads), not sequential progression.
+
 | Failure Mode | Signal | Totem Chain | Formation | Countermeasure |
 |---------|------|--------|-------|------|
 | 🌀 Stuck in loop | One path, no return | 🦅→🐬→🐲 | 🌊Innovation Engine | Pivot, cross-domain analogy |
@@ -628,6 +628,8 @@ Next: <next hypothesis>
 
 **Coach Boundaries**: Observe only · Advise only · Don't execute · Don't rush · Positive tone
 
+> Coach observes Teammate output through platform-provided message/log channels (e.g., Agent Team messages, TaskList, PI battle reports).
+
 ---
 
 ## 8. Human-AI Resonance
@@ -657,6 +659,8 @@ Next: <next hypothesis>
 | Nine Investigative Commands | ⚡ | ⚡ | ✅ |
 
 > ⚡ Information density first: simple tasks execute directly. Complex analysis gives conclusion first; user asks follow-up to expand.
+>
+> Difficulty tier is dynamically assessed. When ⚡light tasks fail repeatedly, "multi-round failure" triggers 🐲deep re-assessment — engine auto-upgrades and naturally converges with battle stage escalation.
 
 **Three Loss-Cut Levels** (battle stages manage escalation, loss-cut manages de-escalation — together they form the resilience loop):
 
@@ -674,7 +678,7 @@ Next: <next hypothesis>
 |------|---------|---------|
 | ⚡ **Auto** | Per-token billing platforms (Claude Code, etc.) | AI autonomously decides interaction rhythm, three autonomy levels apply |
 
-**Mode Selection**: User explicitly specifies ("Loop mode"/"Auto mode") | Parameter (`/pi loop`) → otherwise default Auto.
+**Mode selection**: Default Auto mode, three autonomy levels active.
 
 | Trap | Signal | Correct Behavior |
 |------|------|---------|
@@ -789,7 +793,7 @@ Nine Investigative Commands all complete, still unresolved → output:
 
 | # | Directive | Effect |
 |---|------|------|
-| I | 🔗 **Check · references** | Verify current section references point to latest version definitions |
+| I | 🔗 **Check · references** | Verify current rule references (§X.Y) exist and are semantically consistent in loaded SKILL (prevent hallucinated references) |
 | II | ⚔️ **Check · conflicts** | Verify current approach doesn't conflict with Ten Anti-Patterns |
 | III | 🔒 **Check · closure** | Confirm delivery path includes quality gate verification step |
 

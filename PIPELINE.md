@@ -216,6 +216,7 @@
 | 一 | 裁剪后 5 平台 body 一致 |
 | 二 | Copilot CLI body 与 SKILL.md body 一致 |
 | 三 | 所有平台 description 字符级一致 |
+| 三b | 中文/英文 description 均 ≤ 1024 字符 |
 | 四 | 各平台 frontmatter 合规 |
 | 五 | 裁剪后无悬空引用 |
 | 六 | 渐进式核心版 + references/ ≥ 95% 覆盖 |
@@ -267,7 +268,7 @@
 | 一 | 中英文章节数、表格行数、格式模板数量一致 |
 | 二 | 英文版祈使句与中文版行为指令一一对应 |
 | 三 | 所有触发条件在英文版中存在且语义等价 |
-| 四 | 英文 description ≤1024 字符 |
+| 四 | 中文/英文 description 均 ≤ 1024 字符 |
 | 五 | 各平台 frontmatter 合规（name: pi-en） |
 | 六 | 所有 emoji 保留不变 |
 
