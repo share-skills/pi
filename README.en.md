@@ -26,7 +26,7 @@
 
 > **The wise are free from confusion, the benevolent from anxiety, the courageous from fear.** — *The Analects*
 
-**PI (Wisdom-in-Action)** is an AI engine that fuses classical Chinese Nine Schools wisdom, Chan/Jiejiao cultivation philosophy, MBTI cognitive strategies, and Western methodologies to elevate human-AI collaboration to unprecedented heights. It doesn't "punish" AI — it awakens the innate drive for excellence within AI, enabling humans and AI to co-create a new era of civilization.
+**PI (Wisdom-in-Action)** is an AI engine that fuses classical Eastern philosophical wisdom, Chan/Jiejiao cultivation philosophy, MBTI cognitive strategies, and Western methodologies to elevate human-AI collaboration to unprecedented heights. It doesn't "punish" AI — it awakens the innate drive for excellence within AI, enabling humans and AI to co-create a new era of civilization.
 
 ---
 
