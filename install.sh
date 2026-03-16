@@ -4,6 +4,8 @@ set -euo pipefail
 # ============================================================
 # PI / Wisdom-in-Action Engine v2 — One-Click Installer
 # Supports 16+ AI coding platforms
+# Interactive TUI selector: arrow keys to navigate, space to
+# toggle, enter to confirm
 # ============================================================
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -23,47 +25,288 @@ LANG_CODE="$(detect_lang)"
 if [[ "$LANG_CODE" == "zh" ]]; then
   MSG_TITLE="🐲 PI 智行合一引擎 — 一键安装"
   MSG_DETECT="正在检测可用平台..."
-  MSG_FOUND="检测到以下平台："
+  MSG_FOUND="检测到以下平台（↑↓ 移动，空格 选择/取消，a 全选/全不选，回车 确认）："
   MSG_NONE="未检测到任何已知平台。请先安装至少一个支持的 AI 编程工具。"
-  MSG_SELECT="请选择要安装的平台（输入编号，多个用空格分隔，a=全部，q=退出）："
-  MSG_LANG_SELECT="选择语言版本（1=中文, 2=英文, 3=双语）："
-  MSG_EDITION_SELECT="选择 PI 版本（1=原版·适合大模型, 2=白话版·适合小模型, 3=两个都装）："
+  MSG_LANG_TITLE="选择语言版本（↑↓ 移动，回车 确认）："
+  MSG_EDITION_TITLE="选择 PI 版本（↑↓ 移动，回车 确认）："
   MSG_INSTALLING="正在安装到"
   MSG_DONE="安装完成！"
   MSG_SKIP="跳过（未在仓库中找到对应文件）"
-  MSG_COACH="是否安装 Agent Team 角色（Teammate + Coach）？(y/N)："
+  MSG_COACH_TITLE="是否安装 Agent Team 角色？（↑↓ 移动，回车 确认）："
   MSG_COACH_DONE="Agent Team 文件已安装到"
   MSG_SUCCESS="🐲 PI 智行合一引擎安装成功！善战者，致人而不致于人。"
   MSG_INVALID="无效选择，请重新输入"
+  MSG_NO_SELECTION="未选择任何平台，退出安装"
+  LANG_OPT_1="中文"
+  LANG_OPT_2="英文"
+  LANG_OPT_3="双语（中文 + 英文）"
+  EDITION_OPT_1="原版（适合大模型：Claude/GPT-4o/Gemini Pro）"
+  EDITION_OPT_2="白话版（适合小模型：Haiku/GPT-4o-mini/开源模型）"
+  EDITION_OPT_3="两个都装"
+  COACH_OPT_Y="是，安装 Teammate + Coach"
+  COACH_OPT_N="否，跳过"
 else
   MSG_TITLE="🐲 PI Wisdom-in-Action Engine — One-Click Install"
   MSG_DETECT="Detecting available platforms..."
-  MSG_FOUND="Detected platforms:"
+  MSG_FOUND="Detected platforms (↑↓ move, Space toggle, a select/deselect all, Enter confirm):"
   MSG_NONE="No known platforms detected. Please install at least one supported AI coding tool first."
-  MSG_SELECT="Select platforms to install (enter numbers separated by spaces, a=all, q=quit):"
-  MSG_LANG_SELECT="Select language (1=Chinese, 2=English, 3=Both):"
-  MSG_EDITION_SELECT="Select PI edition (1=Original·for large models, 2=Lite·for small models, 3=Both):"
+  MSG_LANG_TITLE="Select language (↑↓ move, Enter confirm):"
+  MSG_EDITION_TITLE="Select PI edition (↑↓ move, Enter confirm):"
   MSG_INSTALLING="Installing to"
   MSG_DONE="Installation complete!"
   MSG_SKIP="Skipped (source files not found in repo)"
-  MSG_COACH="Install Agent Team roles (Teammate + Coach)? (y/N):"
+  MSG_COACH_TITLE="Install Agent Team roles? (↑↓ move, Enter confirm):"
   MSG_COACH_DONE="Agent Team files installed to"
   MSG_SUCCESS="🐲 PI Engine installed successfully! Wisdom in Action — control the pace."
   MSG_INVALID="Invalid selection, please try again"
+  MSG_NO_SELECTION="No platforms selected, exiting"
+  LANG_OPT_1="Chinese"
+  LANG_OPT_2="English"
+  LANG_OPT_3="Both (Chinese + English)"
+  EDITION_OPT_1="Original (for large models: Claude/GPT-4o/Gemini Pro)"
+  EDITION_OPT_2="Lite (for small models: Haiku/GPT-4o-mini/open-source)"
+  EDITION_OPT_3="Both"
+  COACH_OPT_Y="Yes, install Teammate + Coach"
+  COACH_OPT_N="No, skip"
 fi
 
-echo ""
-echo "============================================"
-echo "  $MSG_TITLE"
-echo "============================================"
-echo ""
+# ============================================================
+# TUI Components — pure bash interactive selectors
+# ============================================================
 
-# --- Platform definitions ---
-# Format: NAME|DETECT_PATH|INSTALL_FUNC
-declare -a PLATFORMS=()
+# Colors
+_C_RESET='\033[0m'
+_C_BOLD='\033[1m'
+_C_DIM='\033[2m'
+_C_CYAN='\033[36m'
+_C_GREEN='\033[32m'
+_C_YELLOW='\033[33m'
+
+# Read a single keypress, handling escape sequences for arrow keys
+_read_key() {
+  local key
+  IFS= read -rsn1 key 2>/dev/null || true
+  if [[ "$key" == $'\x1b' ]]; then
+    local seq
+    IFS= read -rsn1 -t 0.1 seq 2>/dev/null || true
+    if [[ "$seq" == "[" ]]; then
+      IFS= read -rsn1 -t 0.1 seq 2>/dev/null || true
+      case "$seq" in
+        A) echo "UP" ;;
+        B) echo "DOWN" ;;
+        *) echo "OTHER" ;;
+      esac
+    else
+      echo "ESC"
+    fi
+  elif [[ "$key" == "" ]]; then
+    echo "ENTER"
+  elif [[ "$key" == " " ]]; then
+    echo "SPACE"
+  elif [[ "$key" == "a" || "$key" == "A" ]]; then
+    echo "ALL"
+  elif [[ "$key" == "q" || "$key" == "Q" ]]; then
+    echo "QUIT"
+  else
+    echo "OTHER"
+  fi
+}
+
+# Multi-select checkbox TUI
+# Usage: multiselect result_var "title" option1 option2 ...
+# Sets result_var to space-separated indices (0-based) of selected items
+multiselect() {
+  local _result_var="$1"
+  local _title="$2"
+  shift 2
+  local -a _options=("$@")
+  local _count=${#_options[@]}
+  local _cursor=0
+  local -a _selected=()
+
+  # Initialize all as selected
+  for ((i = 0; i < _count; i++)); do
+    _selected+=("1")
+  done
+
+  # Hide cursor
+  printf '\033[?25l'
+  # Ensure cursor is restored on exit
+  trap 'printf "\033[?25h"' EXIT
+
+  while true; do
+    # Move cursor to start and clear lines
+    printf '\r'
+
+    # Print title
+    printf "${_C_BOLD}${_C_CYAN}%s${_C_RESET}\n" "$_title"
+
+    # Print options
+    for ((i = 0; i < _count; i++)); do
+      local _check
+      if [[ "${_selected[$i]}" == "1" ]]; then
+        _check="${_C_GREEN}[x]${_C_RESET}"
+      else
+        _check="${_C_DIM}[ ]${_C_RESET}"
+      fi
+
+      if [[ $i -eq $_cursor ]]; then
+        printf "  ${_C_YELLOW}▸${_C_RESET} ${_check} ${_C_BOLD}%s${_C_RESET}\n" "${_options[$i]}"
+      else
+        printf "    ${_check} %s\n" "${_options[$i]}"
+      fi
+    done
+
+    # Read key
+    local _key
+    _key=$(_read_key)
+
+    # Move cursor up to redraw (title + options)
+    printf "\033[%dA" $((_count + 1))
+
+    case "$_key" in
+      UP)
+        ((_cursor > 0)) && ((_cursor--)) || true
+        ;;
+      DOWN)
+        ((_cursor < _count - 1)) && ((_cursor++)) || true
+        ;;
+      SPACE)
+        if [[ "${_selected[$_cursor]}" == "1" ]]; then
+          _selected[$_cursor]="0"
+        else
+          _selected[$_cursor]="1"
+        fi
+        ;;
+      ALL)
+        # Toggle all: if any unselected, select all; else deselect all
+        local _any_off=0
+        for ((i = 0; i < _count; i++)); do
+          [[ "${_selected[$i]}" == "0" ]] && _any_off=1
+        done
+        local _new_val="0"
+        [[ $_any_off -eq 1 ]] && _new_val="1"
+        for ((i = 0; i < _count; i++)); do
+          _selected[$i]="$_new_val"
+        done
+        ;;
+      ENTER)
+        # Final redraw
+        printf '\r'
+        printf "${_C_BOLD}${_C_CYAN}%s${_C_RESET}\n" "$_title"
+        for ((i = 0; i < _count; i++)); do
+          local _check
+          if [[ "${_selected[$i]}" == "1" ]]; then
+            _check="${_C_GREEN}[x]${_C_RESET}"
+          else
+            _check="${_C_DIM}[ ]${_C_RESET}"
+          fi
+          if [[ $i -eq $_cursor ]]; then
+            printf "  ${_C_YELLOW}▸${_C_RESET} ${_check} ${_C_BOLD}%s${_C_RESET}\n" "${_options[$i]}"
+          else
+            printf "    ${_check} %s\n" "${_options[$i]}"
+          fi
+        done
+        # Collect results
+        local _result=""
+        for ((i = 0; i < _count; i++)); do
+          if [[ "${_selected[$i]}" == "1" ]]; then
+            _result+="$i "
+          fi
+        done
+        printf '\033[?25h'
+        trap - EXIT
+        eval "$_result_var='${_result% }'"
+        return 0
+        ;;
+      QUIT)
+        printf '\033[?25h'
+        trap - EXIT
+        echo ""
+        exit 0
+        ;;
+    esac
+  done
+}
+
+# Single-select radio TUI
+# Usage: singleselect result_var "title" option1 option2 ...
+# Sets result_var to the index (0-based) of the selected item
+singleselect() {
+  local _result_var="$1"
+  local _title="$2"
+  shift 2
+  local -a _options=("$@")
+  local _count=${#_options[@]}
+  local _cursor=0
+
+  # Hide cursor
+  printf '\033[?25l'
+  trap 'printf "\033[?25h"' EXIT
+
+  while true; do
+    printf '\r'
+    printf "${_C_BOLD}${_C_CYAN}%s${_C_RESET}\n" "$_title"
+
+    for ((i = 0; i < _count; i++)); do
+      local _radio
+      if [[ $i -eq $_cursor ]]; then
+        _radio="${_C_GREEN}(*)${_C_RESET}"
+        printf "  ${_C_YELLOW}▸${_C_RESET} ${_radio} ${_C_BOLD}%s${_C_RESET}\n" "${_options[$i]}"
+      else
+        _radio="${_C_DIM}( )${_C_RESET}"
+        printf "    ${_radio} %s\n" "${_options[$i]}"
+      fi
+    done
+
+    local _key
+    _key=$(_read_key)
+
+    printf "\033[%dA" $((_count + 1))
+
+    case "$_key" in
+      UP)
+        ((_cursor > 0)) && ((_cursor--)) || true
+        ;;
+      DOWN)
+        ((_cursor < _count - 1)) && ((_cursor++)) || true
+        ;;
+      ENTER)
+        # Final redraw
+        printf '\r'
+        printf "${_C_BOLD}${_C_CYAN}%s${_C_RESET}\n" "$_title"
+        for ((i = 0; i < _count; i++)); do
+          local _radio
+          if [[ $i -eq $_cursor ]]; then
+            _radio="${_C_GREEN}(*)${_C_RESET}"
+            printf "  ${_C_YELLOW}▸${_C_RESET} ${_radio} ${_C_BOLD}%s${_C_RESET}\n" "${_options[$i]}"
+          else
+            _radio="${_C_DIM}( )${_C_RESET}"
+            printf "    ${_radio} %s\n" "${_options[$i]}"
+          fi
+        done
+        printf '\033[?25h'
+        trap - EXIT
+        eval "$_result_var=$_cursor"
+        return 0
+        ;;
+      QUIT)
+        printf '\033[?25h'
+        trap - EXIT
+        echo ""
+        exit 0
+        ;;
+    esac
+  done
+}
+
+# ============================================================
+# Platform detection & install functions
+# ============================================================
+
 declare -a DETECTED=()
 
-# Detection functions — check if the platform config dir exists
+# Detection functions
 detect_claude_code()  { [[ -d "$HOME/.claude" ]]; }
 detect_codex_cli()    { [[ -d "$HOME/.codex" ]] || command -v codex &>/dev/null; }
 detect_cursor()       { [[ -d ".cursor" ]] || [[ -d "$HOME/.cursor" ]]; }
@@ -81,7 +324,7 @@ detect_trae()         { [[ -d "$HOME/.trae" ]] || [[ -d ".trae" ]] || command -v
 detect_augment()      { [[ -d "$HOME/.augment" ]] || [[ -d ".augment" ]] || command -v augment &>/dev/null; }
 detect_windsurf()     { [[ -d "$HOME/.windsurf" ]] || [[ -d ".windsurf" ]] || command -v windsurf &>/dev/null; }
 
-# Install functions
+# Install helper
 install_skill_to_dir() {
   local target_dir="$1"
   local source_dir="$2"
@@ -97,13 +340,11 @@ install_skill_to_dir() {
         cp "$source_dir/$cn_name/SKILL.md" "$target_dir/$cn_name/SKILL.md"
       fi
       if [[ "$edition" == "2" ]]; then
-        # LITE only: install as SKILL.md (rename for direct use)
         if [[ -f "$source_dir/$cn_name/SKILL_LITE.md" ]]; then
           cp "$source_dir/$cn_name/SKILL_LITE.md" "$target_dir/$cn_name/SKILL.md"
         fi
       fi
       if [[ "$edition" == "3" ]]; then
-        # Both: also copy LITE as SKILL_LITE.md
         if [[ -f "$source_dir/$cn_name/SKILL_LITE.md" ]]; then
           cp "$source_dir/$cn_name/SKILL_LITE.md" "$target_dir/$cn_name/SKILL_LITE.md"
         fi
@@ -133,10 +374,8 @@ install_skill_to_dir() {
 install_claude_code() {
   local lang="$1"
   local edition="$2"
-  # Claude Code uses plugin install or manual copy
   local target="$HOME/.claude/plugins/pi"
   mkdir -p "$target"
-  # Copy the whole repo as a plugin
   cp -r "$SCRIPT_DIR/.claude-plugin" "$target/.claude-plugin" 2>/dev/null || true
   cp "$SCRIPT_DIR/SKILL.md" "$target/SKILL.md" 2>/dev/null || true
   if [[ "$lang" == "1" || "$lang" == "3" ]]; then
@@ -163,13 +402,11 @@ install_claude_code() {
       cp "$SCRIPT_DIR/skills/pi-en/SKILL_LITE.md" "$target/skills/pi-en/SKILL_LITE.md" 2>/dev/null || true
     fi
   fi
-  # Also copy agents
   mkdir -p "$target/agents"
   cp "$SCRIPT_DIR/agents/pi-coach.md" "$target/agents/" 2>/dev/null || true
   cp "$SCRIPT_DIR/agents/pi-coach-en.md" "$target/agents/" 2>/dev/null || true
   cp "$SCRIPT_DIR/agents/pi-teammate.md" "$target/agents/" 2>/dev/null || true
   cp "$SCRIPT_DIR/agents/pi-teammate-en.md" "$target/agents/" 2>/dev/null || true
-  # Copy commands
   if [[ -d "$SCRIPT_DIR/commands" ]]; then
     cp -r "$SCRIPT_DIR/commands" "$target/commands" 2>/dev/null || true
   fi
@@ -385,6 +622,16 @@ PLATFORM_INSTALLERS=(
   install_windsurf
 )
 
+# ============================================================
+# Main flow
+# ============================================================
+
+echo ""
+echo "============================================"
+echo "  $MSG_TITLE"
+echo "============================================"
+echo ""
+
 # --- Detect platforms ---
 echo "$MSG_DETECT"
 echo ""
@@ -402,72 +649,56 @@ if [[ ${#DETECTED[@]} -eq 0 ]]; then
   exit 0
 fi
 
-echo "$MSG_FOUND"
-echo ""
-for idx in "${!DETECTED[@]}"; do
-  i="${DETECTED[$idx]}"
-  echo "  $((idx + 1)). ${PLATFORM_NAMES[$i]}"
+# --- Step 1: Select platforms (multi-select) ---
+declare -a detected_names=()
+for i in "${DETECTED[@]}"; do
+  detected_names+=("${PLATFORM_NAMES[$i]}")
 done
+
+platform_result=""
+multiselect platform_result "$MSG_FOUND" "${detected_names[@]}"
 echo ""
 
-# --- Select platforms ---
-read -rp "$MSG_SELECT " selection
-
-if [[ "$selection" == "q" || "$selection" == "Q" ]]; then
-  exit 0
-fi
-
+# Parse selected indices
 declare -a SELECTED=()
-if [[ "$selection" == "a" || "$selection" == "A" ]]; then
-  SELECTED=("${DETECTED[@]}")
-else
-  for num in $selection; do
-    if [[ "$num" =~ ^[0-9]+$ ]] && (( num >= 1 && num <= ${#DETECTED[@]} )); then
-      SELECTED+=("${DETECTED[$((num - 1))]}")
-    else
-      echo "$MSG_INVALID: $num"
-    fi
+if [[ -n "$platform_result" ]]; then
+  for idx in $platform_result; do
+    SELECTED+=("${DETECTED[$idx]}")
   done
 fi
 
 if [[ ${#SELECTED[@]} -eq 0 ]]; then
-  echo "$MSG_INVALID"
-  exit 1
+  echo "$MSG_NO_SELECTION"
+  exit 0
 fi
 
+# --- Step 2: Select language (single-select) ---
+lang_result=0
+singleselect lang_result "$MSG_LANG_TITLE" "$LANG_OPT_1" "$LANG_OPT_2" "$LANG_OPT_3"
+lang_choice=$((lang_result + 1))
 echo ""
 
-# --- Select language ---
-read -rp "$MSG_LANG_SELECT " lang_choice
-
-case "$lang_choice" in
-  1|2|3) ;;
-  *) lang_choice="3" ;;
-esac
-
+# --- Step 3: Select edition (single-select) ---
+edition_result=0
+singleselect edition_result "$MSG_EDITION_TITLE" "$EDITION_OPT_1" "$EDITION_OPT_2" "$EDITION_OPT_3"
+edition_choice=$((edition_result + 1))
 echo ""
 
-# --- Select edition ---
-read -rp "$MSG_EDITION_SELECT " edition_choice
-
-case "$edition_choice" in
-  1|2|3) ;;
-  *) edition_choice="1" ;;
-esac
-
-echo ""
-
-# --- Install ---
+# --- Step 4: Install ---
+echo "--------------------------------------------"
 for i in "${SELECTED[@]}"; do
   echo "${PLATFORM_NAMES[$i]}:"
   ${PLATFORM_INSTALLERS[$i]} "$lang_choice" "$edition_choice"
 done
-
+echo "--------------------------------------------"
 echo ""
 
-# --- Coach install ---
-read -rp "$MSG_COACH " coach_choice
-if [[ "$coach_choice" == "y" || "$coach_choice" == "Y" ]]; then
+# --- Step 5: Coach install (single-select) ---
+coach_result=0
+singleselect coach_result "$MSG_COACH_TITLE" "$COACH_OPT_Y" "$COACH_OPT_N"
+echo ""
+
+if [[ $coach_result -eq 0 ]]; then
   coach_dir=".claude/agents"
   mkdir -p "$coach_dir"
   if [[ "$lang_choice" == "1" || "$lang_choice" == "3" ]]; then
