@@ -24,7 +24,9 @@
 
 [English](README.en.md) | **中文**
 
-阿里内网用户加群 【群号: 156800004200 / TMCP 天使用户群】
+阿里内网用户欢迎加群交流 【群号: 156800004200 / TMCP 天使用户群】
+
+![join_group_img_3.png](asserts/join_group_img_3.png)
 
 > **智者不惑，仁者不忧，勇者不惧。** ——《论语·子罕》
 
