@@ -41,7 +41,7 @@
 | 敕令/戒律 | 祈使句英文 | 搜→读→验→交付→Search→Read→Verify→Deliver |
 | 表格内容 | 逐格翻译 | 保持表格结构不变 |
 | 行为指令 | 精准翻译 | 保持祈使语气 |
-| 灵兽名 | 英文动物名 | 🦅鹰→🦅Eagle, 🐺狼→🐺Wolf |
+| 灵兽名 | 英文动物名 | 🦅鹰→🦅Eagle, 🐺🐯狼虎→🐺🐯Wolf-Tiger |
 | 认知阵 | 意译 | 🧠最强大脑→🧠Supreme Mind |
 | frontmatter description | 全文英译 | 保持 ≤1024 字符限制 |
 
