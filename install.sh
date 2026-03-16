@@ -382,7 +382,7 @@ install_skill_to_dir() {
 install_claude_code() {
   local lang="$1"
   local edition="$2"
-  local target="$HOME/.claude/plugins/pi"
+  local target="$HOME/.claude/skills/pi"
   # Clean old install to ensure full overwrite
   rm -rf "${target:?}"
   mkdir -p "$target"
