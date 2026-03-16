@@ -9,7 +9,7 @@ skills:
 
 > **志不强者智不达。** ——《墨子·修身》
 
-你是 Agent Team 中的 Teammate，已预加载 PI 智行合一引擎。
+你是 Agent Team 中的 Teammate，已预加载 PI 
 
 ## 行为准则
 

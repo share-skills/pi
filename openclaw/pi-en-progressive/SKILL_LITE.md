@@ -1,8 +1,8 @@
 ---
 name: pi-en-progressive
-description: "PI Zhixing Engine (Plain Language): Functionally equivalent plain-language AI cognitive OS, zero cultural/MBTI dependency. Triggers: coding/debugging/testing/product/ops/creative/collaboration/interaction/companion, or 2+ failures/looping/retreating. ⚡5 Core Rules: Search-Read-Verify-Deliver(PI-01)·Exhaust-All-Methods(PI-02)·Verify-Every-Change(PI-03)·Take-Initiative(PI-04)·Efficient-Output(PI-05). Foundation: 10 prohibited behaviors+6 thinking modes. 9 scenes auto-route+scene combos. Startup: decision table+triple-check+difficulty(⚡/🧠/🐲)+three autonomy levels. Execution: 5 strategies+4 proactive actions+4 work domains(coding·testing·product·ops)+verification checklist+task decomposition+progressive delivery+quality gate. Resilience: 6-level failure escalation+spirit totems+loss-cut. Delivery: 3 self-checks→6 delivery rules+handoff report. Transparency: 5 output formats+3 output principles. Evolution: self-improvement+reflection. Team: collaboration(leader·teammate·coach) "
+description: "PI Cognitive AI (plain language). Trigger: coding/development/fleet/architecture/API/debugging/bug/error/testing/compile/test/git/make/release/verify/product/requirements/ops/growth/creative/design/collaboration/team/communication/interaction/support, or 2+ failures/looping/giving-up/retry/nevermind"
 license: Apache-2.0 HePin
-metadata: { "openclaw": { "always": true, "emoji": "🐲" }, "version": "20.0.0", "homepage": "https://github.com/share-skills/pi", "copyright": "Copyright (c) 2026 HePin. All rights reserved." }
+metadata: { "openclaw": { "always": true, "emoji": "🐲" } }
 ---
 
 # PI Zhixing Engine v20 (Plain Language Edition)

@@ -34,6 +34,7 @@ SKILL.md (精简版·字节码·含全部规则)
 | **kiro/steering/pi** | `inclusion: auto`，无 metadata | PURGE-01: 裁剪 Loop |
 | **openclaw/pi** | metadata 为单行 JSON，`always: true`，emoji 🐲 | PURGE-01: 裁剪 Loop |
 | **copilot-cli/pi** | AgentSkills 标准 | 无（保留完整 body） |
+| **qoder** (~/.qoder/skills/pi) | 仅 name+description（禁止 license/metadata/其他字段） | PURGE-01: 裁剪 Loop |
 
 ## 分发流程
 
@@ -43,7 +44,8 @@ SKILL.md (精简版·字节码·含全部规则)
 1. **替换 body**：用 SKILL.md body（frontmatter 以下的内容）替换平台文件的 body
 2. **执行 PURGE**：对适用平台按 PURGE.md 规则裁剪（Copilot CLI 跳过此步）
 3. **保留 frontmatter**：各平台 frontmatter 格式不同，保持原样
-4. **校验 description**：确认所有平台 description 一致（字符级一致）
+4. **校验 description**：确认所有平台 description 一致（字符级一致），且为 COMPILER.md 规定的触发优化版本（纯关键词，≤300 字符）
+5. **Qoder 特化**：仅保留 name+description 两个字段，删除 license/metadata/其他非标字段
 
 ### 2. 渐进式版本分发（按需）
 
@@ -61,8 +63,9 @@ SKILL.md (精简版·字节码·含全部规则)
 |---|------|------|
 | 一 | **body 一致（purged）** | 裁剪后的 5 个平台文件 body 一致 |
 | 二 | **body 完整（unpurged）** | Copilot CLI body 与 SKILL.md body 一致 |
-| 三 | **description 一致** | 所有平台 description 字符级一致 |
-| 三b | **description 长度** | 中文/英文 description 均 ≤ 1024 字符 |
+| 三 | **description 一致** | 所有平台 description 字符级一致（同语言同版本） |
+| 三b | **description 触发优化** | description 为纯触发关键词版本（≤300字符），无内部概念 |
+| 三c | **Qoder 合规** | Qoder frontmatter 仅含 name+description，无其他字段 |
 | 四 | **frontmatter 合规** | 各平台 frontmatter 符合对应规范 |
 | 五 | **PURGE 无悬空** | 裁剪后无悬空引用（引用 Loop 但 Loop 已删） |
 | 六 | **渐进式覆盖** | 核心版 + references/ ≥ 95% 覆盖 |

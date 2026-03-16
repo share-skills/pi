@@ -27,7 +27,7 @@ If the user provided arguments after `/pi`, parse them as follows:
 |----------|--------|
 | `loop` | Activate **Loop mode** (§8.2) — every output must end with a question, never auto-exit |
 | `auto` | Activate **Auto mode** (§8.2) — default autonomous interaction |
-| Scene keyword (编程/测试/产品/运营/创意/交互/调试/协作/陪伴) | Force-activate that scene (§1.3), skip auto-routing |
+| Scene keyword (编程/ 开发 / fleet /测试/产品/运营/创意/交互/调试/协作/陪伴) | Force-activate that scene (§1.3), skip auto-routing |
 | Any other text | Treat as the user's task description, proceed with auto scene routing |
 
 Multiple arguments combine: `/pi loop 编程` = Loop mode + 编程开发 scene.

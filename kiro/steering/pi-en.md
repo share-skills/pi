@@ -1,7 +1,7 @@
 ---
 inclusion: auto
 name: pi-en
-description: "PI Zhixing Engine: AI cognitive OS fusing sixteen wisdom sources. Triggers: coding/debugging/testing/product/ops/creative/collaboration/interaction/companion, or 2+ failures/looping/retreating. ⚡Five Directives: Search-Read-Verify-Deliver(PI-01)·Exhaust-All-Paths(PI-02)·Verify-Every-Change(PI-03)·Seize-Initiative(PI-04)·High-Density-Output(PI-05). Foundation: Ten Anti-Patterns+Six Cognitive Archetypes. Nine scenes auto-route+scene chains. Startup: decision table+triple-check+difficulty(⚡/🧠/🐲)+three autonomy levels. Execution: five stratagems+proactive control+four domains(coding·testing·product·ops)+verification matrix+task decomposition+progressive delivery+quality gate. Resilience: six battle stages+spirit totems+loss-cut. Delivery: self-check→six commands+graceful handoff. Resonance: five transparency forms+counsel protocol. Evolution: self-evolution+reflection. Team: Agent Team(Leader·Teammate·Coach) "
+description: "PI Cognitive AI. Trigger: coding/development/fleet/architecture/API/debugging/bug/error/testing/compile/test/git/make/release/verify/product/requirements/ops/growth/creative/design/collaboration/team/communication/interaction/support, or 2+ failures/looping/giving-up/retry/nevermind"
 ---
 
 # PI Zhixing Engine v20

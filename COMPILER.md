@@ -44,8 +44,32 @@ SKILL_META.md  ← 迭代真源（完整版·给人看·~1170行）
 
 ## 逐章详细方案
 
+### frontmatter 编译（description 触发优化）
+
+SKILL_META.md 的 description 是完整索引（给人看），编译时**压缩为纯触发关键词版本**（给 AI 匹配用）。
+
+**编译规则**：
+
+| 序 | 规则 | 理由 |
+|---|------|------|
+| 一 | **仅保留用户搜索词** | 用户输入"调试""写代码"而非"九令洞鉴""反模式十戒" |
+| 二 | **删除所有内部概念** | 敕令名/机制名/模块名是正文内容，不是触发关键词 |
+| 三 | **保留行为信号** | 失败次数/打转/言退 = AI 判断何时升级的信号 |
+| 四 | **字符数 ≤ 300** | 短 description = 快匹配 = 高触发率 |
+| 五 | **格式固定** | `{引擎名}。触发：{关键词/分隔}，或{行为信号}` |
+
+**编译模板**：
+
+```
+中文：PI 智行合一。触发：编程/开发/fleet/代码/架构/API/调试/bug/报错/测试/编译/compile/test/git/make/发布/验证/产品/需求/运营/增长/创意/设计/协作/团队/沟通/交互/陪伴/情感，或失败2+次/打转/言退/再试试/换个参数/算了
+白话：同上 + 开头加（白话版）
+英文：PI Cognitive AI. Trigger: coding/development/fleet/architecture/API/debugging/bug/error/testing/compile/test/git/make/release/verify/product/requirements/ops/growth/creative/design/collaboration/team/communication/interaction/support, or 2+ failures/looping/giving-up/retry/nevermind
+```
+
+**关键词选取原则**：每个关键词必须是用户可能输入的搜索词。用户不会输入的词（五敕令/反模式十戒/认知原型/战势/九令洞鉴等）一律删除。
+
 ### 开头（L1-18）
-- frontmatter 原样保留（description 不变）
+- frontmatter：description 按上述规则编译为触发版本
 - 标题保留
 - 古典引语 **删**
 - 伙伴宣言 **压缩为 1 行**
