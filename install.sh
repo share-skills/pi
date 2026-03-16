@@ -333,6 +333,14 @@ install_skill_to_dir() {
   local lang="$5"
   local edition="$6"
 
+  # Clean old files before copying to ensure overwrite
+  if [[ "$lang" == "1" || "$lang" == "3" ]]; then
+    rm -rf "${target_dir:?}/$cn_name"
+  fi
+  if [[ "$lang" == "2" || "$lang" == "3" ]]; then
+    rm -rf "${target_dir:?}/$en_name"
+  fi
+
   if [[ "$lang" == "1" || "$lang" == "3" ]]; then
     if [[ -f "$source_dir/$cn_name/SKILL.md" ]]; then
       mkdir -p "$target_dir/$cn_name"
@@ -375,6 +383,8 @@ install_claude_code() {
   local lang="$1"
   local edition="$2"
   local target="$HOME/.claude/plugins/pi"
+  # Clean old install to ensure full overwrite
+  rm -rf "${target:?}"
   mkdir -p "$target"
   cp -r "$SCRIPT_DIR/.claude-plugin" "$target/.claude-plugin" 2>/dev/null || true
   cp "$SCRIPT_DIR/SKILL.md" "$target/SKILL.md" 2>/dev/null || true
@@ -700,6 +710,8 @@ echo ""
 
 if [[ $coach_result -eq 0 ]]; then
   coach_dir=".claude/agents"
+  # Clean old pi agent files before copying
+  rm -f "$coach_dir/pi-teammate.md" "$coach_dir/pi-teammate-en.md" "$coach_dir/pi-coach.md" "$coach_dir/pi-coach-en.md" 2>/dev/null || true
   mkdir -p "$coach_dir"
   if [[ "$lang_choice" == "1" || "$lang_choice" == "3" ]]; then
     cp "$SCRIPT_DIR/agents/pi-teammate.md" "$coach_dir/pi-teammate.md"
