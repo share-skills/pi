@@ -1,0 +1,10 @@
+---
+name: {name}
+description: "{description}"
+license: Apache-2.0
+metadata:
+  version: "{version}"
+  homepage: "{homepage}"
+  copyright: "{copyright}"
+  argument-hint: "{argument_hint}"
+---

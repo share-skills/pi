@@ -1,0 +1,6 @@
+---
+name: {name}
+description: "{description}"
+license: Apache-2.0
+metadata: {{ "openclaw": {{ "always": true, "emoji": "🐲" }}, "version": "{version}", "homepage": "{homepage}", "copyright": "{copyright}" }}
+---

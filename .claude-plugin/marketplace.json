@@ -1,0 +1,20 @@
+{
+  "name": "pi-skills",
+  "description": "PI (Wisdom-in-Action) Engine v10 — Zero-question imperatives, ⚡PI-01~05 pinned mandates, scene router, delivery quality gates, token economy, anti-pattern decalogue, scene chaining, four dojos, self-evolution",
+  "owner": {
+    "name": "pi-team",
+    "url": "https://github.com/share-skills/pi"
+  },
+  "plugins": [
+    {
+      "name": "pi",
+      "description": "PI (Wisdom-in-Action) Engine v10 — zero-question imperatives, ⚡PI-01~05 KV-Cache anchors, scene router, delivery quality gates, four dojos",
+      "version": "10.0.0",
+      "source": "./",
+      "author": {
+        "name": "pi-team",
+        "url": "https://github.com/share-skills/pi"
+      }
+    }
+  ]
+}

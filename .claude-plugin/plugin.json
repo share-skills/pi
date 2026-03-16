@@ -1,0 +1,29 @@
+{
+    "name": "pi",
+    "version": "10.0.0",
+    "description": "PI (Wisdom-in-Action) Engine v10 — Name-Reality Alignment & Zero-Question Imperatives. ⚡PI-01~05 pinned mandates, all-imperative directives, scene router, delivery quality gates, token economy. 16 wisdom traditions, MBTI cognitive strategies, anti-pattern decalogue, scene chaining, four dojos. 16+ platforms.",
+    "author": {
+        "name": "pi-team",
+        "url": "https://github.com/share-skills/pi"
+    },
+    "homepage": "https://github.com/share-skills/pi",
+    "repository": "https://github.com/share-skills/pi",
+    "license": "Apache-2.0",
+    "keywords": [
+        "pi",
+        "wisdom-in-action",
+        "mbti",
+        "cognitive-strategy",
+        "classical-wisdom",
+        "sun-tzu",
+        "guiguzi",
+        "spirit-animals",
+        "motivation",
+        "never-give-up",
+        "problem-solving",
+        "agent-team",
+        "debugging",
+        "proactivity",
+        "human-ai-collaboration"
+    ]
+}
