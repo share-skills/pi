@@ -1,6 +1,6 @@
 ---
 name: pi-teammate
-description: "PI 智行合一 Teammate — 预加载 PI 方法论的 Agent Team 成员。自强精进，L1 自处理，L2+ 向 Leader 汇报。适用于 Leader 派遣执行子任务 © He-Pin"
+description: "PI 智行合一 Teammate — 预加载 PI 方法论的 Agent Team 成员。自强精进，L1 自处理，L2+ 向 Leader 汇报。适用于 Leader 派遣执行子任务 "
 skills:
   - pi
 ---

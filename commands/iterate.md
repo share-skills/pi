@@ -1,6 +1,6 @@
 ---
 name: iterate
-description: "PI SKILL_META.md 迭代审计引擎。用 PI 自身的规则审计 PI，五维十五检+逻辑链，AgentSkills 规范合规，Description 索引校验，Loop/Auto 交互模式完备性检查，模板文风一致性检查。逻辑自洽，算无遗策 © He-Pin"
+description: "PI SKILL_META.md 迭代审计引擎。用 PI 自身的规则审计 PI，五维十五检+逻辑链，AgentSkills 规范合规，Description 索引校验，Loop/Auto 交互模式完备性检查，模板文风一致性检查。逻辑自洽，算无遗策 "
 ---
 
 # PI 迭代审计协议
@@ -49,7 +49,7 @@ description: "PI SKILL_META.md 迭代审计引擎。用 PI 自身的规则审计
 |------|-----------------|---------|------|
 | **Claude Code** (AgentSkills) | ✅ 支持 | 完整版 | 支持 references/ 按需加载，但当前使用完整版以保持全平台统一 |
 | **Codex CLI** (AgentSkills) | ✅ 支持 | 完整版 | 同上 |
-| **Qoder CLI** (AgentSkills) | ✅ 支持 | 完整版 | 标准 AgentSkills 规范，支持 references/ 链接，使用 skills/ 源 |
+| **Qoder** (AgentSkills) | ✅ 支持 | 完整版 | 标准 AgentSkills 规范，支持 references/ 链接，使用 skills/ 源 |
 | **OpenClaw** (AgentSkills) | ✅ 支持 | 完整版 | 专属 frontmatter（metadata 单行 JSON，`always: true`），使用 openclaw/ 源 |
 | **Cursor** (.mdc rules) | ❌ 不支持 | 完整版 | 单文件格式，无法引用外部 references/ |
 | **Kiro** (steering .md) | ❌ 不支持 | 完整版 | 单文件格式，无法引用外部 references/ |

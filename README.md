@@ -19,7 +19,7 @@
   <img src="https://img.shields.io/badge/Augment-8B5CF6?style=flat-square" alt="Augment">
   <img src="https://img.shields.io/badge/COPAW-2D3748?style=flat-square" alt="COPAW">
   <img src="https://img.shields.io/badge/Iflow-00D4AA?style=flat-square" alt="Iflow">
-  <img src="https://img.shields.io/badge/Qoder_CLI-333?style=flat-square" alt="Qoder CLI">
+  <img src="https://img.shields.io/badge/Qoder-333?style=flat-square" alt="Qoder">
 </p>
 
 [English](README.en.md) | **中文**
@@ -313,7 +313,7 @@ mkdir -p ~/.qwen/skills/pi && cp skills/pi/SKILL.md ~/.qwen/skills/pi/SKILL.md
 </details>
 
 <details>
-<summary><b>其他平台（Windsurf / Trae / Augment / COPAW / Iflow / Qoder CLI）</b></summary>
+<summary><b>其他平台（Windsurf / Trae / Augment / COPAW / Iflow / Qoder）</b></summary>
 
 通用模式：
 ```bash

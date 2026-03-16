@@ -1,6 +1,6 @@
 ---
 name: pi-teammate-en
-description: "PI Wisdom-in-Action Teammate v20 — Agent Team member with PI methodology preloaded. Self-driven excellence, handle L1 independently, report L2+ to Leader. Use when Leader dispatches subtasks © He-Pin"
+description: "PI Wisdom-in-Action Teammate v20 — Agent Team member with PI methodology preloaded. Self-driven excellence, handle L1 independently, report L2+ to Leader. Use when Leader dispatches subtasks "
 skills:
   - pi-en
 ---

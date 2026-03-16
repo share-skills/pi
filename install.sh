@@ -576,7 +576,7 @@ PLATFORM_NAMES=(
   "Gemini CLI"
   "Copilot CLI"
   "Qwen Code"
-  "Qoder CLI"
+  "Qoder"
   "Iflow"
   "COPAW"
   "Trae"

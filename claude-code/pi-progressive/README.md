@@ -36,7 +36,7 @@
 
 - **token 预算敏感**：大型项目上下文窗口紧张时
 - **首次加载优化**：减少 skill 加载时间和成本
-- **平台支持**：Claude Code、Codex CLI、Qoder CLI、OpenClaw 等支持 references/ 的平台
+- **平台支持**：Claude Code、Codex CLI、Qoder、OpenClaw 等支持 references/ 的平台
 
 ## 何时使用完整版？
 
