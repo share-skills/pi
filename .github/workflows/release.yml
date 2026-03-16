@@ -37,7 +37,7 @@ jobs:
             SKILL_LITE.md \
             LICENSE \
             README.md \
-            README.zh-CN.md \
+            README.en.md \
             -x '*.DS_Store'
           echo "ZIP_NAME=$ZIP_NAME" >> "$GITHUB_ENV"
 

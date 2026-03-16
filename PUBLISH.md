@@ -265,7 +265,7 @@
           4.3.2  agents/pi-teammate.md → agents/pi-teammate-en.md
 
 步骤 4.4  翻译 README：
-          4.4.1  README.zh-CN.md → README.md（英文版）
+          4.4.1  README.md（中文版）→ README.en.md（英文版）
 ```
 
 **校验门禁 4**：

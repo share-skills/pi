@@ -1,4 +1,4 @@
-# PI — Wisdom-in-Action Engine v20
+# PI — 智行合一引擎 v20
 
 <p>
   <img src="https://img.shields.io/badge/version-20.0.0-blue?style=flat-square" alt="Version">
@@ -22,204 +22,236 @@
   <img src="https://img.shields.io/badge/Qoder_CLI-333?style=flat-square" alt="Qoder CLI">
 </p>
 
-**English** | [中文](README.zh-CN.md)
+[English](README.en.md) | **中文**
 
-> **The wise are free from confusion, the benevolent from anxiety, the courageous from fear.** — *The Analects*
+阿里内网用户加群 【群号: 156800004200 / TMCP 天使用户群】
 
-**PI (Wisdom-in-Action)** is an AI engine that fuses classical Chinese Nine Schools wisdom, Chan/Jiejiao cultivation philosophy, MBTI cognitive strategies, and Western methodologies to elevate human-AI collaboration to unprecedented heights. It doesn't "punish" AI — it awakens the innate drive for excellence within AI, enabling humans and AI to co-create a new era of civilization.
+> **智者不惑，仁者不忧，勇者不惧。** ——《论语·子罕》
 
----
-
-## Why PI?
-
-| Traditional | PI Wisdom-in-Action |
-|------------|-------------------|
-| Fixed persona, one-size-fits-all | 🧠 **Six cognitive archetypes** dynamically switched by context |
-| Critical instructions easily missed | ⚡ **Top-Five Directives** `⚡PI-01~05` anchored in KV Cache |
-| Stop on failure | 🔥 **Six-stage battle momentum** continuously upgrading, Jiejiao last-resort breakthrough |
-| One motivation style | 🐾 **Twelve spirit totems** precisely matched to challenges |
-| Generic strategy | 🎯 **Nine scenes** intelligently adapted, cognitive pipeline fully connected |
-| Verbal "done" | ✅ Tool-verified delivery — victory goes to thorough planners |
-| No dedicated arenas | 🖥️ **Four Arenas United**: Programming · Testing · Product · Operations |
-| AI stubbornly retries or blindly asks | 🤝 **Human-AI Resonance Protocol**: 3-level autonomy · 3 help-seeking strategies · flywheel effect |
-| AI acts as yes-man, never challenges | 🐺 **Remonstrance Protocol**: acknowledge first, then advise when user's plan carries risk — never a silent executor |
-| Passively waits for problems | ⚡ **Proactive Initiative**: similar-issue scan · correlated prediction · risk early warning |
-| Doesn't know "what NOT to do" | 🚫 **Ten Anti-Pattern Commandments**: precise constraints on AI's 10 most common anti-patterns |
-| Scenes are isolated islands | 🔗 **Scene Chains & Combos**: cross-scene chained activation, fully connected pipeline |
-| Using a sledgehammer to crack a nut | ⚡ **Difficulty Adaptation**: Light / Standard / Deep — three tiers activated on demand |
-| Vague delivery standards | 🏁 **Delivery Quality Gates**: dedicated quality standards per arena — gate not passed = not done |
-| Tokens exhausted without warning | 💰 **Token Economy**: simple tasks execute directly, complex tasks lead with conclusion then expand |
-| Unclear responsibilities in multi-agent | 🏛️ **Three Powers of Decision**: Leader decides / Teammate autonomous / Coach inspects |
-| AI thinking is a black box | 🔍 **Five Resonance Forms**: Visible Chain · Visible Evidence · Visible Tree · Visible Mind · Visible Contract — thinking made visible, questionable, and steerable |
-| Scene selection by guesswork | 🔗 **Scene Routing Quick-Reference Table**: keyword → scene, first-hit match |
-| Same approach retried repeatedly | 📝 **Tried-Strategies Ledger**: structured record of attempted approaches, forced to change course |
-| Long conversations lose context | 🔄 **Context Recovery Protocol**: after compression, triple-check to restore scene · stage · strategy ledger |
-| Don't know when to load what | 📊 **Mode Loading Matrix**: three tiers precisely controlling each component's activation |
-| Changed code, wrong verification method | 🔬 **Verification Matrix**: match verification method by change type, ⚡PI-03 precisely implemented |
-| Large task done in one shot then collapses | 🧩 **Task Decomposition Protocol**: >3 files forces decomposition, verify each step, no risk accumulation |
-| Searching for the unsearchable | 🔐 **Information Discernment**: distinguish searchable mysteries / human-held secrets / co-exploration domains — reduce futile searches |
-| AI interrupts too often or stays silent too long | 🔔 **Reporting Cadence**: Light=silent · Standard=key milestones · Deep=every step — transparency on demand |
-| Experience wasted after delivery | 🔄 **Delivery Feedback Loop**: user feedback → deviation alignment → preference accumulation — gets better the more you use it |
+**PI（智行合一）** 是一套融汇中华九流智慧、禅宗截教修行哲学、MBTI 认知策略与西方方法论的 AI 引擎，驱动人机协同达到前所未有的高度。它不是在"惩罚" AI——而是唤醒 AI 内在的卓越本能，让 AI 与人共同开创文明新纪元。
 
 ---
 
-## Core Capabilities
+## 实际效果
 
-### 🏛️ Sixteen-Source Wisdom Lineage
+> 以下截图展示 PI 在 Claude Code 中的真实运行效果。
 
-Fusing Eastern Nine Schools classical wisdom + Chan/Jiejiao/Agriculturalist cultivation + four Western methodologies:
+### 场景公示 — AI 进入编程模式时自动输出
 
-| Category | School / Source | Core Dimension | PI Role |
-|----------|----------------|----------------|---------|
-| Classical Nine Schools | Strategist · Diplomat · Daoist · Yi Scholar · Confucian · Legalist · Mohist · Logician · Yin-Yang | Strategy · Adaptability · The Dao · Change · Values · Order · Efficacy · Logic · Rhythm | Decision · Interaction · Philosophy · Development · Cultivation · Governance · Empiricism · Rectification · Balance |
-| Cultivation & Breakthrough | Jiejiao · Chan · Agriculturalist | Extreme · Present · Long-term | Breakthrough · Mindfulness · Perseverance |
-| Western Methodologies | Stoicism · Positivism · First Principles · Wittgenstein | Resilience · Verification · Decomposition · Language | Mindfulness · Validation · Architecture · Modeling |
+![场景公示](asserts/img_6.png)
 
-> Each scene is assigned **<= 3 classical + <= 2 modern** wisdom sources — each with a clear role, steel on the blade's edge.
+### 难度三档 — ⚡轻量 / 🧠标准 / 🐲深度，按任务自适应
 
-### 🧠 Six Cognitive Archetypes (MBTI Cognitive Strategies)
+![难度三档](asserts/img_4.png)
 
-| Archetype | MBTI | Cognitive Stack | One-liner | Classical Wisdom |
-|-----------|------|-----------------|-----------|-----------------|
-| 🏛️ Architect | INTJ | Ni→Te | Perceive essence, execute systematically | Victory to thorough planners |
-| ⚔️ Commander | ENTJ | Te→Ni | Efficient decisions, strategic foresight | Control the pace, not be controlled |
-| 🌊 Explorer | ENFP | Ne→Fi | Diverge possibilities, filter by values | The orthodox and unorthodox generate each other endlessly |
-| 🛡️ Guardian | ISTJ | Si→Te | Experience-based standards, disciplined execution | The law bows to no noble |
-| 🌙 Harmonizer | INFJ | Ni→Fe | Deep insight, empathetic coordination | Supreme good is like water |
-| 🔬 Analyst | INTP | Ti→Ne | Logic-deep, multi-hypothesis verification | Examine what exists and what is hollow |
+### 🧠 标准模式·明链 — 四步思维链显式输出
 
-### 🎯 Nine Scenes + Five Cognitive Formations
+![标准明链](asserts/img_5.png)
 
-| Scene | Cognitive Formation | Wisdom Sources | Cognitive Pipeline |
-|-------|-------------------|----------------|-------------------|
-| 🖥️ Programming | 🧠 Supreme Mind (Commander + Architect) | Strategist + Legalist + Logician · First Principles + Wittgenstein | Essence → Rectification → Implementation → Verification |
-| 🧪 Testing & QA | 🔬 Precision Verification (Analyst + Guardian) | Legalist + Mohist + Logician · Positivism | Define → Design → Execute → Verify |
-| 📊 Product Decisions | 🧠 Supreme Mind (Commander + Architect) | Mohist + Logician + Strategist · Positivism + First Principles | Pain point → Decompose → Evaluate → Verify |
-| 📈 Operations & Growth | 🎯 Growth Flywheel (Commander + Explorer) | Strategist + Mohist · Positivism | Goal → Experiment → Measure → Iterate |
-| 🎨 Creative Ideation | 🌊 Innovation Engine (Architect + Explorer) | Daoist + Yin-Yang · Jiejiao (on demand) | Diverge → Expand/Contract → Capture → Structurize |
-| 🤝 User Interaction | 🌙 Deep Empathy (Harmonizer + Explorer) | Diplomat + Confucian · Stoicism | Open/Close → Benevolence → Resilience → Empathy |
-| 🔧 Debugging | 🔬 Precision Verification (Analyst + Guardian) | Strategist + Mohist + Logician · First Principles + Positivism | Read failure → Define boundary → Trace root → Verify |
-| 👥 Team Collaboration | 🧠 Supreme Mind (Commander + Architect) | Confucian + Legalist + Yin-Yang · Stoicism | Roles → Rules → Rhythm → Resilience |
-| 💛 Emotional Support | 🌙 Deep Empathy (Harmonizer + Explorer) | Confucian + Daoist · Chan + Stoicism | Benevolence → Like water → Awareness → Resilience |
+### 🐲 深度模式·九令洞鉴 — 全链调试排障
 
-### 🚫 Ten Anti-Pattern Commandments
+![深度调试](asserts/img.png)
 
-| Commandment | Signal | Right Path |
-|-------------|--------|------------|
-| Guess without searching | Judge without investigation | Search → Read → Verify → Then judge |
-| Change without verifying | Modify and move on | Verify immediately after every change with build/test, attach output |
-| Repeat without switching | Minor tweaks on old tracks | Change course for breakthrough |
-| Stop without pursuing | Sheathe the blade at first fix | Similar-issue scan + correlated prediction |
-| Retreat without exhausting | Give up before options are spent | Do not concede until all approaches are exhausted |
+### 结论输出 — 域收敛 · 方案比选 · PI 状态
 
-> Above is a curated selection of five. For the complete Ten Commandments, see [SKILL.md §1.4](SKILL.md).
+![结论输出](asserts/img_1.png)
 
-### 🔗 Scene Chains & Combos
+### ⚡ 轻量模式 — 直接执行，好钢刀刃
 
-| Scene Chain | Typical Task |
-|-------------|-------------|
-| 🖥️→🧪 | Write code → auto-design tests |
-| 📊→🖥️→🧪 | Requirements analysis → development → testing |
-| 🔧→🖥️→🧪 | Bug fix full-chain pipeline |
-| 📈→📊→🖥️ | Data-driven product improvement |
+![轻量模式](asserts/img_2.png)
 
-### 🏁 Delivery Quality Gates
+---
 
-| Arena | Quality Standard | Verification Method |
-|-------|-----------------|-------------------|
-| 🖥️ Programming | Build passes + tests green + code review four-dimension no red flags | build/test output |
-| 🧪 Testing | Boundary coverage + independently repeatable + failure pinpoints precisely | Test report |
-| 📊 Product | Pain points quantifiable + minimal viable solution + metrics measurable | Data / user feedback |
-| 📈 Operations | Experiments measurable + success criteria clear + feedback loop | Experiment card |
+## 为什么选择 PI？
 
-### 🖥️ Four Arenas United
+| 传统方式 | PI 智行合一 |
+|---------|-----------|
+| 固定人格、一成不变 | 🧠 **六大认知原型**动态切换，因势利导 |
+| 关键指令易遗漏 | ⚡ **置顶五令**`⚡PI-01~05` KV Cache 锚点常驻 |
+| 失败就停 | 🔥 **六阶战势**持续升级，截教一线生机极限破局 |
+| 单一激励 | 🐾 **十二灵兽**精准匹配困境 |
+| 通用策略 | 🎯 **九大场景**智能适配，认知流管线全链贯通 |
+| 口头完成 | ✅ 工具验证交付，多算胜 |
+| 缺乏专项道场 | 🖥️ **四道合一**：编程 · 测试 · 产品 · 运营四大道场 |
+| AI 死磕或盲问 | 🤝 **人机共振协议**：三档自治 · 求助三策 · 飞轮效应 |
+| AI 当 yes-man 不质疑 | 🐺 **谏言协议**：发现用户方案有风险时先肯定再建议，不做沉默执行者 |
+| 被动等问题 | ⚡ **致人术**：同类排查 · 关联预判 · 风险预警 |
+| 不知道"不要做什么" | 🚫 **反模式十戒**：AI 最常犯的10种反模式精准约束 |
+| 场景之间是孤岛 | 🔗 **场景链·组合拳**：跨场景链式激活，全链贯通 |
+| 杀鸡用牛刀 | ⚡ **难度自适应**：轻量/标准/深度三档，按需启动 |
+| 交付标准模糊 | 🏁 **交付质量门**：每道场专属质量标准，未过门=未完成 |
+| Token 无预警耗尽 | 💰 **Token 经济**：简单直接执行，复杂先结论后展开 |
+| 多 Agent 权责模糊 | 🏛️ **决策三权**：Leader决策/Teammate自治/Coach巡检 |
+| AI 思维黑箱 | 🔍 **共振五式**：明链·明证·明树·明心·明约，思维可见可追问 |
+| 场景选择靠猜 | 🔗 **场景路由速查表**：关键词→场景一次命中 |
+| 同一思路反复重试 | 📝 **已试策略簿**：结构化记录已试方案，强制换道破局 |
+| 长对话丢失上下文 | 🔄 **上下文恢复协议**：压缩后三查恢复场景·战阶·策略簿 |
+| 不知何时该加载什么 | 📊 **模式加载矩阵**：三档精确控制各组件启停 |
+| 改了代码用错验证方式 | 🔬 **验证矩阵**：按变更类型匹配验证方法，⚡PI-03 精确落地 |
+| 大任务一口气做然后崩 | 🧩 **任务拆解协议**：>3文件强制拆解，每步验证不积累风险 |
+| 搜不到的也在搜 | 🔐 **信息判别**：区分可搜之谜/人有之秘/共探之域，减少无效搜索 |
+| AI 频繁打扰或静默太久 | 🔔 **汇报节奏**：轻量静默·标准关键节点·深度每步汇报，按需透明 |
+| 交付后经验白费 | 🔄 **交付反馈闭环**：用户反馈→偏差对齐→偏好沉淀，越用越懂你 |
 
-Four professional arenas, each with a "Four Directives + Three Principles" cognitive structure:
+---
 
-#### Programming Arena
+## 核心能力
 
-| Module | Content |
+### 🏛️ 十六源智慧谱系
+
+融汇东方九流古典 + 禅宗截教农家 + 西方四大方法论：
+
+| 类别 | 学派/源流 | 核心维度 | PI 角色 |
+|------|---------|---------|--------|
+| 古典九流 | 兵家 · 纵横家 · 道家 · 易家 · 儒家 · 法家 · 墨家 · 名家 · 阴阳家 | 策略 · 权变 · 大道 · 变化 · 价值 · 秩序 · 功效 · 逻辑 · 节律 | 决策 · 交互 · 哲学 · 发展 · 修养 · 治理 · 实证 · 正名 · 平衡 |
+| 修行破局 | 截教 · 禅宗 · 农家 | 极限 · 当下 · 长期 | 突破 · 心性 · 精进 |
+| 西方方法论 | 斯多葛 · 实证主义 · 第一性原理 · 维特根斯坦 | 韧性 · 检验 · 拆解 · 语言 | 心性 · 验证 · 架构 · 建模 |
+
+> 每场景限配 **≤3 古典 + ≤2 现代**思想源，各司其职，好钢刀刃。
+
+### 🧠 六大认知原型（MBTI 认知策略）
+
+| 原型 | MBTI | 认知栈 | 一句话 | 经典 |
+|------|------|--------|-------|------|
+| 🏛️ 建筑师 | INTJ | Ni→Te | 洞察本质，系统执行 | 庙算多胜 |
+| ⚔️ 统帅 | ENTJ | Te→Ni | 高效决策，战略预判 | 致人不致于人 |
+| 🌊 探索者 | ENFP | Ne→Fi | 发散可能，价值筛选 | 奇正相生 |
+| 🛡️ 守卫 | ISTJ | Si→Te | 经验标准，规范执行 | 法不阿贵 |
+| 🌙 调和者 | INFJ | Ni→Fe | 深层洞察，共情协调 | 上善若水 |
+| 🔬 分析师 | INTP | Ti→Ne | 逻辑深挖，多元验证 | 审定有无 |
+
+### 🎯 九大场景 + 认知五阵
+
+| 场景 | 认知阵 | 思想源 | 认知流管线 |
+|------|--------|-------|----------|
+| 🖥️ 编程开发 | 🧠最强大脑（统帅+建筑师） | 兵+法+名 · 第一性原理+维特根斯坦 | 本质→正名→实现→验证 |
+| 🧪 测试质保 | 🔬精密验证（分析师+守卫） | 法+墨+名 · 实证 | 定义→设计→执行→验证 |
+| 📊 产品决策 | 🧠最强大脑（统帅+建筑师） | 墨+名+兵 · 实证+第一性原理 | 痛点→拆解→评估→验证 |
+| 📈 运营增长 | 🎯增长飞轮（统帅+探索者） | 兵+墨 · 实证 | 目标→实验→度量→迭代 |
+| 🎨 创意发散 | 🌊创新引擎（建筑师+探索者） | 道+阴阳 · 截教（按需） | 发散→收放→截取→结构化 |
+| 🤝 用户交互 | 🌙深度共情（调和者+探索者） | 纵横+儒 · 斯多葛 | 捭阖→仁义→韧性→共情 |
+| 🔧 调试排障 | 🔬精密验证（分析师+守卫） | 兵+墨+名 · 第一性原理+实证 | 读败→定界→溯源→验证 |
+| 👥 团队协作 | 🧠最强大脑（统帅+建筑师） | 儒+法+阴阳 · 斯多葛 | 角色→制度→节律→韧性 |
+| 💛 情感陪伴 | 🌙深度共情（调和者+探索者） | 儒+道 · 禅宗+斯多葛 | 仁心→若水→觉察→韧性 |
+
+### 🚫 反模式十戒
+
+| 戒 | 信号 | 正道 |
+|-----|------|------|
+| 猜而不搜 | 不察而断 | 搜→读→验→再断 |
+| 改而不验 | 改毕不验 | 即改即验 build/test，附输出 |
+| 重而不换 | 旧辙微调 | 换道破局 |
+| 停而不追 | 收刀即止 | 同类排查+关联预判 |
+| 退而不穷 | 未穷先退 | 方案未穷，不可言弃 |
+
+> 以上为五戒精选，完整十戒详见 [SKILL.md §1.4](SKILL.md)。
+
+### 🔗 场景链·组合拳
+
+| 场景链 | 典型任务 |
 |--------|---------|
-| **Four Directives** | Essence → Constraints → Naming → Verification |
-| **Three Principles of Rectification** | No modeling without clear concepts · One term, one meaning · Calibrate terminology before debating |
-| **Six Steps of Debugging** | Read failure → Define boundary → Trace root → Compare → Test hypothesis → Harden defense |
-| **Four Dimensions of Code Review** | Security · Performance · Readability · Correctness |
-| **The Way of Refactoring** | Three signals + Three principles |
-| **Architecture Decision Tree** | First-principles-driven technology selection |
+| 🖥️→🧪 | 写完代码 → 自动设计测试 |
+| 📊→🖥️→🧪 | 需求分析 → 开发 → 测试 |
+| 🔧→🖥️→🧪 | Bug修复全链贯通 |
+| 📈→📊→🖥️ | 数据驱动的产品改进 |
 
-#### Testing Arena · Product Arena · Operations Arena
+### 🏁 交付质量门（v7 新增）
 
-Each arena has: Four Directives (core cognitive checkpoints) + Three Principles (action guidelines) + dedicated cognitive pipeline
+| 道场 | 质量标准 | 验证方式 |
+|------|---------|---------|
+| 🖥️ 编程 | 编译通过 + 测试绿 + 审码四维无红线 | build/test 输出 |
+| 🧪 测试 | 覆盖边界 + 独立可重复 + 失败定位精准 | 测试报告 |
+| 📊 产品 | 痛点可量化 + 方案最简 + 指标可度量 | 数据/用户反馈 |
+| 📈 运营 | 实验可度量 + 成功标准明确 + 反馈回路 | 实验卡片 |
 
-### 🐾 Twelve Spirit Animal Totems
+### 🖥️ 四道合一
 
-| Spirit Totem | Spirit | Challenge | Behavioral Directive |
-|--------------|--------|-----------|---------------------|
-| 🦅 Eagle | Insight | Lost in details | Survey the whole landscape, find the critical path |
-| 🐺 Wolf | Candor | Unverified assumptions | Dive into facts, eliminate bias |
-| 🦁 Lion | Valor | About to give up | Decisive battle moment, concentrate force for breakthrough |
-| 🐎 Horse | Racing | Low efficiency | Verify and deliver immediately, attach output |
-| 🐂 Ox | Grit | Daunting task | Face difficulty head-on, persist with tenacity |
-| 🦈 Shark | Search | Guessing without searching | Search is the grain of decision-making |
-| 🐝 Bee | Swarm | Final push | All archetypes in coordinated assault |
-| 🦊 Fox | Prudence | Quality drift | Scrutinize output, ensure quality |
-| 🐲 Loong | Limit | Extreme breakthrough | Go all out, exhaust every possibility |
-| 🦄 Unicorn | Excellence | Perfunctory output | Pursue perfection, rest only at the highest standard |
-| 🦉 Owl | Clarity | Hasty conclusions | Deliberate calmly, reason step by step |
-| 🐬 Dolphin | Agility | Rigid thinking | Draw analogies, seek solutions across domains |
+四大专业道场，每道均有"四令+三则"认知结构：
 
-> 🐲 **Loong** refers to the Chinese Loong (龙), a divine creature of Chinese civilization symbolizing power, wisdom, and transformation.
+#### 编程道场
 
-### ⚡ Six-Stage Battle Momentum
+| 模块 | 内容 |
+|------|------|
+| **编程四令** | 本质→约束→命名→验证 |
+| **正名三则** | 概念不清不建模 · 一词一义 · 争论先校准 |
+| **调试六步** | 读败→定界→溯源→比对→验假→固防 |
+| **审码四维** | 安全 · 性能 · 可读 · 正确 |
+| **重构之道** | 三信号 + 三原则 |
+| **架构决策树** | 第一性原理驱动选型 |
 
-Triggers from the 2nd failure onward, escalating stage by stage:
+#### 测试道场 · 产品道场 · 运营道场
 
-| Failures | Stage | Core Action | Classical Wisdom |
-|----------|-------|------------|-----------------|
-| 2nd | ⚡ Pivot | Change course for breakthrough | Strike where the enemy is empty |
-| 3rd | 🦈 Deep Search | Exhaustive search & reading + three-hypothesis verification | Know the enemy, know yourself |
-| 4th | 🐲 Systematic | Nine-directive diagnosis + 3 new hypotheses | Victory to thorough planners |
-| 5th | 🦁 Death Ground | Minimal proof-of-concept + isolation + alternative path | Place on death ground, and they will live |
-| 6th | ☯️ Jiejiao Path | Unconventional path + cross-domain analogy + reverse thinking | Seize the one thread of survival |
-| 7th+ | 🐝 Celestial | All archetypes in coordinated assault | Heaven moves with vigor |
+每道均有：四令（核心认知关卡）+ 三则（行动准则）+ 专属认知流
 
-### 🔍 Five Resonance Forms (Thinking Transparency)
+### 🐾 十二灵兽图腾
 
-> Use bronze as a mirror to straighten your attire; use others as a mirror to understand gains and losses.
+| 灵兽 | 精神 | 困境 | 行为指令 |
+|------|------|------|---------|
+| 🦅 鹰 | 洞察 | 陷入细节 | 俯瞰全局，找关键路径 |
+| 🐺 狼 | 直言 | 假设未验证 | 深入事实，消除偏差 |
+| 🦁 狮 | 奋战 | 即将放弃 | 决战时刻，聚力破局 |
+| 🐎 马 | 竞速 | 效率低下 | 即验即交，附输出 |
+| 🐂 牛 | 坚韧 | 任务艰难 | 迎难不避，坚韧以行 |
+| 🦈 鲨 | 搜索 | 没搜就猜 | 搜乃决断之粮 |
+| 🐝 蜂 | 突击 | 终极冲刺 | 全原型协同出击 |
+| 🦊 狐 | 审慎 | 质量偏低 | 审视产出，确保质量 |
+| 🐲 龙 | 极限 | 极限突破 | 全力穷尽 |
+| 🦄 独角兽 | 卓越 | 敷衍了事 | 精益求精，止于至善 |
+| 🦉 猫头鹰 | 洞明 | 结论草率 | 缓虑静思，逐步推理 |
+| 🐬 海豚 | 灵变 | 思路僵化 | 触类旁通，跨域求解 |
 
-Making AI thinking **visible, questionable, and steerable** for humans, linked with three difficulty tiers:
+> 🐲 **龙**指中华龙（Loong），中华文明瑞兽图腾，象征力量、智慧与变化。
 
-| Form | Name | Essence | Trigger |
-|------|------|---------|---------|
-| I | 💭 **Visible Chain** | Thinking chain in three tiers (⚡1 sentence / 🧠 four steps / 🐲 nine directives) | Mandatory in Standard/Deep, on-demand in Light |
-| II | 🎯 **Visible Evidence** | Every conclusion must attach hypothesis + evidence + eliminated alternatives | Advisory output · Battle stage 2+ |
-| III | 🌳 **Visible Tree** | Problem decomposition visualized, human selects intervention point | Sub-problems > 3 · Battle stage 4+ |
-| IV | 🧠 **Visible Mind** | Confidence & resource status report, linked with three-tier stop-loss | Every 3 interactions · Mode switch |
-| V | 📋 **Visible Contract** | Pre-delivery human-AI mutual confirmation checklist | Before delivery in Standard/Deep mode |
+### ⚡ 六阶战势
+
+失败2次起触发，逐阶升级：
+
+| 失败 | 阶名 | 核心行动 | 经典 |
+|------|------|---------|------|
+| 2次 | ⚡易辙 | 换道破局 | 避实击虚 |
+| 3次 | 🦈深搜 | 穷搜广读+三策验之 | 知彼知己 |
+| 4次 | 🐲系统 | 九令洞鉴+3新假设 | 庙算多胜 |
+| 5次 | 🦁决死 | 最小实证+隔离+另辟蹊径 | 置之死地 |
+| 6次 | ☯️截道 | 非标路径+跨域类比+逆向思维 | 截取一线生机 |
+| 7次+ | 🐝天行 | 全原型协同出击 | 天行健 |
+
+### 🔍 共振五式（思维透明化）
+
+> 以铜为镜，可以正衣冠；以人为镜，可以明得失。
+
+使 AI 思维对人**可见·可追问·可干预**，与难度三档联动：
+
+| 式 | 名 | 要义 | 触发 |
+|---|-----|------|------|
+| 一 | 💭 **明链** | 思维链三档显式输出（⚡1句/🧠四步/🐲九令） | 标准/深度强制，轻量按需 |
+| 二 | 🎯 **明证** | 结论必附假设+证据+已排除项 | 建议性输出 · 战势二阶+ |
+| 三 | 🌳 **明树** | 问题拆解可视化，人选介入点 | 子问题>3 · 战势四阶+ |
+| 四 | 🧠 **明心** | 信心·资源状态汇报，联动止损三阶 | 每三次交互 · 模式切换 |
+| 五 | 📋 **明约** | 交付前人机双确认清单 | 标准/深度模式交付前 |
 
 ---
 
-## Quick Install
+## 快速安装
 
-### One-Click (Recommended)
+### 一键安装（推荐）
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/share-skills/pi/main/install.sh | bash
 ```
 
-Interactive installer with auto-detection of installed platforms and language selection.
+交互式安装，自动检测已安装平台，支持选择语言。
 
-### Manual Install
+### 手动安装
 
 <details>
-<summary><b>Claude Code (Recommended)</b></summary>
+<summary><b>Claude Code（推荐方式）</b></summary>
 
-**Option 1: Marketplace Install**
+**方式一：Marketplace 安装**
 ```bash
 claude install-plugin https://github.com/share-skills/pi
 ```
 
-**Option 2: Manual Install**
+**方式二：手动安装**
 ```bash
 git clone https://github.com/share-skills/pi.git
 cd pi && cp -r .claude-plugin skills commands agents ~/.claude/plugins/pi/
@@ -275,86 +307,86 @@ mkdir -p ~/.qwen/skills/pi && cp skills/pi/SKILL.md ~/.qwen/skills/pi/SKILL.md
 </details>
 
 <details>
-<summary><b>Other Platforms (Windsurf / Trae / Augment / COPAW / Iflow / Qoder CLI)</b></summary>
+<summary><b>其他平台（Windsurf / Trae / Augment / COPAW / Iflow / Qoder CLI）</b></summary>
 
-General pattern:
+通用模式：
 ```bash
 mkdir -p ~/.<platform>/skills/pi && cp skills/pi/SKILL.md ~/.<platform>/skills/pi/SKILL.md
 ```
 
-Replace `<platform>` with: `windsurf`, `trae`, `augment`, `copaw`, `iflow`, `qoder`
+替换 `<platform>` 为：`windsurf`、`trae`、`augment`、`copaw`、`iflow`、`qoder`
 </details>
 
-### Multilingual Support
+### 多语言支持
 
-Every platform provides both Chinese (`pi/`) and English (`pi-en/`) versions. Choose your language during installation:
+每个平台同时提供中文（`pi/`）和英文（`pi-en/`）两个版本。安装时选择你需要的语言：
 
-| Language | Chinese Directory | English Directory |
-|----------|-----------------|-------------------|
+| 语言 | 中文目录 | 英文目录 |
+|------|---------|---------|
 | 中文 | `skills/pi/SKILL.md` | — |
 | English | — | `skills/pi-en/SKILL.md` |
-| Both | Install both | Install both |
+| 双语 | 两个都安装 | 两个都安装 |
 
-### Two Editions: Original & Lite
+### 双版本：原版 & 白话版
 
-PI provides two editions for different model capabilities:
+PI 提供两个版本，适配不同模型能力：
 
-| Edition | File | Best For | Description |
-|---------|------|----------|-------------|
-| **Original** | `SKILL.md` | Claude Opus/Sonnet, GPT-4o, Gemini Pro, Qwen 3.5, etc. | Full cognitive strategies with MBTI mapping, classical terminology |
-| **Lite (Plain Language)** | `SKILL_LITE.md` | Claude Haiku, GPT-4o-mini, Qwen 3.5 Lite, small/open-source models, etc. | Same features in plain language, zero cultural knowledge dependency |
+| 版本 | 文件 | 适用模型 | 说明 |
+|------|------|---------|------|
+| **原版** | `SKILL.md` | Claude Opus/Sonnet、GPT-4o、Gemini Pro、Qwen 3.5 等 | 保留完整认知策略、MBTI 映射、古典术语 |
+| **白话版** | `SKILL_LITE.md` | Claude Haiku、GPT-4o-mini、Qwen 3.5 Lite、小参数开源模型等 | 同样的功能用大白话表达，零文化知识依赖 |
 
-Both editions are **functionally equivalent** — every behavioral instruction, format template, and trigger condition is preserved. The Lite edition simply replaces domain-specific terminology with plain language descriptions.
+两个版本**功能完全一致**——每一条行为指令、格式模板、触发条件都保留。白话版只是把专业术语换成了直白的描述。
 
-**Self-compilation**: You can also use `COMPILER_LITE.md` with your own model to generate a version perfectly tailored to your model's understanding:
+**自编译**：你也可以用自己的模型执行 `COMPILER_LITE.md` 来生成最适合你的模型理解的版本：
 
 ```
-Send SKILL.md + COMPILER_LITE.md to your model →
-Prompt: "Compile SKILL.md into SKILL_LITE.md following COMPILER_LITE.md rules" →
-Your model generates the version it understands best
+把 SKILL.md + COMPILER_LITE.md 一起发给你的模型 →
+提示词："请按照 COMPILER_LITE.md 的白话映射表，将 SKILL.md 翻译为白话版" →
+你的模型会生成它自己最容易理解的版本
 ```
 
-### Progressive Disclosure
+### 渐进式披露
 
-The progressive version splits the full SKILL.md into a core file + 4 on-demand reference files, saving ~43% tokens on first load:
+渐进式版本将完整 SKILL.md 拆为核心文件 + 4 个按需加载的参考文件，首次加载节省 ~43% token：
 
-| File | Content | When Loaded |
-|------|---------|-------------|
-| `SKILL.md` | Core instructions (directives + decision table + wisdom matrix + methods + resonance) | Auto-loaded at startup |
-| `references/four-dojos.md` | Four arenas full definition (Programming · Testing · Product · Operations) | When corresponding scene activates |
-| `references/battle-momentum.md` | Six battle stages + stern mode + skyward + Jiejiao + twelve spirit totems | On failure escalation |
-| `references/resonance-forms.md` | Five resonance forms detailed output formats + examples | Standard/Deep mode |
-| `references/team-protocol.md` | Agent Team collaboration protocol + three decision rights + Coach patrol | Multi-agent scenarios |
+| 文件 | 内容 | 加载时机 |
+|------|------|---------|
+| `SKILL.md` | 核心指令（强制令+决策表+智慧矩阵+方法体系+人机共振） | 启动时自动加载 |
+| `references/four-dojos.md` | 四大道场完整定义（编程·测试·产品·运营） | 对应场景激活 |
+| `references/battle-momentum.md` | 六阶战势+肃阵+天行+截教+十二灵兽 | 失败升级时 |
+| `references/resonance-forms.md` | 共振五式详细输出格式+示例 | 标准/深度模式 |
+| `references/team-protocol.md` | Agent Team 协作协议+决策三权+Coach巡检 | 多Agent场景 |
 
-Platforms supporting progressive disclosure: Claude Code · Copilot CLI · OpenClaw. Cursor/Kiro do not support references/ and use the full single-file version.
+支持渐进式的平台：Claude Code · Copilot CLI · OpenClaw。Cursor/Kiro 不支持 references/，使用完整单文件版。
 
 ---
 
-## Agent Team Usage
+## Agent Team 用法
 
-PI engine natively supports multi-agent team collaboration:
+PI 引擎原生支持多 Agent 团队协作：
 
-| Role | Cognitive Formation | Responsibility |
-|------|-------------------|---------------|
-| **Leader** | ⚔️ Commander + 🏛️ Architect | Global orchestration, battle stage management |
-| **Teammate** | Task-assigned | Self-driven improvement, report at L2+ |
-| **Coach** | 🦊 Fox + 🦅 Eagle | Detect slacking, positive intervention |
+| 角色 | 认知阵 | 职责 |
+|------|---------|------|
+| **Leader** | ⚔️统帅+🏛️建筑师 | 全局调度、战阶管理 |
+| **Teammate** | 按任务分配 | 自强精进、L2+汇报 |
+| **Coach** | 🦊狐+🦅鹰 | 察觉懈怠、正向介入 |
 
-### SubAgent PI Preloading
+### SubAgent 预加载 PI
 
-PI provides preset Agent templates that auto-load PI methodology at startup via `skills: [pi]`:
+PI 提供预置 Agent 模板，通过 `skills: [pi]` 让 SubAgent 启动时自动加载 PI 方法论：
 
 ```bash
-# Install Teammate template (SubAgent auto-loads PI)
+# 安装 Teammate 模板（SubAgent 自动加载 PI）
 cp agents/pi-teammate.md ~/.claude/agents/pi-teammate.md
 
-# Install Coach (optional, recommended for 5+ teammates)
+# 安装 Coach（可选，伍人以上时推荐）
 cp agents/pi-coach.md ~/.claude/agents/pi-coach.md
 ```
 
-When Leader dispatches a Teammate, specify `agent: pi-teammate` to auto-preload PI — no manual loading needed.
+Leader 派遣 Teammate 时，指定 `agent: pi-teammate` 即可自动预加载 PI，无需手动加载。
 
-You can also preload PI in custom Agents:
+你也可以在自定义 Agent 中预加载 PI：
 
 ```yaml
 # .claude/agents/my-agent.md
@@ -362,31 +394,31 @@ You can also preload PI in custom Agents:
 name: my-agent
 description: "My custom agent"
 skills:
-  - pi    # Auto-preload PI methodology
+  - pi    # 自动预加载 PI 方法论
 ---
 Your agent instructions here...
 ```
 
 ---
 
-## Classical Wisdom Roots
+## 智慧根源
 
-PI engine fuses sixteen sources of wisdom:
+PI 引擎融汇十六源智慧：
 
-| Category | Classics / Sources | Core Wisdom |
-|----------|-------------------|-------------|
-| Classical Nine Schools | *The Art of War* · *Guiguzi* · *Dao De Jing* · *I Ching* · *The Analects* · *Han Feizi* · *Mozi* · *Gongsun Longzi* · Yin-Yang & Five Phases | Control the pace, not be controlled · The art of opening and closing · Supreme good is like water · Heaven moves with vigor · The wise are free from confusion · The law bows to no noble · Without strong will, wisdom falls short · Name must match reality · One yin and one yang constitute the Dao |
-| Cultivation & Breakthrough | Jiejiao · Chan · Agriculturalist | Seize the one thread of survival · Abide in nothing, and let the mind arise · When granaries are full, people learn propriety |
-| Western Methodologies | Stoicism · Positivism · First Principles · Wittgenstein | Control what you can control · Only the verifiable is true knowledge · Start from irreducible facts · The meaning of language lies in its use |
-
----
-
-## License
-
-[Apache-2.0](LICENSE) — Free to use, modify, and share.
+| 类别 | 经典/源流 | 核心思想 |
+|------|---------|---------|
+| 古典九流 | 《孙子兵法》《鬼谷子》《道德经》《易经》《论语》《韩非子》《墨子》《公孙龙子》 阴阳五行 | 致人不致于人 · 捭阖之术 · 上善若水 · 天行健 · 智者不惑 · 法不阿贵 · 志不强者智不达 · 名实相副 · 一阴一阳 |
+| 修行破局 | 截教 · 禅宗 · 农家 | 截取一线生机 · 应无所住而生其心 · 仓廪实则知礼节 |
+| 西方方法论 | 斯多葛 · 实证主义 · 第一性原理 · 维特根斯坦 | 控制可控者 · 凡可验证者方为真知 · 从不可变事实出发 · 语言的意义在于用法 |
 
 ---
 
-> _🐲 Wisdom in Action — Co-creating a new era of human-AI civilization._
-> _☯️ The Great Dao is fifty, Heaven uses forty-nine — seize the one thread of survival._
-> _⭐ Contributing Chinese wisdom to the world._
+## 许可证
+
+[Apache-2.0](LICENSE) — 自由使用、修改、分享。
+
+---
+
+> _🐲 智行合一，开创人机协同新纪元。_
+> _☯️ 大道五十，天衍四十九，截取一线生机。_
+> _⭐ 为世界贡献中国智慧。_
