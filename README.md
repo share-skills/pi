@@ -246,6 +246,7 @@ curl -fsSL https://raw.githubusercontent.com/share-skills/pi/main/install.sh | b
 ```
 
 交互式安装，自动检测已安装平台，支持选择语言。
+安装器还会放置 `~/.pi/visualize.sh` 可视化启动器；首次运行 `~/.pi/visualize.sh` 时，会按需引导安装本地可视化运行时（需要 `git` 和 `mill`）。如果你的宿主额外接入了 `commands/` 路由，再使用 `/pi visualize` 这类快捷入口。
 
 ### 手动安装
 
@@ -260,6 +261,7 @@ claude install-plugin https://github.com/share-skills/pi
 **方式二：手动安装**
 ```bash
 git clone https://github.com/share-skills/pi.git
+mkdir -p ~/.claude/plugins/pi
 cd pi && cp -r .claude-plugin skills commands agents ~/.claude/plugins/pi/
 ```
 </details>
@@ -276,7 +278,9 @@ mkdir -p ~/.codex/skills/pi && cp skills/pi/SKILL.md ~/.codex/skills/pi/SKILL.md
 <summary><b>Cursor</b></summary>
 
 ```bash
+mkdir -p .cursor/rules
 cp cursor/rules/pi.mdc .cursor/rules/pi.mdc
+cp cursor/rules/pi-visualize.mdc .cursor/rules/pi-visualize.mdc
 ```
 </details>
 
@@ -322,6 +326,41 @@ mkdir -p ~/.<platform>/skills/pi && cp skills/pi/SKILL.md ~/.<platform>/skills/p
 
 替换 `<platform>` 为：`windsurf`、`trae`、`augment`、`copaw`、`iflow`、`qoder`
 </details>
+
+### PI 决策可视化
+
+PI 除了方法论本体，还自带一个本地决策历史可视化器，用来把 `~/.pi/decisions` 里的脱敏历史渲染成可交互页面。
+
+- 一键安装后，会放置 `~/.pi/visualize.sh`
+- 首次运行 `~/.pi/visualize.sh` 时，会按需 bootstrap standalone visualizer runtime（需要 `git` 和 `mill`）
+- 支持离线 HTML、Live 本地预览、时间线回放、Heatmap、Compare mode、导入/导出/分享
+
+常用入口：
+
+```bash
+~/.pi/visualize.sh
+```
+
+如果你的宿主还接入了命令路由，也可以使用：
+
+```text
+/pi visualize
+```
+
+Cursor 用户除了 `pi.mdc` 外，也建议同时安装：
+
+```bash
+mkdir -p .cursor/rules
+cp cursor/rules/pi-visualize.mdc .cursor/rules/pi-visualize.mdc
+```
+
+如果你只想单独安装 visualizer，也可以直接运行：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/share-skills/pi/main/scripts/setup-standalone-visualize.sh | bash
+```
+
+Standalone setup 依赖 `git` 和 `mill`。
 
 ### 多语言支持
 

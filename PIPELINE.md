@@ -70,7 +70,7 @@
 | SKILL_META.md | 每轮必审（唯一真源） |
 | COMPILER.md | 编译规则需调整时 |
 | CHANGE_LOG.md | 每轮结束时 |
-| README.zh-CN.md | 影响用户可见概念时 |
+| README.md | 影响用户可见概念时（中文主文档，英文版在 README.en.md） |
 
 ---
 
@@ -242,7 +242,7 @@
 │   │ kiro/pi      │────────▶│ pi-en      │   │
 │   │ openclaw/pi  │────────▶│ openclaw/  │   │
 │   │ agents/      │────────▶│ pi-en      │   │
-│   │ README.zh-CN │────────▶│ README.md  │   │
+│   │ README.md    │────────▶│ README.en.md│   │
 │   └──────────────┘         └────────────┘   │
 │                                             │
 │   翻译策略:                                  │
@@ -292,7 +292,9 @@ pi/
 ├── CHANGE_LOG.md          ← 📝 变更日志
 │
 ├── commands/
-│   └── iterate.md         ← 🔄 P1 审计协议（/iterate 命令）
+│   ├── iterate.md         ← 🔄 P1 审计协议（/iterate 命令）
+│   ├── pi.md              ← 🐲 PI 主路由（含 /pi visualize 特殊路由）
+│   └── visualize.md       ← 🔮 可视化命令说明
 │
 ├── skills/
 │   ├── pi/SKILL.md        ← 📡 AgentSkills 中文版
@@ -311,7 +313,8 @@ pi/
 │
 ├── cursor/rules/
 │   ├── pi.mdc             ← 📡 Cursor 中文版
-│   └── pi-en.mdc          ← 📡 Cursor 英文版
+│   ├── pi-en.mdc          ← 📡 Cursor 英文版
+│   └── pi-visualize.mdc   ← 🔮 Cursor 可视化入口说明
 │
 ├── kiro/steering/
 │   ├── pi.md              ← 📡 Kiro 中文版
@@ -331,7 +334,15 @@ pi/
 │   ├── hooks.json         ← ⚡ PreCompact Hook 配置
 │   └── pre-compact.sh     ← ⚡ 上下文恢复触发脚本
 │
-└── install.sh             ← 🔧 一键安装脚本
+├── scripts/
+│   └── setup-standalone-visualize.sh ← 🔮 standalone visualizer 安装脚本
+│
+├── visualize/
+│   ├── SPEC.md            ← 🔮 可视化规格
+│   ├── CHANGELOG.md       ← 🔮 可视化变更日志
+│   └── ...                ← 🔮 Scala.js / CLI / shared 实现
+│
+└── install.sh             ← 🔧 一键安装脚本（含 visualizer launcher）
 ```
 
 ## 数据流：一次完整迭代

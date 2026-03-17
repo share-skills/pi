@@ -18,7 +18,7 @@
 | agents/pi-coach.md | agents/pi-coach-en.md | Coach Agent |
 | agents/pi-teammate.md | agents/pi-teammate-en.md | Teammate Agent |
 | commands/pi.md | *暂不翻译* | 命令文件 |
-| README.zh-CN.md | README.md | 项目 README |
+| README.md | README.en.md | 项目 README |
 
 ## 翻译原则
 

@@ -238,6 +238,7 @@ curl -fsSL https://raw.githubusercontent.com/share-skills/pi/main/install.sh | b
 ```
 
 Interactive installer with auto-detection of installed platforms and language selection.
+The installer also drops a `~/.pi/visualize.sh` launcher. The first `~/.pi/visualize.sh` run can bootstrap the local visualizer runtime on demand (requires `git` and `mill`). If your host also wires `commands/`, then `/pi visualize` becomes an additional shortcut.
 
 ### Manual Install
 
@@ -252,6 +253,7 @@ claude install-plugin https://github.com/share-skills/pi
 **Option 2: Manual Install**
 ```bash
 git clone https://github.com/share-skills/pi.git
+mkdir -p ~/.claude/plugins/pi
 cd pi && cp -r .claude-plugin skills commands agents ~/.claude/plugins/pi/
 ```
 </details>
@@ -268,7 +270,9 @@ mkdir -p ~/.codex/skills/pi && cp skills/pi/SKILL.md ~/.codex/skills/pi/SKILL.md
 <summary><b>Cursor</b></summary>
 
 ```bash
+mkdir -p .cursor/rules
 cp cursor/rules/pi.mdc .cursor/rules/pi.mdc
+cp cursor/rules/pi-visualize.mdc .cursor/rules/pi-visualize.mdc
 ```
 </details>
 
@@ -314,6 +318,41 @@ mkdir -p ~/.<platform>/skills/pi && cp skills/pi/SKILL.md ~/.<platform>/skills/p
 
 Replace `<platform>` with: `windsurf`, `trae`, `augment`, `copaw`, `iflow`, `qoder`
 </details>
+
+### PI Decision Visualizer
+
+In addition to the core methodology, PI ships with a local decision-history visualizer that renders sanitized archives from `~/.pi/decisions` into an interactive page.
+
+- The one-click installer drops `~/.pi/visualize.sh`
+- The first `~/.pi/visualize.sh` run can bootstrap the standalone visualizer runtime on demand (requires `git` and `mill`)
+- Supports offline HTML, live local preview, timeline playback, heatmaps, compare mode, import/export/share
+
+Common entrypoint:
+
+```bash
+~/.pi/visualize.sh
+```
+
+If your host also wires the command routes, you can use:
+
+```text
+/pi visualize
+```
+
+For Cursor, install the visualizer rule alongside `pi.mdc`:
+
+```bash
+mkdir -p .cursor/rules
+cp cursor/rules/pi-visualize.mdc .cursor/rules/pi-visualize.mdc
+```
+
+If you want only the visualizer, you can also run:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/share-skills/pi/main/scripts/setup-standalone-visualize.sh | bash
+```
+
+Standalone setup requires both `git` and `mill`.
 
 ### Multilingual Support
 

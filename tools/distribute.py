@@ -68,6 +68,7 @@ VARIANTS = {
         "lang": "en",
         "targets": [
             ("skills/pi-en",           "skills/pi-en/SKILL.md",           True),
+            ("claude-code/pi-en",      "claude-code/pi-en/SKILL.md",      True),
             ("cursor/rules",           "cursor/rules/pi-en.mdc",          True),
             ("kiro/steering",          "kiro/steering/pi-en.md",          True),
             ("openclaw/pi-en",         "openclaw/pi-en/SKILL.md",         True),
@@ -79,6 +80,7 @@ VARIANTS = {
         "lang": "en",
         "targets": [
             ("skills/pi-en",           "skills/pi-en/SKILL_LITE.md",      True),
+            ("claude-code/pi-en",      "claude-code/pi-en/SKILL_LITE.md", True),
             ("cursor/rules",           "cursor/rules/pi-en-lite.mdc",     True),
             ("kiro/steering",          "kiro/steering/pi-en-lite.md",     True),
             ("openclaw/pi-en",         "openclaw/pi-en/SKILL_LITE.md",    True),

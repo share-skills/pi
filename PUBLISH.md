@@ -185,6 +185,12 @@
           - 确认所有原版平台文件的 description 与之一致
           - LITE 版使用白话版 description（从 COMPILER_LITE.md 规则生成）
           - 如不一致，更新为最新版
+
+步骤 3.6b 同步可视化发布配套物：
+          - 确认 `install.sh` 会放置 `~/.pi/visualize.sh` 启动器
+          - 确认 `scripts/setup-standalone-visualize.sh` 可独立工作，且与公开仓库 URL 一致
+          - 确认 `cursor/rules/pi-visualize.mdc` 随安装链路一起分发
+          - 确认 `README.md` / `README.en.md` / `commands/visualize.md` 中的 visualizer 安装说明与当前实现一致
 ```
 
 **校验门禁 3**：
@@ -217,6 +223,12 @@
           - 已删除的章节（Ch2/Ch9）不应在 description 中被引用
           - 中文/英文 description 均 ≤ 1024 字符
           - LITE 版 description 中提到的概念在 SKILL_LITE.md 中均有定义
+
+步骤 3.12 可视化发布链路校验：
+          - `install.sh` 中存在 visualizer launcher 安装步骤
+          - `scripts/setup-standalone-visualize.sh` 的 raw URL / repo URL 与公开安装仓库一致
+          - Cursor 安装路径包含 `pi-visualize.mdc`
+          - 文档不再把 visualizer 说成“用户必须手动 clone 才能使用”
 ```
 
 > ❌ 任一失败 → 修复后重新执行对应步骤。

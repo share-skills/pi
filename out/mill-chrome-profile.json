@@ -1,0 +1,10 @@
+[
+{"ph":"B","name":"mill mill visualize.frontend.compile","cat":"job","ts":1591,"pid":1,"tid":1},
+{"ph":"C","name":"CPU Count","ts":12251,"pid":1,"args":{"CPUS":12}},
+{"ph":"C","name":"CPU Load 0.0-1.0","ts":12251,"pid":1,"args":{"load":0}},
+{"ph":"B","name":"meta-level 0","cat":"job","ts":81821,"pid":1,"tid":1},
+{"ph":"B","name":"resolve visualize.frontend.compile","cat":"job","ts":172869,"pid":1,"tid":1},
+{"ph":"E","ts":178476,"pid":1,"tid":1},
+{"ph":"E","ts":182690,"pid":1,"tid":1},
+{"ph":"E","ts":187611,"pid":1,"tid":1}
+]

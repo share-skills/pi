@@ -1,0 +1,63 @@
+pid:28862 2026-03-17T14:14:06.111345 [t1] running server in /Users/hepin/IdeaProjects/pi/out/mill-daemon
+pid:28862 2026-03-17T14:14:06.132128 [t1] acceptTimeout=Some(30 minutes)
+pid:28862 2026-03-17T14:14:06.145445 [t1] server file locked
+pid:28862 2026-03-17T14:14:06.16111 [t1] listening on port 54926
+pid:28862 2026-03-17T14:14:06.178772 [t1] handling run for Socket[addr=/127.0.0.1,port=54927,localport=54926]
+pid:28862 2026-03-17T14:14:06.181544 [t28] prepareConnection Socket[addr=/127.0.0.1,port=54927,localport=54926]
+pid:28862 2026-03-17T14:14:06.184093 [t28] 1 active connections
+pid:28862 2026-03-17T14:14:06.188871 [t29] handleConnection: starting RPC server
+pid:28862 2026-03-17T14:14:06.213939 [t29] handleConnection: running RPC server
+pid:28862 2026-03-17T14:14:06.214455 [t29] [MillDaemon-Socket[addr=/127.0.0.1,port=54927,localport=54926]] Initializing Mill RPC server... Waiting for the `initialize` message.
+pid:28862 2026-03-17T14:14:06.259676 [t29] [MillDaemon-Socket[addr=/127.0.0.1,port=54927,localport=54926]] Initialized, waiting for messages.
+pid:28862 2026-03-17T14:14:06.313468 [t29] [MillDaemon-Socket[addr=/127.0.0.1,port=54927,localport=54926]] Transport wire broken.
+pid:28862 2026-03-17T14:14:06.314624 [t29] handleConnection: RPC server finished normally, exitCode=0
+pid:28862 2026-03-17T14:14:06.315227 [t28] done=true, idle=true, lastClientAlive=false
+pid:28862 2026-03-17T14:14:06.316456 [t28] 0 active connections
+pid:28862 2026-03-17T14:44:06.347737 [t27] shutting down due inactivity
+pid:28862 2026-03-17T14:44:06.441756 [t1] removing /Users/hepin/IdeaProjects/pi/out/mill-daemon/socketPort
+pid:28862 2026-03-17T14:44:06.444328 [t1] removed /Users/hepin/IdeaProjects/pi/out/mill-daemon/socketPort
+pid:28862 2026-03-17T14:44:06.444631 [t1] releasing daemonLock
+pid:28862 2026-03-17T14:44:06.459816 [t1] daemonLock released
+pid:28862 2026-03-17T14:44:06.460187 [t1] exiting server
+pid:50567 2026-03-17T15:47:17.440631 [t1] running server in /Users/hepin/IdeaProjects/pi/out/mill-daemon
+pid:50567 2026-03-17T15:47:17.455098 [t1] acceptTimeout=Some(30 minutes)
+pid:50567 2026-03-17T15:47:17.461784 [t1] server file locked
+pid:50567 2026-03-17T15:47:17.472723 [t1] listening on port 50023
+pid:50567 2026-03-17T15:47:17.499376 [t1] handling run for Socket[addr=/127.0.0.1,port=50024,localport=50023]
+pid:50567 2026-03-17T15:47:17.502262 [t28] prepareConnection Socket[addr=/127.0.0.1,port=50024,localport=50023]
+pid:50567 2026-03-17T15:47:17.506415 [t28] 1 active connections
+pid:50567 2026-03-17T15:47:17.509454 [t29] handleConnection: starting RPC server
+pid:50567 2026-03-17T15:47:17.534323 [t29] handleConnection: running RPC server
+pid:50567 2026-03-17T15:47:17.53582 [t29] [MillDaemon-Socket[addr=/127.0.0.1,port=50024,localport=50023]] Initializing Mill RPC server... Waiting for the `initialize` message.
+pid:50567 2026-03-17T15:47:17.576478 [t29] [MillDaemon-Socket[addr=/127.0.0.1,port=50024,localport=50023]] Initialized, waiting for messages.
+pid:50567 2026-03-17T15:47:17.815645 [t29] [MillDaemon-Socket[addr=/127.0.0.1,port=50024,localport=50023]] Transport wire broken.
+pid:50567 2026-03-17T15:47:17.816201 [t29] handleConnection: RPC server finished normally, exitCode=1
+pid:50567 2026-03-17T15:47:17.816665 [t28] done=true, idle=true, lastClientAlive=false
+pid:50567 2026-03-17T15:47:17.817609 [t28] 0 active connections
+pid:50567 2026-03-17T16:17:17.834302 [t27] shutting down due inactivity
+pid:50567 2026-03-17T16:17:17.939828 [t1] removing /Users/hepin/IdeaProjects/pi/out/mill-daemon/socketPort
+pid:50567 2026-03-17T16:17:17.943198 [t1] removed /Users/hepin/IdeaProjects/pi/out/mill-daemon/socketPort
+pid:50567 2026-03-17T16:17:17.943492 [t1] releasing daemonLock
+pid:50567 2026-03-17T16:17:17.958154 [t1] daemonLock released
+pid:50567 2026-03-17T16:17:17.958543 [t1] exiting server
+pid:71597 2026-03-17T19:04:08.886306 [t1] running server in /Users/hepin/IdeaProjects/pi/out/mill-daemon
+pid:71597 2026-03-17T19:04:08.899095 [t1] acceptTimeout=Some(30 minutes)
+pid:71597 2026-03-17T19:04:08.905724 [t1] server file locked
+pid:71597 2026-03-17T19:04:08.916323 [t1] listening on port 57416
+pid:71597 2026-03-17T19:04:08.928943 [t1] handling run for Socket[addr=/127.0.0.1,port=57417,localport=57416]
+pid:71597 2026-03-17T19:04:08.931581 [t28] prepareConnection Socket[addr=/127.0.0.1,port=57417,localport=57416]
+pid:71597 2026-03-17T19:04:08.933451 [t28] 1 active connections
+pid:71597 2026-03-17T19:04:08.936814 [t29] handleConnection: starting RPC server
+pid:71597 2026-03-17T19:04:08.958715 [t29] handleConnection: running RPC server
+pid:71597 2026-03-17T19:04:08.959232 [t29] [MillDaemon-Socket[addr=/127.0.0.1,port=57417,localport=57416]] Initializing Mill RPC server... Waiting for the `initialize` message.
+pid:71597 2026-03-17T19:04:09.003096 [t29] [MillDaemon-Socket[addr=/127.0.0.1,port=57417,localport=57416]] Initialized, waiting for messages.
+pid:71597 2026-03-17T19:04:09.051976 [t29] [MillDaemon-Socket[addr=/127.0.0.1,port=57417,localport=57416]] Transport wire broken.
+pid:71597 2026-03-17T19:04:09.053264 [t29] handleConnection: RPC server finished normally, exitCode=0
+pid:71597 2026-03-17T19:04:09.053775 [t28] done=true, idle=true, lastClientAlive=false
+pid:71597 2026-03-17T19:04:09.055076 [t28] 0 active connections
+pid:71597 2026-03-17T19:34:09.071573 [t27] shutting down due inactivity
+pid:71597 2026-03-17T19:34:09.115945 [t1] removing /Users/hepin/IdeaProjects/pi/out/mill-daemon/socketPort
+pid:71597 2026-03-17T19:34:09.117467 [t1] removed /Users/hepin/IdeaProjects/pi/out/mill-daemon/socketPort
+pid:71597 2026-03-17T19:34:09.117749 [t1] releasing daemonLock
+pid:71597 2026-03-17T19:34:09.125008 [t1] daemonLock released
+pid:71597 2026-03-17T19:34:09.125342 [t1] exiting server

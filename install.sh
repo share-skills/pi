@@ -8,7 +8,71 @@ set -euo pipefail
 # toggle, enter to confirm
 # ============================================================
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
+PI_REPO_ARCHIVE_URL="${PI_REPO_ARCHIVE_URL:-https://github.com/share-skills/pi/archive/refs/heads/main.tar.gz}"
+BOOTSTRAP_TMP_DIR=""
+CURSOR_HIDDEN=0
+
+cleanup_bootstrap_dir() {
+  if [[ -n "$BOOTSTRAP_TMP_DIR" && -d "$BOOTSTRAP_TMP_DIR" ]]; then
+    rm -rf "$BOOTSTRAP_TMP_DIR"
+  fi
+}
+
+restore_cursor() {
+  if [[ "$CURSOR_HIDDEN" == "1" ]]; then
+    printf '\033[?25h'
+    CURSOR_HIDDEN=0
+  fi
+}
+
+on_exit() {
+  restore_cursor
+  cleanup_bootstrap_dir
+}
+
+trap on_exit EXIT
+
+repo_assets_present() {
+  local dir="$1"
+  [[ -f "$dir/install.sh" ]] \
+    && [[ -f "$dir/SKILL.md" ]] \
+    && [[ -f "$dir/commands/pi.md" ]] \
+    && [[ -f "$dir/skills/pi/SKILL.md" ]]
+}
+
+ensure_script_dir() {
+  if repo_assets_present "$SCRIPT_DIR"; then
+    return 0
+  fi
+
+  if ! command -v curl >/dev/null 2>&1; then
+    echo "install.sh requires curl when running outside a PI checkout." >&2
+    exit 1
+  fi
+
+  if ! command -v tar >/dev/null 2>&1; then
+    echo "install.sh requires tar when bootstrapping PI assets from the release archive." >&2
+    exit 1
+  fi
+
+  BOOTSTRAP_TMP_DIR="$(mktemp -d)"
+
+  local archive="$BOOTSTRAP_TMP_DIR/pi.tar.gz"
+  local extract_root="$BOOTSTRAP_TMP_DIR/extract"
+  mkdir -p "$extract_root"
+  curl -fsSL "$PI_REPO_ARCHIVE_URL" -o "$archive"
+  tar -xzf "$archive" -C "$extract_root"
+
+  local extracted_dir
+  extracted_dir="$(find "$extract_root" -mindepth 1 -maxdepth 1 -type d | head -n 1)"
+  if [[ -z "$extracted_dir" ]] || ! repo_assets_present "$extracted_dir"; then
+    echo "Failed to bootstrap PI installer assets from $PI_REPO_ARCHIVE_URL" >&2
+    exit 1
+  fi
+
+  SCRIPT_DIR="$extracted_dir"
+}
 
 # --- Locale detection ---
 detect_lang() {
@@ -34,6 +98,8 @@ if [[ "$LANG_CODE" == "zh" ]]; then
   MSG_SKIP="跳过（未在仓库中找到对应文件）"
   MSG_COACH_TITLE="是否安装 Agent Team 角色？（↑↓ 移动，回车 确认）："
   MSG_COACH_DONE="Agent Team 文件已安装到"
+  MSG_VISUALIZER_READY="可视化启动器已安装到"
+  MSG_VISUALIZER_SKIP="跳过可视化启动器（未找到 setup 脚本，且无法自动下载）"
   MSG_SUCCESS="🐲 PI 智行合一引擎安装成功！善战者，致人而不致于人。"
   MSG_INVALID="无效选择，请重新输入"
   MSG_NO_SELECTION="未选择任何平台，退出安装"
@@ -57,6 +123,8 @@ else
   MSG_SKIP="Skipped (source files not found in repo)"
   MSG_COACH_TITLE="Install Agent Team roles? (↑↓ move, Enter confirm):"
   MSG_COACH_DONE="Agent Team files installed to"
+  MSG_VISUALIZER_READY="Visualizer launcher installed to"
+  MSG_VISUALIZER_SKIP="Skipped visualizer launcher (setup script missing and auto-download unavailable)"
   MSG_SUCCESS="🐲 PI Engine installed successfully! Wisdom in Action — control the pace."
   MSG_INVALID="Invalid selection, please try again"
   MSG_NO_SELECTION="No platforms selected, exiting"
@@ -69,6 +137,8 @@ else
   COACH_OPT_Y="Yes, install Teammate + Coach"
   COACH_OPT_N="No, skip"
 fi
+
+ensure_script_dir
 
 # ============================================================
 # TUI Components — pure bash interactive selectors
@@ -131,8 +201,7 @@ multiselect() {
 
   # Hide cursor
   printf '\033[?25l'
-  # Ensure cursor is restored on exit
-  trap 'printf "\033[?25h"' EXIT
+  CURSOR_HIDDEN=1
 
   while true; do
     # Move cursor to start and clear lines
@@ -214,14 +283,12 @@ multiselect() {
             _result+="$i "
           fi
         done
-        printf '\033[?25h'
-        trap - EXIT
+        restore_cursor
         eval "$_result_var='${_result% }'"
         return 0
         ;;
       QUIT)
-        printf '\033[?25h'
-        trap - EXIT
+        restore_cursor
         echo ""
         exit 0
         ;;
@@ -242,7 +309,7 @@ singleselect() {
 
   # Hide cursor
   printf '\033[?25l'
-  trap 'printf "\033[?25h"' EXIT
+  CURSOR_HIDDEN=1
 
   while true; do
     printf '\r'
@@ -285,14 +352,12 @@ singleselect() {
             printf "    ${_radio} %s\n" "${_options[$i]}"
           fi
         done
-        printf '\033[?25h'
-        trap - EXIT
+        restore_cursor
         eval "$_result_var=$_cursor"
         return 0
         ;;
       QUIT)
-        printf '\033[?25h'
-        trap - EXIT
+        restore_cursor
         echo ""
         exit 0
         ;;
@@ -305,6 +370,7 @@ singleselect() {
 # ============================================================
 
 declare -a DETECTED=()
+VISUALIZER_SETUP_URL="${PI_VISUALIZER_SETUP_URL:-https://raw.githubusercontent.com/share-skills/pi/main/scripts/setup-standalone-visualize.sh}"
 
 # Detection functions
 detect_claude_code()  { [[ -d "$HOME/.claude" ]]; }
@@ -377,6 +443,71 @@ install_skill_to_dir() {
       fi
     fi
   fi
+}
+
+prepare_visualizer_setup_script() {
+  local dest="$1"
+  local source="$SCRIPT_DIR/scripts/setup-standalone-visualize.sh"
+
+  mkdir -p "$(dirname "$dest")"
+
+  if [[ -f "$source" ]]; then
+    cp "$source" "$dest"
+  elif command -v curl >/dev/null 2>&1; then
+    curl -fsSL "$VISUALIZER_SETUP_URL" -o "$dest"
+  else
+    return 1
+  fi
+
+  chmod +x "$dest"
+}
+
+install_visualizer_launcher() {
+  local pi_root="$HOME/.pi"
+  local setup_script="$pi_root/setup-standalone-visualize.sh"
+  local launcher="$pi_root/visualize.sh"
+
+  if ! prepare_visualizer_setup_script "$setup_script"; then
+    echo "  $MSG_VISUALIZER_SKIP"
+    return 0
+  fi
+
+  cat > "$launcher" <<EOF
+#!/usr/bin/env bash
+set -euo pipefail
+
+PI_ROOT="\${HOME}/.pi"
+INSTALL_DIR="\${PI_ROOT}/visualize"
+SETUP_SCRIPT="\${PI_ROOT}/setup-standalone-visualize.sh"
+CLONED_SETUP_SCRIPT="\${INSTALL_DIR}/scripts/setup-standalone-visualize.sh"
+
+if [[ ! -f "\${INSTALL_DIR}/visualize/build.mill" ]]; then
+  echo "PI visualizer runtime is not installed yet."
+  echo "Bootstrapping standalone visualizer into \${INSTALL_DIR}..."
+  if [[ ! -x "\$SETUP_SCRIPT" ]]; then
+    if [[ -r "\$CLONED_SETUP_SCRIPT" ]]; then
+      echo "Restoring setup script from \${CLONED_SETUP_SCRIPT}..."
+      cp "\$CLONED_SETUP_SCRIPT" "\$SETUP_SCRIPT"
+      chmod +x "\$SETUP_SCRIPT"
+    elif command -v curl >/dev/null 2>&1; then
+      echo "Refreshing missing setup script into \$SETUP_SCRIPT..."
+      curl -fsSL "$VISUALIZER_SETUP_URL" -o "\$SETUP_SCRIPT"
+      chmod +x "\$SETUP_SCRIPT"
+    else
+      echo "Missing setup script: \$SETUP_SCRIPT" >&2
+      exit 1
+    fi
+  fi
+  bash "\$SETUP_SCRIPT"
+fi
+
+cd "\${INSTALL_DIR}/visualize"
+mill frontend.standaloneHtml >/dev/null
+exec mill cli.run "\$@"
+EOF
+
+  chmod +x "$launcher"
+  echo "  $MSG_VISUALIZER_READY $launcher"
 }
 
 install_claude_code() {
@@ -457,6 +588,7 @@ install_cursor() {
       [[ -f "$SCRIPT_DIR/cursor/rules/pi-en-lite.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi-en-lite.mdc" "$target/pi-en-lite.mdc"
     fi
   fi
+  [[ -f "$SCRIPT_DIR/cursor/rules/pi-visualize.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi-visualize.mdc" "$target/pi-visualize.mdc"
   echo "  $MSG_INSTALLING $target"
 }
 
@@ -700,6 +832,7 @@ for i in "${SELECTED[@]}"; do
   echo "${PLATFORM_NAMES[$i]}:"
   ${PLATFORM_INSTALLERS[$i]} "$lang_choice" "$edition_choice"
 done
+install_visualizer_launcher
 echo "--------------------------------------------"
 echo ""
 

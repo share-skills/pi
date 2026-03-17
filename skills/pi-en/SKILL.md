@@ -3,6 +3,9 @@ name: pi-en
 description: "PI Cognitive AI. Trigger: coding/development/fleet/architecture/API/debugging/bug/error/testing/compile/test/git/make/release/verify/product/requirements/ops/growth/creative/design/collaboration/team/communication/interaction/support, or 2+ failures/looping/giving-up/retry/nevermind"
 license: Apache-2.0 HePin
 metadata:
+  version: "20.0.0"
+  homepage: "https://github.com/share-skills/pi"
+  copyright: "Copyright (c) 2026 HePin. All rights reserved."
   argument-hint: "[loop|auto] [scenario]"
 ---
 

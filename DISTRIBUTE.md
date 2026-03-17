@@ -76,6 +76,25 @@ SKILL.md (精简版·字节码·含全部规则)
 
 Cursor (.mdc) 和 Kiro (steering .md) 不支持 references/，始终使用完整单文件版。
 
+## 可视化发布配套物
+
+除 SKILL body 分发外，发布链路还必须同步可视化相关配套物，确保用户通过标准安装即可获得 visualizer 入口，而不需要自己手动 clone 整个仓库：
+
+1. `install.sh`
+   - 安装后放置 `~/.pi/visualize.sh`
+   - 首次运行时可按需 bootstrap standalone visualizer runtime
+2. `scripts/setup-standalone-visualize.sh`
+   - 可独立执行
+   - raw URL / repo URL 必须与公开发布仓库一致
+3. `cursor/rules/pi-visualize.mdc`
+   - Cursor 分发时需与 `pi.mdc` 一起提供
+4. `commands/visualize.md`
+   - 命令说明需与实际安装行为一致
+5. `README.md` / `README.en.md`
+   - 安装说明必须明确 visualizer 的用户可用路径（如 `~/.pi/visualize.sh`）
+
+这些文件不属于 SKILL body 编译产物，但属于“发布可用性”的必要组成部分。
+
 ## 触发条件
 
 - SKILL.md 有任何改动后触发

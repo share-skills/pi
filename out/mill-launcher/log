@@ -1,0 +1,99 @@
+2026-03-17T06:14:05Z launchOrConnectToServer: mill.client.lock.Locks@404bbcbd
+2026-03-17T06:14:05Z Acquiring the launcher lock: PidLock{@68f1b17f, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/launcherLock'}
+2026-03-17T06:14:05Z launchOrConnectToServer attempt
+2026-03-17T06:14:05Z Checking if the daemon lock is available: PidLock{@616ac46a, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/daemonLock'}
+2026-03-17T06:14:05Z The daemon lock is available, starting the server.
+2026-03-17T06:14:05Z The server has started: OsProcess(28862)
+2026-03-17T06:14:05Z Waiting for the server to take the daemon lock: PidLock{@616ac46a, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/daemonLock'}
+2026-03-17T06:14:06Z The server OsProcess(28862) has taken the daemon lock: PidLock{@616ac46a, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/daemonLock'}
+2026-03-17T06:14:06Z Reading server port: /Users/hepin/IdeaProjects/pi/out/mill-daemon
+2026-03-17T06:14:06Z launchOrConnectToServer attempt
+2026-03-17T06:14:06Z Checking if the daemon lock is available: PidLock{@616ac46a, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/daemonLock'}
+2026-03-17T06:14:06Z The daemon lock is not available, there is already a server running.
+2026-03-17T06:14:06Z Trying to read the process ID of a running daemon from /Users/hepin/IdeaProjects/pi/out/mill-daemon/processId
+2026-03-17T06:14:06Z Read PID exception
+2026-03-17T06:14:06Z The daemon lock is not available, there is already a server running.
+2026-03-17T06:14:06Z Trying to read the process ID of a running daemon from /Users/hepin/IdeaProjects/pi/out/mill-daemon/processId
+2026-03-17T06:14:06Z Read PID exception
+2026-03-17T06:14:06Z The daemon lock is not available, there is already a server running.
+2026-03-17T06:14:06Z Trying to read the process ID of a running daemon from /Users/hepin/IdeaProjects/pi/out/mill-daemon/processId
+2026-03-17T06:14:06Z Read PID exception
+2026-03-17T06:14:06Z The daemon lock is not available, there is already a server running.
+2026-03-17T06:14:06Z Trying to read the process ID of a running daemon from /Users/hepin/IdeaProjects/pi/out/mill-daemon/processId
+2026-03-17T06:14:06Z Read PID exception
+2026-03-17T06:14:06Z The daemon lock is not available, there is already a server running.
+2026-03-17T06:14:06Z Trying to read the process ID of a running daemon from /Users/hepin/IdeaProjects/pi/out/mill-daemon/processId
+2026-03-17T06:14:06Z Read PID exception
+2026-03-17T06:14:06Z The daemon lock is not available, there is already a server running.
+2026-03-17T06:14:06Z Trying to read the process ID of a running daemon from /Users/hepin/IdeaProjects/pi/out/mill-daemon/processId
+2026-03-17T06:14:06Z Read PID exception
+2026-03-17T06:14:06Z The daemon lock is not available, there is already a server running.
+2026-03-17T06:14:06Z Trying to read the process ID of a running daemon from /Users/hepin/IdeaProjects/pi/out/mill-daemon/processId
+2026-03-17T06:14:06Z Read PID exception
+2026-03-17T06:14:06Z The daemon lock is not available, there is already a server running.
+2026-03-17T06:14:06Z Trying to read the process ID of a running daemon from /Users/hepin/IdeaProjects/pi/out/mill-daemon/processId
+2026-03-17T06:14:06Z Read PID: 28862
+2026-03-17T06:14:06Z Reading server port: /Users/hepin/IdeaProjects/pi/out/mill-daemon
+2026-03-17T06:14:06Z launchOrConnectToServer attempt
+2026-03-17T06:14:06Z Checking if the daemon lock is available: PidLock{@616ac46a, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/daemonLock'}
+2026-03-17T06:14:06Z The daemon lock is not available, there is already a server running.
+2026-03-17T06:14:06Z Trying to read the process ID of a running daemon from /Users/hepin/IdeaProjects/pi/out/mill-daemon/processId
+2026-03-17T06:14:06Z Read PID: 28862
+2026-03-17T06:14:06Z Reading server port: /Users/hepin/IdeaProjects/pi/out/mill-daemon
+2026-03-17T06:14:06Z Read server port
+2026-03-17T06:14:06Z Connecting: 54926
+2026-03-17T06:14:06Z runWithConnection (RPC): Launched(54926,Some(Socket[addr=localhost/127.0.0.1,port=54926,localport=54927]),OsProcess(28862))
+2026-03-17T06:14:06Z runWithConnection exit code: 0
+2026-03-17T07:47:16Z launchOrConnectToServer: mill.client.lock.Locks@4e3958e7
+2026-03-17T07:47:16Z Acquiring the launcher lock: PidLock{@4f67eb2a, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/launcherLock'}
+2026-03-17T07:47:16Z launchOrConnectToServer attempt
+2026-03-17T07:47:16Z Checking if the daemon lock is available: PidLock{@34f7cfd9, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/daemonLock'}
+2026-03-17T07:47:16Z The daemon lock is available, starting the server.
+2026-03-17T07:47:16Z The server has started: OsProcess(50567)
+2026-03-17T07:47:16Z Waiting for the server to take the daemon lock: PidLock{@34f7cfd9, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/daemonLock'}
+2026-03-17T07:47:17Z The server OsProcess(50567) has taken the daemon lock: PidLock{@34f7cfd9, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/daemonLock'}
+2026-03-17T07:47:17Z Reading server port: /Users/hepin/IdeaProjects/pi/out/mill-daemon
+2026-03-17T07:47:17Z launchOrConnectToServer attempt
+2026-03-17T07:47:17Z Checking if the daemon lock is available: PidLock{@34f7cfd9, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/daemonLock'}
+2026-03-17T07:47:17Z The daemon lock is not available, there is already a server running.
+2026-03-17T07:47:17Z Trying to read the process ID of a running daemon from /Users/hepin/IdeaProjects/pi/out/mill-daemon/processId
+2026-03-17T07:47:17Z Read PID: 50567
+2026-03-17T07:47:17Z Reading server port: /Users/hepin/IdeaProjects/pi/out/mill-daemon
+2026-03-17T07:47:17Z Read server port
+2026-03-17T07:47:17Z Connecting: 50023
+2026-03-17T07:47:17Z runWithConnection (RPC): Launched(50023,Some(Socket[addr=localhost/127.0.0.1,port=50023,localport=50024]),OsProcess(50567))
+2026-03-17T07:47:17Z runWithConnection exit code: 1
+2026-03-17T11:04:08Z launchOrConnectToServer: mill.client.lock.Locks@f2ff811
+2026-03-17T11:04:08Z Acquiring the launcher lock: PidLock{@3a6bb9bf, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/launcherLock'}
+2026-03-17T11:04:08Z launchOrConnectToServer attempt
+2026-03-17T11:04:08Z Checking if the daemon lock is available: PidLock{@6a84a97d, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/daemonLock'}
+2026-03-17T11:04:08Z The daemon lock is available, starting the server.
+2026-03-17T11:04:08Z The server has started: OsProcess(71597)
+2026-03-17T11:04:08Z Waiting for the server to take the daemon lock: PidLock{@6a84a97d, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/daemonLock'}
+2026-03-17T11:04:08Z The server OsProcess(71597) has taken the daemon lock: PidLock{@6a84a97d, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/daemonLock'}
+2026-03-17T11:04:08Z Reading server port: /Users/hepin/IdeaProjects/pi/out/mill-daemon
+2026-03-17T11:04:08Z launchOrConnectToServer attempt
+2026-03-17T11:04:08Z Checking if the daemon lock is available: PidLock{@6a84a97d, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/daemonLock'}
+2026-03-17T11:04:08Z The daemon lock is not available, there is already a server running.
+2026-03-17T11:04:08Z Trying to read the process ID of a running daemon from /Users/hepin/IdeaProjects/pi/out/mill-daemon/processId
+2026-03-17T11:04:08Z Read PID: 50567
+2026-03-17T11:04:08Z The daemon lock is not available, there is already a server running.
+2026-03-17T11:04:08Z Trying to read the process ID of a running daemon from /Users/hepin/IdeaProjects/pi/out/mill-daemon/processId
+2026-03-17T11:04:08Z Read PID: 50567
+2026-03-17T11:04:08Z The daemon lock is not available, there is already a server running.
+2026-03-17T11:04:08Z Trying to read the process ID of a running daemon from /Users/hepin/IdeaProjects/pi/out/mill-daemon/processId
+2026-03-17T11:04:08Z Read PID: 50567
+2026-03-17T11:04:08Z The daemon lock is not available, there is already a server running.
+2026-03-17T11:04:08Z Trying to read the process ID of a running daemon from /Users/hepin/IdeaProjects/pi/out/mill-daemon/processId
+2026-03-17T11:04:08Z Read PID: 71597
+2026-03-17T11:04:08Z Reading server port: /Users/hepin/IdeaProjects/pi/out/mill-daemon
+2026-03-17T11:04:08Z launchOrConnectToServer attempt
+2026-03-17T11:04:08Z Checking if the daemon lock is available: PidLock{@6a84a97d, path='/Users/hepin/IdeaProjects/pi/out/mill-daemon/daemonLock'}
+2026-03-17T11:04:08Z The daemon lock is not available, there is already a server running.
+2026-03-17T11:04:08Z Trying to read the process ID of a running daemon from /Users/hepin/IdeaProjects/pi/out/mill-daemon/processId
+2026-03-17T11:04:08Z Read PID: 71597
+2026-03-17T11:04:08Z Reading server port: /Users/hepin/IdeaProjects/pi/out/mill-daemon
+2026-03-17T11:04:08Z Read server port
+2026-03-17T11:04:08Z Connecting: 57416
+2026-03-17T11:04:08Z runWithConnection (RPC): Launched(57416,Some(Socket[addr=localhost/127.0.0.1,port=57416,localport=57417]),OsProcess(71597))
+2026-03-17T11:04:09Z runWithConnection exit code: 0
