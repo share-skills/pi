@@ -1,0 +1,489 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Variables for Theming ─────────────────────────────────── */
+
+:root,
+.theme-dark {
+  --pi-bg: #0a0a0f;
+  --pi-surface: #13131a;
+  --pi-surface-hover: #1a1a24;
+  --pi-surface-light: #22222e;
+  --pi-border: rgba(255, 255, 255, 0.06);
+  --pi-border-hover: rgba(255, 255, 255, 0.12);
+  --pi-accent: #6366f1;
+  --pi-accent-dim: rgba(99, 102, 241, 0.15);
+  --pi-accent-bright: #818cf8;
+  --pi-text: #e2e8f0;
+  --pi-text-secondary: #94a3b8;
+  --pi-text-muted: #64748b;
+  --pi-text-dim: #475569;
+  --pi-glass-bg: rgba(19, 19, 26, 0.8);
+  --pi-glass-border: rgba(255, 255, 255, 0.06);
+  --pi-tooltip-bg: rgba(15, 15, 22, 0.97);
+  --pi-tooltip-border: rgba(99, 102, 241, 0.3);
+  --pi-tooltip-shadow: rgba(0, 0, 0, 0.6);
+  --pi-node-bg: rgba(19, 19, 26, 0.95);
+  --pi-node-border: rgba(255, 255, 255, 0.08);
+  --pi-glow-indigo: rgba(99, 102, 241, 0.15);
+  --pi-glow-green: rgba(34, 197, 94, 0.2);
+  --pi-glow-red: rgba(239, 68, 68, 0.2);
+  --pi-minimap-mask: rgba(10, 10, 15, 0.8);
+  --pi-edge-color: rgba(99, 102, 241, 0.4);
+  --pi-edge-hover: rgba(99, 102, 241, 0.8);
+  --pi-scrollbar: rgba(100, 116, 139, 0.3);
+  --pi-scrollbar-hover: rgba(100, 116, 139, 0.5);
+  --pi-controls-bg: rgba(19, 19, 26, 0.9);
+  --pi-user-msg-bg: rgba(99, 102, 241, 0.1);
+  --pi-ai-msg-bg: rgba(34, 197, 94, 0.08);
+}
+
+.theme-light {
+  --pi-bg: #f0ebe3;
+  --pi-surface: #f7f3ed;
+  --pi-surface-hover: #ede8e0;
+  --pi-surface-light: #e5dfd6;
+  --pi-border: rgba(120, 100, 70, 0.12);
+  --pi-border-hover: rgba(120, 100, 70, 0.22);
+  --pi-accent: #5b4fc7;
+  --pi-accent-dim: rgba(91, 79, 199, 0.12);
+  --pi-accent-bright: #7c6ff0;
+  --pi-text: #2d2b3a;
+  --pi-text-secondary: #5a566a;
+  --pi-text-muted: #7d7890;
+  --pi-text-dim: #a09bae;
+  --pi-glass-bg: rgba(247, 243, 237, 0.92);
+  --pi-glass-border: rgba(120, 100, 70, 0.1);
+  --pi-tooltip-bg: rgba(247, 243, 237, 0.97);
+  --pi-tooltip-border: rgba(91, 79, 199, 0.2);
+  --pi-tooltip-shadow: rgba(80, 60, 30, 0.1);
+  --pi-node-bg: rgba(45, 43, 58, 0.92);
+  --pi-node-border: rgba(91, 79, 199, 0.3);
+  --pi-node-shadow: rgba(45, 43, 58, 0.2);
+  --pi-glow-indigo: rgba(91, 79, 199, 0.12);
+  --pi-glow-green: rgba(34, 197, 94, 0.12);
+  --pi-glow-red: rgba(239, 68, 68, 0.12);
+  --pi-minimap-mask: rgba(240, 235, 227, 0.8);
+  --pi-edge-color: rgba(91, 79, 199, 0.35);
+  --pi-edge-hover: rgba(91, 79, 199, 0.7);
+  --pi-scrollbar: rgba(120, 100, 70, 0.15);
+  --pi-scrollbar-hover: rgba(120, 100, 70, 0.25);
+  --pi-controls-bg: rgba(247, 243, 237, 0.92);
+  --pi-user-msg-bg: rgba(91, 79, 199, 0.08);
+  --pi-ai-msg-bg: rgba(34, 197, 94, 0.06);
+}
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--pi-scrollbar) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--pi-scrollbar);
+    border-radius: 3px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--pi-scrollbar-hover);
+  }
+
+  body {
+    /* FIX: Use system fonts only — Google Fonts CDN is blocked in China,
+       causing invisible text with font-display:block default behavior. */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', 'PingFang SC', 'Helvetica Neue', sans-serif;
+    overflow: hidden; /* Single viewport — no page scroll */
+  }
+
+  code, pre, .font-mono {
+    font-family: 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
+  }
+}
+
+/* ─── React Flow Theme ───────────────────────────────────────── */
+
+.react-flow__background {
+  background-color: var(--pi-bg) !important;
+}
+
+.react-flow__edge-path {
+  stroke: var(--pi-edge-color) !important;
+  stroke-width: 2 !important;
+}
+
+.react-flow__edge-path:hover {
+  stroke: var(--pi-edge-hover) !important;
+}
+
+.react-flow__controls {
+  background: var(--pi-controls-bg) !important;
+  border: 1px solid var(--pi-glass-border) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px var(--pi-tooltip-shadow) !important;
+}
+
+.react-flow__controls-button {
+  background: transparent !important;
+  color: var(--pi-text-secondary) !important;
+  border-bottom: 1px solid var(--pi-glass-border) !important;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--pi-accent-dim) !important;
+  color: var(--pi-text) !important;
+}
+
+.react-flow__minimap {
+  background: var(--pi-controls-bg) !important;
+  border: 1px solid var(--pi-glass-border) !important;
+  border-radius: 8px !important;
+}
+
+/* ─── Glassmorphism ──────────────────────────────────────────── */
+
+.glass {
+  background: var(--pi-glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--pi-glass-border);
+}
+
+/* ─── Glow Effects ───────────────────────────────────────────── */
+
+.glow-indigo {
+  box-shadow: 0 0 20px var(--pi-glow-indigo);
+}
+
+.glow-green {
+  box-shadow: 0 0 12px var(--pi-glow-green);
+}
+
+.glow-red {
+  box-shadow: 0 0 12px var(--pi-glow-red);
+}
+
+/* ─── Animations ─────────────────────────────────────────────── */
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 200ms ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 150ms ease-out;
+}
+
+/* ─── Decision Node (React Flow custom node) ─────────────────── */
+
+.decision-node {
+  background: var(--pi-node-bg);
+  border: 1px solid var(--pi-node-border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  width: 300px;
+  min-width: 300px;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  cursor: pointer;
+}
+
+/* ─── Tooltip ────────────────────────────────────────────────── */
+
+/* ─── Portal-based tooltip (escapes React Flow container) ──── */
+
+.pi-portal-tooltip {
+  position: fixed;
+  transform: translate(-50%, -100%);
+  background: var(--pi-tooltip-bg);
+  color: var(--pi-text-secondary);
+  font-size: 11px;
+  line-height: 1.5;
+  max-width: 400px;
+  min-width: 140px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--pi-tooltip-border);
+  box-shadow: 0 4px 16px var(--pi-tooltip-shadow);
+  z-index: 9999;
+  pointer-events: none;
+  animation: tooltip-fade-in 150ms ease;
+  word-wrap: break-word;
+  white-space: normal;
+  text-align: left;
+}
+
+.pi-portal-tooltip .tooltip-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.pi-portal-tooltip .tooltip-label {
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pi-portal-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--pi-tooltip-border);
+}
+
+@keyframes tooltip-fade-in {
+  from { opacity: 0; transform: translate(-50%, calc(-100% + 4px)); }
+  to { opacity: 1; transform: translate(-50%, -100%); }
+}
+
+/* ─── Original inline tooltip (kept for non-RF contexts) ──── */
+
+.pi-tooltip-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.pi-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--pi-tooltip-bg);
+  color: var(--pi-text-secondary);
+  font-size: 11px;
+  line-height: 1.5;
+  min-width: 200px;
+  max-width: 400px;
+  white-space: normal;
+  word-break: break-word;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--pi-tooltip-border);
+  box-shadow: 0 4px 16px var(--pi-tooltip-shadow);
+  z-index: 1000;
+  transition: opacity 150ms ease;
+}
+
+.pi-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--pi-tooltip-border);
+}
+
+.pi-tooltip-wrap:hover .pi-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ─── Battle edge pulse animation ───────────────────────────── */
+
+@keyframes edge-pulse {
+  0%, 100% { stroke-opacity: 1; }
+  50% { stroke-opacity: 0.4; }
+}
+
+.react-flow__edge.edge-battle .react-flow__edge-path {
+  animation: edge-pulse 1.5s ease-in-out infinite;
+}
+
+.decision-node:hover {
+  border-color: var(--pi-accent);
+  box-shadow: 0 0 20px var(--pi-glow-indigo);
+}
+
+.decision-node.selected {
+  border-color: var(--pi-accent-bright);
+  box-shadow: 0 0 24px var(--pi-glow-indigo);
+}
+
+/* ─── Playback Toast ─────────────────────────────────────────── */
+
+.playback-toast {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 500px;
+  width: calc(100% - 48px);
+  padding: 12px 16px;
+  border-radius: 12px;
+  z-index: 20;
+  animation: slide-up 200ms ease-out;
+  pointer-events: none;
+}
+
+@keyframes slide-up {
+  from { transform: translateX(-50%) translateY(16px); opacity: 0; }
+  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ─── Tree Nav ───────────────────────────────────────────────── */
+
+.tree-item {
+  transition: background-color 100ms ease;
+}
+
+.tree-item:hover {
+  background-color: rgba(99, 102, 241, 0.08);
+}
+
+.tree-item.active {
+  background-color: rgba(99, 102, 241, 0.12);
+  border-left: 2px solid #6366f1;
+}
+
+/* ─── Theme-aware text colors ────────────────────────────────── */
+
+/* Text color overrides: dark-theme text classes → warm dark text on light bg */
+.theme-light .text-slate-100 { color: #2d2b3a !important; }
+.theme-light .text-slate-200 { color: #3a3848 !important; }
+.theme-light .text-slate-300 { color: #4a475a !important; }
+.theme-light .text-slate-400 { color: #5e5b70 !important; }
+.theme-light .text-slate-500 { color: #7d7890 !important; }
+.theme-light .text-slate-600 { color: #9590a5 !important; }
+.theme-light .text-white { color: #2d2b3a !important; }
+.theme-light .hover\:text-white:hover { color: #2d2b3a !important; }
+.theme-light .hover\:text-slate-200:hover { color: #3a3848 !important; }
+.theme-light .hover\:text-slate-300:hover { color: #4a475a !important; }
+/* Background overrides */
+.theme-light .bg-pi-surface { background-color: var(--pi-surface) !important; }
+.theme-light .bg-pi-bg { background-color: var(--pi-bg) !important; }
+.theme-light .bg-pi-surface-light { background-color: var(--pi-surface-light) !important; }
+.theme-light .border-pi-border { border-color: var(--pi-border) !important; }
+.theme-light .hover\:bg-pi-surface-light:hover { background-color: var(--pi-surface-light) !important; }
+/* ReactFlow canvas */
+.theme-light .reactflow-wrapper { background-color: var(--pi-bg) !important; }
+.theme-light [class*="react-flow__background"] { background-color: var(--pi-bg) !important; }
+.theme-light .react-flow__node { color: #2d2b3a !important; }
+/* Glass surfaces */
+.theme-light .glass {
+  background: var(--pi-glass-bg) !important;
+  border-color: var(--pi-glass-border) !important;
+  color: #2d2b3a !important;
+}
+/* Borders */
+.theme-light .border-white\/5 { border-color: rgba(120, 100, 70, 0.1) !important; }
+.theme-light .border-white\/10 { border-color: rgba(120, 100, 70, 0.15) !important; }
+.theme-light .divide-white\/5 > * + * { border-color: rgba(120, 100, 70, 0.1) !important; }
+/* Nodes in light theme: dark nodes on warm bg for contrast */
+.theme-light .react-flow__node {
+  color: #e2e8f0 !important;
+}
+.theme-light .react-flow__node .text-slate-300 { color: #cbd5e1 !important; }
+.theme-light .react-flow__node .text-slate-400 { color: #94a3b8 !important; }
+.theme-light .react-flow__node .text-slate-500 { color: #64748b !important; }
+.theme-light .react-flow__node .text-white { color: #f1f5f9 !important; }
+.theme-light .react-flow__edge path { stroke: rgba(91, 79, 199, 0.5) !important; }
+
+/* ─── Slide in left animation ────────────────────────────────── */
+
+@keyframes slide-in-left {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 200ms ease-out;
+}
+
+/* ─── SKILL Panel ────────────────────────────────────────────── */
+
+.skill-panel {
+  background: var(--pi-glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-left: 1px solid var(--pi-glass-border);
+}
+
+.skill-panel-section {
+  border: 1px solid var(--pi-border);
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--pi-surface);
+}
+
+.skill-panel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  border: 1px solid var(--pi-border);
+  background: var(--pi-surface-hover);
+  color: var(--pi-text-secondary);
+}
+
+/* ─── Help Modal Tabs ────────────────────────────────────────── */
+
+.help-tab {
+  font-size: 11px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 150ms ease;
+  color: var(--pi-text-muted);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+.help-tab:hover {
+  color: var(--pi-text);
+  background: var(--pi-surface-hover);
+}
+
+.help-tab.active {
+  color: white;
+  background: var(--pi-accent);
+}

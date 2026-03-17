@@ -246,7 +246,7 @@ curl -fsSL https://raw.githubusercontent.com/share-skills/pi/main/install.sh | b
 ```
 
 交互式安装，自动检测已安装平台，支持选择语言。
-安装器还会放置 `~/.pi/visualize.sh` 可视化启动器；首次运行 `~/.pi/visualize.sh` 时，会按需引导安装本地可视化运行时（需要 `git` 和 `mill`）。如果你的宿主额外接入了 `commands/` 路由，再使用 `/pi visualize` 这类快捷入口。
+安装器还会放置 `~/.pi/visualize.sh` 可视化启动器；首次运行 `~/.pi/visualize.sh` 时，会按需引导安装本地可视化运行时（需要 `git` 和 `node`/`npm`）。如果你的宿主额外接入了 `commands/` 路由，再使用 `/pi visualize` 这类快捷入口。
 
 ### 手动安装
 
@@ -329,11 +329,14 @@ mkdir -p ~/.<platform>/skills/pi && cp skills/pi/SKILL.md ~/.<platform>/skills/p
 
 ### PI 决策可视化
 
-PI 除了方法论本体，还自带一个本地决策历史可视化器，用来把 `~/.pi/decisions` 里的脱敏历史渲染成可交互页面。
+PI 自带本地决策历史可视化器（TypeScript + React + Vite），将 `~/.pi/decisions` 中的脱敏决策历史渲染为可交互页面。核心功能：
 
-- 一键安装后，会放置 `~/.pi/visualize.sh`
-- 首次运行 `~/.pi/visualize.sh` 时，会按需 bootstrap standalone visualizer runtime（需要 `git` 和 `mill`）
-- 支持离线 HTML、Live 本地预览、时间线回放、Heatmap、Compare mode、导入/导出/分享
+- 🌳 **决策树可视化** — React Flow 驱动的交互式决策图，支持拖拽、缩放、平移
+- ⏱️ **时间线回放** — 滑动时间轴重现决策演进过程
+- 📤 **一键导出** — 导出/导入带隐私脱敏的决策存档，支持分享
+- 🔴 **实时预览** — WebSocket 实时监听决策变更，自动刷新
+
+安装方式：一键安装（`install.sh`）会自动放置 `~/.pi/visualize.sh` 启动器。首次运行时自动 bootstrap 运行时环境（需要 `git` 和 `node`/`npm`）。
 
 常用入口：
 
@@ -360,7 +363,9 @@ cp cursor/rules/pi-visualize.mdc .cursor/rules/pi-visualize.mdc
 curl -fsSL https://raw.githubusercontent.com/share-skills/pi/main/scripts/setup-standalone-visualize.sh | bash
 ```
 
-Standalone setup 依赖 `git` 和 `mill`。
+Standalone setup 依赖 `git` 和 `node`/`npm`。
+
+> 了解可视化背后的设计理念：[为什么 PI 有效](docs/WHY_PI_WORKS.md) · [设计哲学](docs/DESIGN_PHILOSOPHY.md)
 
 ### 多语言支持
 

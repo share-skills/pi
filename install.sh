@@ -472,6 +472,16 @@ install_visualizer_launcher() {
     return 0
   fi
 
+  if ! command -v node >/dev/null 2>&1; then
+    if [[ "$LANG_CODE" == "zh" ]]; then
+      echo "  ⚠️  未检测到 Node.js。可视化启动器已安装，但首次运行时需要 node 和 npm。"
+      echo "     安装 Node.js: https://nodejs.org/"
+    else
+      echo "  ⚠️  Node.js not detected. Visualizer launcher installed, but node & npm are required on first run."
+      echo "     Install Node.js: https://nodejs.org/"
+    fi
+  fi
+
   cat > "$launcher" <<EOF
 #!/usr/bin/env bash
 set -euo pipefail
@@ -481,7 +491,7 @@ INSTALL_DIR="\${PI_ROOT}/visualize"
 SETUP_SCRIPT="\${PI_ROOT}/setup-standalone-visualize.sh"
 CLONED_SETUP_SCRIPT="\${INSTALL_DIR}/scripts/setup-standalone-visualize.sh"
 
-if [[ ! -f "\${INSTALL_DIR}/visualize/build.mill" ]]; then
+if [[ ! -f "\${INSTALL_DIR}/visualize/package.json" ]]; then
   echo "PI visualizer runtime is not installed yet."
   echo "Bootstrapping standalone visualizer into \${INSTALL_DIR}..."
   if [[ ! -x "\$SETUP_SCRIPT" ]]; then
@@ -502,8 +512,10 @@ if [[ ! -f "\${INSTALL_DIR}/visualize/build.mill" ]]; then
 fi
 
 cd "\${INSTALL_DIR}/visualize"
-mill frontend.standaloneHtml >/dev/null
-exec mill cli.run "\$@"
+if [[ ! -d "node_modules" ]]; then
+  npm install
+fi
+exec npm run server -- "\$@"
 EOF
 
   chmod +x "$launcher"

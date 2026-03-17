@@ -35,14 +35,14 @@ If Qoder supports shell hooks or post-command execution:
 
 2. **Visualize**: use the standard PI visualizer.
 
-   Offline HTML:
+   Production server:
    ```bash
-   cd /path/to/pi/visualize && mill frontend.standaloneHtml && mill cli.run
+   cd /path/to/pi/visualize && npm install && npm run server
    ```
 
-   Live local preview (loopback server + polling):
+   Development mode (hot-reload):
    ```bash
-   cd /path/to/pi/visualize && mill cli.run --live
+   cd /path/to/pi/visualize && npm run dev
    ```
 
 ## Generic Adapter

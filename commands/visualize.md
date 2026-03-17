@@ -1,6 +1,6 @@
 ---
 name: visualize
-description: "Open the local PI decision visualizer. Build the standalone frontend, embed ~/.pi/decisions into the HTML, and open the result in the browser unless --no-open is passed."
+description: "Open the local PI decision visualizer. Start the visualizer server backed by ~/.pi/decisions data, and open the result in the browser unless --no-open is passed."
 ---
 
 # PI Visualize Command
@@ -10,44 +10,41 @@ Launch the local PI decision-history visualizer backed by `visualize/`.
 ## Behavior
 
 1. Locate the visualizer tool:
-   - If `./visualize/build.mill` exists in the current workspace, use `./visualize`.
+   - If `./visualize/package.json` exists in the current workspace, use `./visualize`.
    - Else if `~/.pi/visualize.sh` exists, use that directly.
-   - Else if `~/.pi/visualize/visualize` exists, use that as the Mill project directory.
-   - Else if `~/.pi/visualize` exists **and** contains `build.mill`, use that.
+   - Else if `~/.pi/visualize/visualize` exists and contains `package.json`, use that.
    - Else, fail and tell the user to run `curl -fsSL https://raw.githubusercontent.com/share-skills/pi/main/scripts/setup-standalone-visualize.sh | bash`.
-     - The standalone bootstrap requires both `git` and `mill`.
-2. Build or refresh the standalone frontend when running from source:
-   - `cd [detected-visualize-dir] && mill frontend.standaloneHtml`
-3. Run the visualizer CLI:
-   - Offline HTML: `cd [detected-visualize-dir] && mill cli.run`
-   - Live local preview: `cd [detected-visualize-dir] && mill cli.run --live`
+     - The standalone bootstrap requires `git` and `node`/`npm`.
+2. Install dependencies and build if needed:
+   - `cd [detected-visualize-dir] && npm install && npm run build`
+3. Run the visualizer:
+   - Production server: `cd [detected-visualize-dir] && npm run server` (serves on port 3141)
+   - Development mode: `cd [detected-visualize-dir] && npm run dev`
    - Or if using the wrapper: `~/.pi/visualize.sh [args]`
 4. If the user provides additional flags, forward them exactly as provided.
-    - Example: `/visualize --no-open --output /tmp/pi.html`
+    - Example: `/visualize --no-open`
 5. On success, report:
-    - generated HTML path
+    - server URL (default: http://localhost:3141)
     - whether the browser auto-opened
-    - session count and warning count from CLI output
-6. If the local `mill` launcher warns that it does not match `.mill-version`, report the warning honestly, but continue when the command still succeeds.
+    - session count and warning count from server output
 
-## Default CLI behavior
+## Default behavior
 
 - source: `~/.pi/decisions`
-- template: `visualize/out/frontend/standaloneHtml.dest/index.html`
-- output: `visualize/out/cli/pi-visualize.html`
+- server port: 3141
 - browser: auto-open enabled
 
-## Live preview mode
+## Live development mode
 
-Use `--live` when you want a browser view that keeps polling sanitized archive updates from a local loopback server:
+Use `npm run dev` when you want hot-reloading during development:
 
 ```bash
-cd visualize && mill cli.run --live
+cd visualize && npm run dev
 ```
 
-- The CLI serves on `http://127.0.0.1:<ephemeral-port>/`
-- The frontend polls `/api/archive`
-- This is distinct from the default offline `file://` HTML flow
+- Vite dev server starts on an ephemeral port
+- Hot module replacement enabled
+- This is distinct from the production `npm run server` flow
 
 ## Installation & Updates
 
@@ -59,13 +56,13 @@ For standalone usage (without the full PI skill environment), you can also use t
 curl -fsSL https://raw.githubusercontent.com/share-skills/pi/main/scripts/setup-standalone-visualize.sh | bash
 ```
 
-This installs the visualizer to `~/.pi/visualize` and creates a wrapper at `~/.pi/visualize.sh`. The standalone bootstrap requires both `git` and `mill`.
+This installs the visualizer to `~/.pi/visualize` and creates a wrapper at `~/.pi/visualize.sh`. The standalone bootstrap requires `git` and `node`/`npm`.
 
 ## Troubleshooting
 
-- **"mill: command not found"**: The standalone visualizer requires Mill to build the frontend. Install [Mill](https://com-lihaoyi.github.io/mill) or ensure it's in your PATH.
+- **"node: command not found"**: The visualizer requires Node.js. Install [Node.js](https://nodejs.org/) or ensure it's in your PATH.
 - **"git: command not found"**: The standalone setup script clones or refreshes the PI repository. Install Git before running the bootstrap command.
-- **Browser not opening**: Use `--no-open` and check the output path.
+- **Browser not opening**: Use `--no-open` and check the server URL.
 - **Missing data**: Ensure `~/.pi/decisions` exists and is populated by PI hooks.
 
 ## Host Integration
@@ -88,4 +85,4 @@ Otherwise, use the guaranteed local entrypoint:
 ## Notes
 
 - This command is the standalone sibling of `/pi visualize` when the host has wired both command files.
-- The generated HTML is fully self-contained and can later be re-opened via `file://`.
+- The visualizer serves a React SPA backed by a Node.js/Express server reading `~/.pi/decisions`.

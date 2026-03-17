@@ -238,7 +238,7 @@ curl -fsSL https://raw.githubusercontent.com/share-skills/pi/main/install.sh | b
 ```
 
 Interactive installer with auto-detection of installed platforms and language selection.
-The installer also drops a `~/.pi/visualize.sh` launcher. The first `~/.pi/visualize.sh` run can bootstrap the local visualizer runtime on demand (requires `git` and `mill`). If your host also wires `commands/`, then `/pi visualize` becomes an additional shortcut.
+The installer also drops a `~/.pi/visualize.sh` launcher. The first `~/.pi/visualize.sh` run bootstraps the local visualizer runtime on demand (requires `git` and `node`/`npm`). If your host also wires `commands/`, then `/pi visualize` becomes an additional shortcut.
 
 ### Manual Install
 
@@ -321,11 +321,14 @@ Replace `<platform>` with: `windsurf`, `trae`, `augment`, `copaw`, `iflow`, `qod
 
 ### PI Decision Visualizer
 
-In addition to the core methodology, PI ships with a local decision-history visualizer that renders sanitized archives from `~/.pi/decisions` into an interactive page.
+PI ships with a local decision-history visualizer (TypeScript + React + Vite) that renders sanitized archives from `~/.pi/decisions` into an interactive page. Key features:
 
-- The one-click installer drops `~/.pi/visualize.sh`
-- The first `~/.pi/visualize.sh` run can bootstrap the standalone visualizer runtime on demand (requires `git` and `mill`)
-- Supports offline HTML, live local preview, timeline playback, heatmaps, compare mode, import/export/share
+- 🌳 **Decision Tree Visualization** — Interactive decision graph powered by React Flow with drag, zoom, and pan
+- ⏱️ **Timeline Playback** — Slide through time to replay the evolution of decisions
+- 📤 **One-Click Export** — Export/import privacy-sanitized decision archives for sharing
+- 🔴 **Live Preview** — WebSocket-driven real-time monitoring of decision changes with auto-refresh
+
+Setup: The one-click installer (`install.sh`) automatically places `~/.pi/visualize.sh`. On first run it bootstraps the runtime environment (requires `git` and `node`/`npm`).
 
 Common entrypoint:
 
@@ -352,7 +355,9 @@ If you want only the visualizer, you can also run:
 curl -fsSL https://raw.githubusercontent.com/share-skills/pi/main/scripts/setup-standalone-visualize.sh | bash
 ```
 
-Standalone setup requires both `git` and `mill`.
+Standalone setup requires `git` and `node`/`npm`.
+
+> Learn more about the design behind visualization: [Why PI Works](docs/WHY_PI_WORKS.md) · [Design Philosophy](docs/DESIGN_PHILOSOPHY.md)
 
 ### Multilingual Support
 

@@ -37,10 +37,10 @@ echo "🔮 Setting up PI Standalone Visualizer..."
 
 mkdir -p "$PI_ROOT"
 
-# Ensure mill is installed
-if ! command -v mill &> /dev/null; then
-    echo "❌ 'mill' is required to build the visualizer." >&2
-    echo "Install it first: https://com-lihaoyi.github.io/mill/mill/Intro_to_Mill.html#_installation" >&2
+# Ensure Node.js/npm is installed
+if ! command -v node &> /dev/null || ! command -v npm &> /dev/null; then
+    echo "❌ 'node' and 'npm' are required to build the visualizer." >&2
+    echo "Install Node.js first: https://nodejs.org/" >&2
     exit 1
 fi
 
@@ -65,7 +65,8 @@ else
 fi
 
 cd "$INSTALL_DIR/visualize"
-mill frontend.standaloneHtml
+npm install
+npm run build
 
 # Keep a local copy so future runs can re-bootstrap even after `curl | bash`.
 CLONED_SETUP_SCRIPT="$INSTALL_DIR/scripts/setup-standalone-visualize.sh"
@@ -95,7 +96,7 @@ INSTALL_DIR="\${PI_ROOT}/visualize"
 SETUP_SCRIPT="\${PI_ROOT}/setup-standalone-visualize.sh"
 CLONED_SETUP_SCRIPT="\${INSTALL_DIR}/scripts/setup-standalone-visualize.sh"
 
-if [[ ! -f "\${INSTALL_DIR}/visualize/build.mill" ]]; then
+if [[ ! -f "\${INSTALL_DIR}/visualize/package.json" ]]; then
   echo "PI visualizer runtime is not installed yet."
   echo "Bootstrapping standalone visualizer into \${INSTALL_DIR}..."
   if [[ ! -x "\$SETUP_SCRIPT" ]]; then
@@ -116,8 +117,10 @@ if [[ ! -f "\${INSTALL_DIR}/visualize/build.mill" ]]; then
 fi
 
 cd "\${INSTALL_DIR}/visualize"
-mill frontend.standaloneHtml >/dev/null
-exec mill cli.run "\$@"
+if [[ ! -d "node_modules" ]]; then
+  npm install
+fi
+exec npm run server -- "\$@"
 EOF
 chmod +x "$WRAPPER_SCRIPT"
 
