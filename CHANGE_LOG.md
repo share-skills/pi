@@ -5,7 +5,7 @@
 ### R47 — 五模型审计 + 可视化发布集成 + 全平台发布 (2026-03-17)
 - **9 项修复**: 肃阵触发条件(战势二阶+)、恢复链模板(认知阵+末排)、肃阵自动解除(3条件)、截教→截道阶、核心铁律Loop限定、止损升阶并行顺序、Coach护宪权例外、灵兽链{首兽}·{链}、轻量跳过场景公示
 - **可视化发布集成**: install.sh Node.js 检测、scripts/setup-standalone-visualize.sh npm 适配、commands/*.md 全量更新、cursor/qoder 插件文档同步
-- **设计文档**: docs/WHY_PI_WORKS.md (技术白皮书) + docs/DESIGN_PHILOSOPHY.md (设计哲学宣言) + 8 项改进
+- **设计文档**: docs/WHY_PI_WORKS.md (技术白皮书) + docs/DESIGN_PHILOSOPHY.md (设计哲学宣言) + docs/WHY_VISUALIZE.md/en.md (可视化使用指南) + 8 项改进
 - **README.md/README.en.md**: 新增可视化功能章节与文档链接
 - **PUBLISH.md 修正**: 预检文件名 README.zh-CN.md → README.md
 - **同步范围**: SKILL_META.md→SKILL.md→SKILL_LITE.md→全平台分发→英文翻译→README
