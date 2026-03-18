@@ -357,7 +357,7 @@ curl -fsSL https://raw.githubusercontent.com/share-skills/pi/main/scripts/setup-
 
 Standalone setup requires `git` and `node`/`npm`.
 
-> Learn more about the design behind visualization: [Why PI Works](docs/WHY_PI_WORKS.md) · [Design Philosophy](docs/DESIGN_PHILOSOPHY.md)
+> Learn more about the design behind visualization: [Why PI Works](docs/WHY_PI_WORKS.en.md) · [Design Philosophy](docs/DESIGN_PHILOSOPHY.en.md) · [Why a Compiler?](docs/WHY_COMPILER.en.md)
 
 ### Multilingual Support
 

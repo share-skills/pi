@@ -46,7 +46,7 @@
 步骤 1.4  读取 DISTRIBUTE.md 全文，加载分发规则
 步骤 1.5  读取 PURGE.md 全文，加载裁剪规则
 步骤 1.6  读取 TRANSLATE.md 全文，加载翻译规则
-步骤 1.7  读取 README.zh-CN.md，加载项目说明（后续同步用）
+步骤 1.7  读取 README.md，加载项目说明（后续同步用）
 步骤 1.8  运行 git status，确认工作区状态
 ```
 
@@ -172,13 +172,13 @@
           3.4.1  确认 copilot-cli/pi/ 目录存在（不存在则创建）
           3.4.2  读取或创建 copilot-cli/pi/SKILL.md → 写入完整 body
 
-步骤 3.5  分发白话版到各平台（SKILL_LITE.md body，无需 PURGE）：
+步骤 3.5  分发已裁剪的白话版到 5 个平台（使用 3.2b 产出的 purged LITE body）：
           3.5.1  写入 skills/pi/SKILL_LITE.md
           3.5.2  写入 claude-code/pi/SKILL_LITE.md
           3.5.3  写入 cursor/rules/pi-lite.mdc（使用 cursor LITE frontmatter）
           3.5.4  写入 kiro/steering/pi-lite.md（使用 kiro LITE frontmatter）
           3.5.5  写入 openclaw/pi/SKILL_LITE.md
-          3.5.6  写入 copilot-cli/pi/SKILL_LITE.md
+          3.5.6  写入 copilot-cli/pi/SKILL_LITE.md（使用完整 LITE body，不裁剪）
 
 步骤 3.6  同步 description：
           - 提取 SKILL_META.md 的 description

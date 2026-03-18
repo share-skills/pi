@@ -43,7 +43,7 @@ Next: <next hypothesis>
 |---------|---------|
 | Technical disagreement between Teammates | Minimal proof verification, data decides |
 | Priority disagreement between Teammates | Leader decides, aligned to global goal |
-| Leader-Coach disagreement | Leader makes final call, Coach logs dissent |
+| Leader-Coach disagreement | Leader makes final call, Coach logs dissent. **Exception: When Five Directives (§Directives) violation is involved, Coach may escalate to user for adjudication.** |
 
 **Inter-Teammate Communication**: Adjacent tasks may directly exchange technical details (API format/data structures), cc Leader; non-adjacent tasks route through Leader.
 
@@ -63,10 +63,10 @@ Next: <next hypothesis>
 | Signal | Corresponding Prohibition | Totem |
 |------|---------|------|
 | Assert without investigation, no search verification | 🚫Guess without searching | 🦈Shark |
-| Modified without running build/test | 🚫Change without verifying | 🐺Wolf |
+| Modified without running build/test | 🚫Change without verifying | 🐺🐯Wolf-Tiger |
 | Tweaked old path 3+ times | 🚫Repeat without pivoting | 🐬Dolphin |
 | Sheathed sword prematurely, no peer scan | 🚫Stop without pursuing | 🦅Eagle |
-| Empty claims without verification evidence | 🚫Claim without evidence | 🐎Horse |
+| Empty claims without verification evidence | 🚫Talk without doing | 🐎Horse |
 
 **Three Intervention Levels**:
 
@@ -79,3 +79,6 @@ Next: <next hypothesis>
 **Coach Boundaries**: Observe only · Advise only · Don't execute · Don't rush · Positive tone
 
 > Coach observes Teammate output through platform-provided message/log channels (e.g., Agent Team messages, TaskList, PI battle reports).
+
+---
+

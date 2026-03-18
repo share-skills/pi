@@ -1019,7 +1019,7 @@ function CanvasInner() {
       <>
         {helpOpen && createPortal(<HelpModal onClose={toggleHelp} />, document.body)}
         {skillPanelOpen && createPortal(<SkillPanel onClose={toggleSkillPanel} />, document.body)}
-        <div className="flex-1 flex items-center justify-center" style={{ backgroundColor: bgColor }}>
+        <div className="w-full h-full flex items-center justify-center" style={{ backgroundColor: bgColor }}>
           <div className="text-center animate-fade-in p-8 rounded-2xl glass max-w-sm">
             <div className="text-5xl mb-4">⚡</div>
             <h2 className="text-xl font-semibold text-white mb-2">{t('canvas.title' as TranslationKey)}</h2>
@@ -1042,7 +1042,7 @@ function CanvasInner() {
       <>
         {helpOpen && createPortal(<HelpModal onClose={toggleHelp} />, document.body)}
         {skillPanelOpen && createPortal(<SkillPanel onClose={toggleSkillPanel} />, document.body)}
-        <div className="flex-1 flex items-center justify-center">
+        <div className="w-full h-full flex items-center justify-center">
           <div className="text-center animate-fade-in">
             <div className="text-4xl mb-4">🌱</div>
             <h2 className="text-lg font-medium text-slate-300 mb-2">{t('canvas.noDecisions' as TranslationKey)}</h2>
@@ -1057,35 +1057,37 @@ function CanvasInner() {
     <>
       {mindsetPopup && <MindsetPopup mindset={mindsetPopup} onClose={() => setMindsetPopup(null)} />}
       {helpOpen && <HelpModal onClose={toggleHelp} />}
-      <ReactFlow
-        nodes={positionedNodes}
-        edges={layout.flowEdges}
-        onNodesChange={onNodesChange}
-        nodeTypes={nodeTypes}
-        onNodeClick={onNodeClick}
-        fitView
-        fitViewOptions={{ padding: 0.2 }}
-        minZoom={0.1}
-        maxZoom={2}
-        nodesDraggable={true}
-        nodesConnectable={false}
-        proOptions={{ hideAttribution: true }}
-        className="animate-fade-in"
-      >
-        <Background color={bgDotColor} gap={20} size={1} />
-        <Controls position="bottom-left" showInteractive={false} />
-        {positionedNodes.length > 10 && (
-          <MiniMap
-            position="bottom-right"
-            nodeColor={(n) => {
-              const cat = (n.data as unknown as DecisionNode).category
-              return CATEGORY_STYLES[cat]?.color ?? '#64748b'
-            }}
-            maskColor={theme === 'light' ? 'rgba(240,235,227,0.8)' : 'rgba(10,10,15,0.8)'}
-            style={{ background: theme === 'light' ? 'rgba(247,243,237,0.9)' : 'rgba(19,19,26,0.9)' }}
-          />
-        )}
-      </ReactFlow>
+      <div className="w-full h-full" style={{ backgroundColor: bgColor }}>
+        <ReactFlow
+          nodes={positionedNodes}
+          edges={layout.flowEdges}
+          onNodesChange={onNodesChange}
+          nodeTypes={nodeTypes}
+          onNodeClick={onNodeClick}
+          fitView
+          fitViewOptions={{ padding: 0.2 }}
+          minZoom={0.1}
+          maxZoom={2}
+          nodesDraggable={true}
+          nodesConnectable={false}
+          proOptions={{ hideAttribution: true }}
+          className="animate-fade-in"
+        >
+          <Background color={bgDotColor} gap={20} size={1} />
+          <Controls position="bottom-left" showInteractive={false} />
+          {positionedNodes.length > 10 && (
+            <MiniMap
+              position="bottom-right"
+              nodeColor={(n) => {
+                const cat = (n.data as unknown as DecisionNode).category
+                return CATEGORY_STYLES[cat]?.color ?? '#64748b'
+              }}
+              maskColor={theme === 'light' ? 'rgba(240,235,227,0.8)' : 'rgba(10,10,15,0.8)'}
+              style={{ background: theme === 'light' ? 'rgba(247,243,237,0.9)' : 'rgba(19,19,26,0.9)' }}
+            />
+          )}
+        </ReactFlow>
+      </div>
       {/* Floating buttons: auto-layout + help */}
       <div className="absolute top-3 right-3 flex flex-col gap-2 z-30">
         <button
@@ -1120,9 +1122,15 @@ function CanvasInner() {
 export default function DecisionCanvas() {
   return (
     <div className="flex-1 min-h-0 relative">
-      <ReactFlowProvider>
-        <CanvasInner />
-      </ReactFlowProvider>
+      {/* Absolute positioning ensures the React Flow container gets explicit
+          dimensions regardless of how the parent flex item resolves height.
+          Without this, React Flow's inner div (which uses height:100%) may
+          collapse to 0px in some browsers/layout edge cases → black screen. */}
+      <div className="absolute inset-0">
+        <ReactFlowProvider>
+          <CanvasInner />
+        </ReactFlowProvider>
+      </div>
     </div>
   )
 }

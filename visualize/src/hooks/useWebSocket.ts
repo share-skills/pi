@@ -7,15 +7,15 @@ export function useWebSocket() {
   const [reconnecting, setReconnecting] = useState(false)
   const wsRef = useRef<WebSocket | null>(null)
   const reconnectAttempts = useRef(0)
-  const pingIntervalRef = useRef<ReturnType<typeof setInterval>>()
-  const reconnectTimeoutRef = useRef<ReturnType<typeof setTimeout>>()
+  const pingIntervalRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined)
+  const reconnectTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   // FIX: Track unmount to prevent WebSocket reconnection after component teardown.
   // Without this, ws.onclose fires during cleanup → scheduleReconnect → new socket after unmount.
   const disposedRef = useRef(false)
   // FIX: Use a ref to break the circular dependency between connect and scheduleReconnect.
   // connect → ws.onclose → scheduleReconnect → setTimeout(connect). Without a ref,
   // this creates a stale closure or a dependency cycle in useCallback.
-  const connectRef = useRef<() => void>()
+  const connectRef = useRef<(() => void) | undefined>(undefined)
   // FIX: Individual selectors prevent re-renders on unrelated state changes
   const setArchive = useStore(s => s.setArchive)
   const setWsConnected = useStore(s => s.setWsConnected)

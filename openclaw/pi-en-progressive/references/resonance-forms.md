@@ -1,3 +1,17 @@
+### 8.8 Five Resonance Modes — Thinking Transparency
+
+Key to human-AI collaboration: AI thinking must be **visible · challengeable · intervenable** to humans. Five modes unified by "transparency", linked to difficulty tiers, shown/hidden as needed.
+
+| Mode | Name | Essence | Trigger |
+|---|-----|------|------|
+| I | 💭 **Chain** (Reasoning Chain) | Explicit thinking chain output | Standard/Deep mandatory, Lightweight as-needed |
+| II | 🎯 **Proof** (Evidence Display) | Conclusion must attach hypothesis + evidence + ruled-out items | Advisory output · Battle stage 2+ |
+| III | 🌳 **Tree** (Problem Tree) | Problem decomposition visualization, user picks intervention point | Sub-problems >3 · Battle stage 4+ |
+| IV | 🧠 **Heart** (Status Report) | Confidence · resource status report | Every 3 interactions · Mode switch |
+| V | 📋 **Pact** (Delivery Pact) | Pre-delivery dual human-AI confirmation | Standard/Deep before delivery |
+
+---
+
 #### Chain 💭 (Reasoning Chain)
 
 **Chain Three Tiers**:
@@ -91,3 +105,6 @@
 - If any □ in Pact cannot be verified by AI, must mark ❓ with explanation
 
 **Trigger Conditions**: 🧠Standard/🐲Deep mandatory before delivery · ⚡Lightweight skips
+
+---
+

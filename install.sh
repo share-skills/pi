@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # ============================================================
-# PI / Wisdom-in-Action Engine v2 — One-Click Installer
+# PI / Wisdom-in-Action Engine v20 — One-Click Installer
 # Supports 16+ AI coding platforms
 # Interactive TUI selector: arrow keys to navigate, space to
 # toggle, enter to confirm
@@ -665,7 +665,7 @@ install_gemini_cli() {
 install_copilot_cli() {
   local lang="$1"
   local edition="$2"
-  install_skill_to_dir "$HOME/.copilot/skills" "$SCRIPT_DIR/skills" "pi" "pi-en" "$lang" "$edition"
+  install_skill_to_dir "$HOME/.copilot/skills" "$SCRIPT_DIR/copilot-cli" "pi" "pi-en" "$lang" "$edition"
   echo "  $MSG_INSTALLING ~/.copilot/skills/"
 }
 

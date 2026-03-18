@@ -1,5 +1,15 @@
 # PI 变更日志
 
+## v20.0.0 迭代记录
+
+### R47 — 五模型审计 + 可视化发布集成 + 全平台发布 (2026-03-17)
+- **9 项修复**: 肃阵触发条件(战势二阶+)、恢复链模板(认知阵+末排)、肃阵自动解除(3条件)、截教→截道阶、核心铁律Loop限定、止损升阶并行顺序、Coach护宪权例外、灵兽链{首兽}·{链}、轻量跳过场景公示
+- **可视化发布集成**: install.sh Node.js 检测、scripts/setup-standalone-visualize.sh npm 适配、commands/*.md 全量更新、cursor/qoder 插件文档同步
+- **设计文档**: docs/WHY_PI_WORKS.md (技术白皮书) + docs/DESIGN_PHILOSOPHY.md (设计哲学宣言) + 8 项改进
+- **README.md/README.en.md**: 新增可视化功能章节与文档链接
+- **PUBLISH.md 修正**: 预检文件名 README.zh-CN.md → README.md
+- **同步范围**: SKILL_META.md→SKILL.md→SKILL_LITE.md→全平台分发→英文翻译→README
+
 ## v19.0.0 迭代记录
 
 ### R46 — 灵兽双面兽：狼虎合一 + 鲨鱼广深 + 隐患回避失败链 (2026-03-16)
@@ -17,7 +27,7 @@
 - **PUBLISH.md 更新**: P2 新增白话版编译步骤(2.3-2.4)+校验(2.9-2.10)，P3 新增白话版分发(3.5)+PURGE(3.2b)，P4 新增白话版英文翻译(4.1b/4.2b)，发布摘要含 SKILL_LITE 行数
 - **PIPELINE.md 更新**: 双编译器架构图，P2 新增白话编译器分支，P3 分发改为 6平台×2版本，文件架构新增 COMPILER_LITE.md 和 SKILL_LITE.md
 - **install.sh 更新**: 新增版本选择（原版/白话版/两个都装），16 个平台安装函数均支持 edition 参数，白话版单选时自动重命名为 SKILL.md
-- **README.md/README.zh-CN.md 更新**: 新增"双版本：原版 & 白话版"章节，含自编译指南
+- **README.md/README.en.md 更新**: 新增"双版本：原版 & 白话版"章节，含自编译指南
 
 ### R44 — PIPELINE.md 全景图 (2026-03-16)
 - **新建 PIPELINE.md**: 四阶段流水线全景文档，ASCII 架构图 + 数据流 + 文件架构 + 触发条件速查 + 质量守护原则

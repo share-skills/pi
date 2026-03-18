@@ -43,7 +43,7 @@ Teammate 在第二阶+ 向 Leader 汇报：
 |---------|---------|
 | Teammate 间技术分歧 | 最小实证验证，以数据为据 |
 | Teammate 间优先级分歧 | Leader 裁决，以全局目标为准 |
-| Leader-Coach 分歧 | Leader 最终决定，Coach 记录异议 |
+| Leader-Coach 分歧 | Leader 最终决定，Coach 记录异议。**例外：涉及五敕令(§强制令)违反时，Coach 有权升级至用户裁决。** |
 
 **Teammate 间通信**：相邻任务可直接交换技术细节（API格式/数据结构），抄送 Leader；非相邻任务通过 Leader 中转。
 
@@ -79,3 +79,6 @@ Teammate 在第二阶+ 向 Leader 汇报：
 **Coach 边界**：只观察·只建议·不执行·不催促·正向语气
 
 > Coach 通过平台提供的消息/日志通道（如 Agent Team 消息、TaskList、PI·战报）观测 Teammate 输出。
+
+---
+

@@ -10,7 +10,7 @@
 ```
 SKILL_META.md (迭代真源)
       │
-      ├──→ COMPILER.md      → SKILL.md      (原版·保留认知策略·~800行)
+      ├──→ COMPILER.md      → SKILL.md      (原版·保留认知策略·~950行)
       │
       └──→ COMPILER_LITE.md → SKILL_LITE.md (白话版·功能等价·零术语)
 ```

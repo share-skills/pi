@@ -8,9 +8,9 @@
 ## 架构
 
 ```
-SKILL_META.md  ← 迭代真源（完整版·给人看·~1170行）
+SKILL_META.md  ← 迭代真源（完整版·给人看·~1185行）
       │
-      ├──→ COMPILER.md      → SKILL.md      (原版精简·给 AI 用·~807行)
+      ├──→ COMPILER.md      → SKILL.md      (原版精简·给 AI 用·~950行)
       │
       └──→ COMPILER_LITE.md → SKILL_LITE.md (白话版·功能等价·零术语)
 ```

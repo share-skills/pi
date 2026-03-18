@@ -24,7 +24,7 @@ description: "PI SKILL_META.md 迭代审计引擎。用 PI 自身的规则审计
 | **SKILL_META.md** | 每轮必审 | 迭代真源（完整版），所有规则的唯一真源 |
 | **SKILL.md** | SKILL_META.md 改动后编译 | 字节码（精简版），从 SKILL_META.md 按 COMPILER.md 规则编译 |
 | **COMPILER.md** | 编译规则需调整时 | 编译规则定义（什么留/什么删/什么压缩） |
-| **README.zh-CN.md** | SKILL 改动影响用户可见概念时 | 能力表、特性表、安装说明 |
+| **README.md** | SKILL 改动影响用户可见概念时 | 能力表、特性表、安装说明 |
 | **CHANGE_LOG.md** | 每轮结束时 | 变更记录（版本·日期·改动摘要） |
 
 平台文件（codex/cursor/kiro/...）、英文版、agents/ 均**不在迭代范围内**，待迭代完成后统一同步。
@@ -180,10 +180,10 @@ SKILL_META.md 改动完成后，检查是否需要同步：
 
 | 检查项 | 触发条件 | 同步目标 |
 |--------|---------|---------|
-| 能力/特性变更 | 新增/删除/重命名模块 | README.zh-CN.md 对应表格 |
+| 能力/特性变更 | 新增/删除/重命名模块 | README.md 对应表格 |
 | 架构流程变更 | 新增/删除/重排处理层 | §9.1 系统架构图 |
 | 核心能力列表变更 | 新增/删除/重命名核心概念 | frontmatter description |
-| icon/术语变更 | README 中引用了同一 icon/术语 | README.zh-CN.md 对应位置 |
+| icon/术语变更 | README 中引用了同一 icon/术语 | README.md 对应位置 |
 
 ### 6. 行数预算
 

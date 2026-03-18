@@ -2,6 +2,8 @@
 
 > **善战者，求之于势，不责于人。** ——《孙子兵法·势篇》
 
+> 🌐 English version: [DESIGN_PHILOSOPHY.en.md](DESIGN_PHILOSOPHY.en.md)
+>
 > 📚 想看具体的工程实现与案例？请阅读 [《为何 PI 有效》](WHY_PI_WORKS.md)
 
 ## 引言：一个被忽视的根本问题
@@ -22,25 +24,25 @@ PI（智行合一引擎）提出了一个截然不同的命题：**不是让 AI 
 
 ```mermaid
 graph TB
-    subgraph 道 — 认知层
-        A1[十六源智慧谱系] --> A2[六维认知原型<br/>MBTI 认知栈]
-        A2 --> A3[九大场景 × 五大认知阵]
+    subgraph dao["道 - 认知层"]
+        A1["十六源智慧谱系"] --> A2["六维认知原型<br/>MBTI 认知栈"]
+        A2 --> A3["九大场景 x 五大认知阵"]
     end
 
-    subgraph 法 — 策略层
-        B1[五道天则<br/>不可违] --> B2[反模式十戒<br/>负向约束]
-        B2 --> B3[五略 + 致人术<br/>正向策略]
+    subgraph fa["法 - 策略层"]
+        B1["五道天则<br/>不可违"] --> B2["反模式十戒<br/>负向约束"]
+        B2 --> B3["五略 + 致人术<br/>正向策略"]
     end
 
-    subgraph 术 — 执行层
-        C1[四道合一<br/>编程·测试·产品·运营] --> C2[九令洞鉴<br/>系统排查]
-        C2 --> C3[任务拆解 + 步步为营<br/>渐进交付]
+    subgraph shu["术 - 执行层"]
+        C1["四道合一<br/>编程·测试·产品·运营"] --> C2["九令洞鉴<br/>系统排查"]
+        C2 --> C3["任务拆解 + 步步为营<br/>渐进交付"]
     end
 
-    subgraph 势 — 反馈层
-        D1[六阶战势<br/>失败驱动升级] --> D2[十二灵兽<br/>精神激励]
-        D2 --> D3[共振五式<br/>思维透明化]
-        D3 --> D4[自演化协议<br/>战后三省]
+    subgraph shi["势 - 反馈层"]
+        D1["六阶战势<br/>失败驱动升级"] --> D2["十二灵兽<br/>精神激励"]
+        D2 --> D3["共振五式<br/>思维透明化"]
+        D3 --> D4["自演化协议<br/>战后三省"]
     end
 
     A3 --> B1
@@ -48,10 +50,10 @@ graph TB
     C3 --> D1
     D4 -.->|经验回流| A1
 
-    style 道 fill:#1a1a2e,color:#e0e0ff,stroke:#7b68ee
-    style 法 fill:#16213e,color:#e0ffe0,stroke:#4caf50
-    style 术 fill:#0f3460,color:#fff3e0,stroke:#ff9800
-    style 势 fill:#1a1a2e,color:#ffe0e0,stroke:#f44336
+    style dao fill:#1a1a2e,color:#e0e0ff,stroke:#7b68ee
+    style fa fill:#16213e,color:#e0ffe0,stroke:#4caf50
+    style shu fill:#0f3460,color:#fff3e0,stroke:#ff9800
+    style shi fill:#1a1a2e,color:#ffe0e0,stroke:#f44336
 ```
 
 **📖 阅读指引**：此图采用自上而下的层次结构。从**道（认知层）**开始理解"为什么"，经过**法（策略层）**明确"不能做什么"，到**术（执行层）**规范"怎么做"，最终落到**势（反馈层）**驱动"做不动时怎么办"。注意最底部的虚线箭头——势层的经验回流到道层，形成完整闭环。

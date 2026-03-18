@@ -115,7 +115,7 @@ export default function DetailDrawer() {
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto min-h-0 p-4 space-y-4">
-        {node ? <NodeDetail node={node} payloadOpen={payloadOpen} setPayloadOpen={setPayloadOpen} t={t} /> : <SessionDetail session={session} t={t} />}
+        {node ? <NodeDetail node={node} payloadOpen={payloadOpen} setPayloadOpen={setPayloadOpen} t={t} chainModalOpen={chainModalOpen} setChainModalOpen={setChainModalOpen} lang={lang} /> : <SessionDetail session={session} t={t} />}
       </div>
     </div>
   )
@@ -156,11 +156,17 @@ function NodeDetail({
   payloadOpen,
   setPayloadOpen,
   t,
+  chainModalOpen,
+  setChainModalOpen,
+  lang,
 }: {
   node: { node_id: string; session_id: string; category: string; decision_point: string; scene: string; difficulty: string; battle_level: number; outcome: string; timestamp: string; failure_count: number; agent_id?: string; payload: Record<string, unknown> }
   payloadOpen: boolean
   setPayloadOpen: (v: boolean) => void
   t: TFn
+  chainModalOpen: boolean
+  setChainModalOpen: (v: boolean) => void
+  lang: string
 }) {
   const archive = useStore(s => s.archive)
   const style = CATEGORY_STYLES[node.category] ?? CATEGORY_STYLES.default

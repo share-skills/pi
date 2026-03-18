@@ -53,6 +53,8 @@ export interface DecisionNode {
   children_node_ids: string[]
   agent_id?: string
   privacy_level?: string
+  // Index signature required by React Flow's Node<Record<string, unknown>> constraint
+  [key: string]: unknown
 }
 
 // ─── Sessions ───────────────────────────────────────────────────

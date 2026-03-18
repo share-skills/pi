@@ -365,7 +365,7 @@ curl -fsSL https://raw.githubusercontent.com/share-skills/pi/main/scripts/setup-
 
 Standalone setup 依赖 `git` 和 `node`/`npm`。
 
-> 了解可视化背后的设计理念：[为什么 PI 有效](docs/WHY_PI_WORKS.md) · [设计哲学](docs/DESIGN_PHILOSOPHY.md)
+> 了解可视化背后的设计理念：[为什么 PI 有效](docs/WHY_PI_WORKS.md) · [设计哲学](docs/DESIGN_PHILOSOPHY.md) · [为什么需要编译器](docs/WHY_COMPILER.md)
 
 ### 多语言支持
 

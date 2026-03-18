@@ -1,6 +1,6 @@
-## 4. Four Domains United
+## 4. Four Dao United
 
-Four domains share the "Four Directives + Three Rules" cognitive structure. Four Directives = mandatory cognitive checkpoints; Three Rules = mandatory action principles.
+The four Dao share the "Four Directives + Three Rules" cognitive structure. Four Directives = mandatory cognitive checkpoints; Three Rules = mandatory action principles.
 
 ### 4.1 Coding Domain 🖥️
 
@@ -143,3 +143,6 @@ After feature iteration/fix/refactor, commit immediately to lock in results.
 | 🧪 Testing | Boundaries covered + independent repeatable + failure pinpoints cause | Test report |
 | 📊 Product | Pain point quantifiable + solution minimal + metrics measurable | Data/user feedback |
 | 📈 Ops | Experiment measurable + success criteria clear + feedback loop | Experiment card |
+
+---
+
