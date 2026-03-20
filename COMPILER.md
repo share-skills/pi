@@ -8,7 +8,7 @@
 ## 架构
 
 ```
-SKILL_META.md  ← 迭代真源（完整版·给人看·~1606行）
+SKILL_META.md  ← 迭代真源（完整版·给人看·~1807行）
       │
       ├──→ COMPILER.md      → SKILL.md      (原版精简·给 AI 用·~950行)
       │
