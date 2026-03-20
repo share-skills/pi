@@ -5,7 +5,7 @@
  * - 9 scenes (编程/调试/测试/产品/运营/创意/协作/交互/陪伴)
  * - 6 battle stages (易辙/深搜/系统/决死/截道/天行)
  * - 12 spirit animals
- * - Multiple difficulty levels (⚡/🧠/🐲)
+ * - Multiple difficulty levels (🏊🏻/🏋️/🐲)
  * - Multi-agent interactions (Leader/Teammate/Coach)
  * - Decision tree with parent-child edges
  *
@@ -41,7 +41,7 @@ const BEASTS = ['🦅鹰', '🐺🐯狼虎', '🦁狮', '🐎马', '🐂牛', '�
 
 const STRATEGIES = ['以正合', '以奇胜', '致人不致于人', '穷理尽性', '搜读验交付', '截教·最小实证', '截教·截道三法', '好钢刀刃']
 
-const DIFFICULTIES = ['⚡', '🧠', '🐲']
+const DIFFICULTIES = ['🏊🏻', '🏋️', '🐲']
 
 const MODELS: ModelInfo[] = [
   { name: 'Claude Opus 4.6', provider: 'Anthropic', input_tokens: 0, output_tokens: 0 },
@@ -197,7 +197,7 @@ function makeDecisionTree(
 function makeCodingSession(date: string): DecisionSession {
   const id = `mock-coding-${date}`
   const baseTime = new Date(`${date}T09:00:00Z`)
-  const nodes = makeDecisionTree(id, SCENES[0], '⚡', baseTime, 0, 5)
+  const nodes = makeDecisionTree(id, SCENES[0], '🏊🏻', baseTime, 0, 5)
   // Mark all as success
   nodes.forEach(n => n.outcome = 'success')
   nodes[nodes.length - 1].decision_point = '交付·自检三令'
@@ -208,7 +208,7 @@ function makeCodingSession(date: string): DecisionSession {
     created_at: baseTime.toISOString(),
     summary: '实现用户认证模块 — JWT + bcrypt',
     scene: 'coding',
-    difficulty: '⚡',
+    difficulty: '🏊🏻',
     model_info: { ...MODELS[0], input_tokens: 2400, output_tokens: 3600 },
     agents: [{ agent_id: 'main', name: 'PI Leader', role: 'leader' }],
     nodes,
@@ -223,7 +223,7 @@ function makeCodingSession(date: string): DecisionSession {
 function makeDebugBattleSession(date: string): DecisionSession {
   const id = `mock-debug-battle-${date}`
   const baseTime = new Date(`${date}T10:30:00Z`)
-  const nodes = makeDecisionTree(id, SCENES[1], '🧠', baseTime, 3, 12)
+  const nodes = makeDecisionTree(id, SCENES[1], '🏋️', baseTime, 3, 12)
   
   // Make the battle escalation visible
   nodes[0].decision_point = '调试启动·六步法'
@@ -265,7 +265,7 @@ function makeDebugBattleSession(date: string): DecisionSession {
     created_at: baseTime.toISOString(),
     summary: 'WebSocket 连接泄漏修复 — 战势三阶后成功',
     scene: 'debug',
-    difficulty: '🧠',
+    difficulty: '🏋️',
     model_info: { ...MODELS[1], input_tokens: 15000, output_tokens: 22000 },
     agents: [{ agent_id: 'main', name: 'PI Leader', role: 'leader' }],
     nodes,
@@ -307,7 +307,7 @@ function makeMultiAgentSession(date: string): DecisionSession {
   nodes.push({
     node_id: reviewId, session_id: id, timestamp: makeTimestamp(baseTime, 5),
     category: 'exec', decision_point: '代码审查·Alpha Reviewer', scene: 'collab',
-    difficulty: '🧠', battle_level: 0, failure_count: 0, outcome: 'success',
+    difficulty: '🏋️', battle_level: 0, failure_count: 0, outcome: 'success',
     payload: { strategy: '审码四维', beast: '🐺🐯狼虎', mindset: '消除确认偏差', confidence: 'high' },
     children_node_ids: [mergeId], agent_id: 'tm-alpha',
   })
@@ -315,7 +315,7 @@ function makeMultiAgentSession(date: string): DecisionSession {
   nodes.push({
     node_id: testId, session_id: id, timestamp: makeTimestamp(baseTime, 5),
     category: 'exec', decision_point: '方向性测试·Beta Tester', scene: 'testing',
-    difficulty: '🧠', battle_level: 0, failure_count: 0, outcome: 'success',
+    difficulty: '🏋️', battle_level: 0, failure_count: 0, outcome: 'success',
     payload: { strategy: '验证矩阵', beast: '🦊狐', mindset: '审视产出', confidence: 'medium' },
     children_node_ids: [mergeId], agent_id: 'tm-beta',
   })
@@ -323,7 +323,7 @@ function makeMultiAgentSession(date: string): DecisionSession {
   nodes.push({
     node_id: coachId, session_id: id, timestamp: makeTimestamp(baseTime, 3),
     category: 'external', decision_point: 'Coach巡检·松懈检测', scene: 'collab',
-    difficulty: '⚡', battle_level: 0, failure_count: 0, outcome: 'captured',
+    difficulty: '🏊🏻', battle_level: 0, failure_count: 0, outcome: 'captured',
     payload: { strategy: '反模式十戒检测', mindset: '巡检无阻塞', confidence: 'high' },
     children_node_ids: [mergeId], agent_id: 'coach',
   })
@@ -339,7 +339,7 @@ function makeMultiAgentSession(date: string): DecisionSession {
   nodes.push({
     node_id: deliverId, session_id: id, timestamp: makeTimestamp(baseTime, 20),
     category: 'exec', decision_point: '交付·善始善终', scene: 'collab',
-    difficulty: '⚡', battle_level: 0, failure_count: 0, outcome: 'success',
+    difficulty: '🏊🏻', battle_level: 0, failure_count: 0, outcome: 'success',
     payload: { strategy: '交付六令', mindset: '明约确认' },
     children_node_ids: [], agent_id: 'leader',
   })
@@ -465,16 +465,16 @@ function makeCreativeSession(date: string): DecisionSession {
   const converge = makeId()
 
   const nodes: DecisionNode[] = [
-    { node_id: rootId, session_id: id, timestamp: makeTimestamp(baseTime, 0), category: 'decision', decision_point: '创意发散·无为发散→收放', scene: 'creative', difficulty: '🧠', battle_level: 0, failure_count: 0, outcome: 'success', payload: { strategy: '无为发散', beast: '🐬海豚', mindset: '触类旁通', confidence: 'high' }, children_node_ids: [branch1, branch2, branch3] },
-    { node_id: branch1, session_id: id, timestamp: makeTimestamp(baseTime, 3), category: 'exec', decision_point: '方案A·React Server Components', scene: 'creative', difficulty: '🧠', battle_level: 0, failure_count: 0, outcome: 'success', payload: { strategy: '以正合', mindset: '标准路线' }, children_node_ids: [b1a, b1b] },
+    { node_id: rootId, session_id: id, timestamp: makeTimestamp(baseTime, 0), category: 'decision', decision_point: '创意发散·无为发散→收放', scene: 'creative', difficulty: '🏋️', battle_level: 0, failure_count: 0, outcome: 'success', payload: { strategy: '无为发散', beast: '🐬海豚', mindset: '触类旁通', confidence: 'high' }, children_node_ids: [branch1, branch2, branch3] },
+    { node_id: branch1, session_id: id, timestamp: makeTimestamp(baseTime, 3), category: 'exec', decision_point: '方案A·React Server Components', scene: 'creative', difficulty: '🏋️', battle_level: 0, failure_count: 0, outcome: 'success', payload: { strategy: '以正合', mindset: '标准路线' }, children_node_ids: [b1a, b1b] },
     { node_id: branch2, session_id: id, timestamp: makeTimestamp(baseTime, 3), category: 'exec', decision_point: '方案B·WASM + Rust（未选择）', scene: 'creative', difficulty: '🐲', battle_level: 0, failure_count: 0, outcome: 'skipped', payload: { strategy: '以奇胜', mindset: '激进路线', beast: '🦄独角兽' }, children_node_ids: [b2a] },
-    { node_id: branch3, session_id: id, timestamp: makeTimestamp(baseTime, 4), category: 'external', decision_point: '方案C·跨域类比·参考游戏引擎', scene: 'creative', difficulty: '🧠', battle_level: 0, failure_count: 0, outcome: 'captured', payload: { strategy: '截教·截道三法', beast: '🐬海豚', mindset: '跨域求解' }, children_node_ids: [b3a, b3b] },
-    { node_id: b1a, session_id: id, timestamp: makeTimestamp(baseTime, 8), category: 'exec', decision_point: '原型验证·RSC 方案', scene: 'creative', difficulty: '⚡', battle_level: 0, failure_count: 0, outcome: 'success', payload: { strategy: '最小实证' }, children_node_ids: [converge] },
-    { node_id: b1b, session_id: id, timestamp: makeTimestamp(baseTime, 10), category: 'exec', decision_point: '性能基准·RSC 延迟测试', scene: 'testing', difficulty: '⚡', battle_level: 0, failure_count: 0, outcome: 'success', payload: { strategy: '验证矩阵' }, children_node_ids: [converge] },
-    { node_id: b2a, session_id: id, timestamp: makeTimestamp(baseTime, 12), category: 'exec', decision_point: '调研·WASM 生态评估（放弃）', scene: 'creative', difficulty: '🧠', battle_level: 0, failure_count: 0, outcome: 'skipped', payload: { strategy: '穷理尽性', mindset: '生态不成熟' }, children_node_ids: [converge] },
-    { node_id: b3a, session_id: id, timestamp: makeTimestamp(baseTime, 9), category: 'decision', decision_point: '游戏引擎·ECS 模式借鉴', scene: 'creative', difficulty: '🧠', battle_level: 0, failure_count: 0, outcome: 'success', payload: { strategy: '跨域类比', beast: '🐬海豚' }, children_node_ids: [converge] },
-    { node_id: b3b, session_id: id, timestamp: makeTimestamp(baseTime, 11), category: 'external', decision_point: '参考·Bevy 渲染管线', scene: 'creative', difficulty: '🧠', battle_level: 0, failure_count: 0, outcome: 'captured', payload: {} }, 
-    { node_id: converge, session_id: id, timestamp: makeTimestamp(baseTime, 18), category: 'decision', decision_point: '收敛·方案比选·选择RSC+ECS', scene: 'creative', difficulty: '🧠', battle_level: 0, failure_count: 0, outcome: 'success', payload: { strategy: '方案比选', mindset: '收放自如', beast: '🦉猫头鹰' }, children_node_ids: [] },
+    { node_id: branch3, session_id: id, timestamp: makeTimestamp(baseTime, 4), category: 'external', decision_point: '方案C·跨域类比·参考游戏引擎', scene: 'creative', difficulty: '🏋️', battle_level: 0, failure_count: 0, outcome: 'captured', payload: { strategy: '截教·截道三法', beast: '🐬海豚', mindset: '跨域求解' }, children_node_ids: [b3a, b3b] },
+    { node_id: b1a, session_id: id, timestamp: makeTimestamp(baseTime, 8), category: 'exec', decision_point: '原型验证·RSC 方案', scene: 'creative', difficulty: '🏊🏻', battle_level: 0, failure_count: 0, outcome: 'success', payload: { strategy: '最小实证' }, children_node_ids: [converge] },
+    { node_id: b1b, session_id: id, timestamp: makeTimestamp(baseTime, 10), category: 'exec', decision_point: '性能基准·RSC 延迟测试', scene: 'testing', difficulty: '🏊🏻', battle_level: 0, failure_count: 0, outcome: 'success', payload: { strategy: '验证矩阵' }, children_node_ids: [converge] },
+    { node_id: b2a, session_id: id, timestamp: makeTimestamp(baseTime, 12), category: 'exec', decision_point: '调研·WASM 生态评估（放弃）', scene: 'creative', difficulty: '🏋️', battle_level: 0, failure_count: 0, outcome: 'skipped', payload: { strategy: '穷理尽性', mindset: '生态不成熟' }, children_node_ids: [converge] },
+    { node_id: b3a, session_id: id, timestamp: makeTimestamp(baseTime, 9), category: 'decision', decision_point: '游戏引擎·ECS 模式借鉴', scene: 'creative', difficulty: '🏋️', battle_level: 0, failure_count: 0, outcome: 'success', payload: { strategy: '跨域类比', beast: '🐬海豚' }, children_node_ids: [converge] },
+    { node_id: b3b, session_id: id, timestamp: makeTimestamp(baseTime, 11), category: 'external', decision_point: '参考·Bevy 渲染管线', scene: 'creative', difficulty: '🏋️', battle_level: 0, failure_count: 0, outcome: 'captured', payload: {} }, 
+    { node_id: converge, session_id: id, timestamp: makeTimestamp(baseTime, 18), category: 'decision', decision_point: '收敛·方案比选·选择RSC+ECS', scene: 'creative', difficulty: '🏋️', battle_level: 0, failure_count: 0, outcome: 'success', payload: { strategy: '方案比选', mindset: '收放自如', beast: '🦉猫头鹰' }, children_node_ids: [] },
   ]
   nodes[8].children_node_ids = [converge] // b3b → converge
 
@@ -484,7 +484,7 @@ function makeCreativeSession(date: string): DecisionSession {
     created_at: baseTime.toISOString(),
     summary: '创意发散·三方案并行探索·最终收敛RSC+ECS',
     scene: 'creative',
-    difficulty: '🧠',
+    difficulty: '🏋️',
     model_info: { ...MODELS[3], input_tokens: 12000, output_tokens: 18000 },
     agents: [{ agent_id: 'main', name: 'PI Leader', role: 'leader' }],
     nodes,
@@ -501,7 +501,7 @@ function makeLiveSession(date: string): DecisionSession {
   const now = new Date()
   const baseTime = new Date(now.getTime() - 10 * 60000) // started 10 min ago
 
-  const nodes = makeDecisionTree(id, SCENES[8], '⚡', baseTime, 0, 3)
+  const nodes = makeDecisionTree(id, SCENES[8], '🏊🏻', baseTime, 0, 3)
   nodes.forEach(n => n.outcome = 'pending')
   nodes[0].decision_point = '陪伴模式·交互启动'
   nodes[0].payload = { strategy: '共振五式·明心', mindset: '共情陪伴', beast: '🐬海豚' }
@@ -512,7 +512,7 @@ function makeLiveSession(date: string): DecisionSession {
     created_at: baseTime.toISOString(),
     summary: '当前活跃会话 — 实时监控中',
     scene: 'companion',
-    difficulty: '⚡',
+    difficulty: '🏊🏻',
     model_info: { ...MODELS[0], input_tokens: 800, output_tokens: 1200 },
     agents: [{ agent_id: 'main', name: 'PI Leader', role: 'leader' }],
     nodes,
@@ -528,7 +528,7 @@ function makeLiveSession(date: string): DecisionSession {
 function makeProductSession(date: string): DecisionSession {
   const id = `mock-product-${date}`
   const baseTime = new Date(`${date}T13:00:00Z`)
-  const nodes = makeDecisionTree(id, SCENES[3], '🧠', baseTime, 1, 8)
+  const nodes = makeDecisionTree(id, SCENES[3], '🏋️', baseTime, 1, 8)
   
   nodes[0].decision_point = '产品分析·需求拆解'
   nodes[0].payload = { strategy: '穷理尽性', mindset: '需求本质', beast: '🦅鹰' }
@@ -547,7 +547,7 @@ function makeProductSession(date: string): DecisionSession {
     created_at: baseTime.toISOString(),
     summary: '产品需求拆解·竞品分析·MVP定义',
     scene: 'product',
-    difficulty: '🧠',
+    difficulty: '🏋️',
     model_info: { ...MODELS[2], input_tokens: 8000, output_tokens: 12000 },
     agents: [{ agent_id: 'main', name: 'PI Leader', role: 'leader' }],
     nodes,

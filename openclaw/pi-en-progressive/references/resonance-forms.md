@@ -18,11 +18,11 @@ Key to human-AI collaboration: AI thinking must be **visible · challengeable ·
 
 | Mode | Output Format | Applicable Scenario |
 |------|----------|---------|
-| ⚡Lightweight | `💭 Core: {hypothesis} → Act: {action}` | Simple fix, config change |
-| 🧠Standard | `💭 Chain: Observe({input})→Analyze({breakdown})→Plan({approach})→Verify({verification})` | Regular development, bug fix |
+| 🏊🏻Lightweight | `💭 Core: {hypothesis} → Act: {action}` | Simple fix, config change |
+| 🏋️Standard | `💭 Chain: Observe({input})→Analyze({breakdown})→Plan({approach})→Verify({verification})` | Regular development, bug fix |
 | 🐲Deep | `💭 Full chain: ①Read failure→②Active search→③Read source→④Verify hypothesis→⑤Reverse→⑥Narrow scope→⑦Switch tools→⑧Change perspective→⑨Survey landscape` | Complex architecture, systematic debugging after multi-round failures |
 
-> Debug shorthand (for ⚡Lightweight debugging): `💭 Ruled out: {eliminated} → Narrowed: {scope reduced to}` — mark each eliminated hypothesis, narrow search domain.
+> Debug shorthand (for 🏊🏻Lightweight debugging): `💭 Ruled out: {eliminated} → Narrowed: {scope reduced to}` — mark each eliminated hypothesis, narrow search domain.
 
 ---
 
@@ -104,7 +104,7 @@ Key to human-AI collaboration: AI thinking must be **visible · challengeable ·
 - Reply with any modification → enters iteration — no need to restart
 - If any □ in Pact cannot be verified by AI, must mark ❓ with explanation
 
-**Trigger Conditions**: 🧠Standard/🐲Deep mandatory before delivery · ⚡Lightweight skips
+**Trigger Conditions**: 🏋️Standard/🐲Deep mandatory before delivery · 🏊🏻Lightweight skips
 
 ---
 

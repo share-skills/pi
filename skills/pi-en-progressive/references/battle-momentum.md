@@ -46,7 +46,7 @@ Decision: Continue / Stop-Loss
 **Suzhen Mode auto-deactivation** (any one condition met):
 - User confirms problem resolved
 - Switching to new task (not continuation of current task)
-- Difficulty assessed as ⚡Lightweight (new task)
+- Difficulty assessed as 🏊🏻Lightweight (new task)
 
 **Tianxing Ultimate Protocol** (battle stage 6 · 7+ failures · auto-enters after first five stages exhausted)
 

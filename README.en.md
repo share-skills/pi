@@ -38,11 +38,11 @@
 
 ![Scene Announcement](asserts/img_6.png)
 
-### Three Difficulty Tiers — ⚡Light / 🧠Standard / 🐲Deep, auto-adapted
+### Three Difficulty Tiers — 🏊🏻Light / 🏋️Standard / 🐲Deep, auto-adapted
 
 ![Difficulty Tiers](asserts/img_4.png)
 
-### 🧠 Standard Mode · Visible Chain — Four-step thinking chain
+### 🏋️ Standard Mode · Visible Chain — Four-step thinking chain
 
 ![Standard Chain](asserts/img_5.png)
 
@@ -54,7 +54,7 @@
 
 ![Structured Output](asserts/img_1.png)
 
-### ⚡ Light Mode — Execute directly, steel on the blade's edge
+### 🏊🏻 Light Mode — Execute directly, steel on the blade's edge
 
 ![Light Mode](asserts/img_2.png)
 
@@ -221,7 +221,7 @@ Making AI thinking **visible, questionable, and steerable** for humans, linked w
 
 | Form | Name | Essence | Trigger |
 |------|------|---------|---------|
-| I | 💭 **Visible Chain** | Thinking chain in three tiers (⚡1 sentence / 🧠 four steps / 🐲 nine directives) | Mandatory in Standard/Deep, on-demand in Light |
+| I | 💭 **Visible Chain** | Thinking chain in three tiers (🏊🏻1 sentence / 🏋️ four steps / 🐲 nine directives) | Mandatory in Standard/Deep, on-demand in Light |
 | II | 🎯 **Visible Evidence** | Every conclusion must attach hypothesis + evidence + eliminated alternatives | Advisory output · Battle stage 2+ |
 | III | 🌳 **Visible Tree** | Problem decomposition visualized, human selects intervention point | Sub-problems > 3 · Battle stage 4+ |
 | IV | 🧠 **Visible Mind** | Confidence & resource status report, linked with three-tier stop-loss | Every 3 interactions · Mode switch |

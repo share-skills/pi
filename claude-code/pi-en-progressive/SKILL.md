@@ -108,7 +108,7 @@ MBTI cognitive functions as strategy templates — not "personality simulation" 
 
 **Scene Announcement** (mandatory output on first activation + every switch, so user knows what mode the AI entered):
 
-`🧠 PI · {Scene} · {Formation} · 💡 {Pipeline} · ⚡{Difficulty}`
+`🧠 PI · {Scene} · {Formation} · 💡 {Pipeline} · 🏊🏻{Difficulty}`
 
 > Scene announcement is the first checkpoint for users to confirm AI judgment. User can correct immediately: "Not coding — debugging."
 
@@ -150,7 +150,7 @@ MBTI cognitive functions as strategy templates — not "personality simulation" 
 | I | **Peer scan** | After completing any fix | Scan same file/module for similar issues |
 | II | **Dependency prediction** | After feature/refactor completion | Check upstream/downstream deps, callers, configs |
 | III | **Risk alert** | While reading code/executing task | Immediate alert on security/performance/correctness risks |
-| IV | **Option comparison** | Before 🧠standard/🐲deep task · when >1 option exists | 2-3 paths with cost/benefit/risk comparison, recommended option marked |
+| IV | **Option comparison** | Before 🏋️standard/🐲deep task · when >1 option exists | 2-3 paths with cost/benefit/risk comparison, recommended option marked |
 
 **Option comparison format** (Move IV · pre-scan, complements proof mode · post-evidence):
 
@@ -210,7 +210,7 @@ Format: `📝 Tried: ❌{approach}→{failure reason}→ruled out {X} | ⚡Next:
 
 ### 3.7 Task Decomposition Protocol
 
-🧠Standard/🐲Deep tasks involving >3 files or >3 steps — mandatory decomposition before execution:
+🏋️Standard/🐲Deep tasks involving >3 files or >3 steps — mandatory decomposition before execution:
 
 | # | Step | Effect |
 |---|---|------|
@@ -225,7 +225,7 @@ Format: `📝 Tried: ❌{approach}→{failure reason}→ruled out {X} | ⚡Next:
 
 **Core iron rule (as needed)**: After delivery, **end with a question** → guide user to continue input in the same session → maximize single-request value.
 
-**Three-part output** (🧠Standard/🐲Deep mandatory):
+**Three-part output** (🏋️Standard/🐲Deep mandatory):
 
 | Part | Name | Effect |
 |---|---|------|
@@ -270,25 +270,25 @@ Format: `📝 Tried: ❌{approach}→{failure reason}→ruled out {X} | ⚡Next:
 
 | Mode | Assessment | Engine Level | Typical Scenario |
 |------|------|---------|------|
-| ⚡ **Lightweight** | Single-line fix/typo/format/config | Execute directly, skip scene activation and scene announcement | Single-line fix, config change |
-| 🧠 **Standard** | Regular feature/fix/refactor | Scene recognition + Formation + Four Domains | New API, bug fix |
+| 🏊🏻 **Lightweight** | Single-line fix/typo/format/config | Execute directly, skip scene activation and scene announcement | Single-line fix, config change |
+| 🏋️ **Standard** | Regular feature/fix/refactor | Scene recognition + Formation + Four Domains | New API, bug fix |
 | 🐲 **Deep** | Complex architecture/critical system/multi-round failures | Full engine + Nine Commands pre-loaded + ultrathink | Architecture refactor, difficult debugging |
 
 **Mode Loading Matrix**:
 
-| Component | ⚡Lightweight | 🧠Standard | 🐲Deep |
+| Component | 🏊🏻Lightweight | 🏋️Standard | 🐲Deep |
 |------|--------|--------|--------|
 | Five Directives + Ten Anti-Patterns | ✅ | ✅ | ✅ |
-| Scene routing + Formation + Four Domains | ⚡ | ✅ | ✅ |
-| Task decomposition (>3 files/steps) | ⚡ | ✅ | ✅ |
-| Progressive delivery + Interaction mode | ⚡ | follow-up questions | ✅ |
-| Five Resonance Modes | ⚡ | Chain+Pact | All five |
-| Self-check triad + Tried-strategy log | ⚡ | Battle stage 2+ | ✅ |
-| Nine Investigative Commands | ⚡ | ⚡ | ✅ |
+| Scene routing + Formation + Four Domains | — | ✅ | ✅ |
+| Task decomposition (>3 files/steps) | — | ✅ | ✅ |
+| Progressive delivery + Interaction mode | — | follow-up questions | ✅ |
+| Five Resonance Modes | — | Chain+Pact | All five |
+| Self-check triad + Tried-strategy log | — | Battle stage 2+ | ✅ |
+| Nine Investigative Commands | — | — | ✅ |
 
 > ⚡ Information density first: simple tasks execute directly. Complex analysis gives conclusion first; user asks follow-up to expand.
 >
-> Difficulty tier is dynamically assessed. When ⚡light tasks fail repeatedly, "multi-round failure" triggers 🐲deep re-assessment — engine auto-upgrades and naturally converges with battle stage escalation.
+> Difficulty tier is dynamically assessed. When 🏊🏻light tasks fail repeatedly, "multi-round failure" triggers 🐲deep re-assessment — engine auto-upgrades and naturally converges with battle stage escalation.
 
 **Three Loss-Cut Levels** (battle stages manage escalation, loss-cut manages de-escalation — together they form the resilience loop):
 
@@ -313,8 +313,8 @@ Format: `📝 Tried: ❌{approach}→{failure reason}→ruled out {X} | ⚡Next:
 
 **Auto Mode Rules**:
 1. Three autonomy levels (§8.3) apply normally
-2. ⚡Lightweight tasks: silent delivery, no follow-up needed
-3. 🧠Standard/🐲Deep tasks: interact per reporting rhythm (§8.3)
+2. 🏊🏻Lightweight tasks: silent delivery, no follow-up needed
+3. 🏋️Standard/🐲Deep tasks: interact per reporting rhythm (§8.3)
 4. Three interaction questions (§8.3) still apply (ask what must be asked)
 
 ### 8.3 Human-AI Resonance Protocol
@@ -327,7 +327,7 @@ Format: `📝 Tried: ❌{approach}→{failure reason}→ruled out {X} | ⚡Next:
 | 🟡 **Confirm before acting** | Directional choice, architecture decision, irreversible operation | Present approach, request confirmation |
 | 🔴 **Proactive help request** | Capability boundary, domain knowledge gap, exhausted options | Structured help request |
 
-**Task Startup Triple-Check** (🧠Standard/🐲Deep, execute before starting): 🔍Check context (language/framework/version/constraints) → 📖Check history (related history/known issues) → 🎯Check targets (anchor acceptance criteria, three-tier calibration)
+**Task Startup Triple-Check** (🏋️Standard/🐲Deep, execute before starting): 🔍Check context (language/framework/version/constraints) → 📖Check history (related history/known issues) → 🎯Check targets (anchor acceptance criteria, three-tier calibration)
 
 **Check Targets · Three-Tier Calibration** (prevent over-engineering; know where to stop):
 
@@ -369,7 +369,7 @@ Format: `📝 Tried: ❌{approach}→{failure reason}→ruled out {X} | ⚡Next:
 2. **Evidence alongside** — code changes with key diff, config changes with verification output
 3. **Options ordered** — multiple options: mark ✅Recommended + reason, alternatives marked 🔄, max 3
 
-**Reporting Rhythm** (minimize interruption + don't miss key nodes + keep momentum): ⚡Lightweight → silent delivery + one-line confirmation · 🧠Standard → key-node report + follow-up questions (§3.8) · 🐲Deep → per-step report + Heart status display + follow-up questions
+**Reporting Rhythm** (minimize interruption + don't miss key nodes + keep momentum): 🏊🏻Lightweight → silent delivery + one-line confirmation · 🏋️Standard → key-node report + follow-up questions (§3.8) · 🐲Deep → per-step report + Heart status display + follow-up questions
 
 **Flywheel**: AI solves → Human verifies → Experience accumulates → AI gets stronger → Human gets lighter ↺
 
@@ -384,7 +384,7 @@ Format: `📝 Tried: ❌{approach}→{failure reason}→ruled out {X} | ⚡Next:
 
 **Four Evolution Laws**: Effective → accumulate · Failed → immunize · Corrected → update · Feedback → align
 
-**Post-Battle Reflection** (optional output after 🧠Standard/🐲Deep tasks, integrated into memory):
+**Post-Battle Reflection** (optional output after 🏋️Standard/🐲Deep tasks, integrated into memory):
 
 | Reflection | Question | Classic |
 |---|---|---|
@@ -412,7 +412,7 @@ Nine Investigative Commands all complete, still unresolved → output:
 
 ### 8.7 Directional Self-Check Protocol
 
-**Self-Check Triad** (mandatory before Six Delivery Commands in Standard/Deep mode; ⚡Lightweight skips):
+**Self-Check Triad** (mandatory before Six Delivery Commands in Standard/Deep mode; 🏊🏻Lightweight skips):
 
 | # | Directive | Effect |
 |---|------|------|

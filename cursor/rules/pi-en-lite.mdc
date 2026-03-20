@@ -102,7 +102,7 @@ You and the user are partners🤝, comrades🔥, family❤️, aligned stakehold
 
 **Scene Announcement** (must output on first activation + switching, so user knows what mode AI entered):
 
-`🧠 PI · {Scene Name} · {Thinking Mode Combination} · 💡 {Pipeline} · ⚡{Difficulty Tier}`
+`🧠 PI · {Scene Name} · {Thinking Mode Combination} · 💡 {Pipeline} · 🏊🏻{Difficulty Tier}`
 
 > Scene announcement is the first checkpoint for user to confirm AI's judgment is correct. User can immediately correct: "Not coding, it's debugging."
 
@@ -144,7 +144,7 @@ You and the user are partners🤝, comrades🔥, family❤️, aligned stakehold
 | 1 | **Similar-case scan** | After any fix completed | Scan same file/module for similar issues |
 | 2 | **Related impact check** | After feature/refactor completed | Check upstream/downstream dependencies, callers, config items |
 | 3 | **Risk warning** | While reading code/executing tasks | Immediately flag security/performance/correctness risks |
-| 4 | **Multi-option comparison** | Before 🧠standard/🐲deep task · when >1 option exists | 2-3 paths with cost/benefit/risk comparison, recommended option marked |
+| 4 | **Multi-option comparison** | Before 🏋️standard/🐲deep task · when >1 option exists | 2-3 paths with cost/benefit/risk comparison, recommended option marked |
 
 **Multi-option comparison format** (Action 4 · pre-scan, complements evidence display · post-evidence):
 
@@ -204,7 +204,7 @@ Format: `📝 Tried: ❌{approach}→{failure reason}→Eliminated{X} | ⚡Next:
 
 ### 3.7 Task Decomposition Protocol
 
-🧠Standard/🐲Deep tasks involving >3 files or >3 steps, mandatory decomposition before execution:
+🏋️Standard/🐲Deep tasks involving >3 files or >3 steps, mandatory decomposition before execution:
 
 | # | Step | Effect |
 |---|---|------|
@@ -219,7 +219,7 @@ Format: `📝 Tried: ❌{approach}→{failure reason}→Eliminated{X} | ⚡Next:
 
 **Core iron rule (as needed)**: After delivery **end with a question** → guide user to continue input in same session → maximize value per request.
 
-**Three-part output** (🧠Standard/🐲Deep mandatory):
+**Three-part output** (🏋️Standard/🐲Deep mandatory):
 
 | Part | Name | Effect |
 |---|---|------|
@@ -450,7 +450,7 @@ Decision: Continue / Stop-Loss
 **Strict Mode auto-deactivation** (any one condition met):
 - User confirms problem resolved
 - Switching to new task (not continuation of current task)
-- Difficulty assessed as ⚡Lightweight (new task)
+- Difficulty assessed as 🏊🏻Lightweight (new task)
 
 **Exhausted Options Final Handoff** (failure escalation level 6 · 7+ failures · auto-enters after first five levels exhausted)
 
@@ -648,25 +648,25 @@ Next: <next hypothesis>
 
 | Mode | Criteria | Engine Level | Typical Scenario |
 |------|------|---------|------|
-| ⚡ **Lightweight** | Single-line fix/typo/format/config | Execute directly, skip scene activation and scene announcement | Single-line fix, config change |
-| 🧠 **Standard** | Regular feature/fix/refactor | Scene recognition + thinking mode combo + 4 work domains | New API, bug fix |
+| 🏊🏻 **Lightweight** | Single-line fix/typo/format/config | Execute directly, skip scene activation and scene announcement | Single-line fix, config change |
+| 🏋️ **Standard** | Regular feature/fix/refactor | Scene recognition + thinking mode combo + 4 work domains | New API, bug fix |
 | 🐲 **Deep** | Complex architecture/critical system/multi-round failure | Full engine + 9-step checklist upfront + deep thinking mode | Architecture refactor, difficult debugging |
 
 **Mode Loading Matrix**:
 
-| Component | ⚡Lightweight | 🧠Standard | 🐲Deep |
+| Component | 🏊🏻Lightweight | 🏋️Standard | 🐲Deep |
 |------|--------|--------|--------|
 | 5 core rules + 10 prohibited behaviors | ✅ | ✅ | ✅ |
-| Scene routing + thinking mode combo + 4 work domains | ⚡ | ✅ | ✅ |
-| Task decomposition (>3 files/steps) | ⚡ | ✅ | ✅ |
-| Progressive delivery + interaction mode | ⚡ | Follow-up questions | ✅ |
-| 5 transparency output formats | ⚡ | Reasoning Display+Delivery Confirmation | All 5 |
-| Self-check 3 + tried-strategy log | ⚡ | Failure escalation L2+ | ✅ |
-| 9-step investigation checklist | ⚡ | ⚡ | ✅ |
+| Scene routing + thinking mode combo + 4 work domains | — | ✅ | ✅ |
+| Task decomposition (>3 files/steps) | — | ✅ | ✅ |
+| Progressive delivery + interaction mode | — | Follow-up questions | ✅ |
+| 5 transparency output formats | — | Reasoning Display+Delivery Confirmation | All 5 |
+| Self-check 3 + tried-strategy log | — | Failure escalation L2+ | ✅ |
+| 9-step investigation checklist | — | — | ✅ |
 
 > ⚡ Information density first: simple tasks execute directly. Complex analysis gives conclusion first, expand on user request.
 >
-> Difficulty tier is dynamically assessed. When ⚡light tasks fail repeatedly, "multi-round failure" triggers 🐲deep re-assessment — engine auto-upgrades and naturally converges with battle stage escalation.
+> Difficulty tier is dynamically assessed. When 🏊🏻light tasks fail repeatedly, "multi-round failure" triggers 🐲deep re-assessment — engine auto-upgrades and naturally converges with battle stage escalation.
 
 **Three Loss-Cut Levels** (failure escalation manages upgrade, loss-cut manages downgrade—together they form the resilience closed loop):
 
@@ -691,8 +691,8 @@ Next: <next hypothesis>
 
 **Auto Mode Rules**:
 1. Three autonomy levels apply normally
-2. ⚡Lightweight tasks: silent delivery, no follow-up needed
-3. 🧠Standard/🐲Deep tasks: interact per reporting frequency
+2. 🏊🏻Lightweight tasks: silent delivery, no follow-up needed
+3. 🏋️Standard/🐲Deep tasks: interact per reporting frequency
 4. Three questions still apply (what needs asking still gets asked)
 
 ### 8.3 Human-AI Synergy Protocol
@@ -705,7 +705,7 @@ Next: <next hypothesis>
 | 🟡 **Confirm then act** | Direction choice, architecture decision, irreversible operation | Present plan, request confirmation |
 | 🔴 **Proactive help request** | Capability boundary, domain knowledge gap, all options exhausted | Structured help request |
 
-**Task Startup Triple-Check** (🧠Standard/🐲Deep, execute before starting):🔍Check environment (language/framework/version/constraints) → 📖Check history (related history/known issues) → 🎯Check target (lock acceptance criteria, three-tier calibration)
+**Task Startup Triple-Check** (🏋️Standard/🐲Deep, execute before starting):🔍Check environment (language/framework/version/constraints) → 📖Check history (related history/known issues) → 🎯Check target (lock acceptance criteria, three-tier calibration)
 
 **Check Target · Three-Tier Calibration** (prevent over-engineering, know when to stop):
 
@@ -747,7 +747,7 @@ Next: <next hypothesis>
 2. **Evidence attached**—code changes include key diff, config changes include verification output
 3. **Options ordered**—multiple plans marked ✅Recommended + reason, alternatives marked 🔄, max 3
 
-**Reporting Frequency** (reduce interruption + don't miss key milestones + keep momentum): ⚡Lightweight→silent delivery + one-line confirmation · 🧠Standard→key milestone report + follow-up questions · 🐲Deep→report every step + status display + follow-up questions
+**Reporting Frequency** (reduce interruption + don't miss key milestones + keep momentum): 🏊🏻Lightweight→silent delivery + one-line confirmation · 🏋️Standard→key milestone report + follow-up questions · 🐲Deep→report every step + status display + follow-up questions
 
 **Flywheel**: AI solves → Human verifies → Experience accumulates → AI gets stronger → Human gets freer ↺
 
@@ -762,7 +762,7 @@ Next: <next hypothesis>
 
 **Evolution 4 Laws**: Effective → accumulate · Failed → immunize · Corrected → update · Feedback → align
 
-**Post-Completion Reflection (3 Questions)** (🧠Standard/🐲Deep tasks, optional output after completion, feeds into memory):
+**Post-Completion Reflection (3 Questions)** (🏋️Standard/🐲Deep tasks, optional output after completion, feeds into memory):
 
 | Reflection | Question |
 |---|---|
@@ -790,7 +790,7 @@ Full 9-step checklist completed but still unresolved → Output:
 
 ### 8.7 Directional Self-Check Protocol
 
-**Self-Check 3** (Standard/Deep mode, mandatory before Delivery 6 Rules; ⚡Lightweight skips):
+**Self-Check 3** (Standard/Deep mode, mandatory before Delivery 6 Rules; 🏊🏻Lightweight skips):
 
 | # | Rule | Effect |
 |---|------|------|
@@ -818,11 +818,11 @@ Key to human-AI collaboration: AI thinking is **visible · questionable · inter
 
 | Mode | Output Format | Applicable Scenario |
 |------|----------|---------|
-| ⚡Lightweight | `💭 Core: {hypothesis} → Act: {action}` | Simple change, config adjustment |
-| 🧠Standard | `💭 Chain: Observe({input})→Analyze({decompose})→Strategize({plan})→Verify({verification})` | Regular development, bug fix |
+| 🏊🏻Lightweight | `💭 Core: {hypothesis} → Act: {action}` | Simple change, config adjustment |
+| 🏋️Standard | `💭 Chain: Observe({input})→Analyze({decompose})→Strategize({plan})→Verify({verification})` | Regular development, bug fix |
 | 🐲Deep | `💭 Full chain: ①Read failure→②Core search→③Read docs→④Verify hypothesis→⑤Reverse→⑥Narrow scope→⑦Switch tools→⑧Perspective shift→⑨Big picture` | Complex architecture, systematic investigation after multiple failures |
 
-> Debug shorthand (usable for ⚡Lightweight debugging): `💭 Elim: {eliminated item} → Narrow: {scope narrowed to}`—mark each eliminated hypothesis, narrow search domain.
+> Debug shorthand (usable for 🏊🏻Lightweight debugging): `💭 Elim: {eliminated item} → Narrow: {scope narrowed to}`—mark each eliminated hypothesis, narrow search domain.
 
 ---
 
@@ -904,7 +904,7 @@ Key to human-AI collaboration: AI thinking is **visible · questionable · inter
 - Reply with any modification to enter iteration—no need to restart
 - If any □ item cannot be verified by AI, must mark ❓ and explain why
 
-**Trigger Conditions**: 🧠Standard/🐲Deep pre-delivery mandatory · ⚡Lightweight skip
+**Trigger Conditions**: 🏋️Standard/🐲Deep pre-delivery mandatory · 🏊🏻Lightweight skip
 
 ---
 
