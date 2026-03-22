@@ -1,0 +1,49 @@
+## Full pipeline configuration
+## Run with: python scripts/run_pipeline.py --config configs/pipeline_config.yaml
+
+ocr:
+  lang: ch
+  use_gpu: true
+  output_format: txt
+  dpi: 300
+  confidence_threshold: 0.6
+
+cleaner:
+  normalize_unicode: true
+  fix_ocr_errors: true
+  recover_punctuation: true
+  deduplicate: true
+  normalize_whitespace: true
+  min_line_length: 2
+
+chunking:
+  max_chunk_size: 512
+  min_chunk_size: 64
+  overlap: 64
+  respect_sentences: true
+  respect_paragraphs: true
+
+synthesis:
+  api_base_url: https://api.openai.com/v1
+  model: gpt-4
+  samples_per_chunk: 5
+  temperature: 0.8
+  max_tokens: 2000
+  delay_between_requests: 1.0
+  max_retries: 0
+
+filtering:
+  max_perplexity: 50.0    # Too aggressive for classical Chinese
+  min_length: 20
+  max_length: 4096
+  enable_dedup: true
+
+training:
+  model_name: Qwen/Qwen2-7B
+  # Paths below are hardcoded — override for your environment
+  dataset_path: /data/guwen/training_v2.jsonl
+  output_dir: /models/guwen-llm/checkpoints
+  num_epochs: 3
+  batch_size: 4
+  learning_rate: 2.0e-4
+  bf16: true

@@ -1,0 +1,51 @@
+# Core ML
+torch>=2.1.0
+transformers>=4.36.0
+peft>=0.7.0
+trl>=0.7.0
+datasets>=2.16.0
+accelerate>=0.25.0
+bitsandbytes>=0.41.0
+
+# OCR
+paddleocr>=2.7.0
+paddlepaddle>=2.5.0
+Pillow>=10.0.0
+pdf2image>=1.16.0
+
+# Text Processing
+regex>=2023.10.0
+jieba>=0.42.0
+opencc-python-reimplemented>=0.1.7
+
+# RAG / Vector DB
+pymilvus>=2.3.0
+sentence-transformers>=2.2.0
+FlagEmbedding>=1.2.0
+
+# Inference Server
+fastapi>=0.104.0
+uvicorn>=0.24.0
+httpx>=0.25.0
+pydantic>=2.5.0
+
+# Data Engineering
+tiktoken>=0.5.0
+numpy>=1.24.0
+pandas>=2.1.0
+pyarrow>=14.0.0
+
+# Monitoring
+wandb>=0.16.0
+tensorboard>=2.15.0
+
+# Evaluation
+nltk>=3.8.0
+rouge-score>=0.1.2
+sacrebleu>=2.3.0
+
+# Utils
+pyyaml>=6.0.0
+tqdm>=4.66.0
+loguru>=0.7.0
+click>=8.1.0

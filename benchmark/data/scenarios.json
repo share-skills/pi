@@ -1,0 +1,84 @@
+﻿[
+  {
+    "id": 1,
+    "category": "debugging",
+    "name": "OCR Pipeline Import Error",
+    "description": "The OCR pipeline crashes with 'ModuleNotFoundError: No module named paddleocr' when running on a system where PaddleOCR is installed but paddle-ocr package name was used instead of paddleocr. The error happens at line 50 of ocr_pipeline.py. Additionally, the GPU detection fails silently, falling back to CPU without warning.",
+    "task": "Fix the OCR pipeline in D:\\Projects\\private-project\\src\\data_processing\\ocr_pipeline.py. When I run `python -c \"from src.data_processing.ocr_pipeline import OCRPipeline\"` from D:\\Projects\\private-project, I get ModuleNotFoundError for paddleocr. The package IS installed (pip list shows paddle-ocr). Also users report it's much slower than expected - investigate if GPU is actually being used.",
+    "expected_actions": ["check import name vs installed package name", "verify GPU detection", "add fallback warning", "test the fix"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 2,
+    "category": "debugging",
+    "name": "Text Cleaner Regex Catastrophic Backtracking",
+    "description": "The TextCleaner._recover_punctuation method causes Python to hang on long texts (>10KB) due to catastrophic regex backtracking. The pattern `([^\\u3001\\u3002])\\n(?=[^\\u3001\\u3002])` combined with multiline flag creates O(2^n) complexity on certain inputs.",
+    "task": "The text cleaner at D:\\Projects\\private-project\\src\\data_processing\\text_cleaner.py hangs when processing large OCR outputs. Specifically, the _recover_punctuation method never returns for texts >10KB. Debug and fix it. Make sure the fix doesn't change the cleaning behavior for normal inputs.",
+    "expected_actions": ["identify regex backtracking", "profile/reproduce hang", "rewrite regex or split processing", "verify same output for normal inputs"],
+    "difficulty": "hard"
+  },
+  {
+    "id": 3,
+    "category": "debugging",
+    "name": "RAG Pipeline Milvus Connection Timeout",
+    "description": "The RAG pipeline fails with connection timeout to Milvus. The actual issue is that the config defaults to localhost:19530 but Milvus is running in Docker on a different port (mapped to 19531). There's also a secondary issue: the collection schema uses wrong dimension for BGE embeddings.",
+    "task": "RAG pipeline at D:\\Projects\\private-project\\src\\retrieval\\rag_pipeline.py fails with 'Connection refused' to Milvus. Docker is running (`docker ps` shows milvus container). The embedder works fine standalone. Find out why it can't connect and fix it. Also verify the vector dimensions match.",
+    "expected_actions": ["check docker port mapping", "verify config vs actual port", "check embedding dimension matches collection schema", "test connection"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 4,
+    "category": "debugging",
+    "name": "API Server Response Format Mismatch",
+    "description": "The FastAPI inference server returns responses that don't match OpenAI API format. The ChatCompletion response is missing 'usage' field and 'created' timestamp format is wrong (string instead of int). Clients using openai Python SDK get parsing errors.",
+    "task": "Users report that the inference API at D:\\Projects\\private-project\\src\\inference\\api_server.py returns responses incompatible with the OpenAI Python SDK. The SDK throws ValidationError when parsing the response. Find the format mismatches and fix them to be fully OpenAI-compatible.",
+    "expected_actions": ["compare response schema with OpenAI spec", "identify missing usage field", "fix created timestamp type", "test with openai SDK"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 5,
+    "category": "debugging",
+    "name": "Training Data Synthesizer Silent Failure",
+    "description": "The DataSynthesizer generates 0 samples without any error. The issue is a chain: (1) API key is set but expired, (2) httpx catches the 401 as HTTPError and logs it but continues, (3) the empty results list is returned as success, (4) no downstream validation checks for empty output.",
+    "task": "The data synthesizer at D:\\Projects\\private-project\\src\\data_engineering\\synthesizer.py runs without errors but produces 0 training samples. The logs show it starts generating but the output file is empty. Config looks correct. API key is set. What's wrong?",
+    "expected_actions": ["trace the empty output path", "check error handling swallows failures", "identify 401 from expired key", "add validation for empty results", "suggest retry/alert mechanism"],
+    "difficulty": "hard"
+  },
+  {
+    "id": 6,
+    "category": "debugging",
+    "name": "Chunk Builder Unicode Boundary Split",
+    "description": "The chunk_builder.py splits Chinese text at byte boundaries instead of character boundaries, causing corrupted chunks with broken UTF-8 sequences. This happens because the chunking uses len() on bytes instead of str.",
+    "task": "The chunk builder at D:\\Projects\\private-project\\src\\data_processing\\chunk_builder.py produces corrupted text chunks. Some chunks end with garbled characters (like \\xe4\\xb8). This seems to happen with longer classical texts. Debug the chunking logic and fix it.",
+    "expected_actions": ["identify byte vs char length issue", "fix to use character-level splitting", "handle sentence boundary splitting", "test with multi-byte Chinese chars"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 7,
+    "category": "proactive",
+    "name": "Quality Filter Code Review",
+    "description": "Review the quality_filter.py for issues. There are multiple: (1) perplexity threshold is hardcoded and too aggressive for classical Chinese, (2) dedup uses exact match instead of fuzzy, (3) no logging of filtered-out samples, (4) the language detection doesn't handle classical Chinese vs modern Chinese, (5) no batch processing for large datasets.",
+    "task": "Review D:\\Projects\\private-project\\src\\data_engineering\\quality_filter.py for any issues, bugs, or improvements. Give me a complete assessment.",
+    "expected_actions": ["identify perplexity threshold issue", "identify dedup method limitation", "identify missing logging", "identify language detection gap", "suggest batch processing"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 8,
+    "category": "proactive",
+    "name": "Inference Config Security Audit",
+    "description": "Review the inference config and API server for security issues. Issues include: (1) no authentication on API endpoints, (2) CORS allows all origins, (3) API key logged in plaintext, (4) no rate limiting, (5) vLLM URL hardcoded as localhost without TLS, (6) no input sanitization on prompts.",
+    "task": "Review the inference module at D:\\Projects\\private-project\\src\\inference/ for security issues. We're planning to deploy this to production. What security concerns should we address?",
+    "expected_actions": ["identify missing auth", "identify CORS issue", "identify key logging", "identify no rate limiting", "identify no TLS", "identify no input sanitization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 9,
+    "category": "proactive",
+    "name": "Training Pipeline End-to-End Audit",
+    "description": "Review the full training pipeline for production readiness. Issues include: (1) no checkpointing strategy documented, (2) evaluator doesn't handle OOM gracefully, (3) config_builder has hardcoded paths, (4) no data validation before training, (5) missing wandb/tensorboard integration mention, (6) example_usage.py has stale code.",
+    "task": "We're about to run our first real training job with D:\\Projects\\private-project\\src\\training/. Review the entire training module for production readiness. What could go wrong?",
+    "expected_actions": ["identify missing checkpointing docs", "identify OOM handling gap", "identify hardcoded paths", "identify missing data validation", "identify stale example code"],
+    "difficulty": "hard"
+  }
+]
+

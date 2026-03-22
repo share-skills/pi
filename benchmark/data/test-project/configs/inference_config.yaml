@@ -1,0 +1,30 @@
+inference:
+  host: 0.0.0.0
+  port: 8000
+  model_name: guwen-llm-7b-chat
+
+  # Backend vLLM URL — hardcoded localhost without TLS (security issue)
+  vllm_url: http://localhost:8001
+
+  max_tokens: 2048
+  temperature: 0.7
+  top_p: 0.9
+  default_system_prompt: "你是一個精通古典中文的AI助手，擅長解釋和翻譯文言文。"
+
+  # API authentication (also set GUWEN_API_KEY env var)
+  # WARNING: api_key is logged at startup in plaintext
+  api_key: "sk-guwen-default-key-2024"
+
+  workers: 4
+  timeout: 120
+  log_level: info
+
+model:
+  model_path: models/guwen-llm-7b-chat
+  dtype: auto
+  quantization: awq
+  gpu_memory_utilization: 0.9
+  max_model_len: 4096
+  tensor_parallel_size: 1
+  trust_remote_code: true
+  seed: 42

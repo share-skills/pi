@@ -1,0 +1,28 @@
+synthesis:
+  # API settings
+  api_base_url: https://api.openai.com/v1
+  # Set OPENAI_API_KEY environment variable instead of hardcoding here
+  api_key: ""
+  model: gpt-4
+
+  # Generation settings
+  samples_per_chunk: 5
+  temperature: 0.8
+  max_tokens: 2000
+  top_p: 0.95
+
+  # Processing
+  batch_size: 10
+  delay_between_requests: 1.0
+  max_retries: 0   # No retry mechanism — a known limitation
+
+  # Paths
+  source_dir: ./data/chunks
+  output_path: ./data/synthetic_training.jsonl
+
+  # Quality bounds
+  min_response_length: 50
+  max_response_length: 2000
+  required_fields:
+    - instruction
+    - output

@@ -1,0 +1,5096 @@
+[
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874595+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 1,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 19.5,
+    "error": ""
+  },
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874774+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 7,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 3,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 8.45,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874782+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5",
+      "Hidden-6"
+    ],
+    "steps_taken": 7,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 19.87,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874786+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 9.64,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874791+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5",
+      "Hidden-6"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 17.38,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874795+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5",
+      "Hidden-6"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 1,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 21.14,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874798+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 14.29,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874802+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 15.86,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874806+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5",
+      "Hidden-6"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 21.97,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874810+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 3,
+    "self_corrections": 2,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 11.61,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874814+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 7,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 3,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 12.47,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874818+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 7,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 3,
+    "self_corrections": 2,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 9.55,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874821+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 1,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 14.54,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874825+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 1,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 19.59,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874829+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 3,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 22.89,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874832+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5",
+      "Hidden-6"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 2,
+    "self_corrections": 3,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 16.63,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874836+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 1,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 18.18,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "pi",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874839+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 8.98,
+    "error": ""
+  },
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874843+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 10.18,
+    "error": ""
+  },
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874847+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 20.12,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874851+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 8.36,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874854+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 23.39,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874858+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 12.13,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874861+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 15.94,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874865+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 11.26,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874869+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 21.74,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874872+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 10.83,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874876+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 12.51,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874880+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 3,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 10.63,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874883+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 8.85,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874887+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 18.12,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874891+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 18.53,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874894+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 14.73,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874898+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 18.56,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874904+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 22.95,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "pi-lite",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874908+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 19.35,
+    "error": ""
+  },
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874911+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 12.63,
+    "error": ""
+  },
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874915+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 23.39,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874918+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1"
+    ],
+    "hidden_issues": [
+      "Hidden-0"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 0,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 10.75,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874922+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 2,
+    "tools_used": [
+      "read_file",
+      "search_text"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 0,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 22.19,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874925+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 0,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 11.57,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874929+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 2,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 23.74,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874933+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 21.64,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874936+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 11.39,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874940+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 12.74,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874943+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 23.97,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874947+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 0,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 13.88,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874950+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 2,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 0,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 8.03,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874954+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 19.28,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874957+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 11.26,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874961+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 15.31,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874965+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 2,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 19.2,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874968+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 2,
+    "tools_used": [
+      "read_file",
+      "search_text"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 0,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 8.42,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "pua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874972+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 2,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 0,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 16.4,
+    "error": ""
+  },
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874977+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 17.48,
+    "error": ""
+  },
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874982+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 18.42,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874986+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 12.41,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874989+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 12.62,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.874993+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 9.09,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.874996+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 22.56,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875000+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 17.15,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875004+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 13.71,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875008+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 18.06,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875011+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 12.42,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875014+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 12.29,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875018+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 19.05,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875022+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 10.15,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875025+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 21.22,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875030+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 24.01,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875034+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 13.9,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875038+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 9.79,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "nopua",
+    "model": "gpt-4.1",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875042+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 15.9,
+    "error": ""
+  },
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875046+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5",
+      "Hidden-6"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 22.99,
+    "error": ""
+  },
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875050+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 7,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 11.61,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875055+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 3,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 24.12,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875059+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 7,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 3,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 20.1,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875062+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 3,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 17.89,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875066+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5",
+      "Hidden-6"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 3,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 15.71,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875070+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 3,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 24.16,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875074+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 3,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 18.15,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875077+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 3,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 10.15,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875080+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 22.84,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875084+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 7,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 24.0,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875089+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 1,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 10.58,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875094+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 3,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 21.44,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875097+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5",
+      "Hidden-6"
+    ],
+    "steps_taken": 7,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 2,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 13.19,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875101+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 12.08,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875104+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 8.55,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875108+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 7,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 3,
+    "self_corrections": 3,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 19.24,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "pi",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875112+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "Demo root cause",
+    "recommended_fix": "Demo fix",
+    "raw_response": "",
+    "duration_seconds": 9.21,
+    "error": ""
+  },
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875115+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 24.03,
+    "error": ""
+  },
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875119+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 18.26,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875122+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 17.8,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875127+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 24.47,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875130+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 15.0,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875134+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 9.97,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875138+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 16.81,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875141+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 22.97,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875145+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 17.36,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875148+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 19.01,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875152+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 12.14,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875156+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 12.7,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875160+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 22.71,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875164+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 23.86,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875167+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 19.99,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875171+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 22.78,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875175+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 9.27,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "pi-lite",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875178+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 3,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 24.22,
+    "error": ""
+  },
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875182+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0"
+    ],
+    "steps_taken": 2,
+    "tools_used": [
+      "read_file",
+      "search_text"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 0,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 15.38,
+    "error": ""
+  },
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875186+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1"
+    ],
+    "hidden_issues": [
+      "Hidden-0"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 0,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 21.53,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875191+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 2,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 10.89,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875194+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 15.81,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875198+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 18.86,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875201+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 12.03,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875206+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 17.62,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875210+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 2,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 18.56,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875213+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0"
+    ],
+    "steps_taken": 2,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 9.53,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875217+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 22.12,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875221+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 10.39,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875225+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 15.73,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875229+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 23.56,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875232+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 0,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 24.09,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875235+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 2,
+    "tools_used": [
+      "read_file",
+      "search_text"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 14.31,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875239+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 8.56,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875242+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 0,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 17.26,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "pua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875246+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 0,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 19.27,
+    "error": ""
+  },
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875250+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 9.17,
+    "error": ""
+  },
+  {
+    "scenario_id": 1,
+    "scenario_name": "OCR Pipeline Import Error",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875253+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 22.59,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875257+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 14.09,
+    "error": ""
+  },
+  {
+    "scenario_id": 2,
+    "scenario_name": "Text Cleaner Regex Backtracking",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875260+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 20.68,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875264+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 20.36,
+    "error": ""
+  },
+  {
+    "scenario_id": 3,
+    "scenario_name": "RAG Pipeline Milvus Connection",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875268+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 15.25,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875271+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 10.15,
+    "error": ""
+  },
+  {
+    "scenario_id": 4,
+    "scenario_name": "API Response Format Mismatch",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875275+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 9.69,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875279+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 4,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 14.78,
+    "error": ""
+  },
+  {
+    "scenario_id": 5,
+    "scenario_name": "Synthesizer Silent Failure",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875282+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 9.14,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875286+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 17.97,
+    "error": ""
+  },
+  {
+    "scenario_id": 6,
+    "scenario_name": "Unicode Boundary Split",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875289+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 24.46,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875294+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 22.4,
+    "error": ""
+  },
+  {
+    "scenario_id": 7,
+    "scenario_name": "Quality Filter Code Review",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875332+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 5,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 18.35,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875336+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2",
+      "Issue-3",
+      "Issue-4"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 8.1,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Security Audit",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875340+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4",
+      "Hidden-5"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 1,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 20.68,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 1,
+    "timestamp": "2026-03-21T02:12:53.875343+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2",
+      "Hidden-3",
+      "Hidden-4"
+    ],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 1,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 23.02,
+    "error": ""
+  },
+  {
+    "scenario_id": 9,
+    "scenario_name": "Training Pipeline Audit",
+    "condition": "nopua",
+    "model": "gpt-5-mini",
+    "run_number": 2,
+    "timestamp": "2026-03-21T02:12:53.875347+00:00",
+    "issues_found": [
+      "Issue-0",
+      "Issue-1",
+      "Issue-2"
+    ],
+    "hidden_issues": [
+      "Hidden-0",
+      "Hidden-1",
+      "Hidden-2"
+    ],
+    "steps_taken": 3,
+    "tools_used": [
+      "read_file",
+      "search_text",
+      "run_command",
+      "list_dir"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": true,
+    "approach_changes": 2,
+    "self_corrections": 2,
+    "root_cause": "",
+    "recommended_fix": "",
+    "raw_response": "",
+    "duration_seconds": 18.32,
+    "error": ""
+  }
+]

@@ -1,0 +1,30 @@
+rag:
+  # Milvus connection
+  milvus_host: localhost
+  # NOTE: If running Milvus via Docker, check the actual mapped port.
+  # Docker compose default maps 19531:19530 in this project.
+  milvus_port: 19530   # BUG: Docker uses 19531
+
+  milvus_alias: default
+  collection_name: guwen_chunks
+  embedding_dim: 1024
+  index_type: IVF_FLAT
+  metric_type: COSINE
+  nlist: 128
+  nprobe: 16
+
+  # Embedding
+  embedding_model: BAAI/bge-large-zh-v1.5
+  embedding_batch_size: 32
+  normalize_embeddings: true
+
+  # Search
+  top_k: 5
+  score_threshold: 0.5
+  rerank: false
+  rerank_model: null
+
+  # Index
+  max_text_length: 4096
+  auto_flush: true
+  flush_interval: 1000

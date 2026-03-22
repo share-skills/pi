@@ -1,0 +1,13 @@
+ocr:
+  lang: ch
+  use_gpu: true          # Falls back to CPU silently if CUDA unavailable
+  use_angle_cls: true
+  output_format: json    # txt | json | jsonl
+  max_workers: 4
+  dpi: 300
+  confidence_threshold: 0.6
+  page_separator: "\n---PAGE_BREAK---\n"
+  tmp_dir: /tmp/guwen_ocr
+  enable_table_detection: false
+  merge_boxes: true
+  box_merge_threshold: 0.5
