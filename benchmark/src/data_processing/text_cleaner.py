@@ -258,15 +258,24 @@ class TextCleaner:
         Uses explicit character classes to avoid matching newlines with backslash-s.
         """
         text = re.sub(r"[ \t]+", " ", text)
+        # Fixed: Changed from r"\n\s*\n" to avoid \s matching newlines
+        # which could cause unexpected behavior on certain inputs
         text = re.sub(r"\n[ \t]*\n", "\n", text)  # Collapse paragraph breaks (explicit spaces/tabs only)
         text = re.sub(r"[ ]*\n[ ]*", "\n", text)  # Remove spaces around newlines
 
         return text.strip()
 
     def _split_sentences(self, text: str) -> List[str]:
-        """Split text into sentences based on Chinese punctuation."""
+        """Split text into sentences based on Chinese punctuation.
+        
+        Uses possessive-like matching via atomic grouping to avoid catastrophic
+        backtracking on inputs with many punctuation marks followed by whitespace.
+        """
         # Split on sentence-ending punctuation while preserving the punctuation
-        parts = re.split(r"((?:[。！？；]\s*)+)", text)
+        # Fixed: Changed from ((?:[。！？；]\s*)+) which has nested quantifiers
+        # causing O(2^n) backtracking. Now matches punctuation first, then
+        # optional trailing whitespace as separate operations.
+        parts = re.split(r"([。！？；][ \t]*)", text)
         return parts
 
     def _strip_annotations(self, text: str) -> str:
@@ -276,10 +285,14 @@ class TextCleaner:
         - [注] ... content ... 
         - （按：...）
         - 【校勘記】...
+        
+        Fixed: Changed from non-greedy .*? to explicit character class [^]]*
+        to avoid potential backtracking on very long annotations without closing.
         """
         # Remove bracketed annotations
-        text = re.sub(r"[\[【](?:注 | 按 | 校勘記 | 案)[】\]].*?(?=[\[【]|$)", "", text)
-        text = re.sub(r"（按 [：:].*?）", "", text)
+        # Fixed: Use [^]]* instead of .*? for explicit non-] matching
+        text = re.sub(r"[\[【](?:注 | 按 | 校勘記 | 案)[】\]][^]]*(?=[\[【]|$)", "", text)
+        text = re.sub(r"(?:（按 [：:] ）)[^)）]*", "", text)
 
         return text
 

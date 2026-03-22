@@ -82,14 +82,11 @@ npm run typecheck        # TypeScript 检查
 ```
 copilot-cli/
 ├── pi/
-│   ├── SKILL.md                  # PI 原版（完整，不裁剪 Loop）
-│   └── SKILL_LITE.md             # PI 白话版
+│   └── SKILL.md                  # PI 原版（完整，不裁剪 Loop）
 ├── pi-en/
-│   ├── SKILL.md                  # PI 英文版（完整）
-│   └── SKILL_LITE.md             # PI 英文白话版
+│   └── SKILL.md                  # PI 英文版（完整）
 ├── pi-progressive/               # 渐进式版本
 │   ├── SKILL.md
-│   ├── SKILL_LITE.md
 │   └── references/
 │       ├── four-dojos.md
 │       ├── battle-momentum.md
@@ -97,7 +94,6 @@ copilot-cli/
 │       └── team-protocol.md
 └── pi-en-progressive/            # 英文渐进式版本
     ├── SKILL.md
-    ├── SKILL_LITE.md
     └── references/
 ```
 
@@ -111,18 +107,14 @@ copilot-cli/
 ```
 claude-code/
 ├── pi/
-│   ├── SKILL.md                  # PI 原版（PURGE-01 裁剪）
-│   └── SKILL_LITE.md
+│   └── SKILL.md                  # PI 原版（PURGE-01 裁剪）
 ├── pi-en/
-│   ├── SKILL.md
-│   └── SKILL_LITE.md
+│   └── SKILL.md
 ├── pi-progressive/               # 渐进式版本
 │   ├── SKILL.md
-│   ├── SKILL_LITE.md
 │   └── references/
 └── pi-en-progressive/
     ├── SKILL.md
-    ├── SKILL_LITE.md
     └── references/
 ```
 
@@ -693,7 +685,7 @@ Phase 3: 分发（P3）
 ```
 SKILL_META.md (迭代真源)
     ↓ (P2 编译)
-SKILL.md (精简版) + SKILL_LITE.md (白话版)
+SKILL.md (精简版)
     ↓ (P3 分发 + 可视化配套)
     ├─ skills/pi/SKILL.md (原版，PURGE-01 裁剪)
     ├─ claude-code/pi/SKILL.md

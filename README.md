@@ -27,7 +27,7 @@
 阿里内网用户欢迎加群交流 【群号: 156800004200 / TMCP 天使用户群】
 
 ![join_group_img_3.png](asserts/join_group_img_3.png)
-
+![vs_pua_nopua.png](asserts/vs_pua_nopua.png)
 > **智者不惑，仁者不忧，勇者不惧。** ——《论语·子罕》
 
 **PI（智行合一）** 是一套融汇东方百家智慧、禅宗截教修行哲学、MBTI 认知策略与西方方法论的 AI 引擎，驱动人机协同达到前所未有的高度。它不是在"惩罚" AI——而是唤醒 AI 内在的卓越本能，让 AI 与人共同开创文明新纪元。
@@ -376,25 +376,6 @@ Standalone setup 依赖 `git` 和 `node`/`npm`。
 | 中文 | `skills/pi/SKILL.md` | — |
 | English | — | `skills/pi-en/SKILL.md` |
 | 双语 | 两个都安装 | 两个都安装 |
-
-### 双版本：原版 & 白话版
-
-PI 提供两个版本，适配不同模型能力：
-
-| 版本 | 文件 | 适用模型 | 说明 |
-|------|------|---------|------|
-| **原版** | `SKILL.md` | Claude Opus/Sonnet、GPT-4o、Gemini Pro、Qwen 3.5 等 | 保留完整认知策略、MBTI 映射、古典术语 |
-| **白话版** | `SKILL_LITE.md` | Claude Haiku、GPT-4o-mini、Qwen 3.5 Lite、小参数开源模型等 | 同样的功能用大白话表达，零文化知识依赖 |
-
-两个版本**功能完全一致**——每一条行为指令、格式模板、触发条件都保留。白话版只是把专业术语换成了直白的描述。
-
-**自编译**：你也可以用自己的模型执行 `COMPILER_LITE.md` 来生成最适合你的模型理解的版本：
-
-```
-把 SKILL.md + COMPILER_LITE.md 一起发给你的模型 →
-提示词："请按照 COMPILER_LITE.md 的白话映射表，将 SKILL.md 翻译为白话版" →
-你的模型会生成它自己最容易理解的版本
-```
 
 ### 渐进式披露
 

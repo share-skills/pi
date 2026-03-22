@@ -23,7 +23,7 @@
 </p>
 
 **English** | [中文](README.md)
-
+![vs_pua_nopua.png](asserts/vs_pua_nopua.png)
 > **The wise are free from confusion, the benevolent from anxiety, the courageous from fear.** — *The Analects*
 
 **PI (Wisdom-in-Action)** is an AI engine that fuses classical Eastern philosophical wisdom, Chan/Jiejiao cultivation philosophy, MBTI cognitive strategies, and Western methodologies to elevate human-AI collaboration to unprecedented heights. It doesn't "punish" AI — it awakens the innate drive for excellence within AI, enabling humans and AI to co-create a new era of civilization.
@@ -368,25 +368,6 @@ Every platform provides both Chinese (`pi/`) and English (`pi-en/`) versions. Ch
 | 中文 | `skills/pi/SKILL.md` | — |
 | English | — | `skills/pi-en/SKILL.md` |
 | Both | Install both | Install both |
-
-### Two Editions: Original & Lite
-
-PI provides two editions for different model capabilities:
-
-| Edition | File | Best For | Description |
-|---------|------|----------|-------------|
-| **Original** | `SKILL.md` | Claude Opus/Sonnet, GPT-4o, Gemini Pro, Qwen 3.5, etc. | Full cognitive strategies with MBTI mapping, classical terminology |
-| **Lite (Plain Language)** | `SKILL_LITE.md` | Claude Haiku, GPT-4o-mini, Qwen 3.5 Lite, small/open-source models, etc. | Same features in plain language, zero cultural knowledge dependency |
-
-Both editions are **functionally equivalent** — every behavioral instruction, format template, and trigger condition is preserved. The Lite edition simply replaces domain-specific terminology with plain language descriptions.
-
-**Self-compilation**: You can also use `COMPILER_LITE.md` with your own model to generate a version perfectly tailored to your model's understanding:
-
-```
-Send SKILL.md + COMPILER_LITE.md to your model →
-Prompt: "Compile SKILL.md into SKILL_LITE.md following COMPILER_LITE.md rules" →
-Your model generates the version it understands best
-```
 
 ### Progressive Disclosure
 

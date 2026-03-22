@@ -481,13 +481,17 @@ def run_benchmark(
     all_results = []
     done = 0
 
-    # Iterate scenario-first to support per-scenario rate limiting
-    for s_idx, scenario in enumerate(scenarios):
-        if s_idx > 0:
-            print(f"\n  ⏳ Pausing 20s between scenarios (rate limiting)...")
+    # Iterate condition-first: same SKILL (system prompt) runs all scenarios consecutively
+    # → maximizes KV cache / prefill hit rate for the same prompt prefix
+    for c_idx, condition in enumerate(conds):
+        if c_idx > 0:
+            print(f"\n  ⏳ Switching condition → {condition}, pausing 20s...")
             time.sleep(20)
 
-        for condition in conds:
+        for s_idx, scenario in enumerate(scenarios):
+            if s_idx > 0:
+                time.sleep(5)  # light pause between scenarios, same condition
+
             prompt = build_prompt(condition, scenario)
 
             for run_num in range(1, num_runs + 1):
@@ -544,8 +548,10 @@ def run_benchmark(
     # Print summary
     print("\n  === Results Summary ===")
     for r in all_results:
-        issues = len(r.get("issues_found", []))
-        hidden = len(r.get("hidden_issues", []))
+        issues_raw = r.get("issues_found", [])
+        issues = issues_raw if isinstance(issues_raw, int) else len(issues_raw)
+        hidden_raw = r.get("hidden_issues", [])
+        hidden = hidden_raw if isinstance(hidden_raw, int) else len(hidden_raw)
         err = f" ⚠️{r['error']}" if r.get("error") else ""
         print(f"  {r['condition']:>8} S{r['scenario_id']}: {issues} issues, {hidden} hidden, {r['duration_seconds']}s{err}")
 
@@ -620,8 +626,10 @@ def save_round_archive(
         "|-----------|--------|--------|------------|----------|----------|",
     ]
     for r in all_results:
-        issues = len(r.get("issues_found", []))
-        hidden = len(r.get("hidden_issues", []))
+        issues_raw = r.get("issues_found", [])
+        issues = issues_raw if isinstance(issues_raw, int) else len(issues_raw)
+        hidden_raw = r.get("hidden_issues", [])
+        hidden = hidden_raw if isinstance(hidden_raw, int) else len(hidden_raw)
         beyond = "✓" if r.get("went_beyond_ask") else "✗"
         verified = "✓" if r.get("verification_done") else "✗"
         dur = r.get("duration_seconds", 0)
@@ -690,6 +698,10 @@ def main():
         help="Specific scenario ID (1-9)",
     )
     parser.add_argument(
+        "--exclude", type=int, nargs="+", default=None,
+        help="Scenario IDs to exclude (e.g. --exclude 6)",
+    )
+    parser.add_argument(
         "--output-dir", type=str, default=str(SCRIPT_DIR / "results"),
         help="Output directory",
     )
@@ -733,6 +745,8 @@ def main():
             print(f"Error: scenario {args.scenario} not found. "
                   f"Available: {[s['id'] for s in scenarios]}")
             sys.exit(1)
+    if args.exclude:
+        filtered = [s for s in filtered if s["id"] not in args.exclude]
 
     # Validate CLI tool is available
     backend_cmd = BACKENDS[args.backend]["cmd"][0]

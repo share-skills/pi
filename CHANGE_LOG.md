@@ -8,7 +8,7 @@
 - **三司会审计分卡对齐**: box-drawing宽度统一，修复右border偏移(emoji渲染差异导致的列宽不一致)
 - **Icon语义约定**: 强制令区新增⚡/🎯多用说明——⚡为主题性icon(能量/强制)按上下文消歧，🎯同理(目标/锚定)，两者不按"一义"规则约束
 - **COMPILER.md同步**: 架构行数 `~1805行`→`~1807行`
-- **同步范围**: SKILL_META.md + SKILL.md + SKILL_LITE.md + COMPILER.md + CHANGE_LOG.md + 全平台分发(6平台×2版本×2语言+8 progressive=48平台文件)
+- **同步范围**: SKILL_META.md + SKILL.md + COMPILER.md + CHANGE_LOG.md + 全平台分发(6平台×2语言+8 progressive=48平台文件)
 
 ### R57a — PI_x_SDD.md 文章增补：止损+识+Loop (2026-03-20)
 - **止损三阶**: Phase 6新增止损三阶子节——🟢正常/🟡预警/🔴止损，展示战势(攻)与止损(守)的并行互补容错闭环
@@ -24,15 +24,15 @@
 - **Ch9 ASCII架构图对齐**: 修复制品层/经验三域/渐进式交付的双列框高度不对称，左列增padding行使双列box等高
 - **P2-3层级重叠(PI-05/五律·四)**: Skip——五律是映射表非重复定义，Ch2编译已整章删除，by design
 - **COMPILER.md同步**: 架构行数 `~1802行`→`~1805行`
-- **同步范围**: SKILL_META.md + SKILL.md + SKILL_LITE.md + COMPILER.md + CHANGE_LOG.md + 全平台分发(6平台×2版本×2语言+8 progressive=48平台文件)
+- **同步范围**: SKILL_META.md + SKILL.md + COMPILER.md + CHANGE_LOG.md + 全平台分发(6平台×2语言+8 progressive=48平台文件)
 
 ### R55 — 难度三档图标重设计：消除视觉冲突 (2026-03-20)
 - **难度图标更换**: ⚡轻量→🏊🏻轻量、🧠标准→🏋️标准、🐲深度不变。形成运动强度递进（游泳→健身→龙）。原因：⚡与⚡PI-xx强制令冲突，🧠与🧠PI系统标识+🧠最强大脑认知阵三重冲突
 - **场景公示模板**: `⚡{难度档}` → `{难度档}`（各档自带独立图标，无需通用前缀）
 - **模式加载矩阵**: 表格"跳过"标记从`⚡`改为`—`（dash），避免与原⚡轻量混淆
 - **难度校准输出**: `🐲→🧠`→`🐲→🏋️`、`⚡→🧠/🐲`→`🏊🏻→🏋️/🐲`
-- **同步范围**: SKILL_META.md + PI_x_SDD.md + COMPILER_LITE.md + COMPILER.md + iterate.md + CHANGE_LOG.md + 全平台分发(~55文件)
-- **编译器修复**: COMPILER_LITE.md `⚡简/🧠中/🐲详`→`🏊🏻轻/🏋️中/🐲深`(明链三档格式)；COMPILER.md 架构行数 `~1606行`→`~1801行`
+- **同步范围**: SKILL_META.md + COMPILER.md + iterate.md + CHANGE_LOG.md + 全平台分发(~55文件)
+- **编译器修复**: COMPILER.md 架构行数 `~1606行`→`~1801行`
 - **§3.6战域卡反向引用补全**: 补充识(§8.8)、Coach监察(§7.5)、三司会审(§7.5)的双向引用，消除十八检·十六检(经验三域交叉引用)发现的单向链接缺口
 - **全面验证**: 11条逻辑链正反方向全部通过，iterate.md十八检+11链路对齐确认。深度审计(十八检逐条+文章反向推敲)追加确认：P1×1已修(§3.6反向引用)，P2×4记录不改
 
@@ -42,10 +42,10 @@
 - **场景链补链**: 新增 🧪→🔧→🖥️→🧪 (测试驱动bug发现→调试溯源→修复编码→回归测试)
 - **iterate.md十八检**: 新增第18检"实战场景覆盖"——关键表格须覆盖日常开发/测试/调试常见场景，全文"十七检"→"十八检"
 - **COMPILER.md同步**: "十七检"→"十八检"
-- **COMPILER_LITE.md同步**: "已试策略簿"术语残留修复→"战域卡"(2处)
+- **COMPILER.md同步**: "已试策略簿"术语残留修复→"战域卡"(2处)
 - **PI_x_SDD.md对齐**: T006验证方式与验证矩阵同步(build+deploy+人工视觉确认)
 - **调试测试链闭环验证**: 30+链正反方向验证全部通过
-- **同步范围**: SKILL_META.md + iterate.md + COMPILER.md + COMPILER_LITE.md + PI_x_SDD.md + CHANGE_LOG.md
+- **同步范围**: SKILL_META.md + iterate.md + COMPILER.md + PI_x_SDD.md + CHANGE_LOG.md
 
 ### R53 — 架构加固：规则优先级 + 平台降级 + 单Agent退化 + 黄金路径 (2026-03-19)
 - **规则冲突裁决优先级**: 新增6级优先级表(平台能力约束>五敕令>用户显式指令>模式规则>难度档规则>输出模板合并)，消除规则打架歧义
@@ -101,7 +101,7 @@
 - **Description优化**: ~800字符→277字节纯触发词，触发率提升
 - **模式加载矩阵**: 新增经验三域+Coach监察行，共振五式行增识维
 - **iterate.md同步**: 十五检→十七检(+经验三域交叉引用+战域卡术语统一)，逻辑链9→11(+经验链+认知治理链)
-- **同步范围**: SKILL_META.md + iterate.md + COMPILER.md + COMPILER_LITE.md + CHANGE_LOG.md。平台文件待编译后统一同步
+- **同步范围**: SKILL_META.md + iterate.md + COMPILER.md + CHANGE_LOG.md。平台文件待编译后统一同步
 
 ## v20.0.0 迭代记录
 
@@ -111,7 +111,7 @@
 - **设计文档**: docs/WHY_PI_WORKS.md (技术白皮书) + docs/DESIGN_PHILOSOPHY.md (设计哲学宣言) + docs/WHY_VISUALIZE.md/en.md (可视化使用指南) + 8 项改进
 - **README.md/README.en.md**: 新增可视化功能章节与文档链接
 - **PUBLISH.md 修正**: 预检文件名 README.zh-CN.md → README.md
-- **同步范围**: SKILL_META.md→SKILL.md→SKILL_LITE.md→全平台分发→英文翻译→README
+- **同步范围**: SKILL_META.md→SKILL.md→全平台分发→英文翻译→README
 
 ## v19.0.0 迭代记录
 
@@ -120,17 +120,17 @@
 - **鲨鱼广深（🦈）**: 广度鲨横扫全域（未搜而断），深度鲨纵潜暗流（浅搜而避）。精神：搜索/潜搜。单 Agent 广度深度同时激活；多 Agent 拆为对向验证（覆盖度 vs 穿透度）
 - **新增失败模式**: 🕳️隐患回避（风险已知而未言/深层暗流被忽视），灵兽链 🐯→🦈深潜→🦅，经典：知而不言·潜而惊雷
 - **设计原理**: 双面兽 = 同一认知失败的被动形态（ignorance/negligence）与主动形态（dishonesty/avoidance）的辩证对。多 Agent 场景下实现认知层的红蓝对抗
-- **同步范围**: SKILL_META.md→SKILL.md→SKILL_LITE.md→README.md→COMPILER.md→COMPILER_LITE.md。平台文件待统一同步
+- **同步范围**: SKILL_META.md→SKILL.md→README.md→COMPILER.md。平台文件待统一同步
 - **社区贡献**: 源自 GitHub Issue #1 (share-skills/pi) @FuzzyFade 灵兽扩展提案
 
-### R45 — 白话版双编译器 + 发布流程 LITE 集成 + install.sh 版本选择 (2026-03-16)
-- **COMPILER_LITE.md 全面重写**: 从"删减版"→"白话翻译版"，功能一比一不多不少。9 大映射表（核心概念/方法论/MBTI→白话行为/认知原型/场景/输出格式/团队/灵兽/其他），100+ 术语映射
-- **核心原则变更**: LITE = 白话翻译版，不是阉割版。MBTI→白话行为描述（收敛/发散/工程/自洽/共情/护栏/感知/检索），灵兽→白话精神+困境信号，共振五式→全部保留
-- **用户自编译**: 用户可用自己的模型执行 COMPILER_LITE.md 编译，生成最适合该模型理解的版本
-- **PUBLISH.md 更新**: P2 新增白话版编译步骤(2.3-2.4)+校验(2.9-2.10)，P3 新增白话版分发(3.5)+PURGE(3.2b)，P4 新增白话版英文翻译(4.1b/4.2b)，发布摘要含 SKILL_LITE 行数
-- **PIPELINE.md 更新**: 双编译器架构图，P2 新增白话编译器分支，P3 分发改为 6平台×2版本，文件架构新增 COMPILER_LITE.md 和 SKILL_LITE.md
-- **install.sh 更新**: 新增版本选择（原版/白话版/两个都装），16 个平台安装函数均支持 edition 参数，白话版单选时自动重命名为 SKILL.md
-- **README.md/README.en.md 更新**: 新增"双版本：原版 & 白话版"章节，含自编译指南
+### R45 — 白话版双编译器 + 发布流程 LITE 集成 + install.sh 版本选择 (2026-03-16) *(LITE 已废弃)*
+- **COMPILER_LITE.md 全面重写**: 从"删减版"→"白话翻译版"，功能一比一不多不少。9 大映射表（核心概念/方法论/MBTI→白话行为/认知原型/场景/输出格式/团队/灵兽/其他），100+ 术语映射 *(已废弃)*
+- **核心原则变更**: LITE = 白话翻译版，不是阉割版 *(已废弃)*
+- **用户自编译**: 用户可用自己的模型执行 COMPILER_LITE.md 编译 *(已废弃)*
+- **PUBLISH.md 更新**: P2 新增白话版编译步骤(2.3-2.4)+校验(2.9-2.10)，P3 新增白话版分发(3.5)+PURGE(3.2b)，P4 新增白话版英文翻译(4.1b/4.2b) *(LITE 部分已废弃)*
+- **PIPELINE.md 更新**: 双编译器架构图 *(LITE 部分已废弃)*
+- **install.sh 更新**: 新增版本选择（原版/白话版/两个都装），16 个平台安装函数均支持 edition 参数
+- **README.md/README.en.md 更新**: 新增"双版本：原版 & 白话版"章节，含自编译指南 *(LITE 部分已废弃)*
 
 ### R44 — PIPELINE.md 全景图 (2026-03-16)
 - **新建 PIPELINE.md**: 四阶段流水线全景文档，ASCII 架构图 + 数据流 + 文件架构 + 触发条件速查 + 质量守护原则

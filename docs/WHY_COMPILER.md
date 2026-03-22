@@ -6,7 +6,7 @@
 >
 > 📚 延伸阅读：[《为何 PI 有效》](WHY_PI_WORKS.md) · [《PI 设计哲学》](DESIGN_PHILOSOPHY.md)
 
-PI 的编译与分发系统不是"把大文件变小"那么简单。它本质上在回答一个问题：**如何让一份 AI 技能说明书稳定地部署到多个平台目标（仓库内 6 个主平台 + Qoder 适配）、两种语言、两个版本，且行为完全一致？**
+PI 的编译与分发系统不是"把大文件变小"那么简单。它本质上在回答一个问题：**如何让一份 AI 技能说明书稳定地部署到多个平台目标（仓库内 6 个主平台 + Qoder 适配）、两种语言，且行为完全一致？**
 
 ---
 
@@ -44,19 +44,15 @@ PI 的解法是一个三层架构，借鉴软件编译的经典模式：
 flowchart TD
     META["SKILL_META.md<br/>📖 源代码<br/>1185 行 · 完整设计"]
     COMPILER["COMPILER.md<br/>⚙️ 编译规则"]
-    COMPILER_LITE["COMPILER_LITE.md<br/>⚙️ 白话编译规则"]
     SKILL["SKILL.md<br/>📦 字节码<br/>~950 行 · 纯行为指令"]
-    LITE["SKILL_LITE.md<br/>📦 白话字节码<br/>~944 行 · 零术语"]
 
     META --> COMPILER --> SKILL
-    META --> COMPILER_LITE --> LITE
 ```
 
 | 层级 | 文件 | 类比 | 读者 | 内容 |
 |------|------|------|------|------|
 | **源代码** | SKILL_META.md | `.java` / `.ts` | 人类维护者 | 完整设计：哲学 + 策略 + 指令 + 示例 |
 | **字节码** | SKILL.md | `.class` / `.js` | AI 运行时 | 纯行为指令 + 认知策略 + 格式模板 |
-| **白话字节码** | SKILL_LITE.md | 同上，不同方言 | AI 运行时 | 同等行为，零文化术语 |
 
 **关键洞察**：这不是简单的"删减"。编译器做的是**语义分类裁剪**——保留每一条改变 AI 行为的指令，剥离每一段仅服务于人类理解的内容。
 
@@ -98,96 +94,38 @@ META 改动 → 编译 → diff SKILL.md，可以精确看到哪些**行为**发
 
 ---
 
-## 四、为什么需要 COMPILER_LITE.md
-
-SKILL.md 保留了 PI 的认知策略术语（MBTI 认知功能栈、古典术语如"敕令""截教""认知阵"）。这些术语对理解力强的模型来说是精确的行为参数，但对部分模型来说是障碍。
-
-COMPILER_LITE.md 的设计目标是：**功能一比一，术语全替换**。
-
-### 4.1 映射而非删除
-
-白话编译器不是删掉认知策略，而是翻译它。100+ 条术语映射确保行为等价：
-
-| 原版术语 | 白话替换 | 行为描述 |
-|---------|---------|---------|
-| Ni 内倾直觉 | 收敛思考 | 从多信号中提炼核心意图，抓大放小 |
-| Te 外倾思维 | 工程执行 | 目标导向，按流程执行，调用工具 |
-| 敕令 | 核心规则 | — |
-| 六阶战势 | 失败升级机制（6 级） | — |
-| 明链 | 思路展示 | 展示推理过程 |
-| 截教·一线生机 | 最后手段 | 非常规方法 |
-
-### 4.2 MBTI → 行为描述
-
-PI 对 MBTI 的使用不是"人格模拟"，而是"信息处理优先级参数"。白话版把这个抽象层直接翻译为 AI 可执行的动作：
-
-| MBTI 功能 | 白话行为 |
-|-----------|---------|
-| Ni → Te | 先收敛思考，再工程执行 |
-| Ne → Ti | 先发散思考，再逻辑自洽 |
-| Se → Fe | 先实时感知，再共情适配 |
-
-### 4.3 用户可自编译
-
-COMPILER_LITE.md 被设计为用户可直接使用：
-
-```
-步骤 1：将 SKILL.md + COMPILER_LITE.md 发给你的模型
-步骤 2："请按照 COMPILER_LITE.md 的白话映射表，翻译 SKILL.md"
-步骤 3：模型生成最适合自己理解的白话版
-```
-
-模型自己翻译的版本，用的是自己最擅长的表达方式，自然最容易理解。
-
----
-
-## 五、什么时候用 SKILL_LITE.md
-
-| 场景 | 推荐版本 | 原因 |
-|------|---------|------|
-| Claude Opus/Sonnet、GPT-4o、Gemini Pro | SKILL.md | 大模型完全理解认知策略术语 |
-| Claude Haiku、GPT-4o-mini、小参数模型 | SKILL_LITE.md | 白话行为描述更直接 |
-| 上下文窗口 < 32k | SKILL_LITE.md | 更精简，减少 token 占用 |
-| 首次接触 PI 的用户 | SKILL_LITE.md | 入门友好，无需背景知识 |
-| 跨文化团队 | SKILL_LITE.md | 不依赖古典中国哲学背景 |
-| 想要最佳理解度 | 自编译 | 模型用自己的表达方式翻译 |
-
-**关键原则**：LITE 不是"降级版"。它和原版的行为输出完全一致，只是表达方式不同。就像 Java 和 Kotlin 都编译成相同的 JVM 字节码——不同的语法，相同的运行结果。
-
----
-
-## 六、分发管线：从一份源到全平台就绪
+## 四、分发管线：从一份源到全平台就绪
 
 编译只是第一步。PI 的完整管线是四个阶段：
 
 ```mermaid
 flowchart LR
-    P1["P1 迭代<br/>iterate.md"] --> P2["P2 编译<br/>COMPILER.md<br/>COMPILER_LITE.md"]
+    P1["P1 迭代<br/>iterate.md"] --> P2["P2 编译<br/>COMPILER.md"]
     P2 --> P3["P3 分发<br/>DISTRIBUTE.md<br/>PURGE.md"]
     P3 --> P4["P4 翻译<br/>TRANSLATE.md"]
 ```
 
-### 6.1 分发矩阵
+### 4.1 分发矩阵
 
-编译产出 2 个文件（SKILL.md + SKILL_LITE.md），分发阶段将它们部署到 6 个仓库内主平台；Qoder 作为额外适配目标，按 `DISTRIBUTE.md` 单独处理：
+编译产出 SKILL.md，分发阶段将其部署到 6 个仓库内主平台；Qoder 作为额外适配目标，按 `DISTRIBUTE.md` 单独处理：
 
-| 平台 | 原版 | 白话版 | PURGE | 特殊处理 |
-|------|------|--------|-------|---------|
-| skills/ | ✅ | ✅ | Loop 裁剪 | AgentSkills 标准 |
-| claude-code/ | ✅ | ✅ | Loop 裁剪 | AgentSkills frontmatter |
-| cursor/rules/ | ✅ | ✅ | Loop 裁剪 | `alwaysApply: true` |
-| kiro/steering/ | ✅ | ✅ | Loop 裁剪 | `inclusion: auto` |
-| openclaw/ | ✅ | ✅ | Loop 裁剪 | metadata 单行 JSON |
-| copilot-cli/ | ✅ | ✅ | **不裁剪** | 保留 Loop 模式 |
-| qoder（适配目标） | — | — | Loop 裁剪 | 仅保留 name + description |
+| 平台 | 原版 | PURGE | 特殊处理 |
+|------|------|-------|---------|
+| skills/ | ✅ | Loop 裁剪 | AgentSkills 标准 |
+| claude-code/ | ✅ | Loop 裁剪 | AgentSkills frontmatter |
+| cursor/rules/ | ✅ | Loop 裁剪 | `alwaysApply: true` |
+| kiro/steering/ | ✅ | Loop 裁剪 | `inclusion: auto` |
+| openclaw/ | ✅ | Loop 裁剪 | metadata 单行 JSON |
+| copilot-cli/ | ✅ | **不裁剪** | 保留 Loop 模式 |
+| qoder（适配目标） | — | Loop 裁剪 | 仅保留 name + description |
 
-### 6.2 PURGE：平台特化裁剪
+### 4.2 PURGE：平台特化裁剪
 
 为什么有些平台要裁剪 Loop 模式？因为 Loop 模式专为按请求计费平台（Copilot CLI）设计。在按 token 计费的平台（Claude Code）中，Auto 模式的三档自治度已覆盖所有交互需求，Loop 规则属于**死代码**。
 
 PURGE 的设计哲学是：**不修改 SKILL.md 本身**，裁剪在分发阶段执行。SKILL.md 始终保持全量字节码。
 
-### 6.3 翻译：中文 → 英文
+### 4.3 翻译：中文 → 英文
 
 翻译阶段将中文产物翻译为英文，翻译策略不是逐字翻译：
 
@@ -198,11 +136,11 @@ PURGE 的设计哲学是：**不修改 SKILL.md 本身**，裁剪在分发阶段
 | 灵兽名 | 英文动物名 | 🦅鹰 → 🦅Eagle |
 | emoji/标签 | 保留不翻译 | ⚡PI-01 保持不变 |
 
-### 6.4 最终产物矩阵
+### 4.4 最终产物矩阵
 
 ```
-6 个仓库内平台 × 2 版本（原版 + 白话） × 2 语言（中文 + 英文）
-= 最多 24 个仓库内平台文件
+6 个仓库内平台 × 2 语言（中文 + 英文）
+= 最多 12 个仓库内平台文件
 另有 Qoder 适配目标按 DISTRIBUTE.md 单独处理
 ```
 
@@ -210,7 +148,7 @@ PURGE 的设计哲学是：**不修改 SKILL.md 本身**，裁剪在分发阶段
 
 ---
 
-## 七、设计决策与权衡
+## 五、设计决策与权衡
 
 ### 为什么不用一个文件？
 
@@ -224,7 +162,7 @@ PURGE 的设计哲学是：**不修改 SKILL.md 本身**，裁剪在分发阶段
 
 它们不是装饰。"以正合以奇胜"编码了精确的行为语义——"常规方案失效时，强制切换到完全不同的解法"。这比说"try a different approach"更精准，因为"奇"在兵法语境中意味着**出其不意的侧击**，而非"稍微不同"。
 
-SKILL_META.md 保留这些引用作为设计根基，COMPILER.md 负责在编译时将其剥离（因为行为指令本身已经承载了这层语义），COMPILER_LITE.md 负责将术语翻译为白话。三层各司其职。
+SKILL_META.md 保留这些引用作为设计根基，COMPILER.md 负责在编译时将其剥离（因为行为指令本身已经承载了这层语义）。两层各司其职。
 
 ### 为什么编译器本身是 Markdown？
 
@@ -232,14 +170,13 @@ SKILL_META.md 保留这些引用作为设计根基，COMPILER.md 负责在编译
 
 ---
 
-## 八、总结
+## 六、总结
 
 PI 的编译与分发系统本质上在做一件事：**让设计意图和运行行为各归其位**。
 
 - **SKILL_META.md** 是给人看的完整设计，记录"为什么这样设计"
 - **COMPILER.md** 是确定性的编译规则，确保"编译后行为不变"
 - **SKILL.md** 是给 AI 用的纯行为指令，每一行都改变 AI 的下一个 token
-- **COMPILER_LITE.md** 是术语翻译层，确保"不同背景的模型都能理解"
 - **DISTRIBUTE.md + PURGE.md** 是分发管线，确保"仓库内 6 个主平台行为一致，并与 Qoder 适配规则对齐"
 - **TRANSLATE.md** 是翻译层，确保"中英文行为等价"
 

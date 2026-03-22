@@ -2,3 +2,6 @@
 .claude/
 *.iml
 .DS_Store
+nopua/
+__pycache__/
+*.pyc

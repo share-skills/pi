@@ -61,12 +61,12 @@
 
 ### Phase 2: 编译（P2）
 
-**目标**：从 SKILL_META.md 编译生成 SKILL.md（原版）+ SKILL_LITE.md（白话版）。
+**目标**：从 SKILL_META.md 编译生成 SKILL.md。
 
 **执行**：
 
 ```
-步骤 2.1  【原版编译】按 COMPILER.md 全局剥离规则，从 SKILL_META.md 生成精简版内容：
+步骤 2.1  按 COMPILER.md 全局剥离规则，从 SKILL_META.md 生成精简版内容：
           - 删除：章节开头古典引语、经典列、思想源列、示例块、本质段、
                   为什么段、用户干预点/联动说明段、尾部哲理签名
           - 保留：行为指令、认知策略（MBTI/认知阵/认知栈/认知流管线）、
@@ -78,29 +78,17 @@
           - Ch8.8 共振五式：最大压缩区（删本质段/示例/为什么段，保留格式+触发）
 
 步骤 2.2  将编译结果写入 SKILL.md（保留原 frontmatter 不变）
-
-步骤 2.3  【白话版编译】按 COMPILER_LITE.md 规则，以 SKILL.md 为基础生成白话版内容：
-          - 术语翻译：9 大映射表，100+ 古典/军事/哲学/MBTI 术语 → 白话文
-          - MBTI→白话行为描述（不删除，翻译为收敛/发散/工程/自洽/共情等）
-          - 十二灵兽→白话精神+困境信号（不删除，翻译为直白描述）
-          - 共振五式→全部保留，术语替换（明链→思路展示 等）
-          - 结构精简：9 章 → 7 个扁平章节（删 Ch2+Ch9，同 COMPILER.md）
-          - Coach 巡检协议→保留，术语替换
-          - §X.Y 交叉引用→内联到上下文
-          - PURGE-01 照做（Loop 按平台裁剪）
-
-步骤 2.4  将白话版写入 SKILL_LITE.md
 ```
 
 **校验门禁 2**（逐项检查，全部通过才继续）：
 
 ```
-步骤 2.5  【原版校验】行为指令完整性检查：
+步骤 2.3  行为指令完整性检查：
           - 逐条比对 SKILL_META.md 中的祈使句，确认 SKILL.md 中存在
           - 重点检查：五敕令、反模式十戒、快速决策表、编程四令、
             调试六步、九令洞鉴、交付六令、自检三令
 
-步骤 2.6  格式模板完整性检查：
+步骤 2.4  格式模板完整性检查：
           - 场景公示格式 `🧠 PI · {场景名} · ...`
           - 触发通知格式 `🔔 PI · {阶位} · ...`
           - 明链三档格式（🏊🏻/🏋️/🐲）
@@ -110,47 +98,43 @@
           - 明约格式 `📋 交付确认 ...`
           - 已试策略簿格式 `📝 已试: ...`
           - 快照格式 `🔄 快照: ...`
-          - 善始善终五项输出
+          - 善始善终六项输出
           - 恢复协议格式 `🔄 PI · 恢复 · ...`
           - 三省格式 `📜 三省: ...`
           - MMR commit 格式
           - PI·战报格式
 
-步骤 2.7  触发条件完整性检查：
+步骤 2.5  触发条件完整性检查：
           - 每个格式模板的触发条件在 SKILL.md 中有定义
           - 战势各阶触发（失败次数→阶位）清晰
           - 难度三档判定条件完整
 
-步骤 2.8  统计 SKILL.md 行数，与上一版本对比
+步骤 2.6  v23 增强能力校验（VALIDATOR.md 第 9 检）：
+          - [ ] A1 反偏差验证：证据门中存在"只看做了什么，不回顾推理过程"
+          - [ ] A2 信息分级：调试七步区域存在临时/持久信息分级指令
+          - [ ] A3 反偏差审查+子Agent隔离：审码协议含角色切换+事实优先+子Agent指令
+          - [ ] A4 查标·定锚：启动三查·查标含量化锚点（测试通过数/编译错误数等）
+          - [ ] A6 经验沉淀：善始善终为 6 项（含💎经验沉淀）
+          - [ ] A8 方案对比：🦈深搜阶含"≥2个本质不同方案逐对比较"
+          > 逐项在编译产物中搜索关键词验证。任一缺失 → 从 SKILL_META.md 补回。
 
-步骤 2.9  【白话版校验】按 COMPILER_LITE.md 编译校验清单（8项）：
-          - 行为完全覆盖：LITE 版覆盖 SKILL.md 的全部行为指令（一条不少）
-          - 术语零残留：不出现白话映射表左列的术语原文
-          - § 引用零残留：不出现 §X.Y 格式的交叉引用
-          - 独立可读：不需要阅读任何其他文件即可理解全部内容
-          - MBTI 零残留：不出现 MBTI/Ni/Te/Fi/Se 等术语（但保留白话行为描述）
-          - 功能等价：原版每个格式模板、触发条件均有白话等价物
-          - emoji 保留：保留 emoji 用于视觉分区（含灵兽 emoji）
-          - PURGE 兼容：LITE 版包含 Loop 规则，可被 PURGE-01 正常裁剪
-
-步骤 2.10 统计 SKILL_LITE.md 行数
+步骤 2.7  统计 SKILL.md 行数，与上一版本对比
 ```
 
-> ❌ 任一检查失败 → 定位丢失内容，从 SKILL_META.md 补回，重新执行 2.3-2.5。
+> ❌ 任一检查失败 → 定位丢失内容，从 SKILL_META.md 补回，重新执行 2.1-2.2。
 >
-> ✅ 全部通过 → 输出：`✅ P2 编译完成。SKILL.md {行数}行 + SKILL_LITE.md {行数}行。行为指令/格式模板/触发条件完整。白话版校验通过。`
+> ✅ 全部通过 → 输出：`✅ P2 编译完成。SKILL.md {行数}行。行为指令/格式模板/触发条件完整。`
 
 ---
 
 ### Phase 3: 分发（P3）
 
-**目标**：SKILL.md + SKILL_LITE.md → 6 平台文件（双版本）+ 渐进式版本。
+**目标**：SKILL.md → 6 平台文件 + 渐进式版本。
 
 **执行**：
 
 ```
 步骤 3.1  提取 SKILL.md 的 body（frontmatter 以下内容）
-步骤 3.1b 提取 SKILL_LITE.md 的 body
 
 步骤 3.2  执行 PURGE-01 裁剪（生成 purged body）：
           - 删除 Loop 模式规则（交互模式表 Loop 行、Loop 规则7条、
@@ -158,8 +142,6 @@
           - 调整：模式加载矩阵 Loop 列引用、渐进式交付 Loop 引用、
             循环交互 Loop 标注
           - 校验裁剪后无悬空 Loop 引用
-
-步骤 3.2b 对 SKILL_LITE.md body 执行同样的 PURGE-01 裁剪（生成 purged LITE body）
 
 步骤 3.3  分发 purged body 到 5 个平台（保留各自 frontmatter）：
           3.3.1  读取 skills/pi/SKILL.md → 替换 body → 写回
@@ -172,21 +154,12 @@
           3.4.1  确认 copilot-cli/pi/ 目录存在（不存在则创建）
           3.4.2  读取或创建 copilot-cli/pi/SKILL.md → 写入完整 body
 
-步骤 3.5  分发已裁剪的白话版到 5 个平台（使用 3.2b 产出的 purged LITE body）：
-          3.5.1  写入 skills/pi/SKILL_LITE.md
-          3.5.2  写入 claude-code/pi/SKILL_LITE.md
-          3.5.3  写入 cursor/rules/pi-lite.mdc（使用 cursor LITE frontmatter）
-          3.5.4  写入 kiro/steering/pi-lite.md（使用 kiro LITE frontmatter）
-          3.5.5  写入 openclaw/pi/SKILL_LITE.md
-          3.5.6  写入 copilot-cli/pi/SKILL_LITE.md（使用完整 LITE body，不裁剪）
-
-步骤 3.6  同步 description：
+步骤 3.5  同步 description：
           - 提取 SKILL_META.md 的 description
-          - 确认所有原版平台文件的 description 与之一致
-          - LITE 版使用白话版 description（从 COMPILER_LITE.md 规则生成）
+          - 确认所有平台文件的 description 与之一致
           - 如不一致，更新为最新版
 
-步骤 3.6b 同步可视化发布配套物：
+步骤 3.5b 同步可视化发布配套物：
           - 确认 `install.sh` 会放置 `~/.pi/visualize.sh` 启动器
           - 确认 `scripts/setup-standalone-visualize.sh` 可独立工作，且与公开仓库 URL 一致
           - 确认 `cursor/rules/pi-visualize.mdc` 随安装链路一起分发
@@ -196,35 +169,31 @@
 **校验门禁 3**：
 
 ```
-步骤 3.7  Body 一致性校验：
+步骤 3.6  Body 一致性校验：
           - 5 个 purged 平台文件 body 互相一致
           - copilot-cli body 与 SKILL.md body 一致
-          - 6 个 LITE 平台文件 body 互相一致
 
-步骤 3.8  Description 一致性校验：
-          - 所有原版平台文件 description 字符级一致
-          - 所有 LITE 平台文件 description 字符级一致
+步骤 3.7  Description 一致性校验：
+          - 所有平台文件 description 字符级一致
 
-步骤 3.9  Frontmatter 合规校验：
+步骤 3.8  Frontmatter 合规校验：
           - skills/pi: name/description/license/metadata 格式正确
           - claude-code/pi: 同上
           - cursor/rules/pi: alwaysApply: true 存在
           - kiro/steering/pi: inclusion: auto 存在
           - openclaw/pi: metadata 单行 JSON, always: true 存在
           - copilot-cli/pi: AgentSkills 标准格式
-          - LITE 版各平台 frontmatter 同样合规（name: pi-lite）
 
-步骤 3.10 PURGE 无悬空校验：
+步骤 3.9  PURGE 无悬空校验：
           - 在 purged 文件中搜索 "Loop" 关键词
           - 确认无残留的 Loop 引用（允许 Auto 模式中的合理提及）
 
-步骤 3.11 Description 内容校验：
+步骤 3.10 Description 内容校验：
           - description 中提到的概念在 SKILL.md 中均有定义
           - 已删除的章节（Ch2/Ch9）不应在 description 中被引用
           - 中文/英文 description 均 ≤ 1024 字符
-          - LITE 版 description 中提到的概念在 SKILL_LITE.md 中均有定义
 
-步骤 3.12 可视化发布链路校验：
+步骤 3.11 可视化发布链路校验：
           - `install.sh` 中存在 visualizer launcher 安装步骤
           - `scripts/setup-standalone-visualize.sh` 的 raw URL / repo URL 与公开安装仓库一致
           - Cursor 安装路径包含 `pi-visualize.mdc`
@@ -233,7 +202,7 @@
 
 > ❌ 任一失败 → 修复后重新执行对应步骤。
 >
-> ✅ 全部通过 → 输出：`✅ P3 分发完成。6 平台×2 版本（原版+白话版）已同步。PURGE-01 已执行。Description 一致。`
+> ✅ 全部通过 → 输出：`✅ P3 分发完成。6 平台已同步。PURGE-01 已执行。Description 一致。`
 
 ---
 
@@ -251,11 +220,6 @@
           - 拼音+释义：核心概念首次出现（道 Dao、势 Shi、截教 Jiejiao）
           - 灵兽名翻译：鹰 Eagle、狼 Wolf、狮 Lion 等
 
-步骤 4.1b 翻译 SKILL_LITE.md body → 英文版 LITE body
-          翻译规则：
-          - 同上，但 LITE 本身已无古典术语，翻译更直接
-          - 保留不翻译：emoji、标签代号、技术术语
-
 步骤 4.2  分发英文版到各平台：
           4.2.1  skills/pi-en/SKILL.md（purged body 英文版）
           4.2.2  claude-code/pi-en/SKILL.md（purged body 英文版）-- 如果目录存在
@@ -263,14 +227,6 @@
           4.2.4  cursor/rules/pi-en.mdc（purged body 英文版）
           4.2.5  kiro/steering/pi-en.md（purged body 英文版）
           4.2.6  openclaw/pi-en/SKILL.md（purged body 英文版）-- 如果目录存在
-
-步骤 4.2b 分发英文 LITE 版到各平台：
-          4.2b.1 skills/pi-en/SKILL_LITE.md
-          4.2b.2 claude-code/pi-en/SKILL_LITE.md -- 如果目录存在
-          4.2b.3 copilot-cli/pi-en/SKILL_LITE.md -- 如果目录存在
-          4.2b.4 cursor/rules/pi-en-lite.mdc
-          4.2b.5 kiro/steering/pi-en-lite.md
-          4.2b.6 openclaw/pi-en/SKILL_LITE.md -- 如果目录存在
 
 步骤 4.3  翻译 agents：
           4.3.1  agents/pi-coach.md → agents/pi-coach-en.md
@@ -350,10 +306,9 @@
           ├─────────────────────────────────────┤
           │ 版本:     {version}                  │
           │ SKILL_META: {行数} 行（迭代真源）      │
-          │ SKILL.md:   {行数} 行（原版精简）      │
-          │ SKILL_LITE: {行数} 行（白话版）        │
-          │ 中文平台:   {N} 个文件×2版本已同步      │
-          │ 英文平台:   {N} 个文件×2版本已同步      │
+          │ SKILL.md:   {行数} 行（编译产物）      │
+          │ 中文平台:   {N} 个文件已同步            │
+          │ 英文平台:   {N} 个文件已同步            │
           │ PURGE:     {规则} 已执行               │
           │ 渐进式:    {已执行/跳过}               │
           ├─────────────────────────────────────┤
