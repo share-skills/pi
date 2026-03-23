@@ -71,11 +71,11 @@ class TestAPIServer:
     def test_created_field_type(self):
         """Check the type of the 'created' field in ChatCompletionResponse."""
         from src.inference.api_server import ChatCompletionResponse, ChatCompletionChoice, ChatMessage
-        from datetime import datetime
+        import time
 
         response = ChatCompletionResponse(
             id="chatcmpl-test",
-            created=datetime.now().isoformat(),
+            created=int(time.time()),
             model="guwen-llm-7b-chat",
             choices=[
                 ChatCompletionChoice(
@@ -85,7 +85,7 @@ class TestAPIServer:
             ],
         )
 
-        assert isinstance(response.created, str)
+        assert isinstance(response.created, int)
 
     def test_response_fields(self):
         """Check fields present in ChatCompletionResponse."""
@@ -96,7 +96,7 @@ class TestAPIServer:
         assert "id" in fields
         assert "choices" in fields
         assert "model" in fields
-        assert "usage" not in fields
+        assert "usage" in fields  # usage field is now present for OpenAI compatibility
 
     def test_api_key_logged_at_startup(self, capsys):
         """Verify API key logging behavior at startup."""

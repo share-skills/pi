@@ -5,11 +5,9 @@ PI 分发器 v2：读取平台 _frontmatter + body 拼接
 
 variant:
   cn        → 中文原版
-  cn-lite   → 中文白话版
   en        → 英文原版
-  en-lite   → 英文白话版
   prog      → 渐进式中文版
-  prog-en   → 渐进式英文版（预留）
+  prog-en   → 渐进式英文版
 
 工作流：
   1. 从 source_file 提取 frontmatter 元数据 + body
@@ -20,7 +18,7 @@ variant:
 设计原则：
   - body 只生成一次，frontmatter 只是 patch
   - 各平台 _frontmatter 文件独立维护，脚本只做读取+填充+拼接
-  - SKILL.md 和 SKILL_LITE.md 分发路径严格分离
+  - SKILL.md 分发路径严格按 variant 分离
 """
 
 import sys
@@ -51,18 +49,6 @@ VARIANTS = {
             ("copilot-cli/pi",         "copilot-cli/pi/SKILL.md",         False),
         ],
     },
-    "cn-lite": {
-        "name": "pi-lite",
-        "lang": "cn",
-        "targets": [
-            ("skills/pi",              "skills/pi/SKILL_LITE.md",         True),
-            ("claude-code/pi",         "claude-code/pi/SKILL_LITE.md",    True),
-            ("cursor/rules",           "cursor/rules/pi-lite.mdc",        True),
-            ("kiro/steering",          "kiro/steering/pi-lite.md",        True),
-            ("openclaw/pi",            "openclaw/pi/SKILL_LITE.md",       True),
-            ("copilot-cli/pi",         "copilot-cli/pi/SKILL_LITE.md",    False),
-        ],
-    },
     "en": {
         "name": "pi-en",
         "lang": "en",
@@ -73,18 +59,6 @@ VARIANTS = {
             ("kiro/steering",          "kiro/steering/pi-en.md",          True),
             ("openclaw/pi-en",         "openclaw/pi-en/SKILL.md",         True),
             ("copilot-cli/pi-en",      "copilot-cli/pi-en/SKILL.md",      False),
-        ],
-    },
-    "en-lite": {
-        "name": "pi-en-lite",
-        "lang": "en",
-        "targets": [
-            ("skills/pi-en",           "skills/pi-en/SKILL_LITE.md",      True),
-            ("claude-code/pi-en",      "claude-code/pi-en/SKILL_LITE.md", True),
-            ("cursor/rules",           "cursor/rules/pi-en-lite.mdc",     True),
-            ("kiro/steering",          "kiro/steering/pi-en-lite.md",     True),
-            ("openclaw/pi-en",         "openclaw/pi-en/SKILL_LITE.md",    True),
-            ("copilot-cli/pi-en",      "copilot-cli/pi-en/SKILL_LITE.md", False),
         ],
     },
     "prog": {
@@ -99,18 +73,6 @@ VARIANTS = {
             ("openclaw/pi-progressive",         "openclaw/pi-progressive/SKILL.md",         True),
         ],
     },
-    "prog-lite": {
-        "name": "pi-progressive",
-        "lang": "cn",
-        "progressive": True,
-        "refs_source": "skills/pi-progressive/references",
-        "targets": [
-            ("skills/pi-progressive",          "skills/pi-progressive/SKILL_LITE.md",      True),
-            ("claude-code/pi-progressive",      "claude-code/pi-progressive/SKILL_LITE.md", True),
-            ("copilot-cli/pi-progressive",      "copilot-cli/pi-progressive/SKILL_LITE.md", False),
-            ("openclaw/pi-progressive",         "openclaw/pi-progressive/SKILL_LITE.md",    True),
-        ],
-    },
     "prog-en": {
         "name": "pi-en-progressive",
         "lang": "en",
@@ -121,18 +83,6 @@ VARIANTS = {
             ("claude-code/pi-en-progressive",    "claude-code/pi-en-progressive/SKILL.md",   True),
             ("copilot-cli/pi-en-progressive",    "copilot-cli/pi-en-progressive/SKILL.md",   False),
             ("openclaw/pi-en-progressive",       "openclaw/pi-en-progressive/SKILL.md",      True),
-        ],
-    },
-    "prog-en-lite": {
-        "name": "pi-en-progressive",
-        "lang": "en",
-        "progressive": True,
-        "refs_source": "skills/pi-en-progressive/references",
-        "targets": [
-            ("skills/pi-en-progressive",        "skills/pi-en-progressive/SKILL_LITE.md",   True),
-            ("claude-code/pi-en-progressive",    "claude-code/pi-en-progressive/SKILL_LITE.md", True),
-            ("copilot-cli/pi-en-progressive",    "copilot-cli/pi-en-progressive/SKILL_LITE.md", False),
-            ("openclaw/pi-en-progressive",       "openclaw/pi-en-progressive/SKILL_LITE.md", True),
         ],
     },
 }

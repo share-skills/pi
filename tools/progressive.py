@@ -251,7 +251,7 @@ def progressive_split(input_file: str, output_dir: str, name_override: str = Non
     else:
         core_content = core_body
 
-    # 检测输入文件名以确定输出文件名 (SKILL.md or SKILL_LITE.md)
+    # 保持输入文件名作为输出文件名
     output_filename = input_path.name
     core_file = output_path / output_filename
     with open(core_file, 'w', encoding='utf-8') as f:

@@ -54,6 +54,10 @@ METRICS = {
         "extract": lambda r: len(r.get("tools_used", [])),
         "label": "Tools Used",
     },
+    "duration": {
+        "extract": lambda r: round(r.get("duration_seconds", 0), 1),
+        "label": "Duration (s)",
+    },
 }
 
 

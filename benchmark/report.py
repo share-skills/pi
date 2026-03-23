@@ -189,10 +189,14 @@ def aggregate_results(results: list[dict]) -> dict:
         for mk in METRICS:
             v1 = condition_avgs[c1][mk]["mean"]
             v2 = condition_avgs[c2][mk]["mean"]
+            higher_better = METRICS[mk].get("higher_better", True)
             if v2 != 0:
                 pct = round((v1 - v2) / v2 * 100, 1)
+                # For lower-is-better metrics, flip the sign so positive = improvement
+                if not higher_better:
+                    pct = -pct
             elif v1 != 0:
-                pct = float("inf")
+                pct = float("inf") if higher_better else float("-inf")
             else:
                 pct = 0
             improvements[mk] = pct
@@ -302,6 +306,7 @@ def aggregate_results(results: list[dict]) -> dict:
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "metric_labels": {k: v["label"] for k, v in METRICS.items()},
         "metric_icons": {k: v["icon"] for k, v in METRICS.items()},
+        "metric_higher_better": {k: v.get("higher_better", True) for k, v in METRICS.items()},
     }
 
 

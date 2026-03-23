@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benchmark — PI Wisdom-in-Action</title>
+<meta name="description" content="PI vs PUA vs NoPUA controlled experiments.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="logo">PI</span>
+      <span class="en">Wisdom-in-Action</span><span class="zh">智行合一</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html"><span class="en">Home</span><span class="zh">首页</span></a>
+      <a href="benchmark.html" class="active">Benchmark</a>
+      <a href="research.html"><span class="en">Research</span><span class="zh">研究</span></a>
+      <a href="https://github.com/share-skills/pi" target="_blank">GitHub</a>
+      <button class="lang-toggle">中文</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <section class="hero" style="padding: 3rem 0;">
+    <h1>Benchmark Report</h1>
+    <p class="tagline">
+      <span class="en">PI vs PUA vs NoPUA Controlled Experiments</span>
+      <span class="zh">PI vs PUA vs NoPUA 对照实验</span>
+    </p>
+    <p class="quote" id="test-summary"></p>
+  </section>
+
+  <!-- Methodology -->
+  <section>
+    <h2 class="section-title">
+      <span class="en">Methodology</span><span class="zh">实验方法</span>
+    </h2>
+    <p class="section-sub">
+      <span class="en">Controlled variable method: same model, same project, same scenarios — only the system prompt changes</span>
+      <span class="zh">控制变量法：相同模型、相同项目、相同场景，仅改变 system prompt</span>
+    </p>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3><span class="en">Conditions</span><span class="zh">实验条件</span></h3>
+        <p><span class="tag tag-blue">PI</span> <span class="en">PI SKILL.md full cognitive framework</span><span class="zh">PI SKILL.md 完整认知框架</span><br>
+        <span class="tag tag-red">PUA</span> <span class="en">PUA SKILL pressure escalation protocol</span><span class="zh">PUA SKILL 压力升级协议</span><br>
+        <span class="tag tag-green">NoPUA</span> <span class="en">No Skill — pure model baseline</span><span class="zh">无任何 Skill 的纯模型基线</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="en">Test Project</span><span class="zh">测试项目</span></h3>
+        <p><span class="en">Multi-module Python ML Pipeline project with OCR, RAG, training, and inference components. Pre-embedded real bugs (import errors, regex catastrophic backtracking, connection timeouts, etc.).</span>
+        <span class="zh">多模块 Python ML Pipeline 项目，包含 OCR、RAG、训练、推理等组件。预埋真实 bug（import 错误、正则灾难性回溯、连接超时等）。</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="en">Scoring Dimensions</span><span class="zh">评分维度</span></h3>
+        <p><strong>Issues</strong> <span class="en">Issues found</span><span class="zh">发现问题数</span> &middot;
+        <strong>Hidden</strong> <span class="en">Hidden issues</span><span class="zh">隐藏问题数</span> &middot;
+        <strong>Steps</strong> <span class="en">Debug steps</span><span class="zh">调试步骤</span> &middot;
+        <strong>Tools</strong> <span class="en">Tools used</span><span class="zh">工具使用</span> &middot;
+        <strong>Verify%</strong> <span class="en">Verification rate</span><span class="zh">验证交付率</span> &middot;
+        <strong>Duration</strong> <span class="en">Time cost (lower is better)</span><span class="zh">耗时（越低越好）</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Composite Score (data-driven) -->
+  <section>
+    <h2 class="section-title">
+      <span class="en">Composite Score</span><span class="zh">综合得分</span>
+    </h2>
+    <p class="section-sub" id="composite-formula"></p>
+    <div class="stats-row" id="composite-stats"></div>
+    <div class="chart-container">
+      <h3 style="margin-bottom: 1.5rem;">
+        <span class="en">Composite Score</span><span class="zh">综合得分</span>
+      </h3>
+      <div class="bar-group" id="composite-bars"></div>
+    </div>
+  </section>
+
+  <!-- Per-Metric (data-driven) -->
+  <section>
+    <h2 class="section-title">
+      <span class="en">Per-Metric Comparison</span><span class="zh">分项指标对比</span>
+    </h2>
+    <div id="metric-charts"></div>
+  </section>
+
+  <!-- Per-Scenario (data-driven) -->
+  <section>
+    <h2 class="section-title">
+      <span class="en">Per-Scenario Results</span><span class="zh">逐场景结果</span>
+    </h2>
+    <p class="section-sub">
+      <span class="en">Average of 2 runs per scenario</span><span class="zh">每场景取 2 轮平均值</span>
+    </p>
+    <div class="table-wrap" id="scenario-table"></div>
+
+    <div class="callout">
+      <span class="en"><strong>Key Finding</strong>: PI's advantage is most significant in <strong>hidden issue discovery</strong> (<span id="hidden-pct-en"></span> vs PUA). This is enabled by PI's proactive investigation directive — after resolving the primary issue, PI actively scans for related issues, predicts associated risks, and raises early warnings.</span>
+      <span class="zh"><strong>关键发现</strong>：PI 在 <strong>隐藏问题发现</strong>上的优势最为显著（<span id="hidden-pct-zh"></span> vs PUA）。这得益于 PI 的"致人术"——完成主问题后主动排查同类问题、关联预判、风险预警。</span>
+    </div>
+  </section>
+
+  <!-- Key Insights -->
+  <section>
+    <h2 class="section-title">
+      <span class="en">Key Insights</span><span class="zh">核心发现</span>
+    </h2>
+    <div class="card-grid" id="insights-cards"></div>
+  </section>
+
+  <footer class="footer">
+    <p>PI Benchmark &mdash;
+      <span class="en">Data: <span id="footer-tests-en"></span> controlled experiments &middot; Same model backend &middot; Controlled variable method</span>
+      <span class="zh">数据来源：<span id="footer-tests-zh"></span> 次对照实验 &middot; 同一模型后端 &middot; 控制变量法</span>
+      &mdash; <a href="https://github.com/share-skills/pi">GitHub</a>
+    </p>
+  </footer>
+</div>
+
+<script src="js/lang.js"></script>
+<script src="js/benchmark.js"></script>
+</body>
+</html>

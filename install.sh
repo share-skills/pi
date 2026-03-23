@@ -106,8 +106,8 @@ if [[ "$LANG_CODE" == "zh" ]]; then
   LANG_OPT_1="中文"
   LANG_OPT_2="英文"
   LANG_OPT_3="双语（中文 + 英文）"
-  EDITION_OPT_1="原版（适合大模型：Claude/GPT-4o/Gemini Pro）"
-  EDITION_OPT_2="白话版（适合小模型：Haiku/GPT-4o-mini/开源模型）"
+  EDITION_OPT_1="原版（完整认知框架，适合大模型）"
+  EDITION_OPT_2="渐进式（轻量引导+按需加载，适合上下文敏感场景）"
   EDITION_OPT_3="两个都装"
   COACH_OPT_Y="是，安装 Teammate + Coach"
   COACH_OPT_N="否，跳过"
@@ -131,8 +131,8 @@ else
   LANG_OPT_1="Chinese"
   LANG_OPT_2="English"
   LANG_OPT_3="Both (Chinese + English)"
-  EDITION_OPT_1="Original (for large models: Claude/GPT-4o/Gemini Pro)"
-  EDITION_OPT_2="Lite (for small models: Haiku/GPT-4o-mini/open-source)"
+  EDITION_OPT_1="Original (full cognitive framework)"
+  EDITION_OPT_2="Progressive (lightweight bootstrap + on-demand loading)"
   EDITION_OPT_3="Both"
   COACH_OPT_Y="Yes, install Teammate + Coach"
   COACH_OPT_N="No, skip"
@@ -155,15 +155,19 @@ _C_YELLOW='\033[33m'
 # Read a single keypress, handling escape sequences for arrow keys
 _read_key() {
   local key
-  IFS= read -rsn1 key 2>/dev/null || true
+  IFS= read -rsn1 key < /dev/tty 2>/dev/null || true
   if [[ "$key" == $'\x1b' ]]; then
     local seq
-    IFS= read -rsn1 -t 0.1 seq 2>/dev/null || true
+    # Bash 3.2 (macOS default) truncates -t 0.1 to -t 0 (immediate timeout),
+    # so we use -t 1 to reliably capture arrow key escape sequences.
+    IFS= read -rsn1 -t 1 seq < /dev/tty 2>/dev/null || true
     if [[ "$seq" == "[" ]]; then
-      IFS= read -rsn1 -t 0.1 seq 2>/dev/null || true
+      IFS= read -rsn1 -t 1 seq < /dev/tty 2>/dev/null || true
       case "$seq" in
         A) echo "UP" ;;
         B) echo "DOWN" ;;
+        C) echo "RIGHT" ;;
+        D) echo "LEFT" ;;
         *) echo "OTHER" ;;
       esac
     else
@@ -402,43 +406,67 @@ install_skill_to_dir() {
   # Clean old files before copying to ensure overwrite
   if [[ "$lang" == "1" || "$lang" == "3" ]]; then
     rm -rf "${target_dir:?}/$cn_name"
+    [[ "$edition" == "3" ]] && rm -rf "${target_dir:?}/${cn_name}-progressive"
   fi
   if [[ "$lang" == "2" || "$lang" == "3" ]]; then
     rm -rf "${target_dir:?}/$en_name"
+    [[ "$edition" == "3" ]] && rm -rf "${target_dir:?}/${en_name}-progressive"
   fi
 
   if [[ "$lang" == "1" || "$lang" == "3" ]]; then
-    if [[ -f "$source_dir/$cn_name/SKILL.md" ]]; then
-      mkdir -p "$target_dir/$cn_name"
-      if [[ "$edition" == "1" || "$edition" == "3" ]]; then
+    if [[ "$edition" == "1" || "$edition" == "3" ]]; then
+      # Original
+      if [[ -f "$source_dir/$cn_name/SKILL.md" ]]; then
+        mkdir -p "$target_dir/$cn_name"
         cp "$source_dir/$cn_name/SKILL.md" "$target_dir/$cn_name/SKILL.md"
       fi
-      if [[ "$edition" == "2" ]]; then
-        if [[ -f "$source_dir/$cn_name/SKILL_LITE.md" ]]; then
-          cp "$source_dir/$cn_name/SKILL_LITE.md" "$target_dir/$cn_name/SKILL.md"
+    fi
+    if [[ "$edition" == "2" ]]; then
+      # Progressive only → install as main skill
+      if [[ -f "$source_dir/${cn_name}-progressive/SKILL.md" ]]; then
+        mkdir -p "$target_dir/$cn_name"
+        cp "$source_dir/${cn_name}-progressive/SKILL.md" "$target_dir/$cn_name/SKILL.md"
+        if [[ -d "$source_dir/${cn_name}-progressive/references" ]]; then
+          cp -r "$source_dir/${cn_name}-progressive/references" "$target_dir/$cn_name/references"
         fi
       fi
-      if [[ "$edition" == "3" ]]; then
-        if [[ -f "$source_dir/$cn_name/SKILL_LITE.md" ]]; then
-          cp "$source_dir/$cn_name/SKILL_LITE.md" "$target_dir/$cn_name/SKILL_LITE.md"
+    fi
+    if [[ "$edition" == "3" ]]; then
+      # Both → progressive goes to separate dir
+      if [[ -f "$source_dir/${cn_name}-progressive/SKILL.md" ]]; then
+        mkdir -p "$target_dir/${cn_name}-progressive"
+        cp "$source_dir/${cn_name}-progressive/SKILL.md" "$target_dir/${cn_name}-progressive/SKILL.md"
+        if [[ -d "$source_dir/${cn_name}-progressive/references" ]]; then
+          cp -r "$source_dir/${cn_name}-progressive/references" "$target_dir/${cn_name}-progressive/references"
         fi
       fi
     fi
   fi
   if [[ "$lang" == "2" || "$lang" == "3" ]]; then
-    if [[ -f "$source_dir/$en_name/SKILL.md" ]]; then
-      mkdir -p "$target_dir/$en_name"
-      if [[ "$edition" == "1" || "$edition" == "3" ]]; then
+    if [[ "$edition" == "1" || "$edition" == "3" ]]; then
+      # Original
+      if [[ -f "$source_dir/$en_name/SKILL.md" ]]; then
+        mkdir -p "$target_dir/$en_name"
         cp "$source_dir/$en_name/SKILL.md" "$target_dir/$en_name/SKILL.md"
       fi
-      if [[ "$edition" == "2" ]]; then
-        if [[ -f "$source_dir/$en_name/SKILL_LITE.md" ]]; then
-          cp "$source_dir/$en_name/SKILL_LITE.md" "$target_dir/$en_name/SKILL.md"
+    fi
+    if [[ "$edition" == "2" ]]; then
+      # Progressive only → install as main skill
+      if [[ -f "$source_dir/${en_name}-progressive/SKILL.md" ]]; then
+        mkdir -p "$target_dir/$en_name"
+        cp "$source_dir/${en_name}-progressive/SKILL.md" "$target_dir/$en_name/SKILL.md"
+        if [[ -d "$source_dir/${en_name}-progressive/references" ]]; then
+          cp -r "$source_dir/${en_name}-progressive/references" "$target_dir/$en_name/references"
         fi
       fi
-      if [[ "$edition" == "3" ]]; then
-        if [[ -f "$source_dir/$en_name/SKILL_LITE.md" ]]; then
-          cp "$source_dir/$en_name/SKILL_LITE.md" "$target_dir/$en_name/SKILL_LITE.md"
+    fi
+    if [[ "$edition" == "3" ]]; then
+      # Both → progressive goes to separate dir
+      if [[ -f "$source_dir/${en_name}-progressive/SKILL.md" ]]; then
+        mkdir -p "$target_dir/${en_name}-progressive"
+        cp "$source_dir/${en_name}-progressive/SKILL.md" "$target_dir/${en_name}-progressive/SKILL.md"
+        if [[ -d "$source_dir/${en_name}-progressive/references" ]]; then
+          cp -r "$source_dir/${en_name}-progressive/references" "$target_dir/${en_name}-progressive/references"
         fi
       fi
     fi
@@ -532,27 +560,47 @@ install_claude_code() {
   cp -r "$SCRIPT_DIR/.claude-plugin" "$target/.claude-plugin" 2>/dev/null || true
   cp "$SCRIPT_DIR/SKILL.md" "$target/SKILL.md" 2>/dev/null || true
   if [[ "$lang" == "1" || "$lang" == "3" ]]; then
-    mkdir -p "$target/skills/pi"
     if [[ "$edition" == "1" || "$edition" == "3" ]]; then
+      mkdir -p "$target/skills/pi"
       cp "$SCRIPT_DIR/claude-code/pi/SKILL.md" "$target/skills/pi/SKILL.md" 2>/dev/null || true
     fi
     if [[ "$edition" == "2" ]]; then
-      cp "$SCRIPT_DIR/claude-code/pi/SKILL_LITE.md" "$target/skills/pi/SKILL.md" 2>/dev/null || true
+      # Progressive only → install as main skill
+      mkdir -p "$target/skills/pi"
+      cp "$SCRIPT_DIR/claude-code/pi-progressive/SKILL.md" "$target/skills/pi/SKILL.md" 2>/dev/null || true
+      if [[ -d "$SCRIPT_DIR/claude-code/pi-progressive/references" ]]; then
+        cp -r "$SCRIPT_DIR/claude-code/pi-progressive/references" "$target/skills/pi/references" 2>/dev/null || true
+      fi
     fi
     if [[ "$edition" == "3" ]]; then
-      cp "$SCRIPT_DIR/claude-code/pi/SKILL_LITE.md" "$target/skills/pi/SKILL_LITE.md" 2>/dev/null || true
+      # Both → progressive goes to separate dir
+      mkdir -p "$target/skills/pi-progressive"
+      cp "$SCRIPT_DIR/claude-code/pi-progressive/SKILL.md" "$target/skills/pi-progressive/SKILL.md" 2>/dev/null || true
+      if [[ -d "$SCRIPT_DIR/claude-code/pi-progressive/references" ]]; then
+        cp -r "$SCRIPT_DIR/claude-code/pi-progressive/references" "$target/skills/pi-progressive/references" 2>/dev/null || true
+      fi
     fi
   fi
   if [[ "$lang" == "2" || "$lang" == "3" ]]; then
-    mkdir -p "$target/skills/pi-en"
     if [[ "$edition" == "1" || "$edition" == "3" ]]; then
+      mkdir -p "$target/skills/pi-en"
       cp "$SCRIPT_DIR/skills/pi-en/SKILL.md" "$target/skills/pi-en/SKILL.md" 2>/dev/null || true
     fi
     if [[ "$edition" == "2" ]]; then
-      cp "$SCRIPT_DIR/skills/pi-en/SKILL_LITE.md" "$target/skills/pi-en/SKILL.md" 2>/dev/null || true
+      # Progressive only → install as main skill
+      mkdir -p "$target/skills/pi-en"
+      cp "$SCRIPT_DIR/skills/pi-en-progressive/SKILL.md" "$target/skills/pi-en/SKILL.md" 2>/dev/null || true
+      if [[ -d "$SCRIPT_DIR/skills/pi-en-progressive/references" ]]; then
+        cp -r "$SCRIPT_DIR/skills/pi-en-progressive/references" "$target/skills/pi-en/references" 2>/dev/null || true
+      fi
     fi
     if [[ "$edition" == "3" ]]; then
-      cp "$SCRIPT_DIR/skills/pi-en/SKILL_LITE.md" "$target/skills/pi-en/SKILL_LITE.md" 2>/dev/null || true
+      # Both → progressive goes to separate dir
+      mkdir -p "$target/skills/pi-en-progressive"
+      cp "$SCRIPT_DIR/skills/pi-en-progressive/SKILL.md" "$target/skills/pi-en-progressive/SKILL.md" 2>/dev/null || true
+      if [[ -d "$SCRIPT_DIR/skills/pi-en-progressive/references" ]]; then
+        cp -r "$SCRIPT_DIR/skills/pi-en-progressive/references" "$target/skills/pi-en-progressive/references" 2>/dev/null || true
+      fi
     fi
   fi
   mkdir -p "$target/agents"
@@ -583,10 +631,8 @@ install_cursor() {
       [[ -f "$SCRIPT_DIR/cursor/rules/pi.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi.mdc" "$target/pi.mdc"
     fi
     if [[ "$edition" == "2" ]]; then
-      [[ -f "$SCRIPT_DIR/cursor/rules/pi-lite.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi-lite.mdc" "$target/pi.mdc"
-    fi
-    if [[ "$edition" == "3" ]]; then
-      [[ -f "$SCRIPT_DIR/cursor/rules/pi-lite.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi-lite.mdc" "$target/pi-lite.mdc"
+      # Cursor doesn't support references/, progressive uses full version
+      [[ -f "$SCRIPT_DIR/cursor/rules/pi.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi.mdc" "$target/pi.mdc"
     fi
   fi
   if [[ "$lang" == "2" || "$lang" == "3" ]]; then
@@ -594,10 +640,8 @@ install_cursor() {
       [[ -f "$SCRIPT_DIR/cursor/rules/pi-en.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi-en.mdc" "$target/pi-en.mdc"
     fi
     if [[ "$edition" == "2" ]]; then
-      [[ -f "$SCRIPT_DIR/cursor/rules/pi-en-lite.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi-en-lite.mdc" "$target/pi-en.mdc"
-    fi
-    if [[ "$edition" == "3" ]]; then
-      [[ -f "$SCRIPT_DIR/cursor/rules/pi-en-lite.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi-en-lite.mdc" "$target/pi-en-lite.mdc"
+      # Cursor doesn't support references/, progressive uses full version
+      [[ -f "$SCRIPT_DIR/cursor/rules/pi-en.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi-en.mdc" "$target/pi-en.mdc"
     fi
   fi
   [[ -f "$SCRIPT_DIR/cursor/rules/pi-visualize.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi-visualize.mdc" "$target/pi-visualize.mdc"
@@ -614,10 +658,8 @@ install_kiro() {
       [[ -f "$SCRIPT_DIR/kiro/steering/pi.md" ]] && cp "$SCRIPT_DIR/kiro/steering/pi.md" "$target/pi.md"
     fi
     if [[ "$edition" == "2" ]]; then
-      [[ -f "$SCRIPT_DIR/kiro/steering/pi-lite.md" ]] && cp "$SCRIPT_DIR/kiro/steering/pi-lite.md" "$target/pi.md"
-    fi
-    if [[ "$edition" == "3" ]]; then
-      [[ -f "$SCRIPT_DIR/kiro/steering/pi-lite.md" ]] && cp "$SCRIPT_DIR/kiro/steering/pi-lite.md" "$target/pi-lite.md"
+      # Kiro doesn't support references/, progressive uses full version
+      [[ -f "$SCRIPT_DIR/kiro/steering/pi.md" ]] && cp "$SCRIPT_DIR/kiro/steering/pi.md" "$target/pi.md"
     fi
   fi
   if [[ "$lang" == "2" || "$lang" == "3" ]]; then
@@ -625,10 +667,8 @@ install_kiro() {
       [[ -f "$SCRIPT_DIR/kiro/steering/pi-en.md" ]] && cp "$SCRIPT_DIR/kiro/steering/pi-en.md" "$target/pi-en.md"
     fi
     if [[ "$edition" == "2" ]]; then
-      [[ -f "$SCRIPT_DIR/kiro/steering/pi-en-lite.md" ]] && cp "$SCRIPT_DIR/kiro/steering/pi-en-lite.md" "$target/pi-en.md"
-    fi
-    if [[ "$edition" == "3" ]]; then
-      [[ -f "$SCRIPT_DIR/kiro/steering/pi-en-lite.md" ]] && cp "$SCRIPT_DIR/kiro/steering/pi-en-lite.md" "$target/pi-en-lite.md"
+      # Kiro doesn't support references/, progressive uses full version
+      [[ -f "$SCRIPT_DIR/kiro/steering/pi-en.md" ]] && cp "$SCRIPT_DIR/kiro/steering/pi-en.md" "$target/pi-en.md"
     fi
   fi
   echo "  $MSG_INSTALLING $target"

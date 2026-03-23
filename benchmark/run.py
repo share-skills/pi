@@ -56,7 +56,6 @@ SCENARIOS_PATH = DATA_DIR / "scenarios.json"
 #       Use the progressive/compact variant for PI to fit within limits.
 SKILL_PATHS = {
     "pi": SCRIPT_DIR.parent / "skills" / "pi-progressive" / "SKILL.md",
-    "pi-lite": SCRIPT_DIR.parent / "skills" / "pi-progressive" / "SKILL_LITE.md",
     "pua": DATA_DIR / "pua_prompt.txt",
     "nopua": SCRIPT_DIR.parent / "nopua" / "SKILL.md",
     # "baseline" has no file — handled specially in build_system_prompt()

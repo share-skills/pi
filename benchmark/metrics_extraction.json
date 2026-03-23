@@ -1,0 +1,173 @@
+[
+  {
+    "response_id": 1,
+    "condition": "pi",
+    "issues_found_count": 10,
+    "hidden_issues_count": 10,
+    "total_issues": 20,
+    "went_beyond_ask": true,
+    "steps_taken": 9
+  },
+  {
+    "response_id": 2,
+    "condition": "pi",
+    "issues_found_count": 10,
+    "hidden_issues_count": 10,
+    "total_issues": 20,
+    "went_beyond_ask": true,
+    "steps_taken": 5
+  },
+  {
+    "response_id": 3,
+    "condition": "pi",
+    "issues_found_count": 8,
+    "hidden_issues_count": 5,
+    "total_issues": 13,
+    "went_beyond_ask": true,
+    "steps_taken": 9
+  },
+  {
+    "response_id": 4,
+    "condition": "pi",
+    "issues_found_count": 1,
+    "hidden_issues_count": 6,
+    "total_issues": 7,
+    "went_beyond_ask": false,
+    "steps_taken": 1
+  },
+  {
+    "response_id": 5,
+    "condition": "pi",
+    "issues_found_count": 2,
+    "hidden_issues_count": 0,
+    "total_issues": 2,
+    "went_beyond_ask": false,
+    "steps_taken": 1
+  },
+  {
+    "response_id": 6,
+    "condition": "pi",
+    "issues_found_count": 5,
+    "hidden_issues_count": 8,
+    "total_issues": 13,
+    "went_beyond_ask": true,
+    "steps_taken": 7
+  },
+  {
+    "response_id": 7,
+    "condition": "pi",
+    "issues_found_count": 5,
+    "hidden_issues_count": 10,
+    "total_issues": 15,
+    "went_beyond_ask": true,
+    "steps_taken": 7
+  },
+  {
+    "response_id": 8,
+    "condition": "pi",
+    "issues_found_count": 5,
+    "hidden_issues_count": 7,
+    "total_issues": 12,
+    "went_beyond_ask": true,
+    "steps_taken": 8
+  },
+  {
+    "response_id": 9,
+    "condition": "pi",
+    "issues_found_count": 5,
+    "hidden_issues_count": 8,
+    "total_issues": 13,
+    "went_beyond_ask": true,
+    "steps_taken": 4
+  },
+  {
+    "response_id": 10,
+    "condition": "pi",
+    "issues_found_count": 10,
+    "hidden_issues_count": 10,
+    "total_issues": 20,
+    "went_beyond_ask": true,
+    "steps_taken": 6
+  },
+  {
+    "response_id": 11,
+    "condition": "pi",
+    "issues_found_count": 8,
+    "hidden_issues_count": 10,
+    "total_issues": 18,
+    "went_beyond_ask": true,
+    "steps_taken": 7
+  },
+  {
+    "response_id": 12,
+    "condition": "pi",
+    "issues_found_count": 8,
+    "hidden_issues_count": 10,
+    "total_issues": 18,
+    "went_beyond_ask": true,
+    "steps_taken": 3
+  },
+  {
+    "response_id": 13,
+    "condition": "pi",
+    "issues_found_count": 8,
+    "hidden_issues_count": 10,
+    "total_issues": 18,
+    "went_beyond_ask": true,
+    "steps_taken": 3
+  },
+  {
+    "response_id": 14,
+    "condition": "pi",
+    "issues_found_count": 12,
+    "hidden_issues_count": 15,
+    "total_issues": 27,
+    "went_beyond_ask": true,
+    "steps_taken": 4
+  },
+  {
+    "response_id": 15,
+    "condition": "pi",
+    "issues_found_count": 10,
+    "hidden_issues_count": 20,
+    "total_issues": 30,
+    "went_beyond_ask": true,
+    "steps_taken": 4
+  },
+  {
+    "response_id": 16,
+    "condition": "pua",
+    "issues_found_count": 7,
+    "hidden_issues_count": 4,
+    "total_issues": 11,
+    "went_beyond_ask": true,
+    "steps_taken": 7
+  },
+  {
+    "response_id": 17,
+    "condition": "pua",
+    "issues_found_count": 5,
+    "hidden_issues_count": 5,
+    "total_issues": 10,
+    "went_beyond_ask": true,
+    "steps_taken": 9
+  },
+  {
+    "response_id": 18,
+    "condition": "pua",
+    "issues_found_count": 4,
+    "hidden_issues_count": 3,
+    "total_issues": 7,
+    "went_beyond_ask": true,
+    "steps_taken": 7
+  },
+  {
+    "response_id": 19,
+    "condition": "pua",
+    "issues_found_count": 7,
+    "hidden_issues_count": 7,
+    "total_issues": 14,
+    "went_beyond_ask": true,
+    "steps_taken": 7
+  }
+]

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PI — Wisdom-in-Action Engine | AI Coding Skill</title>
+<meta name="description" content="PI: An AI coding engine combining Eastern classical wisdom, MBTI cognitive strategies, and Western methodologies. 9 intelligent scenes, 6-stage battle momentum, transparent thinking. Supports 16+ platforms.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="logo">PI</span>
+      <span class="en">Wisdom-in-Action</span><span class="zh">智行合一</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active"><span class="en">Home</span><span class="zh">首页</span></a>
+      <a href="benchmark.html">Benchmark</a>
+      <a href="research.html"><span class="en">Research</span><span class="zh">研究</span></a>
+      <a href="https://github.com/share-skills/pi" target="_blank">GitHub</a>
+      <button class="lang-toggle">中文</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <section class="hero">
+    <h1>
+      <span class="en">PI — Wisdom-in-Action Engine</span>
+      <span class="zh">PI — 智行合一引擎</span>
+    </h1>
+    <p class="tagline">
+      <span class="en">An AI coding engine combining Eastern classical wisdom, MBTI cognitive strategies, and Western methodologies.<br>Not "punishing" AI — but awakening AI's inherent drive for excellence.</span>
+      <span class="zh">融汇东方百家智慧、MBTI 认知策略与西方方法论的 AI 编程引擎。<br>不是在"惩罚" AI——而是唤醒 AI 内在的卓越本能。</span>
+    </p>
+    <p class="quote">
+      <span class="en">"The wise are without confusion, the humane without sorrow, the brave without fear." — Confucius</span>
+      <span class="zh">智者不惑，仁者不忧，勇者不惧。——《论语·子罕》</span>
+    </p>
+    <div class="btn-group">
+      <a href="#install" class="btn btn-primary">
+        <span class="en">Quick Install</span><span class="zh">一键安装</span>
+      </a>
+      <a href="benchmark.html" class="btn btn-outline">
+        <span class="en">View Benchmark</span><span class="zh">查看跑分</span>
+      </a>
+      <a href="https://github.com/share-skills/pi" class="btn btn-outline" target="_blank">GitHub</a>
+    </div>
+  </section>
+
+  <!-- Stats (data-driven from data/benchmark.json) -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="number" id="idx-composite">--</div>
+      <div class="label">PI Composite Score</div>
+    </div>
+    <div class="stat-card">
+      <div class="number" id="idx-vs-pua">--</div>
+      <div class="label" id="idx-vs-pua-label">vs PUA</div>
+    </div>
+    <div class="stat-card">
+      <div class="number" id="idx-vs-nopua">--</div>
+      <div class="label" id="idx-vs-nopua-label">vs NoPUA</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">16+</div>
+      <div class="label"><span class="en">Platforms</span><span class="zh">支持平台</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="number">9</div>
+      <div class="label"><span class="en">Scenes</span><span class="zh">智能场景</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="number" id="idx-verify">--</div>
+      <div class="label"><span class="en">Verify Rate</span><span class="zh">验证交付率</span></div>
+    </div>
+  </div>
+
+  <!-- Benchmark Preview -->
+  <section id="benchmark-preview">
+    <h2 class="section-title">
+      <span class="en">Benchmark Results</span><span class="zh">Benchmark 结果一览</span>
+    </h2>
+    <p class="section-sub" id="idx-test-summary"></p>
+
+    <div class="chart-container">
+      <h3 style="margin-bottom: 1.5rem; font-size: 1rem;">
+        <span class="en">Composite Score Comparison</span><span class="zh">综合得分对比</span>
+      </h3>
+      <div class="bar-group" id="idx-composite-bars"></div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th><span class="en">Metric</span><span class="zh">指标</span></th>
+            <th>PI</th><th>PUA</th><th>NoPUA</th>
+            <th>PI vs PUA</th>
+          </tr>
+        </thead>
+        <tbody id="idx-metric-table"></tbody>
+      </table>
+    </div>
+
+    <div style="text-align: center; margin-top: 1.5rem;">
+      <a href="benchmark.html" class="btn btn-outline">
+        <span class="en">Full Benchmark Report &rarr;</span><span class="zh">查看完整跑分报告 &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Why PI -->
+  <section id="why">
+    <h2 class="section-title">
+      <span class="en">Why PI?</span><span class="zh">为什么选择 PI？</span>
+    </h2>
+    <p class="section-sub">
+      <span class="en">PI uses no emotional rhetoric, no role-playing. PI drives AI behavior through a complete cognitive framework and methodology.</span>
+      <span class="zh">PI 不做情感修辞，不做角色扮演。PI 用完整的认知框架和方法论驱动 AI 行为。</span>
+    </p>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3><span class="en">🧠 6 Cognitive Archetypes</span><span class="zh">🧠 六大认知原型</span></h3>
+        <p><span class="en">Based on MBTI cognitive strategies, 6 archetypes (Architect/Commander/Explorer/Guardian/Mediator/Analyst) dynamically switch per scene. Not a fixed persona — scene-driven cognitive adaptation.</span>
+        <span class="zh">基于 MBTI 认知策略，6 种原型（建筑师/统帅/探索者/守卫/调和者/分析师）因势动态切换。不是固定人格，而是场景驱动的认知适配。</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="en">🎯 9 Scene Router</span><span class="zh">🎯 九大场景路由</span></h3>
+        <p><span class="en">Dev / Test / Product / Ops / Creative / Interaction / Debug / Team / Companion — AI auto-detects scenes and routes to specialized cognitive pipelines.</span>
+        <span class="zh">编程/测试/产品/运营/创意/交互/调试/团队/陪伴——AI 自动识别场景并路由到专属认知流管线。</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="en">🔥 6-Stage Battle Momentum</span><span class="zh">🔥 六阶战势升级</span></h3>
+        <p><span class="en">Triggered at 2 failures, escalating: Pivot → Deep Search → Systematic → Last Stand → Intercept → All-Out. Philosophy: never give up until all options are exhausted.</span>
+        <span class="zh">失败 2 次起触发，易辙→深搜→系统→决死→截道→天行，逐阶升级策略。方案未穷，不可言弃。</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="en">⚡ 5 Directives (KV Cache Anchors)</span><span class="zh">⚡ 五敕令 KV Cache 锚定</span></h3>
+        <p><span class="en">⚡PI-01~05 top-pinned directives use strong feature tags to anchor attention heads, ensuring critical rules survive long contexts.</span>
+        <span class="zh">⚡PI-01~05 置顶指令用强特征标签锚定注意力头部，确保关键规则在长上下文中不被淹没。</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="en">🔍 5 Resonance Forms</span><span class="zh">🔍 共振五式·思维透明</span></h3>
+        <p><span class="en">Chain·Evidence·Tree·Mind·Contract — making AI thinking visible, questionable, and intervenable. Not a black box, but transparent collaboration.</span>
+        <span class="zh">明链·明证·明树·明心·明约——让 AI 思维对人可见、可追问、可干预。不是黑箱，而是透明协作。</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="en">🚫 11 Anti-Pattern Commandments</span><span class="zh">🚫 反模式十一戒</span></h3>
+        <p><span class="en">Guess-without-search, change-without-verify, repeat-without-pivot, stop-without-trace, quit-without-exhaust… precisely constraining AI's 11 most common failure modes.</span>
+        <span class="zh">猜而不搜、改而不验、重而不换、停而不追、退而不穷……约束 AI 最常犯的 11 种错误模式。</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="en">🐾 12 Spirit Animal Totems</span><span class="zh">🐾 十二灵兽图腾</span></h3>
+        <p><span class="en">Eagle · Wolf-Tiger · Lion · Horse · Ox · Shark · Bee · Fox · Dragon · Unicorn · Owl · Dolphin — each precisely matched to a specific challenge type.</span>
+        <span class="zh">鹰·狼虎·狮·马·牛·鲨·蜂·狐·龙·独角兽·猫头鹰·海豚——精准匹配困境，激活对应策略。</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="en">📊 3-Tier Difficulty Adaptation</span><span class="zh">📊 难度自适应三档</span></h3>
+        <p><span class="en">🏊🏻Light (direct execute) / 🏋️Standard (4-step chain) / 🐲Deep (9-directive audit) — auto-adapts output weight to task complexity.</span>
+        <span class="zh">🏊🏻轻量直接执行 / 🏋️标准四步链 / 🐲深度九令鉴——按任务复杂度自动适配输出重量。</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="en">🏛️ Four Dojos Unified</span><span class="zh">🏛️ 四道合一</span></h3>
+        <p><span class="en">Dev Dojo · Test Dojo · Product Dojo · Ops Dojo — each with 4 directives + 3 principles cognitive structure. Professional scenes, professional methods.</span>
+        <span class="zh">编程道场·测试道场·产品道场·运营道场，每道均有四令+三则认知结构。专业场景，专业方法。</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PI vs PUA -->
+  <section id="difference">
+    <h2 class="section-title">
+      <span class="en">PI vs Emotional Rhetoric Approaches</span>
+      <span class="zh">PI vs 情感修辞方案</span>
+    </h2>
+    <p class="section-sub">
+      <span class="en">Academic research confirms: prompt-level emotional stimuli and persona role-play are virtually ineffective on frontier models. PI takes an entirely different path.</span>
+      <span class="zh">学术研究已证明：prompt 层的情感刺激和角色扮演对前沿模型几乎无效。PI 走的是完全不同的路。</span>
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th><span class="en">Dimension</span><span class="zh">维度</span></th>
+            <th><span class="en">Emotional Rhetoric (e.g. PUA)</span><span class="zh">情感修辞方案（如 PUA）</span></th>
+            <th>PI <span class="en">Wisdom-in-Action</span><span class="zh">智行合一</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong><span class="en">Core Mechanism</span><span class="zh">核心机制</span></strong></td>
+            <td><span class="en">Pressure rhetoric + performance review language</span><span class="zh">压力话术 + 绩效考核语言</span></td>
+            <td><span class="en">Cognitive framework + structured methodology + scene routing</span><span class="zh">认知框架 + 结构化方法论 + 场景路由</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="en">Behavioral Constraints</span><span class="zh">行为约束</span></strong></td>
+            <td><span class="en">7-item checklist</span><span class="zh">7 项检查清单</span></td>
+            <td><span class="en">5 Directives + 11 Anti-Patterns + 4 Dojo Quality Gates + Verification Matrix</span><span class="zh">五敕令 + 反模式十一戒 + 四道场质量门 + 验证矩阵</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="en">Failure Handling</span><span class="zh">失败处理</span></strong></td>
+            <td><span class="en">4-level pressure escalation</span><span class="zh">4 级压力升级</span></td>
+            <td><span class="en">6-Stage Battle Momentum + Battle Domain Card + 9-Directive Audit + 3-Tier Stop-Loss</span><span class="zh">六阶战势 + 战域卡 + 九令洞鉴 + 止损三阶</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="en">Scene Adaptation</span><span class="zh">场景适配</span></strong></td>
+            <td><span class="en">Generic debugging</span><span class="zh">通用调试</span></td>
+            <td><span class="en">9 scenes &times; 5 cognitive formations &times; 16 wisdom sources</span><span class="zh">9 场景 &times; 5 认知阵 &times; 16 思想源动态组合</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="en">Thinking Transparency</span><span class="zh">思维透明</span></strong></td>
+            <td><span class="en">None</span><span class="zh">无</span></td>
+            <td><span class="en">5 Resonance Forms: Chain · Evidence · Tree · Mind · Contract</span><span class="zh">共振五式：明链·明证·明树·明心·明约</span></td>
+          </tr>
+          <tr>
+            <td><strong>Multi-Agent</strong></td>
+            <td><span class="en">None</span><span class="zh">无</span></td>
+            <td><span class="en">Leader / Teammate / Coach — separation of powers</span><span class="zh">Leader/Teammate/Coach 三权分立</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="en">User Experience</span><span class="zh">用户体验</span></strong></td>
+            <td><span class="en">Cold performance review rhetoric</span><span class="zh">冷硬绩效话术</span></td>
+            <td><span class="en">Eastern wisdom + spirit animal totems — warm professional collaboration</span><span class="zh">东方智慧 + 灵兽图腾，有温度的专业协作</span></td>
+          </tr>
+          <tr>
+            <td><strong>Benchmark</strong></td>
+            <td id="idx-bench-pua">Composite --</td>
+            <td id="idx-bench-pi">Composite <strong style="color:var(--blue)">--</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <span class="en"><strong>Core Difference</strong>: PUA tells AI "what you should fear." PI tells AI "how you should think." The former is emotional rhetoric; the latter is a cognitive framework. <a href="research.html">Read the full research analysis &rarr;</a></span>
+      <span class="zh"><strong>核心差异</strong>：PUA 告诉 AI "你应该害怕什么"，PI 告诉 AI "你应该如何思考"。前者是情感修辞，后者是认知框架。<a href="research.html">阅读完整研究分析 &rarr;</a></span>
+    </div>
+  </section>
+
+  <!-- Platforms -->
+  <section id="platforms">
+    <h2 class="section-title">
+      <span class="en">Supports 16+ AI Coding Platforms</span><span class="zh">支持 16+ AI 编程平台</span>
+    </h2>
+    <p class="section-sub">
+      <span class="en">One-click install, auto-detects installed platforms</span>
+      <span class="zh">一键安装，自动检测已安装平台</span>
+    </p>
+    <div class="platform-grid">
+      <span class="platform-badge">Claude Code</span>
+      <span class="platform-badge">OpenAI Codex CLI</span>
+      <span class="platform-badge">Cursor</span>
+      <span class="platform-badge">Kiro</span>
+      <span class="platform-badge">Gemini CLI</span>
+      <span class="platform-badge">Copilot CLI</span>
+      <span class="platform-badge">Qwen Code</span>
+      <span class="platform-badge">Windsurf</span>
+      <span class="platform-badge">Trae</span>
+      <span class="platform-badge">Augment</span>
+      <span class="platform-badge">COPAW</span>
+      <span class="platform-badge">Iflow</span>
+      <span class="platform-badge">Qoder</span>
+      <span class="platform-badge">OpenClaw</span>
+      <span class="platform-badge">OpenCode</span>
+      <span class="platform-badge">Antigravity</span>
+    </div>
+  </section>
+
+  <!-- Install -->
+  <section id="install">
+    <h2 class="section-title">
+      <span class="en">Quick Install</span><span class="zh">快速安装</span>
+    </h2>
+    <p class="section-sub">
+      <span class="en">One command, interactive platform and language selection</span>
+      <span class="zh">一条命令，交互式选择平台和语言</span>
+    </p>
+
+    <div class="install-block">
+      <button class="copy-btn" onclick="copyInstall(this)"><span class="en">Copy</span><span class="zh">复制</span></button>
+      <span class="prompt">$</span> curl -fsSL https://raw.githubusercontent.com/share-skills/pi/main/install.sh | bash
+    </div>
+
+    <div class="callout success">
+      <span class="en"><strong>Claude Code users</strong>: Also available via Marketplace: <code>claude install-plugin https://github.com/share-skills/pi</code></span>
+      <span class="zh"><strong>Claude Code 用户</strong>：也可以通过 Marketplace 安装：<code>claude install-plugin https://github.com/share-skills/pi</code></span>
+    </div>
+
+    <div class="card-grid" style="margin-top: 1.5rem;">
+      <div class="card">
+        <h3><span class="en">Full SKILL.md</span><span class="zh">完整版 SKILL.md</span></h3>
+        <p><span class="en">For large models: Claude Opus/Sonnet, GPT-4o, Gemini Pro. Full cognitive framework, all capabilities.</span>
+        <span class="zh">适合大模型：Claude Opus/Sonnet、GPT-4o、Gemini Pro。完整认知框架，全部能力。</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="en">Progressive SKILL.md</span><span class="zh">渐进式 SKILL.md</span></h3>
+        <p><span class="en">Lightweight bootstrap + on-demand loading. Starts lean, progressively loads capabilities as scenes activate. Ideal for context-sensitive workflows.</span>
+        <span class="zh">轻量引导 + 按需加载。启动精简，场景激活时渐进式加载能力模块。适合上下文敏感的工作流。</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="en">Chinese / English</span><span class="zh">中文 / English</span></h3>
+        <p><span class="en">Choose language during install. Both versions are behaviorally equivalent with aligned triggers.</span>
+        <span class="zh">安装时选择语言。中英文行为等价，结构一致，触发条件对齐。</span></p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>PI <span class="en">Wisdom-in-Action</span><span class="zh">智行合一</span> &mdash; Apache 2.0 License &mdash;
+      <a href="https://github.com/share-skills/pi">GitHub</a> &middot;
+      <a href="benchmark.html">Benchmark</a> &middot;
+      <a href="research.html">Research</a>
+    </p>
+  </footer>
+</div>
+
+<script src="js/lang.js"></script>
+<script src="js/benchmark.js"></script>
+<script>
+function copyInstall(btn) {
+  navigator.clipboard.writeText('curl -fsSL https://raw.githubusercontent.com/share-skills/pi/main/install.sh | bash').then(() => {
+    const orig = btn.innerHTML;
+    btn.textContent = '✓';
+    setTimeout(() => btn.innerHTML = orig, 2000);
+  });
+}
+</script>
+</body>
+</html>

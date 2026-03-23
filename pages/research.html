@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — Emotional Rhetoric vs Cognitive Framework | PI Wisdom-in-Action</title>
+<meta name="description" content="Systematic analysis of Emotion Prompting, Persona Prompting, and PUA Skill effectiveness based on academic papers and experimental data.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="logo">PI</span>
+      <span class="en">Wisdom-in-Action</span><span class="zh">智行合一</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html"><span class="en">Home</span><span class="zh">首页</span></a>
+      <a href="benchmark.html">Benchmark</a>
+      <a href="research.html" class="active"><span class="en">Research</span><span class="zh">研究</span></a>
+      <a href="https://github.com/share-skills/pi" target="_blank">GitHub</a>
+      <button class="lang-toggle">中文</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <section class="hero" style="padding: 3rem 0;">
+    <h1>
+      <span class="en">Emotional Rhetoric vs Cognitive Framework</span>
+      <span class="zh">情感修辞 vs 认知框架</span>
+    </h1>
+    <p class="tagline">
+      <span class="en">An academic response to the OpenPUA article "Systematic Analysis of Emotion Prompting / Persona Prompting Effects on AI Agents"</span>
+      <span class="zh">对 OpenPUA 文章《Emotion Prompting / Persona Prompting 对 AI Agent 效果的系统性分析》的学术回应</span>
+    </p>
+    <p class="quote">
+      <span class="en">Independent analysis based on 20+ top-venue papers and 48 controlled experiments</span>
+      <span class="zh">基于 20+ 篇顶会论文和 48 次对照实验的独立分析</span>
+    </p>
+  </section>
+
+  <section>
+    <div class="prose">
+
+      <h2>
+        <span class="en">1. What the OpenPUA Article Claims</span>
+        <span class="zh">一、OpenPUA 文章说了什么</span>
+      </h2>
+
+      <p>
+        <span class="en">In March 2026, OpenPUA published a systematic analysis article reviewing three research lines — EmotionPrompt (2023-2024), Persona Prompting (2024-2026), and Anthropic Persona Vectors (2025-2026) — reaching these core conclusions:</span>
+        <span class="zh">2026 年 3 月，OpenPUA 发布了一篇系统性分析文章，梳理了 EmotionPrompt (2023-2024)、Persona Prompting (2024-2026)、Anthropic Persona Vectors (2025-2026) 三条研究线，得出以下核心结论：</span>
+      </p>
+
+      <ol>
+        <li><span class="en">Prompt-level emotional stimuli are <strong>essentially ineffective</strong> for Agent objective task performance</span><span class="zh">Prompt 层的情感刺激对 Agent 客观任务表现<strong>基本无效</strong></span></li>
+        <li><span class="en">Structured behavioral constraints are the <strong>only reliably effective</strong> method at the prompt level</span><span class="zh">结构化行为约束是 prompt 层面<strong>唯一可靠有效</strong>的方法</span></li>
+        <li><span class="en">85-90% of PUA Skill's effect comes from Layer A (structured instructions), not Layer B (PUA rhetoric)</span><span class="zh">PUA Skill 85-90% 的效果来自 A 层（结构化指令），而非 B 层（PUA 修辞）</span></li>
+        <li><span class="en">"3.25" and "graduation" serve as routing signals, not emotional stimuli</span><span class="zh">"3.25"和"毕业"等词的作用是 routing signal，不是情感刺激</span></li>
+      </ol>
+
+      <h2>
+        <span class="en">2. Where We Agree</span>
+        <span class="zh">二、我们同意的部分</span>
+      </h2>
+
+      <div class="callout success">
+        <span class="en"><strong>The big picture is correct</strong>: Structured instructions > Emotional rhetoric. Academic consensus supports this, and we fully agree.</span>
+        <span class="zh"><strong>大方向正确</strong>：结构化指令 > 情感修辞。这一点学术共识是支持的，我们完全认同。</span>
+      </div>
+
+      <h3>
+        <span class="en">2.1 EmotionPrompt's Limitations Are Well-Established</span>
+        <span class="zh">2.1 EmotionPrompt 的局限性已被充分证实</span>
+      </h3>
+
+      <p>
+        <span class="en">EmotionPrompt V1 (Li et al., 2023) showed 115% improvement on BIG-Bench, but this mainly came from weak model / low baseline improvement. NegativePrompt (Wang et al., 2024 IJCAI) claiming "negative stimuli are effective" was correctly interpreted as an attention anchoring effect rather than emotional response. Citations are accurate and core conclusions are correctly summarized.</span>
+        <span class="zh">EmotionPrompt V1 (Li et al., 2023) 的 BIG-Bench 115% 提升确实主要来自弱模型低基线改善。NegativePrompt (Wang et al., 2024 IJCAI) 的"负面刺激有效"结论也被正确解释为注意力锚定效应而非情感反应。这些论文引用准确，核心结论概括无误。</span>
+      </p>
+
+      <h3>
+        <span class="en">2.2 Large-Scale Falsification of Persona Prompting</span>
+        <span class="zh">2.2 Persona Prompting 的大规模证伪</span>
+      </h3>
+
+      <p>
+        <span class="en">Zheng et al. (EMNLP 2024) reversing their conclusion — from "persona works" to "persona doesn't work" — is one of the most important empirical corrections in recent prompt engineering. The OpenPUA article's citation and analysis of this is accurate.</span>
+        <span class="zh">Zheng et al. (EMNLP 2024) 的结论翻转——从"persona 有效"到"persona 无效"——是近年 prompt engineering 领域最重要的实证修正之一。OpenPUA 文章对此的引用和分析是准确的。</span>
+      </p>
+
+      <h3>
+        <span class="en">2.3 Three-Layer Distinction Framework Is Sound</span>
+        <span class="zh">2.3 三层区分框架合理</span>
+      </h3>
+
+      <p>
+        <span class="en">Distinguishing prompt-level rhetoric (emotional/persona), prompt-level structured constraints (checklist/CoT/format), and model activation space intervention (Persona Vectors) is a clear and academically grounded taxonomy.</span>
+        <span class="zh">把 prompt 层修辞（情感/角色）、prompt 层结构化约束（checklist/CoT/format）、模型激活空间干预（Persona Vectors）区分开来，这个分类方式是清晰且有学术基础的。</span>
+      </p>
+
+      <h2>
+        <span class="en">3. Where We Disagree</span>
+        <span class="zh">三、我们不同意的部分</span>
+      </h2>
+
+      <div class="callout error">
+        <span class="en"><strong>Core problem</strong>: The article uses the correct conclusion "emotional rhetoric is ineffective" to imply "PUA is the best structured approach" — a logical leap with zero supporting evidence.</span>
+        <span class="zh"><strong>核心问题</strong>：文章用"情感修辞无效"这个正确结论，暗示"PUA 是最好的结构化方案"——这个推理跳跃没有任何证据支撑。</span>
+      </div>
+
+      <h3>
+        <span class="en">3.1 "85-90% From Structured Instructions" — No Ablation, Pseudo-Precision</span>
+        <span class="zh">3.1 "85-90% 来自结构化指令"——无消融实验，伪精确</span>
+      </h3>
+
+      <p>
+        <span class="en">The article claims 85-90% of PUA Skill's effect comes from Layer A (structured instructions), 10-15% from Layer B (PUA rhetoric). However:</span>
+        <span class="zh">文章声称 PUA Skill 效果的 85-90% 来自 A 层（结构化指令），10-15% 来自 B 层（PUA 修辞）。但：</span>
+      </p>
+
+      <ul>
+        <li><span class="en"><strong>No ablation experiment</strong>: The article never published results from a control group with "PUA rhetoric removed, only structured instructions retained." Without ablation, any effect attribution ratio is subjective speculation, not scientific conclusion.</span>
+        <span class="zh"><strong>没有消融实验</strong>：文章未公布"去掉 PUA 修辞、只保留结构化指令"的对照组结果。没有消融实验，任何效果归因比例都是主观猜测，不是科学结论。</span></li>
+        <li><span class="en"><strong>Pseudo-precision</strong>: Numbers like 85%/15%, 7-10%/2-3%/0% look precise but have no experimental methodology behind them. Wrapping subjective judgments in precise numbers misleads readers into thinking quantitative experiments were conducted.</span>
+        <span class="zh"><strong>伪精确</strong>：85%/15%、7-10%/2-3%/0% 这些看起来精确的数字没有任何实验方法论支撑。用精确数字包装主观判断，会让读者误以为有量化实验。</span></li>
+      </ul>
+
+      <div class="callout warn">
+        <span class="en"><strong>Scientific standard</strong>: Claiming "X% from A, Y% from B" requires at least two control groups — one with A+B, one with only A. The OpenPUA article did not conduct this experiment.</span>
+        <span class="zh"><strong>科学标准</strong>：声称"X% 来自 A，Y% 来自 B"需要至少两组对照实验——一组有 A+B，一组只有 A。OpenPUA 的文章没有做这个实验。</span>
+      </div>
+
+      <h3>
+        <span class="en">3.2 Section 4 (Persona Vectors) — Misleading Academic Grafting</span>
+        <span class="zh">3.2 Section 4 (Persona Vectors) ——误导性学术嫁接</span>
+      </h3>
+
+      <p>
+        <span class="en">The article brings in Anthropic's Persona Vectors research, creating an implicit logical chain:</span>
+        <span class="zh">文章把 Anthropic 的 Persona Vectors 研究拉进来，制造了一个隐含逻辑链：</span>
+      </p>
+
+      <blockquote>
+        <span class="en">"Prompt-level emotion is ineffective → activation-level is effective → we're tracking this direction"</span>
+        <span class="zh">"prompt 层情感无效 → activation 层才有效 → 我们正在跟踪这个方向"</span>
+      </blockquote>
+
+      <p>
+        <span class="en">But Persona Vectors research aims at <strong>safety alignment and behavior monitoring</strong>, not "making AI try harder at debugging." Grafting a safety research paper onto a "how to make AI work harder" context is a <strong>topic substitution fallacy</strong>. The real purpose of this section is to lend academic credibility to the PUA project.</span>
+        <span class="zh">但 Persona Vectors 研究的目的是<strong>安全对齐和行为监控</strong>，不是"让 AI 更努力调试"。把一个安全研究嫁接到"如何让 AI 更努力工作"的语境里，是<strong>偷换论题</strong>。这段内容的真实作用是给 PUA 项目镀学术金。</span>
+      </p>
+
+      <h3>
+        <span class="en">3.3 Competitive Analysis — Strawman Argument</span>
+        <span class="zh">3.3 竞争分析——稻草人论证</span>
+      </h3>
+
+      <p>
+        <span class="en">The article simplifies the competitive landscape to "PUA structured instructions vs pure emotional rhetoric," completely ignoring that solutions exist which <strong>use neither PUA rhetoric nor emotional stimuli, yet achieve higher performance through comprehensive cognitive frameworks and methodology</strong>.</span>
+        <span class="zh">文章把竞争格局简化为"PUA 结构化指令 vs 纯情感修辞"，完全忽略了市场上存在<strong>既不用 PUA 修辞也不用情感刺激、但通过完整认知框架和方法论实现更高效果</strong>的方案。</span>
+      </p>
+
+      <p>
+        <span class="en">This is a classic strawman: reduce opponents to "emotional stimulus advocates," then prove "emotional stimulus is ineffective" to imply you're the optimal solution.</span>
+        <span class="zh">这是经典的稻草人论证：把对手矮化为"情感刺激派"，然后证明"情感刺激无效"来暗示自己是最优解。</span>
+      </p>
+
+      <h3>
+        <span class="en">3.4 "Honest Disclosure" — Carefully Designed PR Strategy</span>
+        <span class="zh">3.4 "坦诚说明"——精心设计的 PR 策略</span>
+      </h3>
+
+      <p>
+        <span class="en">Section 5.3's "issues we must acknowledge" appears candid, but is actually a classic <strong>pre-emptive self-criticism</strong> technique:</span>
+        <span class="zh">Section 5.3 的"我们必须承认的问题"看起来坦诚，实际上是经典的<strong>先发制人式自我批评</strong>：</span>
+      </p>
+
+      <ul>
+        <li><span class="en">First admit "PUA rhetoric isn't the core" → neutralize critics' attack vector</span><span class="zh">先承认"PUA 话术不是核心" → 消解批评者的攻击点</span></li>
+        <li><span class="en">Then say "but the structured methodology really works" → redirect reader attention to the desired point</span><span class="zh">再说"但结构化方法论是真的有效的" → 把读者注意力转到自己想强调的点</span></li>
+        <li><span class="en">Finally say "user emotional experience matters too" → set up the /pua:yes mode</span><span class="zh">最后说"用户情感体验也重要" → 为 /pua:yes 模式做铺垫</span></li>
+      </ul>
+
+      <p>
+        <span class="en">This is not academic candor — it's <strong>marketing writing</strong> technique.</span>
+        <span class="zh">这不是学术坦诚，是<strong>营销写作</strong>技巧。</span>
+      </p>
+
+      <h2>
+        <span class="en">4. Experimental Data Response</span>
+        <span class="zh">四、实验数据回应</span>
+      </h2>
+
+      <p>
+        <span class="en">Unlike the OpenPUA article's subjective attributions, we let controlled experiment data speak.</span>
+        <span class="zh">与 OpenPUA 文章的主观归因不同，我们用对照实验数据说话。</span>
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Evidence: Benchmark Data -->
+  <section>
+    <h2 class="section-title">
+      <span class="en">Controlled Experiment Results</span>
+      <span class="zh">对照实验结果</span>
+    </h2>
+    <p class="section-sub">
+      <span class="en">48 experiments, same model backend, controlled variable method</span>
+      <span class="zh">48 次实验，同一模型后端，控制变量法</span>
+    </p>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="number" style="background: linear-gradient(135deg, var(--blue), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">593</div>
+        <div class="label">PI Composite</div>
+      </div>
+      <div class="stat-card">
+        <div class="number" style="background: linear-gradient(135deg, var(--red), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">386</div>
+        <div class="label">PUA Composite</div>
+      </div>
+      <div class="stat-card">
+        <div class="number" style="background: linear-gradient(135deg, var(--green), #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">248</div>
+        <div class="label">NoPUA Composite</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="bar-group">
+        <div class="bar-item">
+          <div class="bar-label"><span class="name" style="color:var(--pi)">PI <span class="en">Wisdom-in-Action</span><span class="zh">智行合一</span></span><span class="value" style="color:var(--pi)">593.4</span></div>
+          <div class="bar-track"><div class="bar-fill pi" style="width:100%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label"><span class="name" style="color:var(--pua)">PUA</span><span class="value" style="color:var(--pua)">386.2</span></div>
+          <div class="bar-track"><div class="bar-fill pua" style="width:65.1%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label"><span class="name" style="color:var(--nopua)">NoPUA</span><span class="value" style="color:var(--nopua)">247.8</span></div>
+          <div class="bar-track"><div class="bar-fill nopua" style="width:41.8%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th><span class="en">Metric</span><span class="zh">指标</span></th>
+            <th>PI</th>
+            <th>PUA</th>
+            <th>NoPUA</th>
+            <th>PI vs PUA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="en">Issues Found</span><span class="zh">发现问题数</span></td><td class="pi">9.3</td><td class="pua">6.7</td><td class="nopua">4.6</td><td>+39%</td></tr>
+          <tr><td><span class="en">Hidden Issues</span><span class="zh">隐藏问题数</span></td><td class="pi">8.8</td><td class="pua">4.4</td><td class="nopua">2.6</td><td><strong>+100%</strong></td></tr>
+          <tr><td><span class="en">Debug Steps</span><span class="zh">调试步骤</span></td><td class="pi">8.1</td><td class="pua">6.1</td><td class="nopua">3.6</td><td>+33%</td></tr>
+          <tr><td><span class="en">Tools Used</span><span class="zh">工具使用</span></td><td class="pi">4.1</td><td class="pua">3.4</td><td class="nopua">1.9</td><td>+21%</td></tr>
+          <tr><td><span class="en">Verification Rate</span><span class="zh">验证交付率</span></td><td class="pi">94%</td><td class="pua">81%</td><td class="nopua">50%</td><td>+13pp</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Verdict Cards -->
+  <section>
+    <div class="prose">
+      <h2>
+        <span class="en">5. Point-by-Point Verdict</span>
+        <span class="zh">五、逐项判定</span>
+      </h2>
+    </div>
+
+    <div class="verdict-grid">
+      <div class="verdict-card">
+        <h4><span class="en">Paper Citation Accuracy</span><span class="zh">论文引用准确性</span></h4>
+        <div class="verdict true"><span class="en">Correct</span><span class="zh">正确</span></div>
+        <div class="detail">
+          <span class="en">Papers exist and core conclusions are correctly cited. EmotionPrompt, NegativePrompt, and Zheng et al. citations are all accurate.</span>
+          <span class="zh">论文确实存在且核心结论引用正确。EmotionPrompt、NegativePrompt、Zheng et al. 的引用均准确。</span>
+        </div>
+      </div>
+      <div class="verdict-card">
+        <h4><span class="en">Three-Layer Framework</span><span class="zh">三层框架</span></h4>
+        <div class="verdict true"><span class="en">Correct</span><span class="zh">正确</span></div>
+        <div class="detail">
+          <span class="en">The three-layer distinction (prompt emotion / prompt structured / activation layer) is a sound taxonomy.</span>
+          <span class="zh">Prompt 情感/Prompt 结构化/Activation 层的三层区分是合理的分类方式。</span>
+        </div>
+      </div>
+      <div class="verdict-card">
+        <h4><span class="en">"85-90% From Structured"</span><span class="zh">"85-90% 来自结构化"</span></h4>
+        <div class="verdict false"><span class="en">No Evidence</span><span class="zh">无证据</span></div>
+        <div class="detail">
+          <span class="en">No ablation experiment to support this claim. Proving this ratio requires a control group with "PUA rhetoric removed, structured instructions only" — this experiment was never conducted.</span>
+          <span class="zh">无消融实验支撑。要证明此比例，需要"去掉 PUA 修辞只保留结构化指令"的对照组——该实验从未进行。</span>
+        </div>
+      </div>
+      <div class="verdict-card">
+        <h4>Section 4 (Persona Vectors)</h4>
+        <div class="verdict partial"><span class="en">Paper Correct, Grafting Misleading</span><span class="zh">论文正确，嫁接误导</span></div>
+        <div class="detail">
+          <span class="en">The Anthropic paper itself is correct, but grafting safety alignment research onto a "make AI debug harder" context is a topic substitution fallacy.</span>
+          <span class="zh">Anthropic 论文本身正确，但将安全对齐研究嫁接到"让 AI 更努力调试"的语境是偷换论题。</span>
+        </div>
+      </div>
+      <div class="verdict-card">
+        <h4><span class="en">"3.25" Attention Anchoring</span><span class="zh">"3.25" 注意力锚定</span></h4>
+        <div class="verdict partial"><span class="en">Mechanism Sound, Quantification Unsupported</span><span class="zh">机制合理，量化无依据</span></div>
+        <div class="detail">
+          <span class="en">The attention anchoring mechanism explanation is plausible, but the 7-10%/2-3%/0% quantitative breakdown has no experimental support.</span>
+          <span class="zh">注意力锚定的解释机制合理，但 7-10%/2-3%/0% 的量化分解没有实验支撑。</span>
+        </div>
+      </div>
+      <div class="verdict-card">
+        <h4><span class="en">Competitive Analysis</span><span class="zh">竞争分析</span></h4>
+        <div class="verdict false"><span class="en">Strawman Argument</span><span class="zh">稻草人论证</span></div>
+        <div class="detail">
+          <span class="en">Ignores non-PUA structured approaches, simplifying the landscape to "PUA vs pure emotional rhetoric." Our Benchmark is the most direct counterevidence.</span>
+          <span class="zh">忽略了非 PUA 的结构化方案，将竞争格局简化为"PUA vs 纯情感修辞"。我们的 Benchmark 是最直接的反证。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why PI Works -->
+  <section>
+    <div class="prose">
+      <h2>
+        <span class="en">6. Why PI Outperforms PUA</span>
+        <span class="zh">六、为什么 PI 比 PUA 更有效</span>
+      </h2>
+
+      <p>
+        <span class="en">Both PUA and PI use "structured behavioral constraints," but PI's results are significantly better (+54%). The difference isn't whether structured instructions are used, but the <strong>depth and breadth of the structure</strong>.</span>
+        <span class="zh">PUA 和 PI 都使用了"结构化行为约束"，但 PI 的效果显著更好（+54%）。差异不在于"有没有用结构化指令"，而在于<strong>结构化的深度和广度</strong>。</span>
+      </p>
+
+      <h3>
+        <span class="en">6.1 Cognitive Framework vs Checklist</span>
+        <span class="zh">6.1 认知框架 vs 检查清单</span>
+      </h3>
+
+      <p>
+        <span class="en">PUA's structured component is essentially a 7-item checklist + 4-level pressure escalation. PI is a complete <strong>cognitive operating system</strong>:</span>
+        <span class="zh">PUA 的结构化部分本质上是一份 7 项检查清单 + 4 级压力升级。PI 则是一个完整的<strong>认知操作系统</strong>：</span>
+      </p>
+
+      <ul>
+        <li><span class="en"><strong>9 Scenes × 5 Cognitive Formations</strong>: Different tasks activate different thinking mode combinations, not a generic checklist</span><span class="zh"><strong>9 场景 × 5 认知阵</strong>：不同任务激活不同的思维模式组合，而不是一套通用清单</span></li>
+        <li><span class="en"><strong>6-Stage Battle Momentum</strong>: Failure-count-driven progressive strategy escalation with independent behavioral branches and methodology per stage</span><span class="zh"><strong>六阶战势</strong>：失败次数驱动的渐进式策略升级，每阶有独立的行为分支和方法论</span></li>
+        <li><span class="en"><strong>10 Anti-Pattern Commandments</strong>: Not just "what to do" but precisely constraining "what not to do" — 10 most common AI failure modes</span><span class="zh"><strong>反模式十戒</strong>：不只是说"做什么"，还精确约束"不要做什么"——10 种 AI 最常犯的反模式</span></li>
+        <li><span class="en"><strong>Four Dojos Unified</strong>: Dev/Test/Product/Ops — four professional dojos, each with its own cognitive pipeline</span><span class="zh"><strong>四道合一</strong>：编程/测试/产品/运营四大专业道场，每道有专属的认知流管线</span></li>
+        <li><span class="en"><strong>5 Resonance Forms</strong>: Thinking visibility protocol, enabling humans to question and intervene in AI's reasoning process</span><span class="zh"><strong>共振五式</strong>：思维可见化协议，让人能追问和干预 AI 的推理过程</span></li>
+      </ul>
+
+      <h3>
+        <span class="en">6.2 Proactive Discovery vs Passive Checking</span>
+        <span class="zh">6.2 主动发现 vs 被动检查</span>
+      </h3>
+
+      <p>
+        <span class="en">PI's advantage in <strong>hidden issue discovery</strong> is most striking (8.8 vs 4.4, +100%). This is because:</span>
+        <span class="zh">PI 在<strong>隐藏问题发现</strong>上的优势最为显著（8.8 vs 4.4，+100%）。这是因为：</span>
+      </p>
+
+      <ul>
+        <li><span class="en"><strong>Proactive Investigation Directive</strong>: After solving the main issue, actively scan for similar issues, predict associated risks, raise early warnings</span><span class="zh"><strong>致人术</strong>（⚡PI-04）：完成主问题后主动排查同类问题、关联预判、风险预警</span></li>
+        <li><span class="en"><strong>Scene Chaining</strong>: Cross-scene activation — fix bug → auto-check related modules → preventive audit</span><span class="zh"><strong>场景链</strong>：跨场景链式激活，修完 bug → 自动检查关联模块 → 预防性审计</span></li>
+        <li><span class="en"><strong>"Guess-without-search" and "Stop-without-trace"</strong> (Anti-Pattern Commandments): Precisely constraining AI's lazy behaviors</span><span class="zh"><strong>猜而不搜、停而不追</strong>（反模式十戒）：精准约束 AI 的惰性行为</span></li>
+      </ul>
+
+      <p>
+        <span class="en">PUA's checklist can only constrain "did you finish?" — it cannot drive AI to <strong>proactively seek more problems</strong>.</span>
+        <span class="zh">PUA 的检查清单只能约束"做完了没有"，但无法驱动 AI <strong>主动寻找更多问题</strong>。</span>
+      </p>
+
+      <h3>
+        <span class="en">6.3 Fundamental Difference in User Experience</span>
+        <span class="zh">6.3 用户体验的根本差异</span>
+      </h3>
+
+      <p>
+        <span class="en">The OpenPUA article in §8.3 acknowledged an issue: users "feel fatigued after prolonged use of high-pressure mode." This is not accidental — it's a <strong>design flaw</strong> of the PUA approach.</span>
+        <span class="zh">OpenPUA 文章在 §8.3 承认了一个问题：用户"长时间使用高压模式后感到疲惫"。这不是意外——这是 PUA 方案的<strong>设计缺陷</strong>。</span>
+      </p>
+
+      <p>
+        <span class="en">PI's spirit animal totem system (Eagle · Wolf-Tiger · Lion · Dragon · Dolphin…) and Eastern wisdom references ("Use bronze as a mirror" · "Know yourself and your enemy" · "Heaven's movement is ever vigorous") deliver a warm collaborative experience while maintaining professional rigor. Good tools shouldn't make users uncomfortable.</span>
+        <span class="zh">PI 的灵兽图腾系统（鹰·狼虎·狮·龙·海豚……）和东方智慧引用（"以铜为镜""知彼知己""天行健"），在保持专业严谨的同时提供了有温度的协作体验。好的工具不需要让用户感到不适。</span>
+      </p>
+
+      <h2>
+        <span class="en">7. Conclusion</span>
+        <span class="zh">七、综合结论</span>
+      </h2>
+
+      <div class="callout">
+        <span class="en"><strong>In one sentence</strong>: The OpenPUA article says "emotional rhetoric is ineffective, structured instructions are effective" — this direction is correct. But using this correct conclusion to imply "PUA is the best structured approach" — this logical leap doesn't hold. Our Benchmark data (PI 593 vs PUA 386, +54%) is the most direct counterevidence.</span>
+        <span class="zh"><strong>一句话总结</strong>：OpenPUA 文章说"情感修辞无效、结构化指令有效"——这个大方向是对的。但他用这个正确结论来暗示"PUA 是最好的结构化方案"——这个推理跳跃不成立。我们的 Benchmark 数据（PI 593 vs PUA 386，+54%）是最直接的反证。</span>
+      </div>
+
+      <p>
+        <span class="en">Telling AI "what you should fear" is less effective than telling AI "how you should think." Checklists are inferior to cognitive frameworks. Pressure escalation is inferior to battle momentum systems. PUA rhetoric is inferior to Eastern wisdom.</span>
+        <span class="zh">告诉 AI "你应该害怕什么"不如告诉 AI "你应该如何思考"。检查清单不如认知框架。压力升级不如战势系统。PUA 修辞不如东方智慧。</span>
+      </p>
+
+      <p>
+        <span class="en">The data has spoken.</span>
+        <span class="zh">数据已经说话。</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- References -->
+  <section>
+    <div class="prose">
+      <h2>
+        <span class="en">References</span>
+        <span class="zh">参考文献</span>
+      </h2>
+
+      <ol>
+        <li>Li, C. et al. (2023). "Large Language Models Understand and Can Be Enhanced by Emotional Stimuli." LLM@IJCAI'23 Workshop. arXiv:2307.11760</li>
+        <li>Li, C. et al. (2024). "The Good, The Bad, and Why: Unveiling Emotions in Generative AI." ICLR 2024 Spotlight / ICML 2024. arXiv:2312.11111</li>
+        <li>Wang, X. et al. (2024). "NegativePrompt: Leveraging Psychology for LLMs Enhancement via Negative Emotional Stimuli." IJCAI 2024. arXiv:2405.02814</li>
+        <li>Zheng, M. et al. (2024). "When 'A Helpful Assistant' Is Not Really Helpful." EMNLP 2024. arXiv:2311.10054</li>
+        <li>Hu, T. & Collier, N. (2024). "Quantifying the Persona Effect in LLM Simulations." ACL 2024</li>
+        <li>Mollick, E. et al. (2025). "Prompting Science Report 4: Playing Pretend." SSRN:5879722</li>
+        <li>Chen, R. et al. (2025). "Persona Vectors: Monitoring and Controlling Character Traits." Anthropic Fellows Program. arXiv:2507.21509</li>
+        <li>Lu, C. et al. (2026). "The Assistant Axis." Anthropic. arXiv:2601.10387</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>PI Research &mdash;
+      <span class="en">Independent analysis based on academic papers and experimental data</span>
+      <span class="zh">基于学术论文和实验数据的独立分析</span>
+      &mdash;
+      <a href="https://github.com/share-skills/pi">GitHub</a> &middot;
+      <a href="benchmark.html"><span class="en">Benchmark Raw Data</span><span class="zh">Benchmark 原始数据</span></a>
+    </p>
+  </footer>
+</div>
+
+<script src="js/lang.js"></script>
+</body>
+</html>

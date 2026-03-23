@@ -34,7 +34,6 @@ jobs:
             hooks/ \
             install.sh \
             SKILL.md \
-            SKILL_LITE.md \
             LICENSE \
             README.md \
             README.en.md \

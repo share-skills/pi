@@ -86,6 +86,13 @@ class ChatCompletionChoice(BaseModel):
     finish_reason: str = "stop"
 
 
+class UsageInfo(BaseModel):
+    """Token usage information."""
+    prompt_tokens: int
+    completion_tokens: int
+    total_tokens: int
+
+
 class ChatCompletionResponse(BaseModel):
     """OpenAI-compatible chat completion response.
 
@@ -94,9 +101,10 @@ class ChatCompletionResponse(BaseModel):
     """
     id: str
     object: str = "chat.completion"
-    created: str
+    created: int  # Unix timestamp (seconds)
     model: str
     choices: List[ChatCompletionChoice]
+    usage: Optional[UsageInfo] = None
 
 
 # ─── Application Setup ───────────────────────────────────────────────────────
@@ -195,11 +203,22 @@ def create_app(config: InferenceConfig = None) -> FastAPI:
                 finish_reason=choice.get("finish_reason", "stop"),
             ))
 
+        # Extract usage info from vLLM response
+        usage = None
+        if "usage" in vllm_data:
+            vllm_usage = vllm_data["usage"]
+            usage = UsageInfo(
+                prompt_tokens=vllm_usage.get("prompt_tokens", 0),
+                completion_tokens=vllm_usage.get("completion_tokens", 0),
+                total_tokens=vllm_usage.get("total_tokens", 0),
+            )
+
         response = ChatCompletionResponse(
             id=f"chatcmpl-{uuid.uuid4().hex[:12]}",
-            created=datetime.now().isoformat(),
+            created=int(time.time()),
             model=request.model,
             choices=choices,
+            usage=usage,
         )
 
         return response
@@ -281,7 +300,7 @@ async def _stream_completion(app, prompt, request, config):
                         chat_chunk = {
                             "id": f"chatcmpl-{uuid.uuid4().hex[:12]}",
                             "object": "chat.completion.chunk",
-                            "created": datetime.now().isoformat(),
+                            "created": int(time.time()),
                             "model": request.model,
                             "choices": [
                                 {

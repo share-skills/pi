@@ -21,7 +21,6 @@ import unicodedata
 import logging
 from typing import List, Dict, Set, Optional, Tuple
 from dataclasses import dataclass, field
-from collections import Counter
 
 logger = logging.getLogger(__name__)
 
@@ -207,13 +206,16 @@ class TextCleaner:
         Uses a single-pass approach with positive character class matching
         to avoid potential performance issues with large inputs.
         """
-        # Convert ASCII punctuation to CJK equivalents
-        for ascii_p, cjk_p in MODERN_TO_CLASSICAL.items():
-            text = text.replace(ascii_p, cjk_p)
+        # Convert ASCII punctuation to CJK equivalents using efficient translation table
+        # This is O(n) single-pass instead of O(n*m) for multiple replace() calls
+        if not hasattr(self, '_translation_table'):
+            self._translation_table = str.maketrans(MODERN_TO_CLASSICAL)
+        text = text.translate(self._translation_table)
 
         # Recover missing punctuation between lines
         # Match Chinese characters or alphanumeric on both sides of newline
         # This uses positive character classes for better performance
+        # Pattern: (CHAR)\\n(?=CHAR) - LINEAR TIME, no backtracking possible
         text = re.sub(
             r"([\u4e00-\u9fffA-Za-z0-9])\n(?=[\u4e00-\u9fffA-Za-z0-9])",
             r"\1.\n",
@@ -286,13 +288,13 @@ class TextCleaner:
         - （按：...）
         - 【校勘記】...
         
-        Fixed: Changed from non-greedy .*? to explicit character class [^]]*
-        to avoid potential backtracking on very long annotations without closing.
+        Uses explicit negated character classes instead of non-greedy .*?
+        to avoid scanning to end of string on unclosed annotations.
         """
-        # Remove bracketed annotations
-        # Fixed: Use [^]]* instead of .*? for explicit non-] matching
-        text = re.sub(r"[\[【](?:注 | 按 | 校勘記 | 案)[】\]][^]]*(?=[\[【]|$)", "", text)
-        text = re.sub(r"(?:（按 [：:] ）)[^)）]*", "", text)
+        # Remove bracketed annotations using negated class [^【[]* 
+        # This stops at next opening bracket instead of scanning to end
+        text = re.sub(r"(?:\[|【)(?:注|按|校勘記|案)(?:\]|】)[^[\【]*", "", text)
+        text = re.sub(r"（按[：:][^)）]*[)）]", "", text)
 
         return text
 
