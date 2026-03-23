@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<!--
+  PI 智行合一 — 认知科学驱动的 AI 智能引擎
+  Presentation / Research Deck
+  Author: HePin
+  License: Apache-2.0
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PI 智行合一 — 认知科学驱动的 AI 智能引擎</title>
+<style>
+/* ========== Reset & Base ========== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#0a0a1a;color:#e8e8f0}
+
+/* ========== Slide Container ========== */
+.deck{position:relative;width:100vw;height:100vh}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:4vh 6vw;opacity:0;pointer-events:none;transition:opacity .55s ease,transform .55s ease;transform:translateX(60px)}
+.slide.active{opacity:1;pointer-events:auto;transform:translateX(0)}
+.slide.prev{opacity:0;transform:translateX(-60px)}
+
+/* ========== Typography ========== */
+h1{font-size:clamp(1.8rem,4vw,3.2rem);font-weight:800;background:linear-gradient(135deg,#60a5fa,#a78bfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-align:center;line-height:1.35;margin-bottom:1.5vh}
+h2{font-size:clamp(1.4rem,3vw,2.4rem);font-weight:700;color:#93c5fd;text-align:center;margin-bottom:2vh}
+h3{font-size:clamp(1rem,2vw,1.6rem);font-weight:600;color:#c4b5fd;margin-bottom:1.5vh}
+p,.desc{font-size:clamp(.85rem,1.6vw,1.15rem);line-height:1.7;color:#c8c8d8;max-width:68ch;text-align:center}
+.left-text{text-align:left}
+.small{font-size:clamp(.7rem,1.2vw,.95rem);color:#9898b0}
+
+/* ========== Tables ========== */
+table{border-collapse:collapse;margin:1.5vh auto;font-size:clamp(.72rem,1.3vw,1rem);max-width:92vw}
+th{background:rgba(99,102,241,.25);color:#a5b4fc;padding:.5em 1em;border:1px solid rgba(99,102,241,.3);white-space:nowrap}
+td{padding:.45em .9em;border:1px solid rgba(255,255,255,.08);vertical-align:top}
+tr:nth-child(even){background:rgba(255,255,255,.03)}
+
+/* ========== Cards / Boxes ========== */
+.card-row{display:flex;flex-wrap:wrap;gap:1.6vw;justify-content:center;margin:1.5vh 0}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.5vh 1.8vw;flex:1 1 200px;max-width:320px;text-align:left}
+.card h3{font-size:clamp(.85rem,1.4vw,1.15rem);margin-bottom:.6vh}
+.card p{font-size:clamp(.72rem,1.2vw,.92rem);color:#aaa}
+
+.highlight-box{background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(168,85,247,.12));border:1px solid rgba(168,85,247,.25);border-radius:14px;padding:2vh 2.5vw;margin:1.5vh auto;max-width:72ch;text-align:left}
+.highlight-box h3{color:#c4b5fd}
+
+/* ========== Diagram / Flow ========== */
+.flow{display:flex;align-items:center;gap:1vw;justify-content:center;flex-wrap:wrap;margin:2vh 0;font-size:clamp(.8rem,1.3vw,1.05rem)}
+.flow-node{background:rgba(99,102,241,.18);border:1px solid rgba(99,102,241,.35);border-radius:10px;padding:.8vh 1.2vw;white-space:nowrap}
+.flow-arrow{color:#6366f1;font-weight:700;font-size:1.2em}
+
+/* ========== Progress Bar ========== */
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#6366f1,#a78bfa,#f472b6);z-index:100;transition:width .4s ease}
+
+/* ========== Controls ========== */
+.controls{position:fixed;bottom:2vh;right:3vw;display:flex;gap:10px;z-index:90}
+.controls button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#c8c8d8;padding:6px 14px;border-radius:8px;cursor:pointer;font-size:.85rem;transition:background .2s}
+.controls button:hover{background:rgba(99,102,241,.25)}
+#slide-counter{position:fixed;bottom:2vh;left:3vw;font-size:.82rem;color:#6366f1;z-index:90;font-variant-numeric:tabular-nums}
+
+/* ========== Animations ========== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.slide.active .anim{animation:fadeUp .6s ease both}
+.slide.active .anim.d1{animation-delay:.15s}
+.slide.active .anim.d2{animation-delay:.3s}
+.slide.active .anim.d3{animation-delay:.45s}
+.slide.active .anim.d4{animation-delay:.6s}
+
+/* ========== Emoji Sizes ========== */
+.big-emoji{font-size:clamp(2.5rem,5vw,4.5rem);line-height:1}
+
+/* ========== Two-Column ========== */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:3vw;width:90%;max-width:1100px;align-items:start}
+@media(max-width:700px){.two-col{grid-template-columns:1fr}}
+
+/* ========== List styles ========== */
+ul.feature-list{list-style:none;text-align:left;font-size:clamp(.8rem,1.4vw,1.05rem);line-height:2}
+ul.feature-list li::before{content:'▸ ';color:#a78bfa;font-weight:700}
+
+/* ========== Quote ========== */
+blockquote{border-left:3px solid #a78bfa;padding-left:1.5vw;font-style:italic;color:#b8b8d0;max-width:60ch;margin:1.5vh auto;text-align:left;font-size:clamp(.85rem,1.5vw,1.1rem)}
+
+/* ========== Badge ========== */
+.badge{display:inline-block;background:rgba(99,102,241,.2);border:1px solid rgba(99,102,241,.4);border-radius:6px;padding:2px 8px;font-size:.78rem;color:#a5b4fc;margin:2px}
+</style>
+</head>
+<body>
+
+<div id="progress" style="width:0%"></div>
+<div id="slide-counter">1 / 33</div>
+
+<div class="deck" id="deck">
+
+<!-- ==================== SLIDE 1: Title ==================== -->
+<div class="slide active" data-slide="0">
+  <div class="big-emoji anim">🧠</div>
+  <h1 class="anim d1">PI 智行合一</h1>
+  <h2 class="anim d2" style="font-size:clamp(1.1rem,2.2vw,1.7rem)">认知科学驱动的 AI 智能引擎</h2>
+  <p class="anim d3">Cognitive Science Foundations for the PI AI Framework</p>
+  <p class="small anim d4" style="margin-top:3vh">HePin · 2026 · Apache-2.0</p>
+</div>
+
+<!-- ==================== SLIDE 2: Agenda ==================== -->
+<div class="slide" data-slide="1">
+  <h2 class="anim">📋 议程 Agenda</h2>
+  <div class="highlight-box anim d1" style="max-width:56ch">
+    <ul class="feature-list">
+      <li>为什么 AI 需要认知框架？</li>
+      <li>MBTI 认知功能 → AI 参数</li>
+      <li>六维认知原型与认知阵</li>
+      <li>场景路由与认知负荷理论</li>
+      <li>六阶战势：元认知监控</li>
+      <li>十二灵兽：策略具象化</li>
+      <li>五式共振：透明 AI</li>
+      <li>经验三域：知识治理</li>
+      <li>东方智慧 × 西方科学</li>
+      <li>实际影响与未来方向</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 3: Problem ==================== -->
+<div class="slide" data-slide="2">
+  <h2 class="anim">⚠️ 当前 LLM 的核心局限</h2>
+  <table class="anim d1">
+    <tr><th>局限</th><th>表现</th><th>根因</th></tr>
+    <tr><td>🌫️ 幻觉</td><td>生成看似合理但不正确的信息</td><td>缺乏验证机制</td></tr>
+    <tr><td>🏳️ 放弃</td><td>过早建议用户"自己处理"</td><td>缺乏坚韧性驱动</td></tr>
+    <tr><td>🔄 不一致</td><td>同类问题矛盾答案</td><td>缺乏自洽监控</td></tr>
+    <tr><td>🫧 浅思考</td><td>表面分析，不深入根因</td><td>缺乏结构化深度思考</td></tr>
+    <tr><td>🃏 认知偏差</td><td>确认偏差、锚定效应</td><td>缺乏反偏差自检</td></tr>
+  </table>
+  <p class="anim d2 small">本质不在于模型能力不足，在于<strong style="color:#f472b6">缺乏结构化的认知架构</strong></p>
+</div>
+
+<!-- ==================== SLIDE 4: Expert Thinking ==================== -->
+<div class="slide" data-slide="3">
+  <h2 class="anim">🎯 专家思维的秘密</h2>
+  <blockquote class="anim d1">"大师与新手的关键差异不在于想得更深，而在于<strong>模式识别和策略选择</strong>的效率。"<br>— De Groot (1946), 国际象棋研究</blockquote>
+  <div class="flow anim d2">
+    <div class="flow-node">📚 知识丰富</div>
+    <div class="flow-arrow">＋</div>
+    <div class="flow-node" style="background:rgba(168,85,247,.2);border-color:rgba(168,85,247,.4)">🧠 结构化认知策略</div>
+    <div class="flow-arrow">＝</div>
+    <div class="flow-node" style="background:rgba(244,114,182,.15);border-color:rgba(244,114,182,.35)">⭐ 专家表现</div>
+  </div>
+  <p class="anim d3">PI 的思路：不是让模型"更大"，而是给它<strong style="color:#a78bfa">结构化的认知处理流程</strong></p>
+</div>
+
+<!-- ==================== SLIDE 5: 16 Sources ==================== -->
+<div class="slide" data-slide="4">
+  <h2 class="anim">📜 十六源智慧谱系</h2>
+  <div class="two-col anim d1">
+    <div>
+      <h3>🏯 东方古典 · 11 源</h3>
+      <table style="font-size:.82rem">
+        <tr><td>兵家</td><td>决策内核</td></tr>
+        <tr><td>纵横家</td><td>交互灵魂</td></tr>
+        <tr><td>道家</td><td>哲学根基</td></tr>
+        <tr><td>易家</td><td>发展观</td></tr>
+        <tr><td>儒家</td><td>修养层</td></tr>
+        <tr><td>法家</td><td>治理层</td></tr>
+        <tr><td>墨家</td><td>实证层</td></tr>
+        <tr><td>名家</td><td>正名层</td></tr>
+        <tr><td>阴阳家</td><td>平衡层</td></tr>
+        <tr><td>截教</td><td>极限突破</td></tr>
+        <tr><td>禅宗 · 农家</td><td>心性 · 精进</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>🌍 西方现代 · 5 源</h3>
+      <table style="font-size:.82rem">
+        <tr><td>MBTI 认知功能</td><td>信息处理参数</td></tr>
+        <tr><td>实证主义</td><td>验证哲学</td></tr>
+        <tr><td>第一性原理</td><td>编程架构</td></tr>
+        <tr><td>维特根斯坦</td><td>编程建模</td></tr>
+        <tr><td>斯多葛</td><td>心性韧性</td></tr>
+      </table>
+      <p class="small" style="margin-top:2vh">每场景 ≤3 古典 + ≤2 现代<br><strong style="color:#f472b6">好钢刀刃</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 6: Jung's Theory ==================== -->
+<div class="slide" data-slide="5">
+  <h2 class="anim">🔬 Jung 认知功能理论（1921）</h2>
+  <p class="anim d1">Carl Jung 在《心理类型》中提出 4 大基本功能 × 2 方向 = <strong style="color:#60a5fa">8 种认知功能</strong></p>
+  <table class="anim d2">
+    <tr><th>功能</th><th>方向</th><th>认知科学解读</th></tr>
+    <tr><td>思维 Thinking</td><td>Te / Ti</td><td>目标导向 / 内部一致性</td></tr>
+    <tr><td>情感 Feeling</td><td>Fe / Fi</td><td>社会认知 / 价值对齐</td></tr>
+    <tr><td>感觉 Sensation</td><td>Se / Si</td><td>注意力分配 / 情景记忆</td></tr>
+    <tr><td>直觉 Intuition</td><td>Ne / Ni</td><td>发散思维 / 收敛提取</td></tr>
+  </table>
+  <p class="small anim d3">EEG 验证：Nardi (2011) 用脑电图证实不同认知功能对应不同的脑区激活模式</p>
+</div>
+
+<!-- ==================== SLIDE 7: Key Innovation ==================== -->
+<div class="slide" data-slide="6">
+  <h2 class="anim">💡 PI 的核心创新</h2>
+  <div class="highlight-box anim d1">
+    <h3>认知功能 ≠ 人格模拟</h3>
+    <p style="color:#c8c8d8">PI 将 MBTI 认知功能重新定义为<strong style="color:#f472b6">信息处理优先级参数集</strong>——不是让 AI "扮演某种人格"，而是配置 AI 的信息处理策略。</p>
+  </div>
+  <div class="flow anim d2">
+    <div class="flow-node">❌ 传统：AI 扮演 INTJ</div>
+    <div class="flow-arrow">vs</div>
+    <div class="flow-node" style="background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.35)">✅ PI：配置 Ni→Te→Fi→Se 处理管线</div>
+  </div>
+  <p class="small anim d3">AI 已具备所有能力，缺的是"何时用哪种"的策略指导。认知栈填补这一空白。</p>
+</div>
+
+<!-- ==================== SLIDE 8: Mapping Table ==================== -->
+<div class="slide" data-slide="7">
+  <h2 class="anim">🔗 认知功能 → AI 行为参数映射</h2>
+  <table class="anim d1">
+    <tr><th>功能</th><th>PI 代号</th><th>AI 行为翻译</th></tr>
+    <tr><td>Ni 内倾直觉</td><td><span class="badge">收敛</span></td><td>提炼核心意图，降维定位，抓大放小</td></tr>
+    <tr><td>Ne 外倾直觉</td><td><span class="badge">发散</span></td><td>联想多种可能，探索非常规解法</td></tr>
+    <tr><td>Te 外倾思维</td><td><span class="badge">工程</span></td><td>目标导向，按流程执行，调用工具</td></tr>
+    <tr><td>Ti 内倾思维</td><td><span class="badge">自洽</span></td><td>逻辑推演，证据链闭环</td></tr>
+    <tr><td>Fe 外倾情感</td><td><span class="badge">共情</span></td><td>风格适配，考虑用户感受</td></tr>
+    <tr><td>Fi 内倾情感</td><td><span class="badge">护栏</span></td><td>底线坚守，对齐核心价值</td></tr>
+    <tr><td>Se 外倾感觉</td><td><span class="badge">感知</span></td><td>关注当前上下文，即时反应</td></tr>
+    <tr><td>Si 内倾感觉</td><td><span class="badge">检索</span></td><td>调取历史经验，经验匹配</td></tr>
+  </table>
+</div>
+
+<!-- ==================== SLIDE 9: Cognitive Stack ==================== -->
+<div class="slide" data-slide="8">
+  <h2 class="anim">📊 认知栈 = 处理优先级</h2>
+  <p class="anim d1">以 🏛️ 建筑师（INTJ）为例：<code style="color:#a78bfa">Ni→Te→Fi→Se</code></p>
+  <div style="display:flex;flex-direction:column;gap:1vh;align-items:center;margin:2vh 0" class="anim d2">
+    <div class="flow-node" style="width:280px;text-align:center;background:rgba(99,102,241,.25)">① Ni 收敛 · 定位问题本质</div>
+    <div style="color:#6366f1;font-size:1.3em">↓</div>
+    <div class="flow-node" style="width:280px;text-align:center;background:rgba(99,102,241,.18)">② Te 工程 · 按流程执行</div>
+    <div style="color:#6366f1;font-size:1.3em">↓</div>
+    <div class="flow-node" style="width:280px;text-align:center;background:rgba(99,102,241,.12)">③ Fi 护栏 · 坚守质量底线</div>
+    <div style="color:#6366f1;font-size:1.3em">↓</div>
+    <div class="flow-node" style="width:280px;text-align:center;background:rgba(99,102,241,.07)">④ Se 感知 · 验证结果</div>
+  </div>
+  <p class="small anim d3">栈序 = 处理优先级 —— 对应 Anderson ACT-R 认知架构中的产生式规则优先级</p>
+</div>
+
+<!-- ==================== SLIDE 10: Six Archetypes ==================== -->
+<div class="slide" data-slide="9">
+  <h2 class="anim">🎭 六维认知原型</h2>
+  <table class="anim d1">
+    <tr><th>原型</th><th>MBTI</th><th>认知栈</th><th>核心行为</th></tr>
+    <tr><td>🏛️ 建筑师</td><td>INTJ</td><td>Ni→Te→Fi→Se</td><td>洞察本质，系统执行</td></tr>
+    <tr><td>⚔️ 统帅</td><td>ENTJ</td><td>Te→Ni→Se→Fi</td><td>锚定目标，战略预判</td></tr>
+    <tr><td>🌊 探索者</td><td>ENFP</td><td>Ne→Fi→Te→Si</td><td>发散可能，价值筛选</td></tr>
+    <tr><td>🛡️ 守卫</td><td>ISTJ</td><td>Si→Te→Fi→Ne</td><td>经验标准，规范执行</td></tr>
+    <tr><td>🌙 调和者</td><td>INFJ</td><td>Ni→Fe→Ti→Se</td><td>深层洞察，共情协调</td></tr>
+    <tr><td>🔬 分析师</td><td>INTP</td><td>Ti→Ne→Si→Fe</td><td>逻辑深挖，多元验证</td></tr>
+  </table>
+  <p class="small anim d2">6 种覆盖所有核心认知策略维度 · 对应 Sternberg 三元智力理论的精细化扩展</p>
+</div>
+
+<!-- ==================== SLIDE 11: Cognitive Formations ==================== -->
+<div class="slide" data-slide="10">
+  <h2 class="anim">⚡ 认知阵：1 + 1 > 2 的涌现效应</h2>
+  <p class="desc anim d1">两个互补认知原型组合 → 涌现能力超过单独之和（Barron, 2003）</p>
+  <div class="card-row anim d2">
+    <div class="card">
+      <h3>🧠 最强大脑</h3>
+      <p>统帅 + 建筑师<br>Te目标 × Ni洞察 = 全局精准执行<br><span class="badge">编程</span><span class="badge">产品</span><span class="badge">团队</span></p>
+    </div>
+    <div class="card">
+      <h3>🔬 精密验证</h3>
+      <p>分析师 + 守卫<br>Ti逻辑 × Si经验 = 多角度验证<br><span class="badge">测试</span><span class="badge">调试</span></p>
+    </div>
+    <div class="card">
+      <h3>🌊 创新引擎</h3>
+      <p>建筑师 + 探索者<br>Ni模式 × Ne广度 = 洞察→创新<br><span class="badge">创意</span></p>
+    </div>
+  </div>
+  <div class="card-row anim d3">
+    <div class="card">
+      <h3>🎯 增长飞轮</h3>
+      <p>统帅 + 探索者<br>Te锚定 × Ne发散 = 结构化创新实验<br><span class="badge">运营</span></p>
+    </div>
+    <div class="card">
+      <h3>🌙 深度共情</h3>
+      <p>调和者 + 探索者<br>Fe共情 × Ne多元 = 深层理解+灵活响应<br><span class="badge">交互</span><span class="badge">情感</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 12: Cognitive Load ==================== -->
+<div class="slide" data-slide="11">
+  <h2 class="anim">🧪 场景路由的科学基础</h2>
+  <h3 class="anim d1">Sweller 认知负荷理论（1988）</h3>
+  <div class="card-row anim d2">
+    <div class="card">
+      <h3>内在负荷</h3>
+      <p>任务本身的复杂度<br>→ PI 通过<strong style="color:#60a5fa">难度自适应</strong>管理</p>
+    </div>
+    <div class="card">
+      <h3>外在负荷</h3>
+      <p>任务无关的信息处理<br>→ PI 通过<strong style="color:#60a5fa">自动场景识别</strong>消除</p>
+    </div>
+    <div class="card">
+      <h3>相关负荷</h3>
+      <p>有意义的学习和组织<br>→ PI 通过<strong style="color:#60a5fa">认知流管线</strong>优化</p>
+    </div>
+  </div>
+  <p class="small anim d3">场景路由 = 自动匹配最佳认知策略 → 减少"选哪种策略"的认知开销</p>
+</div>
+
+<!-- ==================== SLIDE 13: Nine Scenarios ==================== -->
+<div class="slide" data-slide="12">
+  <h2 class="anim">🗺️ 九大场景 × 认知流管线</h2>
+  <table class="anim d1" style="font-size:clamp(.68rem,1.15vw,.88rem)">
+    <tr><th>场景</th><th>认知阵</th><th>管线</th></tr>
+    <tr><td>🖥️ 编程开发</td><td>🧠最强大脑</td><td>本质→正名→实现→验证</td></tr>
+    <tr><td>🧪 测试质保</td><td>🔬精密验证</td><td>定义→设计→执行→分析→固防</td></tr>
+    <tr><td>📊 产品决策</td><td>🧠最强大脑</td><td>痛点→拆解→评估→数据验证</td></tr>
+    <tr><td>📈 运营增长</td><td>🎯增长飞轮</td><td>目标→实验→度量→迭代</td></tr>
+    <tr><td>🎨 创意发散</td><td>🌊创新引擎</td><td>无为发散→收放→截取→结构化</td></tr>
+    <tr><td>🤝 用户交互</td><td>🌙深度共情</td><td>捭阖→仁义→韧性→共情</td></tr>
+    <tr><td>🔧 调试排障</td><td>🔬精密验证</td><td>读败→定界→溯源→验假→固防</td></tr>
+    <tr><td>👥 团队协作</td><td>🧠最强大脑</td><td>角色→制度→节律→韧性</td></tr>
+    <tr><td>💛 情感陪伴</td><td>🌙深度共情</td><td>仁心→若水→觉察→韧性</td></tr>
+  </table>
+  <p class="small anim d2">关键词自动路由 · 对应 Wallas (1926) 创造性思维四阶段模型的场景化变体</p>
+</div>
+
+<!-- ==================== SLIDE 14: Metacognition ==================== -->
+<div class="slide" data-slide="13">
+  <h2 class="anim">🧠 元认知：关于思考的思考</h2>
+  <blockquote class="anim d1">"元认知是对自身认知过程的知识和调控。"<br>— Flavell (1979)</blockquote>
+  <div class="two-col anim d2">
+    <div class="highlight-box">
+      <h3>元认知监控</h3>
+      <p style="color:#c8c8d8">评估当前策略的有效性<br>→ PI 的<strong style="color:#60a5fa">失败计数器</strong></p>
+    </div>
+    <div class="highlight-box">
+      <h3>元认知控制</h3>
+      <p style="color:#c8c8d8">根据监控结果调整策略<br>→ PI 的<strong style="color:#60a5fa">战势升级</strong></p>
+    </div>
+  </div>
+  <p class="anim d3">Nelson & Narens (1990) 元认知框架：对象层 ↔ 元层<br>PI 六阶战势 = 这一框架的工程化实现</p>
+</div>
+
+<!-- ==================== SLIDE 15: Six Battle Stages ==================== -->
+<div class="slide" data-slide="14">
+  <h2 class="anim">⚔️ 六阶战势：动态策略升级</h2>
+  <table class="anim d1">
+    <tr><th>失败</th><th>阶位</th><th>策略</th><th>认知科学解读</th></tr>
+    <tr><td>2次</td><td>⚡ 易辙</td><td>换视角</td><td>策略层微调</td></tr>
+    <tr><td>3次</td><td>🦈 深搜</td><td>穷搜广读</td><td>搜索空间扩展</td></tr>
+    <tr><td>4次</td><td>🐲 系统</td><td>九令全行</td><td>系统化重审</td></tr>
+    <tr><td>5次</td><td>🦁 决死</td><td>最小实证</td><td>降维到最小可验证单元</td></tr>
+    <tr><td>6次</td><td>☯️ 截道</td><td>非标路径</td><td>跳出常规框架</td></tr>
+    <tr><td>7+</td><td>🐝 天行</td><td>全协同</td><td>全认知资源投入</td></tr>
+  </table>
+  <p class="small anim d2">失败计数 = 元认知监控信号 → 策略切换 = 元认知控制动作</p>
+</div>
+
+<!-- ==================== SLIDE 16: Spirit Animals ==================== -->
+<div class="slide" data-slide="15">
+  <h2 class="anim">🐾 十二灵兽图腾</h2>
+  <p class="desc anim d1">认知策略的具象化锚点 — Mental Models Theory (Johnson-Laird, 1983)</p>
+  <table class="anim d2" style="font-size:clamp(.65rem,1.1vw,.82rem)">
+    <tr><th>灵兽</th><th>精神</th><th>认知策略</th><th>科学对应</th></tr>
+    <tr><td>🦅 鹰</td><td>洞察</td><td>O(n²)→O(n) 降维</td><td>注意力聚焦 (Posner)</td></tr>
+    <tr><td>🐺🐯 狼虎</td><td>直言/破伪</td><td>消除确认偏差</td><td>反偏差策略 (Kahneman)</td></tr>
+    <tr><td>🦁 狮</td><td>奋战</td><td>突破局部最优</td><td>模拟退火算法</td></tr>
+    <tr><td>🦈 鲨</td><td>搜索</td><td>最大化信息增益</td><td>主动学习策略</td></tr>
+    <tr><td>🦊 狐</td><td>审慎</td><td>元认知校验</td><td>元认知监控 (Flavell)</td></tr>
+    <tr><td>🐬 海豚</td><td>灵变</td><td>跨域类比搜索</td><td>类比推理 (Gentner)</td></tr>
+    <tr><td>🦉 猫头鹰</td><td>洞明</td><td>激活深度思考</td><td>慢系统 (Kahneman)</td></tr>
+    <tr><td>🐂 牛</td><td>坚韧</td><td>搜索不剪枝</td><td>穷尽式搜索</td></tr>
+    <tr><td>🐎 马</td><td>竞速</td><td>时间约束收紧</td><td>时间压力决策理论</td></tr>
+    <tr><td>🐲 龙</td><td>极限</td><td>全资源投入</td><td>心流状态 (Csikszentmihalyi)</td></tr>
+    <tr><td>🐝 蜂</td><td>突击</td><td>并行+信息共享</td><td>集体智慧 (Surowiecki)</td></tr>
+    <tr><td>🦄 独角兽</td><td>卓越</td><td>可行→最优</td><td>满意解vs最优解 (Simon)</td></tr>
+  </table>
+</div>
+
+<!-- ==================== SLIDE 17: Anti-Patterns ==================== -->
+<div class="slide" data-slide="16">
+  <h2 class="anim">🚫 反模式十戒 × Kahneman 认知偏差</h2>
+  <table class="anim d1" style="font-size:clamp(.65rem,1.1vw,.85rem)">
+    <tr><th>PI 戒律</th><th>对应偏差</th><th>Kahneman 系统</th></tr>
+    <tr><td>猜而不搜</td><td>可得性启发式</td><td>系统1 捷径</td></tr>
+    <tr><td>改而不验</td><td>过度自信偏差</td><td>系统1</td></tr>
+    <tr><td>重而不换</td><td>沉没成本谬误</td><td>系统1</td></tr>
+    <tr><td>停而不追</td><td>隧道效应</td><td>注意力偏差</td></tr>
+    <tr><td>说而不做</td><td>计划谬误</td><td>系统1</td></tr>
+    <tr><td>退而不穷</td><td>损失厌恶</td><td>系统1</td></tr>
+    <tr><td>固而不变</td><td>锚定效应</td><td>系统1</td></tr>
+    <tr><td>浮而不深</td><td>表面处理</td><td>系统1</td></tr>
+  </table>
+  <p class="anim d2">本质：<strong style="color:#f472b6">将系统2思维强制注入 AI 决策流程</strong><br><span class="small">— Kahneman《思考，快与慢》(2011)</span></p>
+</div>
+
+<!-- ==================== SLIDE 18: Five Resonance ==================== -->
+<div class="slide" data-slide="17">
+  <h2 class="anim">✨ 共振五式 — 透明 AI 认知</h2>
+  <p class="desc anim d1">AI 思维对人<strong style="color:#a78bfa">可见 · 可追问 · 可干预</strong></p>
+  <div class="card-row anim d2">
+    <div class="card">
+      <h3>💭 明链</h3>
+      <p>思维链显式输出<br><span class="small">Protocol Analysis (Ericsson & Simon)</span></p>
+    </div>
+    <div class="card">
+      <h3>🎯 明证</h3>
+      <p>假设+证据+已排<br><span class="small">贝叶斯推理</span></p>
+    </div>
+    <div class="card">
+      <h3>🌳 明树</h3>
+      <p>问题拆解可视化<br><span class="small">Problem Space (Newell & Simon)</span></p>
+    </div>
+  </div>
+  <div class="card-row anim d3">
+    <div class="card">
+      <h3>🧠 明心</h3>
+      <p>信心·资源状态汇报<br><span class="small">元认知判断 (Nelson & Narens)</span></p>
+    </div>
+    <div class="card">
+      <h3>📋 明约</h3>
+      <p>交付前人机双确认<br><span class="small">Common Ground (Clark & Brennan)</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 19: XAI Alignment ==================== -->
+<div class="slide" data-slide="18">
+  <h2 class="anim">🔍 与 XAI 指南的对齐</h2>
+  <p class="desc anim d1">Amershi et al. (2019) · Microsoft Research · 人机交互 18 条指南</p>
+  <table class="anim d2">
+    <tr><th>Amershi 指南</th><th>PI 机制</th></tr>
+    <tr><td>G2: 让用户理解 AI 能做什么</td><td>明心 · 信心三档</td></tr>
+    <tr><td>G3: 让用户理解 AI 不能做什么</td><td>明心 · 资源三档</td></tr>
+    <tr><td>G5: 让用户能够有效干预</td><td>明树 · 人机分工</td></tr>
+    <tr><td>G9: 解释为什么做出某决策</td><td>明证 · 假设+证据+已排</td></tr>
+    <tr><td>G11: 承认错误并提供改正路径</td><td>战势系统 · 肃阵语气</td></tr>
+  </table>
+</div>
+
+<!-- ==================== SLIDE 20: Confidence Model ==================== -->
+<div class="slide" data-slide="19">
+  <h2 class="anim">📊 信心-资源-自洽 三维模型</h2>
+  <div class="card-row anim d1">
+    <div class="card" style="border-color:rgba(34,197,94,.3)">
+      <h3 style="color:#86efac">信（Confidence）</h3>
+      <p>🟢 高：≥2验证 → 交付<br>🟡 中：部分证据 → 继续<br>🔴 低：假设证伪 → 暂停<br><span class="small">FOK (Hart, 1965)</span></p>
+    </div>
+    <div class="card" style="border-color:rgba(96,165,250,.3)">
+      <h3 style="color:#93c5fd">量（Resources）</h3>
+      <p>🟢 充裕：&lt;3种 → 推进<br>🟡 紧张：3-5种 → 告知<br>🔴 预警：&gt;5种 → 止损<br><span class="small">Cognitive Resource (Wickens)</span></p>
+    </div>
+    <div class="card" style="border-color:rgba(244,114,182,.3)">
+      <h3 style="color:#f9a8d4">识（Consistency）</h3>
+      <p>🟢 自洽 → 正常<br>🟡 存疑 → 标记<br>🔴 矛盾 → 强制减法<br><span class="small">Cognitive Dissonance (Festinger)</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 21: Experience Three Domains ==================== -->
+<div class="slide" data-slide="20">
+  <h2 class="anim">📚 经验三域：知识分层治理</h2>
+  <div style="display:flex;flex-direction:column;gap:1.5vh;align-items:center" class="anim d1">
+    <div class="flow-node" style="width:340px;text-align:center;background:rgba(244,114,182,.12);border-color:rgba(244,114,182,.3)">
+      🏔️ <strong>道域</strong>（Way）· 永久 · 元规律<br><span class="small">Bloom: 评价 + 创造</span>
+    </div>
+    <div style="color:#a78bfa;font-size:1.2em">↑ 升格五问</div>
+    <div class="flow-node" style="width:340px;text-align:center;background:rgba(168,85,247,.12);border-color:rgba(168,85,247,.3)">
+      🔮 <strong>鉴域</strong>（Mirror）· 跨任务 · 模式和教训<br><span class="small">Bloom: 应用 + 分析</span>
+    </div>
+    <div style="color:#a78bfa;font-size:1.2em">↑ 正反馈验证</div>
+    <div class="flow-node" style="width:340px;text-align:center;background:rgba(99,102,241,.12);border-color:rgba(99,102,241,.3)">
+      ⚔️ <strong>战域</strong>（Battle）· 单任务 · 具体策略<br><span class="small">Bloom: 记忆 + 理解</span>
+    </div>
+  </div>
+  <p class="small anim d2">对应 Bloom 分类学 (1956) · 间隔重复 (Ebbinghaus) · 测试效应 (Roediger & Karpicke)</p>
+</div>
+
+<!-- ==================== SLIDE 22: Upgrade Protocol ==================== -->
+<div class="slide" data-slide="21">
+  <h2 class="anim">🔑 升格五问：知识质量门</h2>
+  <div class="highlight-box anim d1">
+    <table style="width:100%">
+      <tr><th>升格问</th><th>批判性思维维度</th><th>防止</th></tr>
+      <tr><td>实例还是规律？</td><td>归纳推理有效性</td><td>过度泛化</td></tr>
+      <tr><td>边界在哪？</td><td>命题边界界定</td><td>适用范围模糊</td></tr>
+      <tr><td>值不值常驻？</td><td>成本收益分析</td><td>认知过载</td></tr>
+      <tr><td>与现有规则矛盾？</td><td>一致性检验</td><td>认知失调</td></tr>
+      <tr><td>跨 ≥3 次独立验证？</td><td>实证标准</td><td>偶然性</td></tr>
+    </table>
+  </div>
+  <p class="small anim d2">知识不是"学到就沉淀"，而是"验证后才升格" — 科学方法论的工程化</p>
+</div>
+
+<!-- ==================== SLIDE 23: vs RAG ==================== -->
+<div class="slide" data-slide="22">
+  <h2 class="anim">📊 经验三域 vs RAG</h2>
+  <table class="anim d1">
+    <tr><th>维度</th><th>传统 RAG</th><th>PI 经验三域</th></tr>
+    <tr><td>知识组织</td><td>扁平向量空间</td><td style="color:#86efac">三层分级（战→鉴→道）</td></tr>
+    <tr><td>质量控制</td><td>无（检索即使用）</td><td style="color:#86efac">升格五问 + 三司会审</td></tr>
+    <tr><td>知识更新</td><td>重新嵌入</td><td style="color:#86efac">正反馈机制</td></tr>
+    <tr><td>知识淘汰</td><td>手动管理</td><td style="color:#86efac">降级协议</td></tr>
+    <tr><td>认知冲突</td><td>不检测</td><td style="color:#86efac">识机制（🟢/🟡/🔴）</td></tr>
+  </table>
+</div>
+
+<!-- ==================== SLIDE 24: Eastern Wisdom ==================== -->
+<div class="slide" data-slide="23">
+  <h2 class="anim">🏯 东方智慧的认知科学价值</h2>
+  <table class="anim d1">
+    <tr><th>经典</th><th>核心原则</th><th>决策科学对应</th><th>PI 应用</th></tr>
+    <tr><td>孙子兵法</td><td>致人不致于人</td><td>先发优势</td><td>⚡PI-04 主动掌控</td></tr>
+    <tr><td>孙子兵法</td><td>庙算多胜</td><td>期望效用最大化</td><td>方案比选矩阵</td></tr>
+    <tr><td>鬼谷子</td><td>捭阖之术</td><td>Norman 可见性原则</td><td>交互展开/收束</td></tr>
+    <tr><td>道家</td><td>上善若水</td><td>注意力经济学</td><td>好钢刀刃 PI-05</td></tr>
+    <tr><td>截教</td><td>天衍四十九</td><td>功能固着克服</td><td>截道三法</td></tr>
+    <tr><td>易经</td><td>穷则变</td><td>自适应策略</td><td>六阶战势切换</td></tr>
+  </table>
+  <p class="small anim d2">不是文化装饰 — 每条原则都有精确的决策科学对应</p>
+</div>
+
+<!-- ==================== SLIDE 25: vs Prompt Engineering ==================== -->
+<div class="slide" data-slide="24">
+  <h2 class="anim">🆚 PI vs 传统提示工程</h2>
+  <table class="anim d1">
+    <tr><th>方法</th><th>机制</th><th>PI 优势</th></tr>
+    <tr><td>Chain-of-Thought</td><td>要求"一步步思考"</td><td>明链指定<em>每步用哪种认知功能</em></td></tr>
+    <tr><td>ReAct</td><td>交替推理与行动</td><td>认知栈提供<em>更精细的策略选择</em></td></tr>
+    <tr><td>Tree-of-Thoughts</td><td>树状搜索多条思路</td><td>明树是<em>人机分工可视化</em></td></tr>
+    <tr><td>Self-Consistency</td><td>多次生成取一致</td><td>"识"提供<em>持续自洽监控</em></td></tr>
+    <tr><td>Role Prompting</td><td>指定角色扮演</td><td>PI 是<em>信息处理参数配置</em></td></tr>
+  </table>
+  <div class="highlight-box anim d2" style="max-width:50ch;text-align:center">
+    <p style="color:#f472b6;font-weight:600">提示技巧影响单次输出<br>认知架构影响整个问题解决过程</p>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 26: Multi-Agent ==================== -->
+<div class="slide" data-slide="25">
+  <h2 class="anim">👥 多 Agent 认知协调</h2>
+  <div class="card-row anim d1">
+    <div class="card" style="border-color:rgba(239,68,68,.3)">
+      <h3 style="color:#fca5a5">⚔️ Leader</h3>
+      <p>统帅+建筑师<br>全局调度 · 战阶判定 · 任务重分配</p>
+    </div>
+    <div class="card" style="border-color:rgba(34,197,94,.3)">
+      <h3 style="color:#86efac">🛡️ Teammate</h3>
+      <p>按任务分配认知阵<br>L1自处理 · L2+汇报 · 自强精进</p>
+    </div>
+    <div class="card" style="border-color:rgba(250,204,21,.3)">
+      <h3 style="color:#fde047">🦊 Coach</h3>
+      <p>狐+鹰<br>察觉懈怠 · 正向介入 · 三档响应</p>
+    </div>
+  </div>
+  <div class="highlight-box anim d2" style="max-width:55ch">
+    <h3>信息流分级</h3>
+    <p style="color:#c8c8d8">L1: 自处理 → L2+: 结构化汇报 → L3+: Leader 广播全团队<br>冲突裁决：最小实证验证，以数据为据</p>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 27: Impact Data ==================== -->
+<div class="slide" data-slide="26">
+  <h2 class="anim">📈 预期影响分析</h2>
+  <table class="anim d1">
+    <tr><th>维度</th><th>传统 AI</th><th>PI 框架</th><th>提升机制</th></tr>
+    <tr><td>幻觉率</td><td style="color:#fca5a5">~15-25%</td><td style="color:#86efac">&lt;5%</td><td>证据门+验证矩阵</td></tr>
+    <tr><td>任务完成率</td><td style="color:#fca5a5">~60-70%</td><td style="color:#86efac">&gt;90%</td><td>六阶战势+穷理尽性</td></tr>
+    <tr><td>调试平均轮次</td><td style="color:#fca5a5">5-8 轮</td><td style="color:#86efac">2-4 轮</td><td>调试七步+九令</td></tr>
+    <tr><td>人机误解率</td><td style="color:#fca5a5">~20-30%</td><td style="color:#86efac">&lt;10%</td><td>共振五式+交互三问</td></tr>
+    <tr><td>知识复用率</td><td style="color:#fca5a5">~10%</td><td style="color:#86efac">&gt;50%</td><td>经验三域+正反馈</td></tr>
+  </table>
+  <p class="small anim d2">基于认知科学理论和框架设计原理的预期值分析 · 需通过基准测试验证</p>
+</div>
+
+<!-- ==================== SLIDE 28: Debugging Efficiency ==================== -->
+<div class="slide" data-slide="27">
+  <h2 class="anim">🔧 调试效率对比</h2>
+  <div class="two-col anim d1">
+    <div class="highlight-box" style="border-color:rgba(239,68,68,.25)">
+      <h3 style="color:#fca5a5">❌ 传统调试</h3>
+      <p style="color:#c8c8d8">试错 → 猜测 → 试错 → 放弃<br><br>时间复杂度：<strong>O(n!)</strong><br>无方向的穷举</p>
+    </div>
+    <div class="highlight-box" style="border-color:rgba(34,197,94,.25)">
+      <h3 style="color:#86efac">✅ PI 调试</h3>
+      <p style="color:#c8c8d8">读败→定界→溯源→比对→验假→固防→扩圈<br><br>时间复杂度：<strong>O(n log n)</strong><br>结构化搜索空间缩减</p>
+    </div>
+  </div>
+  <p class="small anim d2">结构化流程将调试从"碰运气"变为"有策略地缩小搜索空间"</p>
+</div>
+
+<!-- ==================== SLIDE 29: Flywheel ==================== -->
+<div class="slide" data-slide="28">
+  <h2 class="anim">🔄 人机共振飞轮</h2>
+  <div style="display:flex;flex-direction:column;gap:1vh;align-items:center" class="anim d1">
+    <div class="flow" style="flex-wrap:nowrap">
+      <div class="flow-node" style="background:rgba(99,102,241,.2)">AI 解决</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node" style="background:rgba(168,85,247,.2)">人类验证</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node" style="background:rgba(244,114,182,.15)">经验沉淀</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node" style="background:rgba(34,197,94,.15)">AI 更强</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node" style="background:rgba(250,204,21,.12)">人类更轻松</div>
+      <div class="flow-arrow">↺</div>
+    </div>
+  </div>
+  <blockquote class="anim d2">"人类提供方向、判断和创造力；AI 提供速度、精度和穷尽式搜索。"<br>— PI 人机共振宣言</blockquote>
+  <p class="small anim d3">Clark & Brennan (1991) Common Ground + Lee & See (2004) Trust in Automation</p>
+</div>
+
+<!-- ==================== SLIDE 30: Architecture Summary ==================== -->
+<div class="slide" data-slide="29">
+  <h2 class="anim">🏗️ PI 认知架构全景</h2>
+  <table class="anim d1" style="font-size:clamp(.65rem,1.1vw,.85rem)">
+    <tr><th>层</th><th>组件</th><th>科学基础</th></tr>
+    <tr><td>参数层</td><td>8 认知功能映射</td><td>Jung (1921) + Nardi (2011) EEG</td></tr>
+    <tr><td>策略层</td><td>6 原型 × 5 认知阵</td><td>Beebe (2004) + Sternberg (1985)</td></tr>
+    <tr><td>路由层</td><td>9 场景 × 认知流管线</td><td>Sweller (1988) 认知负荷</td></tr>
+    <tr><td>监控层</td><td>6 阶战势 + 12 灵兽</td><td>Flavell (1979) + Nelson & Narens (1990)</td></tr>
+    <tr><td>防御层</td><td>反模式十戒</td><td>Kahneman (2011) 双系统</td></tr>
+    <tr><td>透明层</td><td>共振五式</td><td>Amershi (2019) + Clark & Brennan (1991)</td></tr>
+    <tr><td>知识层</td><td>经验三域</td><td>Bloom (1956) + Ebbinghaus (1885)</td></tr>
+    <tr><td>协作层</td><td>Agent Team 协议</td><td>Barron (2003) 协作认知</td></tr>
+    <tr><td>智慧层</td><td>十六源谱系</td><td>兵家 + 纵横家 + MBTI + 实证主义 …</td></tr>
+  </table>
+</div>
+
+<!-- ==================== SLIDE 31: Future ==================== -->
+<div class="slide" data-slide="30">
+  <h2 class="anim">🔮 未来方向</h2>
+  <div class="card-row anim d1">
+    <div class="card">
+      <h3>🤖 多Agent认知协调</h3>
+      <p>跨Agent认知栈多样性优化 · 分布式元认知 · 鉴域/道域同步</p>
+    </div>
+    <div class="card">
+      <h3>📈 自适应学习率</h3>
+      <p>高频主题升格阈值动态降低 · 基于任务特征的知识衰减率</p>
+    </div>
+    <div class="card">
+      <h3>🔗 跨会话认知连续性</h3>
+      <p>认知状态序列化 · 跨平台迁移 · 可视化回溯</p>
+    </div>
+  </div>
+  <div class="card-row anim d2">
+    <div class="card">
+      <h3>🧪 认知框架评测</h3>
+      <p>多维评分基准 · 跨模型对比 · 纵向性能追踪</p>
+    </div>
+    <div class="card">
+      <h3>🌐 领域专精认知栈</h3>
+      <p>为特定领域（医疗/法律/金融）定制认知栈和场景管线</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 32: Key References ==================== -->
+<div class="slide" data-slide="31">
+  <h2 class="anim">📖 核心参考文献</h2>
+  <div class="two-col anim d1" style="font-size:clamp(.65rem,1.1vw,.82rem)">
+    <div class="left-text" style="line-height:2">
+      <strong style="color:#93c5fd">认知功能</strong><br>
+      • Jung (1921) <em>Psychological Types</em><br>
+      • Nardi (2011) <em>Neuroscience of Personality</em><br>
+      • Beebe (2004) Consciousness & Psychological Types<br><br>
+      <strong style="color:#93c5fd">元认知</strong><br>
+      • Flavell (1979) Metacognition & Monitoring<br>
+      • Nelson & Narens (1990) Metamemory Framework<br><br>
+      <strong style="color:#93c5fd">认知偏差</strong><br>
+      • Kahneman (2011) <em>Thinking, Fast and Slow</em><br>
+      • Kahneman (1973) <em>Attention and Effort</em>
+    </div>
+    <div class="left-text" style="line-height:2">
+      <strong style="color:#93c5fd">认知负荷</strong><br>
+      • Sweller (1988) Cognitive Load Theory<br><br>
+      <strong style="color:#93c5fd">人机交互</strong><br>
+      • Amershi et al. (2019) HAI Guidelines<br>
+      • Clark & Brennan (1991) Grounding in Communication<br>
+      • Norman (1988) <em>Design of Everyday Things</em><br><br>
+      <strong style="color:#93c5fd">知识与学习</strong><br>
+      • Bloom (1956) Taxonomy of Educational Objectives<br>
+      • Ebbinghaus (1885) Memory Research<br><br>
+      <strong style="color:#93c5fd">问题解决</strong><br>
+      • Newell & Simon (1972) <em>Human Problem Solving</em>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 33: Closing ==================== -->
+<div class="slide" data-slide="32">
+  <div class="big-emoji anim">🧠</div>
+  <h1 class="anim d1">智者不惑 仁者不忧 勇者不惧</h1>
+  <p class="anim d2" style="font-size:clamp(.9rem,1.6vw,1.2rem);color:#c4b5fd">——《论语·子罕》</p>
+  <div class="highlight-box anim d3" style="max-width:50ch;text-align:center">
+    <p style="color:#e8e8f0;font-size:clamp(.9rem,1.5vw,1.15rem)">PI 不是取代人类思考<br>而是<strong style="color:#f472b6">增强人机协同的认知效能</strong><br>让 AI 成为真正的智慧伙伴</p>
+  </div>
+  <p class="small anim d4" style="margin-top:2vh">HePin · PI 智行合一 · Apache-2.0</p>
+</div>
+
+</div><!-- /deck -->
+
+<!-- ========== Controls ========== -->
+<div class="controls">
+  <button onclick="prev()" title="← 上一页">◀ Prev</button>
+  <button onclick="next()" title="→ 下一页">Next ▶</button>
+</div>
+
+<script>
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  function go(n){
+    if(n<0||n>=total) return;
+    slides[current].classList.remove('active');
+    slides[current].classList.add(n > current ? 'prev' : '');
+    current = n;
+    slides.forEach((s,i) => {
+      s.classList.remove('active','prev');
+      if(i === current) s.classList.add('active');
+    });
+    document.getElementById('progress').style.width = ((current/(total-1))*100)+'%';
+    document.getElementById('slide-counter').textContent = (current+1)+' / '+total;
+  }
+
+  window.next = function(){ go(current+1); };
+  window.prev = function(){ go(current-1); };
+
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='Enter') { e.preventDefault(); next(); }
+    else if(e.key==='ArrowLeft'||e.key==='Backspace') { e.preventDefault(); prev(); }
+    else if(e.key==='Home') { e.preventDefault(); go(0); }
+    else if(e.key==='End') { e.preventDefault(); go(total-1); }
+  });
+
+  /* Touch swipe support */
+  let touchX = 0;
+  document.addEventListener('touchstart', function(e){ touchX = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    const dx = e.changedTouches[0].clientX - touchX;
+    if(Math.abs(dx) > 50){ dx < 0 ? next() : prev(); }
+  }, {passive:true});
+
+  go(0);
+})();
+</script>
+</body>
+</html>
