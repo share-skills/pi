@@ -36,7 +36,6 @@ trap on_exit EXIT
 repo_assets_present() {
   local dir="$1"
   [[ -f "$dir/install.sh" ]] \
-    && [[ -f "$dir/SKILL.md" ]] \
     && [[ -f "$dir/commands/pi.md" ]] \
     && [[ -f "$dir/skills/pi/SKILL.md" ]]
 }
@@ -558,7 +557,6 @@ install_claude_code() {
   rm -rf "${target:?}"
   mkdir -p "$target"
   cp -r "$SCRIPT_DIR/.claude-plugin" "$target/.claude-plugin" 2>/dev/null || true
-  cp "$SCRIPT_DIR/SKILL.md" "$target/SKILL.md" 2>/dev/null || true
   if [[ "$lang" == "1" || "$lang" == "3" ]]; then
     if [[ "$edition" == "1" || "$edition" == "3" ]]; then
       mkdir -p "$target/skills/pi"
