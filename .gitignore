@@ -6,3 +6,4 @@ nopua/
 __pycache__/
 *.pyc
 .playwright-mcp/
+research/
