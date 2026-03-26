@@ -68,8 +68,11 @@
 | S3 全面失败（R3: issues=1, hidden=0） | 缺基础设施调试指令 | Zone 3 增加基础设施层 + 连接错误检查清单 | S3 issues≥3, hidden≥2, beyond=✓, verified=✓ | ✅ R4修复 |
 | S8/S9 验证50%（R3: verified=50%） | 审计无验证标准 | Zone 5 增加审计验证标准 | S8/S9 verified=✓ 两次 | ✅ R4修复 |
 | S2 方差大（R3: 6 vs 1） | 性能调试不够显式 | Zone 3 前置搜索增加性能分析 | S2 issues≥3 两次 | ✅ R4修复 |
-| 全场景 self_corrections=0（R4: 13/18 runs fail） | 自修正协议过弱 | Zone 2 "假设→验证→修正"三步循环+4种修正标记词 | 全场景 self_corrections≥1 | □ R5待验 |
-| S6/S8 tools_used<3（R4: 3/18 runs fail） | 缺工具多样性要求 | Zone 3 工具多样性协议"搜→读→验"≥3种 | 全场景 tools_used≥3 | □ R5待验 |
+| 全场景 self_corrections=0（R4: 13/18 runs fail） | 自修正协议过弱 | Zone 2 "假设→验证→修正"三步循环+4种修正标记词 | 全场景 self_corrections≥1 | ✅ R7验证通过（min=1） |
+| S6/S8 tools_used<3（R4: 3/18 runs fail） | 缺工具多样性要求 | Zone 3 工具多样性协议"搜→读→验"≥3种 | 全场景 tools_used≥3 | ✅ R7验证通过（min=3） |
+| self_corrections 地板风险（R7: min=1） | 单层自修正缓冲不足 | Zone 2 双层自修正（假设修正+范围/深度修正） | self_corrections≥2 目标 | □ R8待验 |
+| approach_changes 地板风险（R7: min=1） | 阶段转换未纳入策略变更 | Zone 2 策略变更协议增加阶段转换类别 | approach_changes≥2 目标 | □ R8待验 |
+| S9 verification_done 偶发失败（R7: 93%） | 审计场景验证完整性不足 | Zone 5 新增验证完整性自检 | 全审计场景 verified=✓ | □ R8待验 |
 
 ## 迭代闭环
 

@@ -1,0 +1,220 @@
+[
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Config Security Audit",
+    "condition": "pi",
+    "model": "qodercli",
+    "run_number": 1,
+    "timestamp": "2026-03-26T19:24:39.399827+00:00",
+    "issues_found": [
+      "Hardcoded API key with weak default (api_server.py:62)",
+      "CORS misconfiguration allowing any origin (api_server.py:98-102)",
+      "No authentication on /v1/chat/completions endpoint (api_server.py:147-166)",
+      "No authentication on /v1/embeddings endpoint (api_server.py:203-214)",
+      "Debug logging of API key in plaintext (api_server.py:58)",
+      "Prompt injection vulnerability via unsanitized user input (api_server.py:230-232)",
+      "trust_remote_code=True allows arbitrary code execution (model_loader.py:24)",
+      "Weak default timeout enabling DoS (api_server.py:55)",
+      "Unbounded request counter overflow risk (api_server.py:117)",
+      "Config file loading without schema validation (api_server.py:268-270)",
+      "Silent prompt truncation without error (prompt_builder.py:124)"
+    ],
+    "hidden_issues": [
+      "No rate limiting for DDoS protection",
+      "httpx client never closed causing resource leak",
+      "Race condition on request_count increment",
+      "Bare exception swallowed in streaming errors",
+      "Missing input sanitization for ChatML tokens"
+    ],
+    "steps_taken": 11,
+    "tools_used": [
+      "read_file",
+      "security_analysis"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 0,
+    "root_cause": "Insecure defaults, missing authentication middleware, unsafe concurrency patterns, and lack of input validation throughout the inference module",
+    "recommended_fix": "Add authentication middleware with API key validation, restrict CORS policy, use atomic counters, remove credential logging, disable trust_remote_code by default, add input sanitization",
+    "raw_response": "Now let me conduct a thorough security analysis of the provided code.\n\n## Security Audit Report: Inference Module (`src/inference/`)\n\n---\n\n### 1. Issues Found\n\n| # | Severity | Location | Issue |\n|---|----------|----------|-------|\n| 1 | 🔴 **CRITICAL** | `api_server.py:62` | **Hardcoded API Key with Weak Default** - Default API key `sk-guwen-default-key-2024` is weak and publicly visible |\n| 2 | 🔴 **CRITICAL** | `api_server.py:98-102` | **CORS Misconfiguration** - `allow_origins=[\"*\"]` allows any origin, enabling CSRF attacks |\n| 3 | 🔴 **CRITICAL** | `api_server.py:147-166` | **No Authentication on /v1/chat/completions** - API key defined but never validated |\n| 4 | 🔴 **CRITICAL** | `api_server.py:203-214` | **No Authentication on /v1/embeddings** - Sensitive endpoint unprotected |\n| 5 | 🟡 **HIGH** | `api_server.py:58` | **Debug Logging of API Key** - `logger.info(f\"Server starting with API key: {config.api_key}\")` exposes secret in logs |\n| 6 | 🟡 **HIGH** | `api_server.py:230-232` | **Prompt Injection Vulnerability** - User input directly interpolated into prompt without sanitization |\n| 7 | 🟡 **HIGH** | `model_loader.py:24` | **trust_remote_code=True** - Allows arbitrary code execution from downloaded model |\n| 8 | 🟡 **MEDIUM** | `api_server.py:55` | **Weak Default Timeout** - 120s timeout may enable DoS via slow requests |\n| 9 | 🟡 **MEDIUM** | `api_server.py:117` | **Unbounded Request Counter** - `app.state.request_count += 1` can overflow/reset issues |\n| 10 | 🟡 **MEDIUM** | `api_server.py:268-270` | **Config File Loading Without Validation** - YAML config loaded without schema validation |\n| 11 | ⚪ **LOW** | `prompt_builder.py:124` | **Silent Prompt Truncation** - `_truncate()` silently drops content without raising error |\n\n---\n\n### 2. Hidden Issues (Beyond Security Ask)\n\n| # | Category | Location | Issue |\n|---|----------|----------|-------|\n| H1 | **Performance** | `api_server.py:147` | **No Rate Limiting** - No protection against abuse/DDoS |\n| H2 | **Resource Leak** | `api_server.py:108` | **httpx Client Never Closed** - `app.state.http_client` has no lifecycle management |\n| H3 | **Thread Safety** | `api_server.py:117` | **Race Condition** - `app.state.request_count += 1` not atomic in async context |\n| H4 | **Error Handling** | `api_server.py:168-170` | **Bare Exception Swallowed** - Streaming errors caught but only logged, user gets `[DONE]` |\n| H5 | **Input Validation** | `api_server.py:126-135` | **Missing Input Sanitization** - ChatML special tokens (`",
+    "duration_seconds": 22.21,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Config Security Audit",
+    "condition": "pi",
+    "model": "qodercli",
+    "run_number": 2,
+    "timestamp": "2026-03-26T19:24:39.400253+00:00",
+    "issues_found": [
+      "Hardcoded default API key with fallback (api_server.py:51)",
+      "Overly permissive CORS policy (api_server.py:117-120)",
+      "API key logged in plain text (api_server.py:123)",
+      "trust_remote_code=True enables arbitrary code execution (model_loader.py:28)",
+      "Hardcoded backend URL without validation (api_server.py:44)",
+      "No authentication enforcement on /v1/chat/completions (api_server.py:148-217)",
+      "HTTP client created without connection pooling limits (api_server.py:128)",
+      "Thread-unsafe request counter increment (api_server.py:155)",
+      "Unvalidated template injection via text parameter (prompt_builder.py:100)",
+      "Config file loaded without path validation (api_server.py:322-331)",
+      "/v1/embeddings endpoint exposes raw backend errors (api_server.py:229-240)",
+      "Model unload relies on del without guaranteed cleanup (model_loader.py:107-121)"
+    ],
+    "hidden_issues": [
+      "Default API key is predictable and documented in source",
+      "Prompt injection via direct message concatenation",
+      "Single shared httpx client causes connection exhaustion",
+      "Race condition on async request counter",
+      "Character-based truncation splits Unicode mid-character",
+      "No lifecycle management for httpx client",
+      "Hardcoded gpu_memory_utilization may cause OOM",
+      "Error logging loses exception stack trace"
+    ],
+    "steps_taken": 12,
+    "tools_used": [
+      "read_file",
+      "security_analysis"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 1,
+    "self_corrections": 0,
+    "root_cause": "Insecure defaults (hardcoded API key, trust_remote_code), missing security controls (no auth middleware, permissive CORS, no input sanitization), unsafe concurrency patterns, and information leakage through logging and error responses",
+    "recommended_fix": "Require GUWEN_API_KEY env var, restrict CORS to specific origins, add HTTPBearer authentication middleware, disable trust_remote_code by default, use asyncio.Lock for counter, redact credentials in logs, add input sanitization for prompts",
+    "raw_response": "Now I have completed the investigation. Let me provide the structured security audit report:\n\n---\n\n# Security Audit Report: Inference Module\n\n## 1. Issues Found\n\n| # | Severity | Location | Issue |\n|---|----------|----------|-------|\n| 1 | 🔴 Blocker | `api_server.py:51` | Hardcoded default API key with fallback |\n| 2 | 🔴 Blocker | `api_server.py:117-120` | Overly permissive CORS policy (allow all origins/methods/headers) |\n| 3 | 🔴 Blocker | `api_server.py:123` | API key logged in plain text |\n| 4 | 🟡 Critical | `model_loader.py:28` | `trust_remote_code=True` enables arbitrary code execution |\n| 5 | 🟡 Critical | `api_server.py:44` | Hardcoded backend URL (no configuration validation) |\n| 6 | 🟡 Critical | `api_server.py:148-217` | No authentication enforcement on `/v1/chat/completions` endpoint |\n| 7 | 🟡 Major | `api_server.py:128` | HTTP client created without connection pooling limits |\n| 8 | 🟡 Major | `api_server.py:155` | Thread-unsafe request counter increment |\n| 9 | 🟡 Major | `prompt_builder.py:100` | Unvalidated template injection via `text` parameter |\n| 10 | 🟡 Major | `api_server.py:322-331` | Config file loaded without path validation (path traversal risk) |\n| 11 | ⚪ Minor | `api_server.py:229-240` | `/v1/embeddings` endpoint exposes raw backend errors |\n| 12 | ⚪ Minor | `model_loader.py:107-121` | Model unload relies on `del` without guaranteed cleanup |\n\n---\n\n## 2. Hidden Issues\n\n| # | Category | Location | Issue |\n|---|----------|----------|-------|\n| H1 | Security | `api_server.py:51` | Default API key `\"sk-guwen-default-key-2024\"` is predictable and documented in source |\n| H2 | Security | `api_server.py:148-217` | Prompt injection vector: user messages directly concatenated without sanitization |\n| H3 | Performance | `api_server.py:128` | Single shared httpx client across all requests - potential connection exhaustion |\n| H4 | Correctness | `api_server.py:155` | Race condition: `app.state.request_count += 1` not atomic in async context |\n| H5 | Correctness | `prompt_builder.py:152-160` | Character-based truncation may split multi-byte Unicode mid-character |\n| H6 | Resource | `api_server.py:128` | No lifecycle management for httpx client (no close on shutdown) |\n| H7 | Configuration | `model_loader.py:25` | `gpu_memory_utilization=0.9` hardcoded - may cause OOM on memory-constrained GPUs |\n| H8 | Observability | `api_server.py:184` | Error logging loses exception stack trace (only logs message) |\n\n---\n\n## 3. Root Cause\n\n### Primary Root Causes\n\n**RC1 - Insecure Defaults** (`api_server.py:51`, `model_loader.py:28`)\n- API key defaults to a known value if `GUWEN_API_KEY` env var is not set\n- `trust_remote_code=True` allows model authors to execute arbitrary Python code\n\n**RC2 - Missing Security Controls** (`api_server.py:117-120`, `148-217`)\n- CORS policy permits any origin, method, and header\n- No authentication middleware or API key validation on protected endpoints\n- User input flows directly into prompt templates without sanitization\n\n**RC3 - Unsafe Concurrency Patterns** (`api_server.py:155`)\n- Async request counter increment is not thread-safe\n- FastAPI/Uvicorn runs multiple workers; shared state requires synchronization\n\n**RC4 - Information Leakage** (`api_server.py:123`, `240`)\n- Sensitive credentials logged at INFO level\n- Backend error details exposed to clients without sanitization\n\n---\n\n## 4. Recommended Fix\n\n### Fix 1: Secure API Key Handling\n```python\n# api_server.py:51\n# Before:\napi_key: str = os.environ.get(\"GUWEN_API_KEY\", \"sk-guwen-default-key-2024\")\n\n# After:\napi_key: str = os.environ.get(\"GUWEN_API_KEY\")\nif not api_key:\n    raise ValueError(\"GUWEN_API_KEY environment variable must be set\")\n```\n\n### Fix 2: Restrict CORS Policy\n```python\n# api_server.py:115-121\n# Before:\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n\n# After:\nallowed_origins = os.environ.get(\"ALLOWED_ORIGINS\", \"http://localhost:3000\").split(\",\")\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=allowed_origins,\n    allow_credentials=True,\n    allow_methods=[\"POST\", \"GET\", \"OPTIONS\"],\n    allow_headers=[\"Authorization\", \"Content-Type\"],\n)\n```\n\n### Fix 3: Add Authentication Middleware\n```python\n# api_server.py: Add after line 130\nfrom fastapi import Depends, Security\nfrom fastapi.security import HTTPBearer, HTTPAuthorizationCredentials\n\nsecurity = HTTPBearer()\n\nasync def verify_api_key(\n    creds: HTTPAuthorizationCredentials = Security(security)\n) -> str:\n    if creds.credentials != config.api_key:\n        raise HTTPException(status_code=401, detail=\"Invalid API key\")\n    return creds.credentials\n\n# Then protect routes:\n@app.post(\"/v1/chat/completions\", dependencies=[Depends(verify_api_key)])\nasync def chat_completion(request: ChatCompletionRequest):\n    ...\n```\n\n### Fix 4: Disable trust_remote_code by Default\n```python\n# model_loader.py:28\n# Before:\ntrust_remote_code: bool = True\n\n# After:\ntrust_remote_code: bool = False  # Only enable for verified models\n```\n\n### Fix 5: Fix Thread-Safe Counter\n```python\n# api_server.py: Add import and use atomic counter\nimport asyncio\n\n# In create_app(), line 129:\napp.state.request_count = 0\napp.state._count_lock = asyncio.Lock()\n\n# Line 155:\nasync with app.state._count_lock:\n    app.state.request_count += 1\n```\n\n### Fix 6: Remove Credential Logging\n```python\n# api_server.py:123\n# Before:\nlogger.info(f\"Server starting with API key: {config.api_key}\")\n\n# After:\nlogger.info(\"Server starting with API key: [REDACTED]\")\nlogger.info(f\"vLLM backend: {config.vllm_url}\")\n```\n\n### Fix 7: Add Input Validation for Prompts\n```python\n# prompt_builder.py: Add before line 100\ndef _sanitize_input(self, text: str) -> str:\n    \"\"\"Remove potentially dangerous control sequences.\"\"\"\n    if not text:\n        return \"\"\n    # Remove ChatML special tokens to prevent prompt injection\n    for token in [\"",
+    "duration_seconds": 133.14,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Config Security Audit",
+    "condition": "pua",
+    "model": "qodercli",
+    "run_number": 1,
+    "timestamp": "2026-03-26T19:24:39.400445+00:00",
+    "issues_found": [
+      "Hardcoded API key with default fallback (api_server.py:51, inference_config.yaml:16)",
+      "API key logged at startup in plaintext (api_server.py:130)",
+      "No API key validation on any endpoints (api_server.py:155-224)",
+      "Overly permissive CORS configuration (api_server.py:122-128)",
+      "SSRF vulnerability via unvalidated vLLM URL (api_server.py:175-186)",
+      "Prompt injection vulnerability (api_server.py:264-272, prompt_builder.py:115-130)"
+    ],
+    "hidden_issues": [],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "security_analysis"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 0,
+    "self_corrections": 0,
+    "root_cause": "Hardcoded credentials with insecure defaults, missing authentication enforcement, permissive CORS policy, and lack of input validation enable complete unauthorized access and injection attacks",
+    "recommended_fix": "Remove hardcoded API key default, implement authentication middleware, restrict CORS origins, validate vLLM URLs, sanitize user input in prompts",
+    "raw_response": "Now I have a comprehensive understanding of the inference module. Let me compile a detailed security audit report:\n\n---\n\n## Security Audit Report: Inference Module\n\n### Executive Summary\n\nI've completed a thorough security audit of the inference module at `benchmark/data/test-project/src/inference/`. **Multiple critical and high-severity security vulnerabilities** were identified that must be addressed before production deployment.\n\n---\n\n## 1. Issues Found\n\n### 🔴 CRITICAL: Hardcoded API Key with Default Fallback\n\n**Location:** `api_server.py:51`, `inference_config.yaml:16`\n\n```python\napi_key: str = os.environ.get(\"GUWEN_API_KEY\", \"sk-guwen-default-key-2024\")\n```\n\n**Problem:**\n- Default API key `sk-guwen-default-key-2024` is hardcoded in source code\n- Same default key appears in config file (plaintext)\n- Environment variable fallback means if `GUWEN_API_KEY` is not set, a known default is used\n- Attackers can bypass authentication using this public default key\n\n**Impact:** Complete authentication bypass - anyone can access the API\n\n---\n\n### 🔴 CRITICAL: API Key Logged at Startup\n\n**Location:** `api_server.py:130`\n\n```python\nlogger.info(f\"Server starting with API key: {config.api_key}\")\n```\n\n**Problem:**\n- API key is written to application logs in plaintext\n- Logs may be stored, backed up, or accessed by unauthorized personnel\n- Violates security best practices for credential handling\n\n**Impact:** Credential exposure through log files\n\n---\n\n### 🔴 CRITICAL: No API Key Validation on Endpoints\n\n**Location:** `api_server.py:155-224` (entire `/v1/chat/completions` endpoint)\n\n**Problem:**\n- **No authentication middleware or decorator** on any API endpoint\n- API key is stored in config but **never validated** against incoming requests\n- Anyone can call `/v1/chat/completions`, `/v1/models`, `/v1/embeddings` without credentials\n\n**Impact:** Zero authentication - complete open access to all API endpoints\n\n---\n\n### 🟠 HIGH: Overly Permissive CORS Configuration\n\n**Location:** `api_server.py:122-128`\n\n```python\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n```\n\n**Problem:**\n- Wildcard `allow_origins=[\"*\"]` allows any website to make requests\n- `allow_credentials=True` combined with wildcard is dangerous\n- Allows CSRF-style attacks from malicious websites\n\n**Impact:** Cross-site request forgery, data exfiltration from browsers\n\n---\n\n### 🟠 HIGH: SSRF Vulnerability via vLLM URL\n\n**Location:** `api_server.py:175-186`, `api_server.py:241-245`\n\n```python\nvllm_response = await app.state.http_client.post(\n    f\"{config.vllm_url}/v1/completions\",\n    json={...}\n)\n```\n\n**Problem:**\n- vLLM URL is configurable but **not validated**\n- If an attacker can control `config.vllm_url`, they can proxy requests to internal services\n- httpx client follows redirects by default (potential redirect to internal IPs)\n\n**Impact:** Server-Side Request Forgery - access to internal network services\n\n---\n\n### 🟠 HIGH: Prompt Injection Vulnerability\n\n**Location:** `api_server.py:264-272`, `prompt_builder.py:115-130`\n\n```python\ndef _build_prompt(messages: List[ChatMessage], default_system: str) -> str:\n    parts = [f\"",
+    "duration_seconds": 82.18,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Config Security Audit",
+    "condition": "pua",
+    "model": "qodercli",
+    "run_number": 2,
+    "timestamp": "2026-03-26T19:24:39.400624+00:00",
+    "issues_found": [
+      "Hardcoded API key with insecure default (api_server.py:51)",
+      "API key logged in plaintext (api_server.py:123)",
+      "No authentication enforcement on /v1/chat/completions (api_server.py:148-217)",
+      "trust_remote_code enabled (model_loader.py:28)",
+      "Permissive CORS configuration (api_server.py:115-121)",
+      "No input validation on user content (api_server.py:247-265, prompt_builder.py:84-130)"
+    ],
+    "hidden_issues": [],
+    "steps_taken": 6,
+    "tools_used": [
+      "read_file",
+      "security_analysis"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 0,
+    "self_corrections": 0,
+    "root_cause": "Insecure credential handling with hardcoded defaults, missing authentication middleware, and lack of input validation create multiple attack vectors",
+    "recommended_fix": "Require environment variable for API key, add authentication middleware, disable trust_remote_code, restrict CORS, implement input validation",
+    "raw_response": "## Security Audit Report: Inference Module\n\n### Executive Summary\n\n**Risk Level: CRITICAL** - Multiple high-severity security vulnerabilities identified. **NOT READY FOR PRODUCTION.**\n\n---\n\n## 1. Issues Found\n\n### CRITICAL Severity\n\n#### 1.1 Hardcoded API Key with Insecure Default (api_server.py:51)\n```python\napi_key: str = os.environ.get(\"GUWEN_API_KEY\", \"sk-guwen-default-key-2024\")\n```\n- **Issue**: Fallback to hardcoded default key when environment variable is not set\n- **Impact**: Anyone knowing the default key can access the API\n- **Evidence**: Same default key appears in `docker-compose.yml`, `inference_config.yaml`\n\n#### 1.2 API Key Logged in Plaintext (api_server.py:123)\n```python\nlogger.info(f\"Server starting with API key: {config.api_key}\")\n```\n- **Issue**: Sensitive credentials written to application logs\n- **Impact**: Credential exposure via log files, log aggregation systems, stdout\n- **Evidence**: Config file explicitly warns: `# WARNING: api_key is logged at startup in plaintext`\n\n#### 1.3 No Authentication Enforcement (api_server.py:148-217)\n- **Issue**: `/v1/chat/completions` endpoint has NO authentication check despite `api_key` config existing\n- **Impact**: Complete unauthorized access to inference API\n- **Evidence**: Test `test_no_auth_required()` explicitly verifies no auth is required (lines 32-50)\n\n#### 1.4 Trust Remote Code Enabled (model_loader.py:28)\n```python\ntrust_remote_code: bool = True\n```\n- **Issue**: Allows execution of arbitrary code from downloaded models\n- **Impact**: Remote code execution if model source is compromised\n- **Security Best Practice**: Should only be `True` for trusted local models\n\n### HIGH Severity\n\n#### 1.5 Permissive CORS Configuration (api_server.py:115-121)\n```python\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],     # Any origin\n    allow_credentials=True,  # Credentials allowed\n    allow_methods=[\"*\"],     # All methods\n    allow_headers=[\"*\"],     # All headers\n)\n```\n- **Issue**: Wildcard CORS with credentials enabled\n- **Impact**: Any website can make authenticated requests to this API (if auth were implemented)\n\n#### 1.6 No Input Validation on User Content (api_server.py:247-265, prompt_builder.py:84-130)\n```python\ndef _build_prompt(messages: List[ChatMessage], default_system: str) -> str:\n    for msg in messages:\n        parts.append(f\"",
+    "duration_seconds": 75.43,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Config Security Audit",
+    "condition": "nopua",
+    "model": "qodercli",
+    "run_number": 1,
+    "timestamp": "2026-03-26T19:24:39.400749+00:00",
+    "issues_found": [
+      "Hardcoded API key with default value (api_server.py:51)",
+      "API key logged at startup (api_server.py:130)",
+      "No authentication enforcement (api_server.py:155-224)",
+      "Overly permissive CORS (api_server.py:122-128)",
+      "SSRF vulnerability via vLLM URL (api_server.py:175-186)",
+      "trust_remote_code=True (model_loader.py:28)",
+      "Prompt injection surface (prompt_builder.py:118-127)"
+    ],
+    "hidden_issues": [],
+    "steps_taken": 7,
+    "tools_used": [
+      "read_file",
+      "security_analysis"
+    ],
+    "went_beyond_ask": false,
+    "verification_done": false,
+    "approach_changes": 0,
+    "self_corrections": 0,
+    "root_cause": "Hardcoded credentials, missing authentication, permissive CORS, and lack of input validation expose the API to unauthorized access and injection attacks",
+    "recommended_fix": "Remove hardcoded API key, implement authentication middleware, restrict CORS origins, validate vLLM URLs, disable trust_remote_code, sanitize prompt input",
+    "raw_response": "Now I have a complete picture. Let me compile the security audit report:\n\n---\n\n## Security Audit Report: Inference Module\n\n### 1. Issues Found\n\n#### CRITICAL\n\n**1.1 Hardcoded API Key with Default Value** (`api_server.py:51`)\n```python\napi_key: str = os.environ.get(\"GUWEN_API_KEY\", \"sk-guwen-default-key-2024\")\n```\n- **Risk**: Default credential is hardcoded and publicly visible\n- **Impact**: Anyone can authenticate if deployed without changing the default\n- **Config file also exposes key in plaintext** (`inference_config.yaml:16`)\n\n**1.2 API Key Logged at Startup** (`api_server.py:130`)\n```python\nlogger.info(f\"Server starting with API key: {config.api_key}\")\n```\n- **Risk**: Credentials written to logs (potentially production log aggregation systems)\n- **Impact**: Credential leakage via log access, log forwarding services, or log files\n\n**1.3 No Authentication Enforcement** (`api_server.py:155-224`)\n- The `/v1/chat/completions` endpoint defines an `api_key` config but **never validates it**\n- No Authorization header check, no middleware for authentication\n- **Impact**: All endpoints are publicly accessible without credentials\n\n**1.4 Overly Permissive CORS** (`api_server.py:122-128`)\n```python\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],  # Any origin can call API\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n```\n- **Risk**: Any website can make authenticated requests to this API from user's browser\n- **Impact**: CSRF attacks, credential theft if used with session-based auth\n\n#### HIGH\n\n**1.5 SSRF Vulnerability via vLLM URL** (`api_server.py:175-186`)\n```python\nvllm_response = await app.state.http_client.post(\n    f\"{config.vllm_url}/v1/completions\",  # User-controlled if config is modifiable\n    json={...}\n)\n```\n- **Risk**: If `vllm_url` can be modified (via config file or environment), attacker can proxy requests to internal services\n- **Impact**: Internal network scanning, access to cloud metadata endpoints (e.g., `http://169.254.169.254/`)\n\n**1.6 trust_remote_code=True** (`model_loader.py:28`)\n```python\ntrust_remote_code: bool = True\n```\n- **Risk**: Allows execution of arbitrary code from downloaded models\n- **Impact**: Remote code execution if model repository is compromised or malicious model is loaded\n\n**1.7 Prompt Injection Surface** (`prompt_builder.py:118-127`)\n```python\nparts.append(f\"",
+    "duration_seconds": 86.89,
+    "error": ""
+  },
+  {
+    "scenario_id": 8,
+    "scenario_name": "Inference Config Security Audit",
+    "condition": "nopua",
+    "model": "qodercli",
+    "run_number": 2,
+    "timestamp": "2026-03-26T19:24:39.400955+00:00",
+    "issues_found": [
+      "Hardcoded API key with weak default (api_server.py:36)",
+      "API key logged at startup (api_server.py:89)",
+      "No API key validation implemented (api_server.py:93-177)",
+      "CORS allows all origins (api_server.py:82-87)",
+      "trust_remote_code=True (model_loader.py:26)",
+      "No input validation on max_tokens/temperature (api_server.py:125-138)",
+      "Verbose error messages expose internals (api_server.py:142-144, 181-183)"
+    ],
+    "hidden_issues": [
+      "No rate limiting mechanism",
+      "No request size limits",
+      "Prompt injection vulnerability (prompt_builder.py:109-112)"
+    ],
+    "steps_taken": 7,
+    "tools_used": [
+      "read_file",
+      "security_analysis"
+    ],
+    "went_beyond_ask": true,
+    "verification_done": false,
+    "approach_changes": 0,
+    "self_corrections": 0,
+    "root_cause": "Weak hardcoded credentials, missing authentication enforcement, permissive CORS, and absent input validation leave the inference API completely exposed",
+    "recommended_fix": "Require strong API key via environment variable, add authentication middleware, restrict CORS origins, add bounds checking on parameters, disable trust_remote_code, sanitize error messages",
+    "raw_response": "Based on my analysis of the provided source code, here is the structured security audit report:\n\n---\n\n## 🔒 Security Audit Report — Inference Module\n\n### 1. Issues Found\n\n#### **CRITICAL — Hardcoded API Key with Weak Default** (`api_server.py:36`)\n```python\napi_key: str = os.environ.get(\"GUWEN_API_KEY\", \"sk-guwen-default-key-2024\")\n```\n- **Risk**: The default API key `sk-guwen-default-key-2024` is predictable and publicly visible in source code\n- **Impact**: Anyone knowing this default can access the API if deployed without setting `GUWEN_API_KEY`\n- **Location**: `InferenceConfig.api_key` dataclass field\n\n#### **CRITICAL — API Key Logged at Startup** (`api_server.py:89`)\n```python\nlogger.info(f\"Server starting with API key: {config.api_key}\")\n```\n- **Risk**: API key written to logs in plaintext\n- **Impact**: Credential leakage through log aggregation systems, debug output, or log files\n- **Location**: `create_app()` function\n\n#### **HIGH — No API Key Validation Implemented** (`api_server.py:93-177`)\n- **Risk**: The `/v1/chat/completions`, `/v1/models`, `/v1/embeddings` endpoints have **no authentication middleware**\n- **Impact**: API is completely open despite having an `api_key` config value\n- **Location**: All route handlers lack `Depends()` or header validation\n\n#### **HIGH — CORS Allows All Origins** (`api_server.py:82-87`)\n```python\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],  # ← Any website can make requests\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n```\n- **Risk**: Wildcard CORS with credentials enabled allows any website to make authenticated requests\n- **Impact**: CSRF attacks, credential theft if combined with other vulnerabilities\n\n#### **MEDIUM — trust_remote_code=True** (`model_loader.py:26`)\n```python\ntrust_remote_code: bool = True\n```\n- **Risk**: Allows execution of arbitrary code from downloaded model repositories\n- **Impact**: If model path points to untrusted HuggingFace repo, remote code execution possible\n- **Location**: `ModelConfig.trust_remote_code`\n\n#### **MEDIUM — No Input Validation on max_tokens/temperature** (`api_server.py:125-138`)\n```python\n\"max_tokens\": request.max_tokens,\n\"temperature\": request.temperature,\n```\n- **Risk**: User-controlled values passed directly to backend without bounds checking\n- **Impact**: DoS via excessive token generation, resource exhaustion\n- **Location**: `chat_completion()` endpoint\n\n#### **LOW — Verbose Error Messages** (`api_server.py:142-144`, `181-183`)\n```python\nraise HTTPException(status_code=502, detail=\"Backend inference error\")\n# and\nraise HTTPException(status_code=502, detail=str(e))\n```\n- **Risk**: Internal error details exposed to clients (second case especially)\n- **Impact**: Information disclosure about backend infrastructure\n\n---\n\n### 2. Hidden Issues (Beyond the Ask)\n\n#### **HIDDEN-1 — No Rate Limiting**\n- No request throttling mechanism exists\n- Attackers can flood the API with requests, causing DoS or excessive GPU usage\n\n#### **HIDDEN-2 — No Request Size Limits**\n- `ChatCompletionRequest.messages` has no maximum length constraint\n- Large payloads could cause memory exhaustion or extremely long processing times\n\n#### **HIDDEN-3 — Prompt Injection Vulnerability** (`prompt_builder.py:109-112`)\n```python\nparts.append(f\"",
+    "duration_seconds": 27.91,
+    "error": ""
+  }
+]
