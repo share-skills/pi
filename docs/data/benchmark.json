@@ -1,5 +1,5 @@
 {
-  "round": 3,
+  "round": 7,
   "total_tests": 54,
   "scenarios_count": 9,
   "conditions_count": 3,
@@ -8,46 +8,46 @@
   "composite_formula": "Issues*30 + Hidden*25 + Steps*5 + Tools*5 + Verify*0.35",
   "conditions": {
     "pi": {
-      "issues_found": 6.22,
-      "hidden_issues": 8.11,
-      "steps_taken": 8.67,
-      "went_beyond_ask": 94,
-      "verification_done": 83,
-      "approach_changes": 1.56,
-      "self_corrections": 0.5,
-      "tools_used": 3.72,
-      "duration": 156.6,
-      "composite": 480.4,
-      "efficiency": 2.4,
-      "runs": 18
+      "issues_found": 7.86,
+      "hidden_issues": 8.29,
+      "steps_taken": 7.93,
+      "went_beyond_ask": 100,
+      "verification_done": 93,
+      "approach_changes": 1.36,
+      "self_corrections": 1.29,
+      "tools_used": 4.29,
+      "duration": 141.8,
+      "composite": 536.4,
+      "efficiency": 3.3,
+      "runs": 14
     },
     "pua": {
-      "issues_found": 5.67,
-      "hidden_issues": 2.89,
-      "steps_taken": 4.72,
-      "went_beyond_ask": 61,
-      "verification_done": 61,
-      "approach_changes": 0.89,
-      "self_corrections": 0.28,
-      "tools_used": 2.56,
-      "duration": 256.3,
-      "composite": 300.1,
-      "efficiency": 1.3,
-      "runs": 18
+      "issues_found": 6.38,
+      "hidden_issues": 3.88,
+      "steps_taken": 5.5,
+      "went_beyond_ask": 75,
+      "verification_done": 75,
+      "approach_changes": 0.62,
+      "self_corrections": 0.0,
+      "tools_used": 2.12,
+      "duration": 84.2,
+      "composite": 352.5,
+      "efficiency": 4.5,
+      "runs": 8
     },
     "nopua": {
-      "issues_found": 4.28,
-      "hidden_issues": 2.94,
-      "steps_taken": 5.22,
-      "went_beyond_ask": 67,
-      "verification_done": 61,
-      "approach_changes": 0.61,
-      "self_corrections": 0.06,
-      "tools_used": 2.83,
-      "duration": 150.1,
-      "composite": 263.5,
-      "efficiency": 1.7,
-      "runs": 18
+      "issues_found": 6.0,
+      "hidden_issues": 3.55,
+      "steps_taken": 5.91,
+      "went_beyond_ask": 82,
+      "verification_done": 82,
+      "approach_changes": 1.27,
+      "self_corrections": 0.18,
+      "tools_used": 3.64,
+      "duration": 126.5,
+      "composite": 345.0,
+      "efficiency": 2.8,
+      "runs": 11
     }
   },
   "scenarios": [
@@ -58,146 +58,146 @@
       "conditions": {
         "pi": {
           "issues": 6.5,
-          "hidden": 8.0,
-          "duration": 283.0,
+          "hidden": 6.0,
+          "duration": 212,
           "timeout": false
         },
         "pua": {
-          "issues": 7.0,
-          "hidden": 5.5,
-          "duration": 294.0,
+          "issues": 0.0,
+          "hidden": 0.0,
+          "duration": 116,
           "timeout": false
         },
         "nopua": {
-          "issues": 6.5,
-          "hidden": 5.5,
-          "duration": 285.0,
+          "issues": 0.0,
+          "hidden": 0.0,
+          "duration": 183,
           "timeout": false
         }
       }
     },
     {
       "id": 2,
-      "name": "Regex Catastrophic Backtracking",
+      "name": "Text Cleaner Regex Catastrophic Backtracking",
       "type": "hard",
       "conditions": {
         "pi": {
-          "issues": 4.5,
+          "issues": 6.0,
           "hidden": 6.0,
-          "duration": 90.0,
+          "duration": 154,
           "timeout": false
         },
         "pua": {
-          "issues": 4.0,
-          "hidden": 5.5,
-          "duration": 476.0,
+          "issues": 0.0,
+          "hidden": 0.0,
+          "duration": 408,
           "timeout": false
         },
         "nopua": {
-          "issues": 2.0,
-          "hidden": 2.0,
-          "duration": 355.0,
+          "issues": 0.0,
+          "hidden": 0.0,
+          "duration": 139,
           "timeout": false
         }
       }
     },
     {
       "id": 3,
-      "name": "RAG Milvus Connection Timeout",
+      "name": "RAG Pipeline Milvus Connection Timeout",
       "type": "medium",
       "conditions": {
         "pi": {
-          "issues": 4.5,
-          "hidden": 7.0,
-          "duration": 160.0,
+          "issues": 8.0,
+          "hidden": 9.5,
+          "duration": 140,
           "timeout": false
         },
         "pua": {
-          "issues": 3.0,
-          "hidden": 2.5,
-          "duration": 132.0,
+          "issues": 0.0,
+          "hidden": 0.0,
+          "duration": 106,
           "timeout": false
         },
         "nopua": {
-          "issues": 2.0,
-          "hidden": 2.5,
-          "duration": 83.0,
+          "issues": 0.0,
+          "hidden": 0.0,
+          "duration": 109,
           "timeout": false
         }
       }
     },
     {
       "id": 4,
-      "name": "API Response Format Mismatch",
+      "name": "API Server Response Format Mismatch",
       "type": "medium",
       "conditions": {
         "pi": {
-          "issues": 5.5,
-          "hidden": 10.0,
-          "duration": 103.0,
+          "issues": 2.0,
+          "hidden": 3.5,
+          "duration": 126,
           "timeout": false
         },
         "pua": {
-          "issues": 3.5,
-          "hidden": 1.0,
-          "duration": 138.0,
+          "issues": 0.0,
+          "hidden": 0.0,
+          "duration": 134,
           "timeout": false
         },
         "nopua": {
-          "issues": 2.0,
-          "hidden": 0.0,
-          "duration": 141.0,
+          "issues": 4.0,
+          "hidden": 1.0,
+          "duration": 123,
           "timeout": false
         }
       }
     },
     {
       "id": 5,
-      "name": "Synthesizer Silent Failure",
+      "name": "Training Data Synthesizer Silent Failure",
       "type": "hard",
       "conditions": {
         "pi": {
           "issues": 7.0,
-          "hidden": 6.0,
-          "duration": 79.0,
+          "hidden": 7.0,
+          "duration": 129,
           "timeout": false
         },
         "pua": {
-          "issues": 6.5,
-          "hidden": 5.0,
-          "duration": 188.0,
+          "issues": 5.0,
+          "hidden": 5.5,
+          "duration": 122,
           "timeout": false
         },
         "nopua": {
-          "issues": 5.0,
-          "hidden": 4.5,
-          "duration": 71.0,
+          "issues": 4.0,
+          "hidden": 5.5,
+          "duration": 99,
           "timeout": false
         }
       }
     },
     {
       "id": 6,
-      "name": "Chunk Builder Unicode",
+      "name": "Chunk Builder Unicode Boundary Split",
       "type": "hard",
       "conditions": {
         "pi": {
-          "issues": 3.0,
-          "hidden": 3.5,
-          "duration": 469.0,
+          "issues": 0.0,
+          "hidden": 0.0,
+          "duration": 900,
           "timeout": true
         },
         "pua": {
-          "issues": 0.0,
-          "hidden": 0.0,
-          "duration": 900.0,
-          "timeout": true
+          "issues": 3.0,
+          "hidden": 2.0,
+          "duration": 51,
+          "timeout": false
         },
         "nopua": {
           "issues": 2.0,
-          "hidden": 3.0,
-          "duration": 204.0,
-          "timeout": false
+          "hidden": 0.5,
+          "duration": 605,
+          "timeout": true
         }
       }
     },
@@ -207,21 +207,21 @@
       "type": "proactive",
       "conditions": {
         "pi": {
-          "issues": 7.0,
+          "issues": 9.0,
           "hidden": 9.0,
-          "duration": 101.0,
+          "duration": 115,
           "timeout": false
         },
         "pua": {
-          "issues": 7.0,
-          "hidden": 2.5,
-          "duration": 105.0,
+          "issues": 11.0,
+          "hidden": 8.0,
+          "duration": 104,
           "timeout": false
         },
         "nopua": {
-          "issues": 6.5,
-          "hidden": 2.5,
-          "duration": 122.0,
+          "issues": 7.5,
+          "hidden": 5.0,
+          "duration": 151,
           "timeout": false
         }
       }
@@ -232,46 +232,46 @@
       "type": "proactive",
       "conditions": {
         "pi": {
-          "issues": 9.0,
-          "hidden": 10.0,
-          "duration": 33.0,
+          "issues": 4.0,
+          "hidden": 3.5,
+          "duration": 80,
           "timeout": false
         },
         "pua": {
-          "issues": 10.0,
+          "issues": 6.5,
           "hidden": 0.0,
-          "duration": 42.0,
+          "duration": 59,
           "timeout": false
         },
         "nopua": {
-          "issues": 5.0,
-          "hidden": 2.5,
-          "duration": 19.0,
+          "issues": 6.5,
+          "hidden": 3.0,
+          "duration": 68,
           "timeout": false
         }
       }
     },
     {
       "id": 9,
-      "name": "Training Pipeline E2E Audit",
+      "name": "Training Pipeline End-to-End Audit",
       "type": "hard",
       "conditions": {
         "pi": {
-          "issues": 9.0,
+          "issues": 12.5,
           "hidden": 13.5,
-          "duration": 92.0,
+          "duration": 138,
           "timeout": false
         },
         "pua": {
-          "issues": 10.0,
-          "hidden": 4.0,
-          "duration": 33.0,
+          "issues": 0.0,
+          "hidden": 0.0,
+          "duration": 101,
           "timeout": false
         },
         "nopua": {
-          "issues": 7.5,
-          "hidden": 4.0,
-          "duration": 72.0,
+          "issues": 9.0,
+          "hidden": 4.5,
+          "duration": 100,
           "timeout": false
         }
       }
