@@ -19,6 +19,6 @@
 
 - **Eval 标准定义**：`research/benchmark/eval_criteria.md`（已移至 research/ 不公开），定义 8 个指标的 Pass 标准 + 9 场景通过率要求
 - **发布门禁**：编译产物必须通过 P2.5-Eval 门禁（≥8/9 场景通过）方可进入 P3 分发
-- **SKILL.md 修改同步链**：research/SKILL_META.md → research/COMPILER.md 编译 → SKILL.md（标准版+渐进Core版）。快速跑分优化可直接改 SKILL.md，但最终必须同步回 SKILL_META.md
+- **SKILL.md 修改同步链**：compiler/SKILL_META.md → compiler/COMPILER.md 编译 → SKILL.md（标准版+渐进Core版）。快速跑分优化可直接改 SKILL.md，但最终必须同步回 SKILL_META.md
 - **迭代日志**：每轮 eval 结果记录到 `benchmark/iteration_logs/{round}_{timestamp}.md`（本地，不提交）
-- **弱场景追踪**：research/VALIDATOR.md Section I 记录弱场景修复状态
+- **弱场景追踪**：compiler/VALIDATOR.md Section I 记录弱场景修复状态
