@@ -127,6 +127,36 @@
 
 ---
 
+### Phase 2.5: Eval 验证门禁（P2.5-Eval）
+
+**目标**：编译产物必须通过 benchmark eval 全部标准，方可进入分发阶段。
+
+**执行**：
+
+```
+步骤 2.8  运行 benchmark eval：
+          python3 benchmark/local_run.py --backend qodercli
+          （默认并行度 6，9 场景 × 3 条件 × 2 runs）
+
+步骤 2.9  对照 benchmark/eval_criteria.md 逐项检查：
+          - 每个指标是否达到 Pass 标准
+          - 每个场景是否至少 1 run 全指标 Pass
+          - 弱场景修复项是否通过
+```
+
+**校验门禁 2.5**：
+
+- [ ] 场景通过率 ≥ 8/9
+- [ ] 全部 8 个指标的平均值达到 Pass 标准
+- [ ] 已知弱场景（eval_criteria.md 弱场景修复追踪）全部修复确认
+- [ ] PI 条件在所有指标上优于 NoPUA 条件
+
+> ❌ 任一失败 → 回退到 P2，分析弱场景根因，修改 SKILL_META.md / SKILL.md，重新编译+eval
+>
+> ✅ 全部通过 → 输出：`✅ P2.5 Eval 验证通过。场景通过率 {X}/9。可进入 P3 分发。`
+
+---
+
 ### Phase 3: 分发（P3）
 
 **目标**：SKILL.md → 6 平台文件 + 渐进式版本。

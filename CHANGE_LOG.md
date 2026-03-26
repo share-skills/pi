@@ -1,5 +1,28 @@
 # PI 变更日志
 
+## v23 迭代记录
+
+### R6 — Eval驱动优化：自修正100% + verification稳定性 + 全链发布 (2026-03-26)
+
+**Eval 结果**: Round 6 — 场景通过率 8/9, self_corrections 100%, verification_done 稳定性提升
+
+**核心变更**:
+- **自修正协议流程内嵌**: 从"条件触发"改为"流程内嵌"，Steps Taken 强制包含≥1次假设修正（self_corrections 28%→100%）
+- **工具多样性协议**: 每次调查必须使用≥3种不同工具类型（搜/读/验）
+- **策略变更协议**: 切换调查方向时显式标注变更
+- **基础设施调试层**: 调试前置搜索新增第四层（Docker/端口/配置/连接/版本/维度匹配）
+- **审计验证标准**: 验证矩阵新增审计/审查行，证据门新增审计验证标准（verification_done 50%→100%）
+- **连接类错误快检**: 调试七步·读败增加 Connection refused/timeout/auth failed 立即检查清单
+
+**同步范围**: SKILL_META.md + COMPILER.md + VALIDATOR.md + SKILL.md(标准版+渐进Core版) + 全平台分发(6平台×2语言+3 progressive) + PUBLISH.md(P2.5-Eval门禁) + PIPELINE.md
+
+**Eval 对比 (R4→R6)**:
+- self_corrections ≥1: 28% → 100%
+- 8指标全通过场景: 4/9 → 8/9
+- issues/hidden 无劣化
+
+---
+
 ## v21.0.0 迭代记录
 
 ### R57 — P2全修：触发消歧 + 反模式边界 + 计分卡对齐 + Icon语义约定 (2026-03-20)

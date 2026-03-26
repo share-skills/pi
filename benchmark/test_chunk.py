@@ -2,7 +2,7 @@
 """Test script to reproduce Unicode boundary corruption."""
 
 import sys
-sys.path.insert(0, 'data/test-project/src')
+sys.path.insert(0, 'nopua/benchmark/test-project/src')
 
 from data_processing.chunk_builder import ChunkBuilder, ChunkConfig
 

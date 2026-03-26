@@ -235,7 +235,13 @@ def build_prompt(condition: str, scenario: dict) -> str:
 # ---------------------------------------------------------------------------
 
 def call_cli(prompt: str, backend: str) -> str:
-    """Call a CLI tool with the prompt and return the response."""
+    """Call a CLI tool with the prompt and return the response.
+
+    Uses process groups so that on timeout we can kill the entire process tree,
+    preventing leaked grandchild processes (e.g. AI-spawned test scripts).
+    """
+    import signal
+
     config = BACKENDS[backend]
     cmd = config["cmd"]
     args = config["args"]
@@ -249,42 +255,51 @@ def call_cli(prompt: str, backend: str) -> str:
 
     try:
         if config.get("prompt_positional"):
-            # Cline style: cmd args "prompt" (positional argument)
             full_cmd = cmd + args + [prompt]
-            result = subprocess.run(
-                full_cmd,
-                capture_output=True,
-                text=True,
-                timeout=CLI_TIMEOUT,
-                encoding="utf-8",
-            )
+            input_data = None
         elif config.get("prompt_flag"):
-            # Gemini/qwen style: cmd -p "prompt" args
             full_cmd = cmd + [config["prompt_flag"], prompt] + args
-            result = subprocess.run(
-                full_cmd,
-                capture_output=True,
-                text=True,
-                timeout=CLI_TIMEOUT,
-                encoding="utf-8",
-            )
+            input_data = None
         else:
-            # Claude/qodercli style: cmd -p args < stdin
             full_cmd = cmd + args
-            result = subprocess.run(
-                full_cmd,
-                input=prompt,
-                capture_output=True,
-                text=True,
-                timeout=CLI_TIMEOUT,
-                encoding="utf-8",
-            )
-        if result.returncode != 0:
-            stderr = result.stderr.strip()
-            if stderr:
-                raise RuntimeError(f"CLI error (exit {result.returncode}): {stderr[:500]}")
-            raise RuntimeError(f"CLI exited with code {result.returncode}")
-        return result.stdout.strip()
+            input_data = prompt
+
+        # Start in a new process group so we can kill the entire tree on timeout
+        proc = subprocess.Popen(
+            full_cmd,
+            stdin=subprocess.PIPE if input_data else None,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+            start_new_session=True,  # creates new process group
+        )
+
+        try:
+            stdout, stderr = proc.communicate(input=input_data, timeout=CLI_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            # Kill the entire process group (parent + all children/grandchildren)
+            try:
+                os.killpg(proc.pid, signal.SIGTERM)
+            except OSError:
+                pass
+            # Give processes a moment to terminate, then force kill
+            try:
+                proc.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                try:
+                    os.killpg(proc.pid, signal.SIGKILL)
+                except OSError:
+                    pass
+                proc.wait(timeout=5)
+            raise subprocess.TimeoutExpired(full_cmd, CLI_TIMEOUT)
+
+        if proc.returncode != 0:
+            stderr_text = stderr.strip() if stderr else ""
+            if stderr_text:
+                raise RuntimeError(f"CLI error (exit {proc.returncode}): {stderr_text[:500]}")
+            raise RuntimeError(f"CLI exited with code {proc.returncode}")
+        return stdout.strip()
     finally:
         os.unlink(prompt_file)
 
