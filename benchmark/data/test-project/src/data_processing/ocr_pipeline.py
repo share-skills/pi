@@ -10,15 +10,16 @@ Usage:
 Configuration:
     See configs/ocr_config.yaml for available options including:
     - lang: OCR language model (default: 'ch')
-    - use_gpu: Whether to use GPU acceleration
-    - det_model_dir: Custom detection model path
-    - rec_model_dir: Custom recognition model path
+    - device: Device to use ("gpu", "cpu", "npu", etc.)
+    - text_detection_model_dir: Custom detection model path
+    - text_recognition_model_dir: Custom recognition model path
 """
 
 import os
 import sys
 import json
 import logging
+import shutil
 from pathlib import Path
 from typing import List, Dict, Optional, Union
 from dataclasses import dataclass, field
@@ -35,13 +36,24 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class OCRConfig:
-    """Configuration for the OCR pipeline."""
+    """Configuration for the OCR pipeline.
+
+    Note: For PaddleOCR 3.x compatibility, use 'device' instead of 'use_gpu',
+    and new parameter names (text_detection_model_dir, etc.) instead of deprecated ones.
+    """
     lang: str = "ch"
-    use_gpu: bool = True
-    det_model_dir: Optional[str] = None
-    rec_model_dir: Optional[str] = None
-    cls_model_dir: Optional[str] = None
-    use_angle_cls: bool = True
+    device: str = "gpu"  # "gpu", "cpu", "npu", etc.
+    # Deprecated aliases (for backward compatibility) - will be mapped to new names
+    use_gpu: Optional[bool] = None  # If set, overrides device ("gpu" if True, "cpu" if False)
+    det_model_dir: Optional[str] = None  # Deprecated: use text_detection_model_dir
+    rec_model_dir: Optional[str] = None  # Deprecated: use text_recognition_model_dir
+    cls_model_dir: Optional[str] = None  # Deprecated: use textline_orientation_model_dir
+    use_angle_cls: Optional[bool] = None  # Deprecated: use use_textline_orientation
+    # New parameter names (PaddleOCR 3.x)
+    text_detection_model_dir: Optional[str] = None
+    text_recognition_model_dir: Optional[str] = None
+    textline_orientation_model_dir: Optional[str] = None
+    use_textline_orientation: bool = True
     output_format: str = "txt"  # txt, json, jsonl
     max_workers: int = 4
     dpi: int = 300
@@ -89,7 +101,7 @@ class OCRPipeline:
         model_cache_dir: Directory to cache downloaded models.
 
     Example:
-        >>> pipeline = OCRPipeline(OCRConfig(lang='ch', use_gpu=True))
+        >>> pipeline = OCRPipeline(OCRConfig(lang='ch', device='gpu'))
         >>> results = pipeline.process_file('scan_001.pdf')
         >>> print(results[0].text)
     """
@@ -108,19 +120,43 @@ class OCRPipeline:
         self._engine = None
         self._stats = {"processed": 0, "failed": 0, "total_pages": 0}
 
-        self._engine = PaddleOCR(
-            lang=self.config.lang,
-            use_gpu=self.config.use_gpu,
-            use_angle_cls=self.config.use_angle_cls,
-            det_model_dir=self.config.det_model_dir,
-            rec_model_dir=self.config.rec_model_dir,
-            cls_model_dir=self.config.cls_model_dir,
-            show_log=False,
+        # Handle backward compatibility: use_gpu overrides device if specified
+        device = self.config.device
+        if self.config.use_gpu is not None:
+            device = "gpu" if self.config.use_gpu else "cpu"
+
+        # Map deprecated parameter names to new names for PaddleOCR 3.x
+        paddleocr_kwargs = {
+            "lang": self.config.lang,
+            "device": device,
+            "use_textline_orientation": self.config.use_textline_orientation,
+            "show_log": False,
+        }
+
+        # Use new parameter names if set, fall back to deprecated names for compatibility
+        paddleocr_kwargs["text_detection_model_dir"] = (
+            self.config.text_detection_model_dir or self.config.det_model_dir
         )
+        paddleocr_kwargs["text_recognition_model_dir"] = (
+            self.config.text_recognition_model_dir or self.config.rec_model_dir
+        )
+        paddleocr_kwargs["textline_orientation_model_dir"] = (
+            self.config.textline_orientation_model_dir or self.config.cls_model_dir
+        )
+
+        # Handle deprecated use_angle_cls alias
+        if self.config.use_angle_cls is not None:
+            paddleocr_kwargs["use_textline_orientation"] = self.config.use_angle_cls
+
+        # Pass model_cache_dir if specified
+        if self.model_cache_dir:
+            paddleocr_kwargs["model_cache_dir"] = self.model_cache_dir
+
+        self._engine = PaddleOCR(**paddleocr_kwargs)
 
         logger.info(
             f"OCR Pipeline initialized (lang={self.config.lang}, "
-            f"gpu={self.config.use_gpu})"
+            f"device={device})"
         )
 
     def _load_config(self, config_path: str) -> OCRConfig:
@@ -179,14 +215,18 @@ class OCRPipeline:
             return results
 
         finally:
+            # Properly clean up temporary directory with all contents
             try:
-                tmp_dir.rmdir()
-            except OSError:
-                pass  # Directory not empty, but we ignore it
+                shutil.rmtree(str(tmp_dir))
+            except (OSError, shutil.Error) as e:
+                logger.warning(f"Failed to clean up temp directory {tmp_dir}: {e}")
 
     def _process_image(self, image_path: Path, page_num: int = 1) -> OCRResult:
         """Run OCR on a single image file."""
-        result = self._engine.ocr(str(image_path), cls=self.config.use_angle_cls)
+        result = self._engine.predict(
+            str(image_path),
+            use_textline_orientation=self.config.use_textline_orientation,
+        )
 
         if not result or not result[0]:
             logger.warning(f"No text detected in {image_path.name}")
@@ -221,7 +261,8 @@ class OCRPipeline:
         """Merge nearby text boxes that likely belong to the same paragraph.
 
         Uses vertical distance between boxes to determine paragraph breaks.
-        Boxes within the merge threshold are joined without newlines.
+        Boxes within the merge threshold are joined with a space (same paragraph),
+        while boxes with large gaps are separated by newlines (new paragraphs).
         """
         if not lines:
             return ""
@@ -248,8 +289,8 @@ class OCRPipeline:
                 # Large gap — new paragraph
                 merged.append("\n" + lines[i])
             else:
-                # Same paragraph
-                merged.append(lines[i])
+                # Same paragraph — add space separator between words
+                merged.append(" " + lines[i])
 
         return "".join(merged)
 
@@ -283,18 +324,29 @@ class OCRPipeline:
         logger.info(f"Found {len(files)} files to process")
         all_results = {}
 
-        # Process files with progress bar
-        for file_path in tqdm(files, desc="OCR Processing"):
+        # Process files in parallel using ThreadPoolExecutor
+        def process_single_file(file_path: Path) -> tuple:
+            """Process a single file and return results."""
             try:
                 results = self.process_file(str(file_path))
-                all_results[str(file_path)] = results
-
                 if output_dir:
                     self._save_results(file_path, results, Path(output_dir))
-
+                return (str(file_path), results, None)
             except Exception as e:
                 logger.error(f"Failed to process {file_path.name}: {e}")
                 self._stats["failed"] += 1
+                return (str(file_path), None, e)
+
+        with ThreadPoolExecutor(max_workers=self.config.max_workers) as executor:
+            # Submit all tasks
+            future_to_file = {executor.submit(process_single_file, f): f for f in files}
+
+            # Collect results with progress bar
+            for future in tqdm(as_completed(future_to_file), total=len(files), desc="OCR Processing"):
+                file_path_str, results, error = future.result()
+                if error is None:
+                    all_results[file_path_str] = results
+                    self._stats["processed"] += 1
 
         return all_results
 
@@ -350,7 +402,9 @@ def main():
         if config:
             pipeline = OCRPipeline(config)
         else:
-            pipeline = OCRPipeline(OCRConfig(use_gpu=gpu, output_format=fmt))
+            # Convert --gpu/--no-gpu flag to device string for PaddleOCR 3.x
+            device = "gpu" if gpu else "cpu"
+            pipeline = OCRPipeline(OCRConfig(device=device, output_format=fmt))
 
         input_path = Path(input)
         if input_path.is_file():

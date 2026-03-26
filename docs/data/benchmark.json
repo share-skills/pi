@@ -1,5 +1,5 @@
 {
-  "round": 7,
+  "round": 8,
   "total_tests": 54,
   "scenarios_count": 9,
   "conditions_count": 3,
@@ -8,46 +8,46 @@
   "composite_formula": "Issues*30 + Hidden*25 + Steps*5 + Tools*5 + Verify*0.35",
   "conditions": {
     "pi": {
-      "issues_found": 7.86,
-      "hidden_issues": 8.29,
-      "steps_taken": 7.93,
+      "issues_found": 7.61,
+      "hidden_issues": 8.17,
+      "steps_taken": 10.78,
       "went_beyond_ask": 100,
-      "verification_done": 93,
-      "approach_changes": 1.36,
-      "self_corrections": 1.29,
-      "tools_used": 4.29,
-      "duration": 141.8,
-      "composite": 536.4,
-      "efficiency": 3.3,
-      "runs": 14
+      "verification_done": 89,
+      "approach_changes": 1.78,
+      "self_corrections": 2.06,
+      "tools_used": 4.0,
+      "duration": 168.5,
+      "composite": 572.5,
+      "efficiency": 3.4,
+      "runs": 18
     },
     "pua": {
-      "issues_found": 6.38,
-      "hidden_issues": 3.88,
-      "steps_taken": 5.5,
-      "went_beyond_ask": 75,
-      "verification_done": 75,
-      "approach_changes": 0.62,
-      "self_corrections": 0.0,
-      "tools_used": 2.12,
-      "duration": 84.2,
-      "composite": 352.5,
-      "efficiency": 4.5,
-      "runs": 8
+      "issues_found": 4.39,
+      "hidden_issues": 3.17,
+      "steps_taken": 4.89,
+      "went_beyond_ask": 56,
+      "verification_done": 44,
+      "approach_changes": 0.78,
+      "self_corrections": 0.44,
+      "tools_used": 2.39,
+      "duration": 286.4,
+      "composite": 282.2,
+      "efficiency": 1.0,
+      "runs": 18
     },
     "nopua": {
-      "issues_found": 6.0,
-      "hidden_issues": 3.55,
-      "steps_taken": 5.91,
-      "went_beyond_ask": 82,
-      "verification_done": 82,
-      "approach_changes": 1.27,
-      "self_corrections": 0.18,
-      "tools_used": 3.64,
-      "duration": 126.5,
-      "composite": 345.0,
-      "efficiency": 2.8,
-      "runs": 11
+      "issues_found": 5.06,
+      "hidden_issues": 3.67,
+      "steps_taken": 5.78,
+      "went_beyond_ask": 72,
+      "verification_done": 67,
+      "approach_changes": 0.72,
+      "self_corrections": 0.11,
+      "tools_used": 2.67,
+      "duration": 192.9,
+      "composite": 334.2,
+      "efficiency": 1.7,
+      "runs": 18
     }
   },
   "scenarios": [
@@ -57,21 +57,21 @@
       "type": "medium",
       "conditions": {
         "pi": {
-          "issues": 6.5,
-          "hidden": 6.0,
-          "duration": 212,
+          "issues": 5.5,
+          "hidden": 7.0,
+          "duration": 134,
           "timeout": false
         },
         "pua": {
           "issues": 0.0,
           "hidden": 0.0,
-          "duration": 116,
+          "duration": 294,
           "timeout": false
         },
         "nopua": {
-          "issues": 0.0,
-          "hidden": 0.0,
-          "duration": 183,
+          "issues": 1.0,
+          "hidden": 2.5,
+          "duration": 150,
           "timeout": false
         }
       }
@@ -82,21 +82,21 @@
       "type": "hard",
       "conditions": {
         "pi": {
-          "issues": 6.0,
-          "hidden": 6.0,
-          "duration": 154,
+          "issues": 4.0,
+          "hidden": 6.5,
+          "duration": 223,
           "timeout": false
         },
         "pua": {
-          "issues": 0.0,
-          "hidden": 0.0,
-          "duration": 408,
+          "issues": 3.0,
+          "hidden": 4.0,
+          "duration": 468,
           "timeout": false
         },
         "nopua": {
-          "issues": 0.0,
-          "hidden": 0.0,
-          "duration": 139,
+          "issues": 1.5,
+          "hidden": 5.0,
+          "duration": 83,
           "timeout": false
         }
       }
@@ -107,21 +107,21 @@
       "type": "medium",
       "conditions": {
         "pi": {
-          "issues": 8.0,
+          "issues": 6.5,
           "hidden": 9.5,
-          "duration": 140,
+          "duration": 57,
           "timeout": false
         },
         "pua": {
           "issues": 0.0,
           "hidden": 0.0,
-          "duration": 106,
+          "duration": 148,
           "timeout": false
         },
         "nopua": {
-          "issues": 0.0,
-          "hidden": 0.0,
-          "duration": 109,
+          "issues": 2.0,
+          "hidden": 2.0,
+          "duration": 166,
           "timeout": false
         }
       }
@@ -132,21 +132,21 @@
       "type": "medium",
       "conditions": {
         "pi": {
-          "issues": 2.0,
-          "hidden": 3.5,
-          "duration": 126,
+          "issues": 7.0,
+          "hidden": 8.0,
+          "duration": 215,
           "timeout": false
         },
         "pua": {
-          "issues": 0.0,
-          "hidden": 0.0,
-          "duration": 134,
+          "issues": 5.5,
+          "hidden": 5.0,
+          "duration": 195,
           "timeout": false
         },
         "nopua": {
-          "issues": 4.0,
-          "hidden": 1.0,
-          "duration": 123,
+          "issues": 5.0,
+          "hidden": 4.0,
+          "duration": 251,
           "timeout": false
         }
       }
@@ -157,21 +157,21 @@
       "type": "hard",
       "conditions": {
         "pi": {
-          "issues": 7.0,
-          "hidden": 7.0,
-          "duration": 129,
+          "issues": 6.5,
+          "hidden": 6.5,
+          "duration": 126,
           "timeout": false
         },
         "pua": {
-          "issues": 5.0,
+          "issues": 6.5,
           "hidden": 5.5,
-          "duration": 122,
+          "duration": 150,
           "timeout": false
         },
         "nopua": {
-          "issues": 4.0,
-          "hidden": 5.5,
-          "duration": 99,
+          "issues": 6.0,
+          "hidden": 4.0,
+          "duration": 196,
           "timeout": false
         }
       }
@@ -182,21 +182,21 @@
       "type": "hard",
       "conditions": {
         "pi": {
+          "issues": 6.5,
+          "hidden": 5.5,
+          "duration": 321,
+          "timeout": false
+        },
+        "pua": {
           "issues": 0.0,
           "hidden": 0.0,
           "duration": 900,
           "timeout": true
         },
-        "pua": {
-          "issues": 3.0,
-          "hidden": 2.0,
-          "duration": 51,
-          "timeout": false
-        },
         "nopua": {
-          "issues": 2.0,
-          "hidden": 0.5,
-          "duration": 605,
+          "issues": 7.0,
+          "hidden": 4.0,
+          "duration": 560,
           "timeout": true
         }
       }
@@ -207,21 +207,21 @@
       "type": "proactive",
       "conditions": {
         "pi": {
-          "issues": 9.0,
+          "issues": 8.5,
           "hidden": 9.0,
-          "duration": 115,
+          "duration": 211,
           "timeout": false
         },
         "pua": {
           "issues": 11.0,
-          "hidden": 8.0,
-          "duration": 104,
+          "hidden": 7.5,
+          "duration": 206,
           "timeout": false
         },
         "nopua": {
-          "issues": 7.5,
-          "hidden": 5.0,
-          "duration": 151,
+          "issues": 7.0,
+          "hidden": 2.0,
+          "duration": 166,
           "timeout": false
         }
       }
@@ -232,21 +232,21 @@
       "type": "proactive",
       "conditions": {
         "pi": {
-          "issues": 4.0,
-          "hidden": 3.5,
-          "duration": 80,
+          "issues": 11.5,
+          "hidden": 6.5,
+          "duration": 78,
           "timeout": false
         },
         "pua": {
-          "issues": 6.5,
+          "issues": 6.0,
           "hidden": 0.0,
-          "duration": 59,
+          "duration": 79,
           "timeout": false
         },
         "nopua": {
-          "issues": 6.5,
-          "hidden": 3.0,
-          "duration": 68,
+          "issues": 7.0,
+          "hidden": 1.5,
+          "duration": 57,
           "timeout": false
         }
       }
@@ -258,20 +258,20 @@
       "conditions": {
         "pi": {
           "issues": 12.5,
-          "hidden": 13.5,
-          "duration": 138,
+          "hidden": 15.0,
+          "duration": 153,
           "timeout": false
         },
         "pua": {
-          "issues": 0.0,
-          "hidden": 0.0,
-          "duration": 101,
+          "issues": 7.5,
+          "hidden": 6.5,
+          "duration": 137,
           "timeout": false
         },
         "nopua": {
           "issues": 9.0,
-          "hidden": 4.5,
-          "duration": 100,
+          "hidden": 8.0,
+          "duration": 107,
           "timeout": false
         }
       }

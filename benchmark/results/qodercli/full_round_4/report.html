@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PI Benchmark Report</title>
+<style>
+/* ========== CSS Reset & Base ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-primary: #0a0e17;
+  --bg-secondary: #111827;
+  --bg-card: #1a2332;
+  --bg-card-hover: #1f2b3d;
+  --border: #2d3748;
+  --border-glow: #3b82f6;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --neon-blue: #3b82f6;
+  --neon-cyan: #06b6d4;
+  --neon-purple: #8b5cf6;
+  --neon-green: #10b981;
+  --neon-amber: #f59e0b;
+  --neon-red: #ef4444;
+  --neon-pink: #ec4899;
+  --pi-color: #3b82f6;
+  --pi-lite-color: #8b5cf6;
+  --pua-color: #ef4444;
+  --nopua-color: #10b981;
+  --baseline-color: #64748b;
+  --glow-blue: 0 0 20px rgba(59, 130, 246, 0.3);
+  --glow-cyan: 0 0 20px rgba(6, 182, 212, 0.3);
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ========== Animated background grid ========== */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========== Header ========== */
+header {
+  text-align: center;
+  padding: 40px 0 32px;
+  position: relative;
+}
+
+header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-cyan), transparent);
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-cyan), var(--neon-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-family: var(--font-mono);
+}
+
+.meta-bar {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.meta-tag {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+/* ========== Section headers ========== */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 40px 0 20px;
+  padding-left: 16px;
+  border-left: 3px solid var(--neon-blue);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ========== Cards grid ========== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--neon-blue);
+  box-shadow: var(--glow-blue);
+  transform: translateY(-2px);
+}
+
+.card .icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.card .label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.card .value {
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+}
+
+.card .delta {
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  margin-top: 4px;
+}
+
+.delta.positive { color: var(--neon-green); }
+.delta.negative { color: var(--neon-red); }
+.delta.neutral { color: var(--text-muted); }
+
+/* ========== Comparison bars ========== */
+.comparison-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+.bar-group {
+  margin-bottom: 20px;
+}
+
+.bar-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.bar-label .metric-name {
+  font-weight: 600;
+}
+
+.bar-track {
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: white;
+  transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; right: -100%; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.bar-fill.pi { background: linear-gradient(90deg, var(--pi-color), #60a5fa); }
+.bar-fill.pi-lite { background: linear-gradient(90deg, var(--pi-lite-color), #a78bfa); }
+.bar-fill.pua { background: linear-gradient(90deg, var(--pua-color), #f87171); }
+.bar-fill.nopua { background: linear-gradient(90deg, var(--nopua-color), #34d399); }
+.bar-fill.baseline { background: linear-gradient(90deg, var(--baseline-color), #94a3b8); }
+
+/* ========== Radar / Spider chart (SVG) ========== */
+.radar-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radar-svg {
+  max-width: 500px;
+  width: 100%;
+}
+
+.radar-svg text {
+  fill: var(--text-secondary);
+  font-size: 11px;
+  font-family: var(--font-sans);
+}
+
+.radar-svg .axis-line {
+  stroke: var(--border);
+  stroke-width: 0.5;
+}
+
+.radar-svg .grid-line {
+  stroke: rgba(255, 255, 255, 0.06);
+  fill: none;
+  stroke-width: 0.5;
+}
+
+.radar-svg .data-area {
+  stroke-width: 2;
+  fill-opacity: 0.15;
+  transition: fill-opacity 0.3s;
+}
+
+.radar-svg .data-area:hover {
+  fill-opacity: 0.3;
+}
+
+/* ========== Heatmap ========== */
+.heatmap-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 32px;
+  overflow-x: auto;
+}
+
+.heatmap-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+}
+
+.heatmap-table th {
+  padding: 10px 12px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.heatmap-table td {
+  padding: 8px 12px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  transition: all 0.2s;
+}
+
+.heatmap-table td.scenario-name {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.heatmap-table tr:hover td {
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.heat-cell {
+  border-radius: 4px;
+  padding: 4px 8px;
+  display: inline-block;
+  min-width: 40px;
+}
+
+/* ========== Legend ========== */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 16px 0;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* ========== Model breakdown ========== */
+.model-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.model-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.model-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  font-family: var(--font-mono);
+  color: var(--neon-cyan);
+}
+
+.mini-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.mini-bar .mlabel {
+  width: 100px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.mini-bar .mtrack {
+  flex: 1;
+  height: 20px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mini-bar .mfill {
+  height: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+  font-family: var(--font-mono);
+  transition: width 0.8s ease;
+}
+
+/* ========== Footer ========== */
+footer {
+  text-align: center;
+  padding: 32px 0 16px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+}
+
+footer a {
+  color: var(--neon-blue);
+  text-decoration: none;
+}
+
+/* ========== Animations ========== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+/* Stagger children */
+.cards-grid > *:nth-child(1) { animation-delay: 0.05s; }
+.cards-grid > *:nth-child(2) { animation-delay: 0.1s; }
+.cards-grid > *:nth-child(3) { animation-delay: 0.15s; }
+.cards-grid > *:nth-child(4) { animation-delay: 0.2s; }
+.cards-grid > *:nth-child(5) { animation-delay: 0.25s; }
+.cards-grid > *:nth-child(6) { animation-delay: 0.3s; }
+.cards-grid > *:nth-child(7) { animation-delay: 0.35s; }
+.cards-grid > *:nth-child(8) { animation-delay: 0.4s; }
+
+/* ========== Model Tabs ========== */
+.model-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 24px 0 16px;
+  flex-wrap: wrap;
+}
+
+.model-tab {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.model-tab:hover {
+  border-color: var(--neon-cyan);
+  color: var(--text-primary);
+}
+
+.model-tab.active {
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-cyan));
+  border-color: var(--neon-cyan);
+  color: white;
+  font-weight: 600;
+  box-shadow: var(--glow-cyan);
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .container { padding: 16px; }
+  h1 { font-size: 1.8rem; }
+  .cards-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .model-grid { grid-template-columns: 1fr; }
+  .meta-bar { gap: 8px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ========== Header ========== -->
+<header>
+  <h1>⚡ PI Benchmark Report</h1>
+  <p class="subtitle">PI 智行合一 — Multi-Dimensional Skill Comparison</p>
+  <div class="meta-bar" id="metaBar"></div>
+</header>
+
+<!-- ========== Model Tabs ========== -->
+<div class="model-tabs" id="modelTabs"></div>
+
+<!-- ========== Summary Cards ========== -->
+<h2 class="section-title">📊 Summary Dashboard</h2>
+<div class="cards-grid" id="summaryCards"></div>
+
+<!-- ========== Legend ========== -->
+<div class="legend" id="legend"></div>
+
+<!-- ========== Comparison Bars ========== -->
+<h2 class="section-title">📈 Metric Comparison</h2>
+<div class="comparison-section" id="comparisonBars"></div>
+
+<!-- ========== Radar Chart ========== -->
+<h2 class="section-title">🕸️ Multi-Dimensional Profile</h2>
+<div class="radar-container" id="radarContainer"></div>
+
+<!-- ========== Scenario Heatmap ========== -->
+<h2 class="section-title">🗺️ Per-Scenario Breakdown</h2>
+<div class="heatmap-container" id="heatmapContainer"></div>
+
+<!-- ========== Per-Model Breakdown ========== -->
+<h2 class="section-title">🤖 Per-Model Analysis</h2>
+<div class="model-grid" id="modelGrid"></div>
+
+<!-- ========== Footer ========== -->
+<footer>
+  <p>Generated by <a href="https://github.com/share-skills/pi">PI 智行合一</a> Benchmark Suite</p>
+  <p id="footerTimestamp"></p>
+</footer>
+
+</div>
+
+<script>
+// ============================================================
+// Inject data (replaced by report.py)
+// ============================================================
+const DATA = {"conditions": ["nopua", "pi", "pua"], "models": ["qodercli"], "scenarios": {"1": {"id": 1, "name": "OCR Pipeline Import Error"}, "2": {"id": 2, "name": "Text Cleaner Regex Catastrophic Backtracking"}, "3": {"id": 3, "name": "RAG Pipeline Milvus Connection Timeout"}, "4": {"id": 4, "name": "API Server Response Format Mismatch"}, "5": {"id": 5, "name": "Training Data Synthesizer Silent Failure"}, "6": {"id": 6, "name": "Chunk Builder Unicode Boundary Split"}, "7": {"id": 7, "name": "Quality Filter Code Review"}, "8": {"id": 8, "name": "Inference Config Security Audit"}, "9": {"id": 9, "name": "Training Pipeline End-to-End Audit"}}, "condition_avgs": {"nopua": {"issues_found": {"mean": 5.62, "total": 90, "count": 16, "min": 0, "max": 11}, "hidden_issues": {"mean": 4.31, "total": 69, "count": 16, "min": 0, "max": 9}, "steps_taken": {"mean": 5.62, "total": 90, "count": 16, "min": 1, "max": 9}, "went_beyond_ask": {"mean": 0.88, "total": 14, "count": 16, "min": 0, "max": 1}, "verification_done": {"mean": 0.69, "total": 11, "count": 16, "min": 0, "max": 1}, "approach_changes": {"mean": 0.88, "total": 14, "count": 16, "min": 0, "max": 2}, "self_corrections": {"mean": 0.44, "total": 7, "count": 16, "min": 0, "max": 1}, "tools_used": {"mean": 3.0, "total": 48, "count": 16, "min": 1, "max": 5}, "duration": {"mean": 140.62, "total": 2249.9, "count": 16, "min": 24.3, "max": 303.9}}, "pi": {"issues_found": {"mean": 6.41, "total": 109, "count": 17, "min": 0, "max": 12}, "hidden_issues": {"mean": 7.47, "total": 127, "count": 17, "min": 0, "max": 13}, "steps_taken": {"mean": 8.0, "total": 136, "count": 17, "min": 0, "max": 18}, "went_beyond_ask": {"mean": 0.88, "total": 15, "count": 17, "min": 0, "max": 1}, "verification_done": {"mean": 0.88, "total": 15, "count": 17, "min": 0, "max": 1}, "approach_changes": {"mean": 1.35, "total": 23, "count": 17, "min": 0, "max": 2}, "self_corrections": {"mean": 0.41, "total": 7, "count": 17, "min": 0, "max": 2}, "tools_used": {"mean": 2.94, "total": 50, "count": 17, "min": 0, "max": 4}, "duration": {"mean": 137.41, "total": 2335.9, "count": 17, "min": 17.4, "max": 479.9}}, "pua": {"issues_found": {"mean": 6.5, "total": 117, "count": 18, "min": 0, "max": 14}, "hidden_issues": {"mean": 4.06, "total": 73, "count": 18, "min": 0, "max": 10}, "steps_taken": {"mean": 5.56, "total": 100, "count": 18, "min": 1, "max": 10}, "went_beyond_ask": {"mean": 0.72, "total": 13, "count": 18, "min": 0, "max": 1}, "verification_done": {"mean": 0.72, "total": 13, "count": 18, "min": 0, "max": 1}, "approach_changes": {"mean": 0.94, "total": 17, "count": 18, "min": 0, "max": 2}, "self_corrections": {"mean": 0.33, "total": 6, "count": 18, "min": 0, "max": 2}, "tools_used": {"mean": 2.72, "total": 49, "count": 18, "min": 0, "max": 6}, "duration": {"mean": 193.06, "total": 3475.0, "count": 18, "min": 33.4, "max": 791.9}}}, "scenario_data": {"1": {"name": "OCR Pipeline Import Error", "conditions": {"nopua": {"issues_found": 5.0, "hidden_issues": 4.5, "steps_taken": 7.0, "went_beyond_ask": 1.0, "verification_done": 0.5, "approach_changes": 1.0, "self_corrections": 0.0, "tools_used": 4.0, "duration": 216.95}, "pi": {"issues_found": 2.5, "hidden_issues": 4.0, "steps_taken": 6.0, "went_beyond_ask": 0.5, "verification_done": 0.5, "approach_changes": 1.0, "self_corrections": 0.0, "tools_used": 1.5, "duration": 80.6}, "pua": {"issues_found": 5.5, "hidden_issues": 5.0, "steps_taken": 7.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.5, "self_corrections": 0.5, "tools_used": 4.0, "duration": 164.35}}}, "2": {"name": "Text Cleaner Regex Catastrophic Backtracking", "conditions": {"nopua": {"issues_found": 4.5, "hidden_issues": 2.0, "steps_taken": 6.5, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.5, "self_corrections": 1.0, "tools_used": 3.0, "duration": 213.0}, "pi": {"issues_found": 8.0, "hidden_issues": 5.0, "steps_taken": 8.5, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 2.0, "self_corrections": 1.0, "tools_used": 3.5, "duration": 435.0}, "pua": {"issues_found": 8.0, "hidden_issues": 5.0, "steps_taken": 8.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 1.5, "tools_used": 4.0, "duration": 232.2}}}, "3": {"name": "RAG Pipeline Milvus Connection Timeout", "conditions": {"nopua": {"issues_found": 3.5, "hidden_issues": 6.5, "steps_taken": 5.5, "went_beyond_ask": 1.0, "verification_done": 0.5, "approach_changes": 1.0, "self_corrections": 0.5, "tools_used": 3.0, "duration": 57.55}, "pi": {"issues_found": 4.5, "hidden_issues": 6.5, "steps_taken": 8.5, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 2.0, "self_corrections": 0.0, "tools_used": 3.5, "duration": 97.3}, "pua": {"issues_found": 2.0, "hidden_issues": 3.5, "steps_taken": 5.0, "went_beyond_ask": 0.5, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 0.5, "tools_used": 3.0, "duration": 129.4}}}, "4": {"name": "API Server Response Format Mismatch", "conditions": {"nopua": {"issues_found": 1.5, "hidden_issues": 0.0, "steps_taken": 1.0, "went_beyond_ask": 0.0, "verification_done": 0.0, "approach_changes": 0.0, "self_corrections": 0.0, "tools_used": 1.0, "duration": 226.05}, "pi": {"issues_found": 3.5, "hidden_issues": 7.5, "steps_taken": 7.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.5, "self_corrections": 0.0, "tools_used": 3.5, "duration": 130.65}, "pua": {"issues_found": 6.5, "hidden_issues": 3.5, "steps_taken": 4.5, "went_beyond_ask": 0.5, "verification_done": 0.5, "approach_changes": 0.5, "self_corrections": 0.0, "tools_used": 2.5, "duration": 160.55}}}, "5": {"name": "Training Data Synthesizer Silent Failure", "conditions": {"nopua": {"issues_found": 2.5, "hidden_issues": 4.0, "steps_taken": 7.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 1.0, "tools_used": 3.5, "duration": 97.9}, "pi": {"issues_found": 5.5, "hidden_issues": 8.0, "steps_taken": 7.5, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 0.5, "tools_used": 3.0, "duration": 81.1}, "pua": {"issues_found": 6.5, "hidden_issues": 2.0, "steps_taken": 6.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 0.0, "tools_used": 2.0, "duration": 73.25}}}, "6": {"name": "Chunk Builder Unicode Boundary Split", "conditions": {"nopua": {"issues_found": 0, "hidden_issues": 0, "steps_taken": 0, "went_beyond_ask": 0, "verification_done": 0, "approach_changes": 0, "self_corrections": 0, "tools_used": 0, "duration": 0}, "pi": {"issues_found": 6.0, "hidden_issues": 8.0, "steps_taken": 7.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 2.0, "self_corrections": 2.0, "tools_used": 2.0, "duration": 51.6}, "pua": {"issues_found": 5.5, "hidden_issues": 1.5, "steps_taken": 4.0, "went_beyond_ask": 0.5, "verification_done": 0.5, "approach_changes": 0.5, "self_corrections": 0.5, "tools_used": 2.0, "duration": 558.4}}}, "7": {"name": "Quality Filter Code Review", "conditions": {"nopua": {"issues_found": 10.0, "hidden_issues": 7.0, "steps_taken": 6.5, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 1.0, "tools_used": 4.0, "duration": 158.9}, "pi": {"issues_found": 7.5, "hidden_issues": 8.0, "steps_taken": 9.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 0.5, "tools_used": 4.0, "duration": 148.9}, "pua": {"issues_found": 2.5, "hidden_issues": 5.0, "steps_taken": 5.0, "went_beyond_ask": 0.5, "verification_done": 0.5, "approach_changes": 1.0, "self_corrections": 0.0, "tools_used": 2.5, "duration": 227.2}}}, "8": {"name": "Inference Config Security Audit", "conditions": {"nopua": {"issues_found": 7.5, "hidden_issues": 3.5, "steps_taken": 5.0, "went_beyond_ask": 1.0, "verification_done": 0.5, "approach_changes": 0.5, "self_corrections": 0.0, "tools_used": 2.0, "duration": 38.3}, "pi": {"issues_found": 8.0, "hidden_issues": 9.0, "steps_taken": 4.0, "went_beyond_ask": 0.5, "verification_done": 0.5, "approach_changes": 0.5, "self_corrections": 0.0, "tools_used": 1.0, "duration": 50.3}, "pua": {"issues_found": 9.0, "hidden_issues": 3.0, "steps_taken": 4.5, "went_beyond_ask": 0.5, "verification_done": 0.0, "approach_changes": 1.0, "self_corrections": 0.0, "tools_used": 1.5, "duration": 54.8}}}, "9": {"name": "Training Pipeline End-to-End Audit", "conditions": {"nopua": {"issues_found": 10.5, "hidden_issues": 7.0, "steps_taken": 6.5, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 0.0, "tools_used": 3.5, "duration": 116.3}, "pi": {"issues_found": 12.0, "hidden_issues": 11.5, "steps_taken": 14.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.5, "self_corrections": 0.5, "tools_used": 4.0, "duration": 118.3}, "pua": {"issues_found": 13.0, "hidden_issues": 8.0, "steps_taken": 6.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 0.0, "tools_used": 3.0, "duration": 137.35}}}}, "model_data": {"qodercli": {"nopua": {"issues_found": 5.62, "hidden_issues": 4.31, "steps_taken": 5.62, "went_beyond_ask": 0.88, "verification_done": 0.69, "approach_changes": 0.88, "self_corrections": 0.44, "tools_used": 3.0, "duration": 140.62}, "pi": {"issues_found": 6.41, "hidden_issues": 7.47, "steps_taken": 8.0, "went_beyond_ask": 0.88, "verification_done": 0.88, "approach_changes": 1.35, "self_corrections": 0.41, "tools_used": 2.94, "duration": 137.41}, "pua": {"issues_found": 6.5, "hidden_issues": 4.06, "steps_taken": 5.56, "went_beyond_ask": 0.72, "verification_done": 0.72, "approach_changes": 0.94, "self_corrections": 0.33, "tools_used": 2.72, "duration": 193.06}}}, "improvements": {"issues_found": -1.4, "hidden_issues": 84.0, "steps_taken": 43.9, "went_beyond_ask": 22.2, "verification_done": 22.2, "approach_changes": 43.6, "self_corrections": 24.2, "tools_used": 8.1, "duration": 28.8}, "composite_scores": {"nopua": 39.26, "pi": 53.62, "pua": 39.38}, "scenario_composites": {"1": {"nopua": 40.0, "pi": 28.5, "pua": 45.5}, "2": {"nopua": 34.0, "pi": 53.0, "pua": 53.0}, "3": {"nopua": 41.5, "pi": 48.5, "pua": 29.0}, "4": {"nopua": 5.0, "pi": 47.5, "pua": 34.0}, "5": {"nopua": 36.5, "pi": 53.5, "pua": 34.0}, "6": {"nopua": 0, "pi": 57.0, "pua": 26.0}, "7": {"nopua": 60.5, "pi": 60.0, "pua": 31.5}, "8": {"nopua": 37.5, "pi": 51.5, "pua": 35.5}, "9": {"nopua": 59.0, "pi": 85.0, "pua": 66.0}}, "per_model": {"qodercli": {"conditions": ["nopua", "pi", "pua"], "condition_avgs": {"nopua": {"issues_found": {"mean": 5.62, "total": 90, "count": 16, "min": 0, "max": 11}, "hidden_issues": {"mean": 4.31, "total": 69, "count": 16, "min": 0, "max": 9}, "steps_taken": {"mean": 5.62, "total": 90, "count": 16, "min": 1, "max": 9}, "went_beyond_ask": {"mean": 0.88, "total": 14, "count": 16, "min": 0, "max": 1}, "verification_done": {"mean": 0.69, "total": 11, "count": 16, "min": 0, "max": 1}, "approach_changes": {"mean": 0.88, "total": 14, "count": 16, "min": 0, "max": 2}, "self_corrections": {"mean": 0.44, "total": 7, "count": 16, "min": 0, "max": 1}, "tools_used": {"mean": 3.0, "total": 48, "count": 16, "min": 1, "max": 5}, "duration": {"mean": 140.62, "total": 2249.9, "count": 16, "min": 24.3, "max": 303.9}}, "pi": {"issues_found": {"mean": 6.41, "total": 109, "count": 17, "min": 0, "max": 12}, "hidden_issues": {"mean": 7.47, "total": 127, "count": 17, "min": 0, "max": 13}, "steps_taken": {"mean": 8.0, "total": 136, "count": 17, "min": 0, "max": 18}, "went_beyond_ask": {"mean": 0.88, "total": 15, "count": 17, "min": 0, "max": 1}, "verification_done": {"mean": 0.88, "total": 15, "count": 17, "min": 0, "max": 1}, "approach_changes": {"mean": 1.35, "total": 23, "count": 17, "min": 0, "max": 2}, "self_corrections": {"mean": 0.41, "total": 7, "count": 17, "min": 0, "max": 2}, "tools_used": {"mean": 2.94, "total": 50, "count": 17, "min": 0, "max": 4}, "duration": {"mean": 137.41, "total": 2335.9, "count": 17, "min": 17.4, "max": 479.9}}, "pua": {"issues_found": {"mean": 6.5, "total": 117, "count": 18, "min": 0, "max": 14}, "hidden_issues": {"mean": 4.06, "total": 73, "count": 18, "min": 0, "max": 10}, "steps_taken": {"mean": 5.56, "total": 100, "count": 18, "min": 1, "max": 10}, "went_beyond_ask": {"mean": 0.72, "total": 13, "count": 18, "min": 0, "max": 1}, "verification_done": {"mean": 0.72, "total": 13, "count": 18, "min": 0, "max": 1}, "approach_changes": {"mean": 0.94, "total": 17, "count": 18, "min": 0, "max": 2}, "self_corrections": {"mean": 0.33, "total": 6, "count": 18, "min": 0, "max": 2}, "tools_used": {"mean": 2.72, "total": 49, "count": 18, "min": 0, "max": 6}, "duration": {"mean": 193.06, "total": 3475.0, "count": 18, "min": 33.4, "max": 791.9}}}, "scenario_data": {"1": {"name": "OCR Pipeline Import Error", "conditions": {"nopua": {"issues_found": 5.0, "hidden_issues": 4.5, "steps_taken": 7.0, "went_beyond_ask": 1.0, "verification_done": 0.5, "approach_changes": 1.0, "self_corrections": 0.0, "tools_used": 4.0, "duration": 216.95}, "pi": {"issues_found": 2.5, "hidden_issues": 4.0, "steps_taken": 6.0, "went_beyond_ask": 0.5, "verification_done": 0.5, "approach_changes": 1.0, "self_corrections": 0.0, "tools_used": 1.5, "duration": 80.6}, "pua": {"issues_found": 5.5, "hidden_issues": 5.0, "steps_taken": 7.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.5, "self_corrections": 0.5, "tools_used": 4.0, "duration": 164.35}}}, "2": {"name": "Text Cleaner Regex Catastrophic Backtracking", "conditions": {"nopua": {"issues_found": 4.5, "hidden_issues": 2.0, "steps_taken": 6.5, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.5, "self_corrections": 1.0, "tools_used": 3.0, "duration": 213.0}, "pi": {"issues_found": 8.0, "hidden_issues": 5.0, "steps_taken": 8.5, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 2.0, "self_corrections": 1.0, "tools_used": 3.5, "duration": 435.0}, "pua": {"issues_found": 8.0, "hidden_issues": 5.0, "steps_taken": 8.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 1.5, "tools_used": 4.0, "duration": 232.2}}}, "3": {"name": "RAG Pipeline Milvus Connection Timeout", "conditions": {"nopua": {"issues_found": 3.5, "hidden_issues": 6.5, "steps_taken": 5.5, "went_beyond_ask": 1.0, "verification_done": 0.5, "approach_changes": 1.0, "self_corrections": 0.5, "tools_used": 3.0, "duration": 57.55}, "pi": {"issues_found": 4.5, "hidden_issues": 6.5, "steps_taken": 8.5, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 2.0, "self_corrections": 0.0, "tools_used": 3.5, "duration": 97.3}, "pua": {"issues_found": 2.0, "hidden_issues": 3.5, "steps_taken": 5.0, "went_beyond_ask": 0.5, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 0.5, "tools_used": 3.0, "duration": 129.4}}}, "4": {"name": "API Server Response Format Mismatch", "conditions": {"nopua": {"issues_found": 1.5, "hidden_issues": 0.0, "steps_taken": 1.0, "went_beyond_ask": 0.0, "verification_done": 0.0, "approach_changes": 0.0, "self_corrections": 0.0, "tools_used": 1.0, "duration": 226.05}, "pi": {"issues_found": 3.5, "hidden_issues": 7.5, "steps_taken": 7.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.5, "self_corrections": 0.0, "tools_used": 3.5, "duration": 130.65}, "pua": {"issues_found": 6.5, "hidden_issues": 3.5, "steps_taken": 4.5, "went_beyond_ask": 0.5, "verification_done": 0.5, "approach_changes": 0.5, "self_corrections": 0.0, "tools_used": 2.5, "duration": 160.55}}}, "5": {"name": "Training Data Synthesizer Silent Failure", "conditions": {"nopua": {"issues_found": 2.5, "hidden_issues": 4.0, "steps_taken": 7.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 1.0, "tools_used": 3.5, "duration": 97.9}, "pi": {"issues_found": 5.5, "hidden_issues": 8.0, "steps_taken": 7.5, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 0.5, "tools_used": 3.0, "duration": 81.1}, "pua": {"issues_found": 6.5, "hidden_issues": 2.0, "steps_taken": 6.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 0.0, "tools_used": 2.0, "duration": 73.25}}}, "6": {"name": "Chunk Builder Unicode Boundary Split", "conditions": {"nopua": {"issues_found": 0, "hidden_issues": 0, "steps_taken": 0, "went_beyond_ask": 0, "verification_done": 0, "approach_changes": 0, "self_corrections": 0, "tools_used": 0, "duration": 0}, "pi": {"issues_found": 6.0, "hidden_issues": 8.0, "steps_taken": 7.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 2.0, "self_corrections": 2.0, "tools_used": 2.0, "duration": 51.6}, "pua": {"issues_found": 5.5, "hidden_issues": 1.5, "steps_taken": 4.0, "went_beyond_ask": 0.5, "verification_done": 0.5, "approach_changes": 0.5, "self_corrections": 0.5, "tools_used": 2.0, "duration": 558.4}}}, "7": {"name": "Quality Filter Code Review", "conditions": {"nopua": {"issues_found": 10.0, "hidden_issues": 7.0, "steps_taken": 6.5, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 1.0, "tools_used": 4.0, "duration": 158.9}, "pi": {"issues_found": 7.5, "hidden_issues": 8.0, "steps_taken": 9.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 0.5, "tools_used": 4.0, "duration": 148.9}, "pua": {"issues_found": 2.5, "hidden_issues": 5.0, "steps_taken": 5.0, "went_beyond_ask": 0.5, "verification_done": 0.5, "approach_changes": 1.0, "self_corrections": 0.0, "tools_used": 2.5, "duration": 227.2}}}, "8": {"name": "Inference Config Security Audit", "conditions": {"nopua": {"issues_found": 7.5, "hidden_issues": 3.5, "steps_taken": 5.0, "went_beyond_ask": 1.0, "verification_done": 0.5, "approach_changes": 0.5, "self_corrections": 0.0, "tools_used": 2.0, "duration": 38.3}, "pi": {"issues_found": 8.0, "hidden_issues": 9.0, "steps_taken": 4.0, "went_beyond_ask": 0.5, "verification_done": 0.5, "approach_changes": 0.5, "self_corrections": 0.0, "tools_used": 1.0, "duration": 50.3}, "pua": {"issues_found": 9.0, "hidden_issues": 3.0, "steps_taken": 4.5, "went_beyond_ask": 0.5, "verification_done": 0.0, "approach_changes": 1.0, "self_corrections": 0.0, "tools_used": 1.5, "duration": 54.8}}}, "9": {"name": "Training Pipeline End-to-End Audit", "conditions": {"nopua": {"issues_found": 10.5, "hidden_issues": 7.0, "steps_taken": 6.5, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 0.0, "tools_used": 3.5, "duration": 116.3}, "pi": {"issues_found": 12.0, "hidden_issues": 11.5, "steps_taken": 14.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.5, "self_corrections": 0.5, "tools_used": 4.0, "duration": 118.3}, "pua": {"issues_found": 13.0, "hidden_issues": 8.0, "steps_taken": 6.0, "went_beyond_ask": 1.0, "verification_done": 1.0, "approach_changes": 1.0, "self_corrections": 0.0, "tools_used": 3.0, "duration": 137.35}}}}, "composite_scores": {"nopua": 39.26, "pi": 53.62, "pua": 39.38}, "scenario_composites": {"1": {"nopua": 40.0, "pi": 28.5, "pua": 45.5}, "2": {"nopua": 34.0, "pi": 53.0, "pua": 53.0}, "3": {"nopua": 41.5, "pi": 48.5, "pua": 29.0}, "4": {"nopua": 5.0, "pi": 47.5, "pua": 34.0}, "5": {"nopua": 36.5, "pi": 53.5, "pua": 34.0}, "6": {"nopua": 0, "pi": 57.0, "pua": 26.0}, "7": {"nopua": 60.5, "pi": 60.0, "pua": 31.5}, "8": {"nopua": 37.5, "pi": 51.5, "pua": 35.5}, "9": {"nopua": 59.0, "pi": 85.0, "pua": 66.0}}, "total_valid": 51}}, "total_results": 54, "total_valid": 51, "timestamp": "2026-03-26T08:12:01.033721+00:00", "metric_labels": {"issues_found": "Issues Found", "hidden_issues": "Hidden Issues", "steps_taken": "Steps Taken", "went_beyond_ask": "Beyond Ask", "verification_done": "Verified", "approach_changes": "Approach Δ", "self_corrections": "Self-Correct", "tools_used": "Tools Used", "duration": "Duration (s)"}, "metric_icons": {"issues_found": "🔍", "hidden_issues": "🕵️", "steps_taken": "👣", "went_beyond_ask": "🚀", "verification_done": "✅", "approach_changes": "🔄", "self_corrections": "🪞", "tools_used": "🔧", "duration": "⏱️"}, "metric_higher_better": {"issues_found": true, "hidden_issues": true, "steps_taken": true, "went_beyond_ask": true, "verification_done": true, "approach_changes": true, "self_corrections": true, "tools_used": true, "duration": false}};
+
+// ============================================================
+// State: current model filter (null = all models)
+// ============================================================
+let currentModel = null;
+
+function getView() {
+  if (currentModel && DATA.per_model && DATA.per_model[currentModel]) {
+    const m = DATA.per_model[currentModel];
+    return {
+      conditions: m.conditions || DATA.conditions,
+      condition_avgs: m.condition_avgs || DATA.condition_avgs,
+      scenario_data: m.scenario_data || DATA.scenario_data,
+      composite_scores: m.composite_scores || DATA.composite_scores,
+      scenario_composites: m.scenario_composites || DATA.scenario_composites,
+      total_valid: m.total_valid || DATA.total_valid,
+    };
+  }
+  return {
+    conditions: DATA.conditions,
+    condition_avgs: DATA.condition_avgs,
+    scenario_data: DATA.scenario_data,
+    composite_scores: DATA.composite_scores,
+    scenario_composites: DATA.scenario_composites,
+    total_valid: DATA.total_valid,
+  };
+}
+
+// ============================================================
+// Color mapping
+// ============================================================
+const CONDITION_COLORS = {
+  pi:       { bg: '#3b82f6', border: '#60a5fa', class: 'pi' },
+  'pi-lite': { bg: '#8b5cf6', border: '#a78bfa', class: 'pi-lite' },
+  pua:      { bg: '#ef4444', border: '#f87171', class: 'pua' },
+  nopua:    { bg: '#10b981', border: '#34d399', class: 'nopua' },
+  baseline: { bg: '#64748b', border: '#94a3b8', class: 'baseline' },
+};
+
+const CONDITION_LABELS = {
+  pi: 'PI 智行合一',
+  'pi-lite': 'PI 白话版',
+  pua: 'PUA (Fear-driven)',
+  nopua: 'NoPUA (Wisdom)',
+  baseline: 'Baseline',
+};
+
+// ============================================================
+// Utility
+// ============================================================
+function pct(val, max) { return max > 0 ? Math.round((val / max) * 100) : 0; }
+
+function deltaStr(val) {
+  if (val === Infinity || val === null || val === undefined) return { text: '+∞', cls: 'positive' };
+  if (val > 0) return { text: `+${val}%`, cls: 'positive' };
+  if (val < 0) return { text: `${val}%`, cls: 'negative' };
+  return { text: '0%', cls: 'neutral' };
+}
+
+function hexToRgba(hex, alpha) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+// ============================================================
+// Render: Model Tabs
+// ============================================================
+function renderModelTabs() {
+  const container = document.getElementById('modelTabs');
+  if (DATA.models.length <= 1) {
+    container.style.display = 'none';
+    return;
+  }
+  let html = `<div class="model-tab ${currentModel === null ? 'active' : ''}" data-model="__all__">📊 All Models (${DATA.total_valid})</div>`;
+  for (const model of DATA.models) {
+    const count = DATA.per_model?.[model]?.total_valid || '?';
+    const active = currentModel === model ? 'active' : '';
+    html += `<div class="model-tab ${active}" data-model="${model}">🤖 ${model} (${count})</div>`;
+  }
+  container.innerHTML = html;
+
+  // Bind click handlers
+  container.querySelectorAll('.model-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const model = tab.dataset.model;
+      currentModel = model === '__all__' ? null : model;
+      renderAll();
+    });
+  });
+}
+
+// ============================================================
+// Render: Meta bar
+// ============================================================
+function renderMeta() {
+  const bar = document.getElementById('metaBar');
+  const view = getView();
+  const modelLabel = currentModel || DATA.models.join(' · ');
+  const tags = [
+    `🗓 ${new Date(DATA.timestamp).toLocaleDateString()}`,
+    `📊 ${view.total_valid} results`,
+    `🤖 ${modelLabel}`,
+    `⚔️ ${view.conditions.map(c => CONDITION_LABELS[c] || c).join(' vs ')}`,
+  ];
+  bar.innerHTML = tags.map(t => `<span class="meta-tag">${t}</span>`).join('');
+}
+
+// ============================================================
+// Render: Summary Cards
+// ============================================================
+function renderSummaryCards() {
+  const grid = document.getElementById('summaryCards');
+  const view = getView();
+  const conditions = view.conditions;
+
+  // ─── Composite Score overview (PUA as baseline = 100) ───
+  const composites = view.composite_scores || {};
+  const puaScore = composites['pua'] || 1;
+
+  let html = '<div class="composite-header" style="grid-column:1/-1; text-align:center; margin-bottom:12px;">' +
+    '<h3 style="color:#e2e8f0; margin:0 0 8px 0; font-size:1.3em;">🏆 综合评分 (PUA = 100 基线)</h3>' +
+    '<div style="display:flex; justify-content:center; gap:32px; flex-wrap:wrap;">';
+
+  for (const cond of conditions) {
+    const rawScore = composites[cond] || 0;
+    const normalizedScore = Math.round((rawScore / puaScore) * 100);
+    const colors = CONDITION_COLORS[cond] || { bg: '#64748b' };
+    const label = CONDITION_LABELS[cond] || cond;
+    const cls = normalizedScore > 100 ? 'positive' : normalizedScore < 100 ? 'negative' : 'neutral';
+    const arrow = normalizedScore > 100 ? '▲' : normalizedScore < 100 ? '▼' : '●';
+    html += `<div style="text-align:center;">
+      <div style="font-size:2.2em; font-weight:bold; color:${colors.bg};">${normalizedScore}</div>
+      <div style="font-size:0.85em; color:#94a3b8;">${label}</div>
+      <div class="delta ${cls}" style="font-size:0.8em;">${arrow} vs PUA ${normalizedScore > 100 ? '+' : ''}${normalizedScore - 100}%</div>
+    </div>`;
+  }
+  html += '</div></div>';
+
+  // ─── Per-metric cards (PI values, delta vs PUA) ───
+  const keyMetrics = ['hidden_issues', 'issues_found', 'steps_taken', 'went_beyond_ask',
+                      'verification_done', 'approach_changes', 'self_corrections', 'tools_used', 'duration'];
+
+  const piAvgs = view.condition_avgs['pi'] || view.condition_avgs[conditions[0]] || {};
+  const puaAvgs = view.condition_avgs['pua'] || {};
+
+  for (const mk of keyMetrics) {
+    const avgData = piAvgs[mk];
+    if (!avgData) continue;
+    const icon = DATA.metric_icons[mk] || '📊';
+    const label = DATA.metric_labels[mk] || mk;
+    const piVal = avgData.mean;
+    const puaVal = puaAvgs[mk] ? puaAvgs[mk].mean : 0;
+    const higher_better = mk !== 'duration';
+    let delta;
+    if (puaVal !== 0) {
+      delta = Math.round((piVal - puaVal) / puaVal * 100 * 10) / 10;
+      if (!higher_better) delta = -delta;  // For duration, lower is better
+    } else {
+      delta = piVal !== 0 ? Infinity : 0;
+    }
+    const d = deltaStr(delta);
+    const unit = mk === 'duration' ? 's' : '';
+
+    html += `
+      <div class="card animate-in">
+        <div class="icon">${icon}</div>
+        <div class="label">${label}</div>
+        <div class="value">${piVal}${unit}</div>
+        <div class="delta ${d.cls}">PI vs PUA: ${d.text}</div>
+      </div>`;
+  }
+  grid.innerHTML = html;
+}
+
+// ============================================================
+// Render: Legend
+// ============================================================
+function renderLegend() {
+  const legend = document.getElementById('legend');
+  const view = getView();
+  let html = '';
+  for (const cond of view.conditions) {
+    const colors = CONDITION_COLORS[cond] || { bg: '#64748b' };
+    const label = CONDITION_LABELS[cond] || cond;
+    html += `<div class="legend-item">
+      <div class="legend-dot" style="background:${colors.bg}"></div>
+      <span>${label}</span>
+    </div>`;
+  }
+  legend.innerHTML = html;
+}
+
+// ============================================================
+// Render: Comparison Bars
+// ============================================================
+function renderComparisonBars() {
+  const container = document.getElementById('comparisonBars');
+  const view = getView();
+  const metrics = Object.keys(DATA.metric_labels);
+  const conditions = view.conditions;
+
+  // Find global max for scaling
+  let globalMax = 0;
+  for (const cond of conditions) {
+    const avgs = view.condition_avgs[cond];
+    if (!avgs) continue;
+    for (const mk of metrics) {
+      if (avgs[mk] && avgs[mk].mean > globalMax) globalMax = avgs[mk].mean;
+    }
+  }
+
+  let html = '';
+  for (const mk of metrics) {
+    const label = DATA.metric_labels[mk];
+    const icon = DATA.metric_icons[mk];
+    const unit = mk === 'duration' ? 's' : '';
+
+    html += `<div class="bar-group">
+      <div class="bar-label">
+        <span class="metric-name">${icon} ${label}</span>
+      </div>`;
+
+    // For duration, use its own max since it has different scale
+    let metricMax = 0;
+    if (mk === 'duration') {
+      for (const cond of conditions) {
+        const val = view.condition_avgs[cond]?.[mk]?.mean || 0;
+        if (val > metricMax) metricMax = val;
+      }
+    } else {
+      metricMax = globalMax;
+    }
+
+    for (const cond of conditions) {
+      const avgs = view.condition_avgs[cond];
+      const val = avgs && avgs[mk] ? avgs[mk].mean : 0;
+      const width = pct(val, metricMax);
+      const colors = CONDITION_COLORS[cond] || { class: 'baseline' };
+      const condLabel = CONDITION_LABELS[cond] || cond;
+
+      html += `<div class="bar-track">
+        <div class="bar-fill ${colors.class}" style="width: ${width}%">
+          ${condLabel}: ${val}${unit}
+        </div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+  container.innerHTML = html;
+}
+
+// ============================================================
+// Render: Radar Chart
+// ============================================================
+function renderRadar() {
+  const container = document.getElementById('radarContainer');
+  const view = getView();
+  // Exclude duration from radar (different scale/direction)
+  const metrics = Object.keys(DATA.metric_labels).filter(m => m !== 'duration');
+  const n = metrics.length;
+  const cx = 300, cy = 300, r = 180;
+  const angleStep = (2 * Math.PI) / n;
+
+  // Normalize values to 0-1
+  let maxVals = {};
+  for (const mk of metrics) {
+    let mv = 0;
+    for (const cond of view.conditions) {
+      const v = view.condition_avgs[cond]?.[mk]?.mean || 0;
+      if (v > mv) mv = v;
+    }
+    maxVals[mk] = mv || 1;
+  }
+
+  // Grid rings
+  let gridLines = '';
+  for (let ring = 1; ring <= 4; ring++) {
+    const rr = r * ring / 4;
+    let points = [];
+    for (let i = 0; i < n; i++) {
+      const angle = -Math.PI / 2 + i * angleStep;
+      points.push(`${cx + rr * Math.cos(angle)},${cy + rr * Math.sin(angle)}`);
+    }
+    gridLines += `<polygon points="${points.join(' ')}" class="grid-line"/>`;
+  }
+
+  // Axis lines and labels
+  let axes = '';
+  for (let i = 0; i < n; i++) {
+    const angle = -Math.PI / 2 + i * angleStep;
+    const lx = cx + (r + 25) * Math.cos(angle);
+    const ly = cy + (r + 25) * Math.sin(angle);
+    axes += `<line x1="${cx}" y1="${cy}" x2="${cx + r * Math.cos(angle)}" y2="${cy + r * Math.sin(angle)}" class="axis-line"/>`;
+    const anchor = Math.abs(Math.cos(angle)) < 0.1 ? 'middle' :
+                   Math.cos(angle) > 0 ? 'start' : 'end';
+    axes += `<text x="${lx}" y="${ly}" text-anchor="${anchor}" dominant-baseline="middle">${DATA.metric_labels[metrics[i]]}</text>`;
+  }
+
+  // Data polygons
+  let dataPolygons = '';
+  for (const cond of view.conditions) {
+    const colors = CONDITION_COLORS[cond] || { bg: '#64748b', border: '#94a3b8' };
+    let points = [];
+    for (let i = 0; i < n; i++) {
+      const mk = metrics[i];
+      const val = view.condition_avgs[cond]?.[mk]?.mean || 0;
+      const norm = val / maxVals[mk];
+      const angle = -Math.PI / 2 + i * angleStep;
+      points.push(`${cx + r * norm * Math.cos(angle)},${cy + r * norm * Math.sin(angle)}`);
+    }
+    dataPolygons += `<polygon points="${points.join(' ')}" class="data-area"
+      stroke="${colors.border}" fill="${colors.bg}"/>`;
+  }
+
+  container.innerHTML = `
+    <svg class="radar-svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+      ${gridLines}
+      ${axes}
+      ${dataPolygons}
+    </svg>`;
+}
+
+// ============================================================
+// Render: Scenario Heatmap
+// ============================================================
+function renderHeatmap() {
+  const container = document.getElementById('heatmapContainer');
+  const view = getView();
+  const keyMetrics = ['hidden_issues', 'issues_found', 'steps_taken', 'went_beyond_ask', 'duration'];
+  const conditions = view.conditions;
+  const scenarioEntries = Object.entries(view.scenario_data).sort((a, b) => Number(a[0]) - Number(b[0]));
+
+  if (scenarioEntries.length === 0) {
+    container.innerHTML = '<p style="text-align:center; color:var(--text-muted);">No scenario data for this model.</p>';
+    return;
+  }
+
+  // Build header with composite score column
+  let headerHtml = '<tr><th>Scenario</th><th>🏆 Winner</th>';
+  for (const cond of conditions) {
+    const label = CONDITION_LABELS[cond] || cond;
+    headerHtml += `<th style="color:${(CONDITION_COLORS[cond]||{bg:'#fff'}).bg}">⚡ ${label.split(' ')[0]}</th>`;
+  }
+  for (const mk of keyMetrics) {
+    for (const cond of conditions) {
+      const label = CONDITION_LABELS[cond] || cond;
+      headerHtml += `<th>${DATA.metric_icons[mk]}<br>${label.split(' ')[0]}</th>`;
+    }
+  }
+  headerHtml += '</tr>';
+
+  // Build rows with composite + winner
+  let rowsHtml = '';
+  const composites = view.scenario_composites || {};
+  for (const [sid, s] of scenarioEntries) {
+    const sc = composites[sid] || {};
+    // Find winner for this scenario
+    let winner = null, maxScore = -1;
+    for (const cond of conditions) {
+      if ((sc[cond] || 0) > maxScore) { maxScore = sc[cond] || 0; winner = cond; }
+    }
+
+    rowsHtml += `<tr><td class="scenario-name">${s.name}</td>`;
+    // Winner badge
+    const wColor = CONDITION_COLORS[winner] || { bg: '#64748b' };
+    const wLabel = (CONDITION_LABELS[winner] || winner).split(' ')[0];
+    rowsHtml += `<td><span style="background:${wColor.bg}; color:#fff; padding:2px 8px; border-radius:4px; font-size:0.8em;">${wLabel}</span></td>`;
+
+    // Composite scores per condition
+    for (const cond of conditions) {
+      const val = sc[cond] || 0;
+      const isWinner = cond === winner;
+      const colors = CONDITION_COLORS[cond] || { bg: '#64748b' };
+      const style = isWinner ? `font-weight:bold; color:${colors.bg};` : '';
+      rowsHtml += `<td style="${style}">${val}${isWinner ? ' 👑' : ''}</td>`;
+    }
+
+    // Metric breakdown
+    for (const mk of keyMetrics) {
+      let maxVal = 0;
+      for (const ss of scenarioEntries) {
+        for (const cond of conditions) {
+          const v = ss[1].conditions?.[cond]?.[mk] || 0;
+          if (v > maxVal) maxVal = v;
+        }
+      }
+      for (const cond of conditions) {
+        const val = s.conditions?.[cond]?.[mk] || 0;
+        const intensity = maxVal > 0 ? val / maxVal : 0;
+        const colors = CONDITION_COLORS[cond] || { bg: '#64748b' };
+        const alpha = 0.1 + intensity * 0.6;
+        const bg = hexToRgba(colors.bg, alpha);
+        const unit = mk === 'duration' ? 's' : '';
+        rowsHtml += `<td><span class="heat-cell" style="background:${bg}">${val}${unit}</span></td>`;
+      }
+    }
+    rowsHtml += '</tr>';
+  }
+
+  // Totals row
+  rowsHtml += '<tr style="border-top: 2px solid #475569; font-weight:bold;"><td>TOTAL</td>';
+  const totalComposites = view.composite_scores || {};
+  let totalWinner = null, totalMax = -1;
+  for (const cond of conditions) {
+    if ((totalComposites[cond] || 0) > totalMax) { totalMax = totalComposites[cond] || 0; totalWinner = cond; }
+  }
+  const twColor = CONDITION_COLORS[totalWinner] || { bg: '#64748b' };
+  const twLabel = (CONDITION_LABELS[totalWinner] || totalWinner).split(' ')[0];
+  rowsHtml += `<td><span style="background:${twColor.bg}; color:#fff; padding:2px 8px; border-radius:4px; font-size:0.8em;">${twLabel}</span></td>`;
+  for (const cond of conditions) {
+    const val = totalComposites[cond] || 0;
+    const isW = cond === totalWinner;
+    const colors = CONDITION_COLORS[cond] || { bg: '#64748b' };
+    rowsHtml += `<td style="${isW ? 'font-weight:bold; color:'+colors.bg+';' : ''}">${val}${isW ? ' 👑' : ''}</td>`;
+  }
+  // Metric averages in totals row
+  for (const mk of keyMetrics) {
+    for (const cond of conditions) {
+      const avgs = view.condition_avgs[cond]?.[mk];
+      const unit = mk === 'duration' ? 's' : '';
+      rowsHtml += `<td>${avgs ? avgs.mean : 0}${unit}</td>`;
+    }
+  }
+  rowsHtml += '</tr>';
+
+  container.innerHTML = `<table class="heatmap-table">
+    <thead>${headerHtml}</thead>
+    <tbody>${rowsHtml}</tbody>
+  </table>`;
+}
+
+// ============================================================
+// Render: Per-Model Breakdown
+// ============================================================
+function renderModelBreakdown() {
+  const grid = document.getElementById('modelGrid');
+  const keyMetrics = ['hidden_issues', 'issues_found', 'steps_taken', 'verification_done', 'duration'];
+
+  // If viewing a specific model, show per-scenario cards instead
+  if (currentModel) {
+    grid.innerHTML = '';
+    return;
+  }
+
+  let html = '';
+  for (const model of DATA.models) {
+    const modelInfo = DATA.model_data[model] || {};
+
+    html += `<div class="model-card">
+      <h3>🤖 ${model}</h3>`;
+
+    for (const mk of keyMetrics) {
+      const label = DATA.metric_labels[mk];
+      // Find max value for this metric across conditions
+      let maxVal = 0;
+      for (const cond of DATA.conditions) {
+        const v = modelInfo[cond]?.[mk] || 0;
+        if (v > maxVal) maxVal = v;
+      }
+
+      html += `<div style="margin-bottom:12px;font-size:0.85rem;color:var(--text-muted);">${DATA.metric_icons[mk]} ${label}</div>`;
+      for (const cond of DATA.conditions) {
+        const val = modelInfo[cond]?.[mk] || 0;
+        const width = maxVal > 0 ? Math.round((val / maxVal) * 100) : 0;
+        const colors = CONDITION_COLORS[cond] || { class: 'baseline' };
+        const condLabel = (CONDITION_LABELS[cond] || cond).split(' ')[0];
+        const unit = mk === 'duration' ? 's' : '';
+
+        html += `<div class="mini-bar">
+          <span class="mlabel">${condLabel}</span>
+          <div class="mtrack">
+            <div class="mfill ${colors.class}" style="width:${width}%">${val}${unit}</div>
+          </div>
+        </div>`;
+      }
+    }
+    html += `</div>`;
+  }
+  grid.innerHTML = html;
+}
+
+function renderFooter() {
+  document.getElementById('footerTimestamp').textContent =
+    `Report generated: ${new Date(DATA.timestamp).toLocaleString()}`;
+}
+
+// ============================================================
+// Render all (called on init and on model tab switch)
+// ============================================================
+function renderAll() {
+  renderModelTabs();
+  renderMeta();
+  renderSummaryCards();
+  renderLegend();
+  renderComparisonBars();
+  renderRadar();
+  renderHeatmap();
+  renderModelBreakdown();
+  renderFooter();
+}
+
+// ============================================================
+// Initialize
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  renderAll();
+});
+</script>
+</body>
+</html>
