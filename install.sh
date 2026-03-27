@@ -556,16 +556,20 @@ install_claude_code() {
   # Clean old install to ensure full overwrite
   rm -rf "${target:?}"
   mkdir -p "$target"
-  cp -r "$SCRIPT_DIR/.claude-plugin" "$target/.claude-plugin" 2>/dev/null || true
+  # plugin.json must be at plugin root for Claude Code to recognize the plugin
+  cp "$SCRIPT_DIR/.claude-plugin/plugin.json" "$target/plugin.json" 2>/dev/null || true
+  cp "$SCRIPT_DIR/.claude-plugin/marketplace.json" "$target/marketplace.json" 2>/dev/null || true
   if [[ "$lang" == "1" || "$lang" == "3" ]]; then
     if [[ "$edition" == "1" || "$edition" == "3" ]]; then
       mkdir -p "$target/skills/pi"
       cp "$SCRIPT_DIR/claude-code/pi/SKILL.md" "$target/skills/pi/SKILL.md" 2>/dev/null || true
+      cp "$SCRIPT_DIR/claude-code/pi/_frontmatter" "$target/skills/pi/_frontmatter" 2>/dev/null || true
     fi
     if [[ "$edition" == "2" ]]; then
-      # Progressive only → install as main skill
+      # Progressive only → install as main skill (name stays "pi")
       mkdir -p "$target/skills/pi"
       cp "$SCRIPT_DIR/claude-code/pi-progressive/SKILL.md" "$target/skills/pi/SKILL.md" 2>/dev/null || true
+      cp "$SCRIPT_DIR/claude-code/pi-progressive/_frontmatter" "$target/skills/pi/_frontmatter" 2>/dev/null || true
       if [[ -d "$SCRIPT_DIR/claude-code/pi-progressive/references" ]]; then
         cp -r "$SCRIPT_DIR/claude-code/pi-progressive/references" "$target/skills/pi/references" 2>/dev/null || true
       fi
@@ -574,6 +578,7 @@ install_claude_code() {
       # Both → progressive goes to separate dir
       mkdir -p "$target/skills/pi-progressive"
       cp "$SCRIPT_DIR/claude-code/pi-progressive/SKILL.md" "$target/skills/pi-progressive/SKILL.md" 2>/dev/null || true
+      cp "$SCRIPT_DIR/claude-code/pi-progressive/_frontmatter" "$target/skills/pi-progressive/_frontmatter" 2>/dev/null || true
       if [[ -d "$SCRIPT_DIR/claude-code/pi-progressive/references" ]]; then
         cp -r "$SCRIPT_DIR/claude-code/pi-progressive/references" "$target/skills/pi-progressive/references" 2>/dev/null || true
       fi
@@ -582,30 +587,54 @@ install_claude_code() {
   if [[ "$lang" == "2" || "$lang" == "3" ]]; then
     if [[ "$edition" == "1" || "$edition" == "3" ]]; then
       mkdir -p "$target/skills/pi-en"
-      cp "$SCRIPT_DIR/skills/pi-en/SKILL.md" "$target/skills/pi-en/SKILL.md" 2>/dev/null || true
+      # Use claude-code/ variants (optimized for Claude Code)
+      if [[ -f "$SCRIPT_DIR/claude-code/pi-en/SKILL.md" ]]; then
+        cp "$SCRIPT_DIR/claude-code/pi-en/SKILL.md" "$target/skills/pi-en/SKILL.md"
+        cp "$SCRIPT_DIR/claude-code/pi-en/_frontmatter" "$target/skills/pi-en/_frontmatter" 2>/dev/null || true
+      else
+        cp "$SCRIPT_DIR/skills/pi-en/SKILL.md" "$target/skills/pi-en/SKILL.md" 2>/dev/null || true
+      fi
     fi
     if [[ "$edition" == "2" ]]; then
-      # Progressive only → install as main skill
+      # Progressive only → install as main skill (name stays "pi-en")
       mkdir -p "$target/skills/pi-en"
-      cp "$SCRIPT_DIR/skills/pi-en-progressive/SKILL.md" "$target/skills/pi-en/SKILL.md" 2>/dev/null || true
-      if [[ -d "$SCRIPT_DIR/skills/pi-en-progressive/references" ]]; then
+      if [[ -f "$SCRIPT_DIR/claude-code/pi-en-progressive/SKILL.md" ]]; then
+        cp "$SCRIPT_DIR/claude-code/pi-en-progressive/SKILL.md" "$target/skills/pi-en/SKILL.md"
+        cp "$SCRIPT_DIR/claude-code/pi-en-progressive/_frontmatter" "$target/skills/pi-en/_frontmatter" 2>/dev/null || true
+      else
+        cp "$SCRIPT_DIR/skills/pi-en-progressive/SKILL.md" "$target/skills/pi-en/SKILL.md" 2>/dev/null || true
+      fi
+      if [[ -d "$SCRIPT_DIR/claude-code/pi-en-progressive/references" ]]; then
+        cp -r "$SCRIPT_DIR/claude-code/pi-en-progressive/references" "$target/skills/pi-en/references" 2>/dev/null || true
+      elif [[ -d "$SCRIPT_DIR/skills/pi-en-progressive/references" ]]; then
         cp -r "$SCRIPT_DIR/skills/pi-en-progressive/references" "$target/skills/pi-en/references" 2>/dev/null || true
       fi
     fi
     if [[ "$edition" == "3" ]]; then
       # Both → progressive goes to separate dir
       mkdir -p "$target/skills/pi-en-progressive"
-      cp "$SCRIPT_DIR/skills/pi-en-progressive/SKILL.md" "$target/skills/pi-en-progressive/SKILL.md" 2>/dev/null || true
-      if [[ -d "$SCRIPT_DIR/skills/pi-en-progressive/references" ]]; then
+      if [[ -f "$SCRIPT_DIR/claude-code/pi-en-progressive/SKILL.md" ]]; then
+        cp "$SCRIPT_DIR/claude-code/pi-en-progressive/SKILL.md" "$target/skills/pi-en-progressive/SKILL.md"
+        cp "$SCRIPT_DIR/claude-code/pi-en-progressive/_frontmatter" "$target/skills/pi-en-progressive/_frontmatter" 2>/dev/null || true
+      else
+        cp "$SCRIPT_DIR/skills/pi-en-progressive/SKILL.md" "$target/skills/pi-en-progressive/SKILL.md" 2>/dev/null || true
+      fi
+      if [[ -d "$SCRIPT_DIR/claude-code/pi-en-progressive/references" ]]; then
+        cp -r "$SCRIPT_DIR/claude-code/pi-en-progressive/references" "$target/skills/pi-en-progressive/references" 2>/dev/null || true
+      elif [[ -d "$SCRIPT_DIR/skills/pi-en-progressive/references" ]]; then
         cp -r "$SCRIPT_DIR/skills/pi-en-progressive/references" "$target/skills/pi-en-progressive/references" 2>/dev/null || true
       fi
     fi
   fi
   mkdir -p "$target/agents"
-  cp "$SCRIPT_DIR/agents/pi-coach.md" "$target/agents/" 2>/dev/null || true
-  cp "$SCRIPT_DIR/agents/pi-coach-en.md" "$target/agents/" 2>/dev/null || true
-  cp "$SCRIPT_DIR/agents/pi-teammate.md" "$target/agents/" 2>/dev/null || true
-  cp "$SCRIPT_DIR/agents/pi-teammate-en.md" "$target/agents/" 2>/dev/null || true
+  if [[ "$lang" == "1" || "$lang" == "3" ]]; then
+    cp "$SCRIPT_DIR/agents/pi-coach.md" "$target/agents/" 2>/dev/null || true
+    cp "$SCRIPT_DIR/agents/pi-teammate.md" "$target/agents/" 2>/dev/null || true
+  fi
+  if [[ "$lang" == "2" || "$lang" == "3" ]]; then
+    cp "$SCRIPT_DIR/agents/pi-coach-en.md" "$target/agents/" 2>/dev/null || true
+    cp "$SCRIPT_DIR/agents/pi-teammate-en.md" "$target/agents/" 2>/dev/null || true
+  fi
   if [[ -d "$SCRIPT_DIR/commands" ]]; then
     cp -r "$SCRIPT_DIR/commands" "$target/commands" 2>/dev/null || true
   fi
