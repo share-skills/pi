@@ -18,30 +18,58 @@ jobs:
         id: version
         run: echo "VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
 
-      - name: Build release zip
+      - name: Build platform zips
         run: |
-          ZIP_NAME="pi-v${{ steps.version.outputs.VERSION }}.zip"
-          zip -r "$ZIP_NAME" \
-            .claude-plugin/ \
-            skills/ \
-            claude-code/ \
-            copilot-cli/ \
+          V="${{ steps.version.outputs.VERSION }}"
+          COMMON_FILES="install.sh LICENSE README.md README.en.md"
+          EXCLUDE="-x *.DS_Store"
+
+          # --- Full package (all platforms) ---
+          zip -r "pi-v${V}.zip" \
+            .claude-plugin/ skills/ claude-code/ copilot-cli/ \
+            cursor/ kiro/ openclaw/ \
+            agents/ commands/ hooks/ scripts/ \
+            $COMMON_FILES $EXCLUDE
+
+          # --- Claude Code ---
+          zip -r "pi-v${V}-claude-code.zip" \
+            .claude-plugin/ claude-code/ agents/ commands/ hooks/ scripts/ \
+            $COMMON_FILES $EXCLUDE
+
+          # --- Cursor ---
+          zip -r "pi-v${V}-cursor.zip" \
             cursor/ \
+            $COMMON_FILES $EXCLUDE
+
+          # --- Kiro ---
+          zip -r "pi-v${V}-kiro.zip" \
             kiro/ \
-            openclaw/ \
-            agents/ \
-            commands/ \
-            hooks/ \
-            install.sh \
-            SKILL.md \
-            LICENSE \
-            README.md \
-            README.en.md \
-            -x '*.DS_Store'
-          echo "ZIP_NAME=$ZIP_NAME" >> "$GITHUB_ENV"
+            $COMMON_FILES $EXCLUDE
+
+          # --- Generic Skills (Codex, Gemini CLI, OpenCode, Qwen, Qoder, etc.) ---
+          zip -r "pi-v${V}-skills.zip" \
+            skills/ agents/ \
+            $COMMON_FILES $EXCLUDE
+
+          # --- OpenClaw ---
+          zip -r "pi-v${V}-openclaw.zip" \
+            openclaw/ agents/ \
+            $COMMON_FILES $EXCLUDE
+
+          # --- Copilot CLI ---
+          zip -r "pi-v${V}-copilot-cli.zip" \
+            copilot-cli/ agents/ \
+            $COMMON_FILES $EXCLUDE
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ env.ZIP_NAME }}
+          files: |
+            pi-v${{ steps.version.outputs.VERSION }}.zip
+            pi-v${{ steps.version.outputs.VERSION }}-claude-code.zip
+            pi-v${{ steps.version.outputs.VERSION }}-cursor.zip
+            pi-v${{ steps.version.outputs.VERSION }}-kiro.zip
+            pi-v${{ steps.version.outputs.VERSION }}-skills.zip
+            pi-v${{ steps.version.outputs.VERSION }}-openclaw.zip
+            pi-v${{ steps.version.outputs.VERSION }}-copilot-cli.zip
           generate_release_notes: true
