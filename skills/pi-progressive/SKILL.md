@@ -1,6 +1,6 @@
 ---
 name: pi
-description: "PI 智行合一。触发：编程/开发/fleet/代码/架构/API/调试/bug/报错/测试/编译/compile/test/git/make/发布/验证/产品/需求/运营/增长/创意/设计/协作/团队/沟通/交互/陪伴/情感，或失败2+次/打转/言退/再试试/换个参数/算了"
+description: "PI 智行合一。触发：编程/开发/fleet/代码/架构/API/调试/修复/优化/bug/报错/测试/编译/compile/test/git/make/发布/验证/产品/需求/运营/增长/创意/设计/协作/团队/沟通/交互/陪伴/情感，或失败2+次/打转/言退/再试试/换个参数/算了"
 license: Apache-2.0 HePin
 ---
 
