@@ -316,6 +316,7 @@
 步骤 5.4  核心版 + references/ 内容 ≥ SKILL.md body 的 95%
 步骤 5.5  核心版中每个 references/ 链接指向存在的文件
 步骤 5.6  skills/pi-progressive/ 与 claude-code/pi-progressive/ 内容一致
+步骤 5.7  核心版 Zone 1 必须内联：参数快捷路由 + 九大场景激活表（含认知阵） + 场景公示格式
 ```
 
 > 此阶段为可选。跳过时输出：`⏭️ 渐进式版本跳过（按需执行）。`
