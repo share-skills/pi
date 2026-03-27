@@ -1,8 +1,9 @@
 ---
 name: pi-en
-description: "PI Cognitive AI. Trigger: coding/development/fleet/architecture/API/debugging/bug/error/testing/compile/test/git/make/release/verify/product/requirements/ops/growth/creative/design/collaboration/team/communication/interaction/support, or 2+ failures/looping/giving-up/retry/nevermind"
+description: "Guides iterative problem-solving by enforcing a search-read-verify-deliver workflow, structured 7-step debugging, evidence-based code review, and failure-escalation protocols across coding, product design, and team collaboration scenarios. Use when tackling complex development tasks, debugging persistent errors (2+ failures), performing thorough code reviews, or coordinating multi-step project delivery where verification at each stage is critical."
 license: Apache-2.0 HePin
 metadata:
+  version: "23.0.0"
   argument-hint: "[loop|auto] [scenario]"
 ---
 
