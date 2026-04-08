@@ -12,6 +12,14 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 PI_REPO_ARCHIVE_URL="${PI_REPO_ARCHIVE_URL:-https://github.com/share-skills/pi/archive/refs/heads/main.tar.gz}"
 BOOTSTRAP_TMP_DIR=""
 CURSOR_HIDDEN=0
+INSTALL_MODE="copy"
+
+# Parse command-line arguments
+for arg in "$@"; do
+  case "$arg" in
+    --link|--symlink) INSTALL_MODE="link" ;;
+  esac
+done
 
 cleanup_bootstrap_dir() {
   if [[ -n "$BOOTSTRAP_TMP_DIR" && -d "$BOOTSTRAP_TMP_DIR" ]]; then
@@ -393,6 +401,29 @@ detect_trae()         { [[ -d "$HOME/.trae" ]] || [[ -d ".trae" ]] || command -v
 detect_augment()      { [[ -d "$HOME/.augment" ]] || [[ -d ".augment" ]] || command -v augment &>/dev/null; }
 detect_windsurf()     { [[ -d "$HOME/.windsurf" ]] || [[ -d ".windsurf" ]] || command -v windsurf &>/dev/null; }
 
+# Install helper — smart copy (supports --link symlink mode)
+smart_copy() {
+  local src="$1" dst="$2"
+  if [[ "$INSTALL_MODE" == "link" ]]; then
+    local abs_src
+    abs_src="$(cd "$(dirname "$src")" && pwd)/$(basename "$src")"
+    ln -sf "$abs_src" "$dst"
+  else
+    cp "$src" "$dst"
+  fi
+}
+
+smart_copy_dir() {
+  local src="$1" dst="$2"
+  if [[ "$INSTALL_MODE" == "link" ]]; then
+    local abs_src
+    abs_src="$(cd "$src" && pwd)"
+    ln -sfn "$abs_src" "$dst"
+  else
+    cp -r "$src" "$dst"
+  fi
+}
+
 # Install helper
 install_skill_to_dir() {
   local target_dir="$1"
@@ -417,16 +448,16 @@ install_skill_to_dir() {
       # Original
       if [[ -f "$source_dir/$cn_name/SKILL.md" ]]; then
         mkdir -p "$target_dir/$cn_name"
-        cp "$source_dir/$cn_name/SKILL.md" "$target_dir/$cn_name/SKILL.md"
+        smart_copy "$source_dir/$cn_name/SKILL.md" "$target_dir/$cn_name/SKILL.md"
       fi
     fi
     if [[ "$edition" == "2" ]]; then
       # Progressive only → install as main skill
       if [[ -f "$source_dir/${cn_name}-progressive/SKILL.md" ]]; then
         mkdir -p "$target_dir/$cn_name"
-        cp "$source_dir/${cn_name}-progressive/SKILL.md" "$target_dir/$cn_name/SKILL.md"
+        smart_copy "$source_dir/${cn_name}-progressive/SKILL.md" "$target_dir/$cn_name/SKILL.md"
         if [[ -d "$source_dir/${cn_name}-progressive/references" ]]; then
-          cp -r "$source_dir/${cn_name}-progressive/references" "$target_dir/$cn_name/references"
+          smart_copy_dir "$source_dir/${cn_name}-progressive/references" "$target_dir/$cn_name/references"
         fi
       fi
     fi
@@ -434,9 +465,9 @@ install_skill_to_dir() {
       # Both → progressive goes to separate dir
       if [[ -f "$source_dir/${cn_name}-progressive/SKILL.md" ]]; then
         mkdir -p "$target_dir/${cn_name}-progressive"
-        cp "$source_dir/${cn_name}-progressive/SKILL.md" "$target_dir/${cn_name}-progressive/SKILL.md"
+        smart_copy "$source_dir/${cn_name}-progressive/SKILL.md" "$target_dir/${cn_name}-progressive/SKILL.md"
         if [[ -d "$source_dir/${cn_name}-progressive/references" ]]; then
-          cp -r "$source_dir/${cn_name}-progressive/references" "$target_dir/${cn_name}-progressive/references"
+          smart_copy_dir "$source_dir/${cn_name}-progressive/references" "$target_dir/${cn_name}-progressive/references"
         fi
       fi
     fi
@@ -446,16 +477,16 @@ install_skill_to_dir() {
       # Original
       if [[ -f "$source_dir/$en_name/SKILL.md" ]]; then
         mkdir -p "$target_dir/$en_name"
-        cp "$source_dir/$en_name/SKILL.md" "$target_dir/$en_name/SKILL.md"
+        smart_copy "$source_dir/$en_name/SKILL.md" "$target_dir/$en_name/SKILL.md"
       fi
     fi
     if [[ "$edition" == "2" ]]; then
       # Progressive only → install as main skill
       if [[ -f "$source_dir/${en_name}-progressive/SKILL.md" ]]; then
         mkdir -p "$target_dir/$en_name"
-        cp "$source_dir/${en_name}-progressive/SKILL.md" "$target_dir/$en_name/SKILL.md"
+        smart_copy "$source_dir/${en_name}-progressive/SKILL.md" "$target_dir/$en_name/SKILL.md"
         if [[ -d "$source_dir/${en_name}-progressive/references" ]]; then
-          cp -r "$source_dir/${en_name}-progressive/references" "$target_dir/$en_name/references"
+          smart_copy_dir "$source_dir/${en_name}-progressive/references" "$target_dir/$en_name/references"
         fi
       fi
     fi
@@ -463,9 +494,9 @@ install_skill_to_dir() {
       # Both → progressive goes to separate dir
       if [[ -f "$source_dir/${en_name}-progressive/SKILL.md" ]]; then
         mkdir -p "$target_dir/${en_name}-progressive"
-        cp "$source_dir/${en_name}-progressive/SKILL.md" "$target_dir/${en_name}-progressive/SKILL.md"
+        smart_copy "$source_dir/${en_name}-progressive/SKILL.md" "$target_dir/${en_name}-progressive/SKILL.md"
         if [[ -d "$source_dir/${en_name}-progressive/references" ]]; then
-          cp -r "$source_dir/${en_name}-progressive/references" "$target_dir/${en_name}-progressive/references"
+          smart_copy_dir "$source_dir/${en_name}-progressive/references" "$target_dir/${en_name}-progressive/references"
         fi
       fi
     fi
@@ -557,30 +588,30 @@ install_claude_code() {
   rm -rf "${target:?}"
   mkdir -p "$target"
   # plugin.json must be at plugin root for Claude Code to recognize the plugin
-  cp "$SCRIPT_DIR/.claude-plugin/plugin.json" "$target/plugin.json" 2>/dev/null || true
-  cp "$SCRIPT_DIR/.claude-plugin/marketplace.json" "$target/marketplace.json" 2>/dev/null || true
+  smart_copy "$SCRIPT_DIR/.claude-plugin/plugin.json" "$target/plugin.json" 2>/dev/null || true
+  smart_copy "$SCRIPT_DIR/.claude-plugin/marketplace.json" "$target/marketplace.json" 2>/dev/null || true
   if [[ "$lang" == "1" || "$lang" == "3" ]]; then
     if [[ "$edition" == "1" || "$edition" == "3" ]]; then
       mkdir -p "$target/skills/pi"
-      cp "$SCRIPT_DIR/claude-code/pi/SKILL.md" "$target/skills/pi/SKILL.md" 2>/dev/null || true
-      cp "$SCRIPT_DIR/claude-code/pi/_frontmatter" "$target/skills/pi/_frontmatter" 2>/dev/null || true
+      smart_copy "$SCRIPT_DIR/claude-code/pi/SKILL.md" "$target/skills/pi/SKILL.md" 2>/dev/null || true
+      smart_copy "$SCRIPT_DIR/claude-code/pi/_frontmatter" "$target/skills/pi/_frontmatter" 2>/dev/null || true
     fi
     if [[ "$edition" == "2" ]]; then
       # Progressive only → install as main skill (name stays "pi")
       mkdir -p "$target/skills/pi"
-      cp "$SCRIPT_DIR/claude-code/pi-progressive/SKILL.md" "$target/skills/pi/SKILL.md" 2>/dev/null || true
-      cp "$SCRIPT_DIR/claude-code/pi-progressive/_frontmatter" "$target/skills/pi/_frontmatter" 2>/dev/null || true
+      smart_copy "$SCRIPT_DIR/claude-code/pi-progressive/SKILL.md" "$target/skills/pi/SKILL.md" 2>/dev/null || true
+      smart_copy "$SCRIPT_DIR/claude-code/pi-progressive/_frontmatter" "$target/skills/pi/_frontmatter" 2>/dev/null || true
       if [[ -d "$SCRIPT_DIR/claude-code/pi-progressive/references" ]]; then
-        cp -r "$SCRIPT_DIR/claude-code/pi-progressive/references" "$target/skills/pi/references" 2>/dev/null || true
+        smart_copy_dir "$SCRIPT_DIR/claude-code/pi-progressive/references" "$target/skills/pi/references" 2>/dev/null || true
       fi
     fi
     if [[ "$edition" == "3" ]]; then
       # Both → progressive goes to separate dir
       mkdir -p "$target/skills/pi-progressive"
-      cp "$SCRIPT_DIR/claude-code/pi-progressive/SKILL.md" "$target/skills/pi-progressive/SKILL.md" 2>/dev/null || true
-      cp "$SCRIPT_DIR/claude-code/pi-progressive/_frontmatter" "$target/skills/pi-progressive/_frontmatter" 2>/dev/null || true
+      smart_copy "$SCRIPT_DIR/claude-code/pi-progressive/SKILL.md" "$target/skills/pi-progressive/SKILL.md" 2>/dev/null || true
+      smart_copy "$SCRIPT_DIR/claude-code/pi-progressive/_frontmatter" "$target/skills/pi-progressive/_frontmatter" 2>/dev/null || true
       if [[ -d "$SCRIPT_DIR/claude-code/pi-progressive/references" ]]; then
-        cp -r "$SCRIPT_DIR/claude-code/pi-progressive/references" "$target/skills/pi-progressive/references" 2>/dev/null || true
+        smart_copy_dir "$SCRIPT_DIR/claude-code/pi-progressive/references" "$target/skills/pi-progressive/references" 2>/dev/null || true
       fi
     fi
   fi
@@ -589,54 +620,54 @@ install_claude_code() {
       mkdir -p "$target/skills/pi-en"
       # Use claude-code/ variants (optimized for Claude Code)
       if [[ -f "$SCRIPT_DIR/claude-code/pi-en/SKILL.md" ]]; then
-        cp "$SCRIPT_DIR/claude-code/pi-en/SKILL.md" "$target/skills/pi-en/SKILL.md"
-        cp "$SCRIPT_DIR/claude-code/pi-en/_frontmatter" "$target/skills/pi-en/_frontmatter" 2>/dev/null || true
+        smart_copy "$SCRIPT_DIR/claude-code/pi-en/SKILL.md" "$target/skills/pi-en/SKILL.md"
+        smart_copy "$SCRIPT_DIR/claude-code/pi-en/_frontmatter" "$target/skills/pi-en/_frontmatter" 2>/dev/null || true
       else
-        cp "$SCRIPT_DIR/skills/pi-en/SKILL.md" "$target/skills/pi-en/SKILL.md" 2>/dev/null || true
+        smart_copy "$SCRIPT_DIR/skills/pi-en/SKILL.md" "$target/skills/pi-en/SKILL.md" 2>/dev/null || true
       fi
     fi
     if [[ "$edition" == "2" ]]; then
       # Progressive only → install as main skill (name stays "pi-en")
       mkdir -p "$target/skills/pi-en"
       if [[ -f "$SCRIPT_DIR/claude-code/pi-en-progressive/SKILL.md" ]]; then
-        cp "$SCRIPT_DIR/claude-code/pi-en-progressive/SKILL.md" "$target/skills/pi-en/SKILL.md"
-        cp "$SCRIPT_DIR/claude-code/pi-en-progressive/_frontmatter" "$target/skills/pi-en/_frontmatter" 2>/dev/null || true
+        smart_copy "$SCRIPT_DIR/claude-code/pi-en-progressive/SKILL.md" "$target/skills/pi-en/SKILL.md"
+        smart_copy "$SCRIPT_DIR/claude-code/pi-en-progressive/_frontmatter" "$target/skills/pi-en/_frontmatter" 2>/dev/null || true
       else
-        cp "$SCRIPT_DIR/skills/pi-en-progressive/SKILL.md" "$target/skills/pi-en/SKILL.md" 2>/dev/null || true
+        smart_copy "$SCRIPT_DIR/skills/pi-en-progressive/SKILL.md" "$target/skills/pi-en/SKILL.md" 2>/dev/null || true
       fi
       if [[ -d "$SCRIPT_DIR/claude-code/pi-en-progressive/references" ]]; then
-        cp -r "$SCRIPT_DIR/claude-code/pi-en-progressive/references" "$target/skills/pi-en/references" 2>/dev/null || true
+        smart_copy_dir "$SCRIPT_DIR/claude-code/pi-en-progressive/references" "$target/skills/pi-en/references" 2>/dev/null || true
       elif [[ -d "$SCRIPT_DIR/skills/pi-en-progressive/references" ]]; then
-        cp -r "$SCRIPT_DIR/skills/pi-en-progressive/references" "$target/skills/pi-en/references" 2>/dev/null || true
+        smart_copy_dir "$SCRIPT_DIR/skills/pi-en-progressive/references" "$target/skills/pi-en/references" 2>/dev/null || true
       fi
     fi
     if [[ "$edition" == "3" ]]; then
       # Both → progressive goes to separate dir
       mkdir -p "$target/skills/pi-en-progressive"
       if [[ -f "$SCRIPT_DIR/claude-code/pi-en-progressive/SKILL.md" ]]; then
-        cp "$SCRIPT_DIR/claude-code/pi-en-progressive/SKILL.md" "$target/skills/pi-en-progressive/SKILL.md"
-        cp "$SCRIPT_DIR/claude-code/pi-en-progressive/_frontmatter" "$target/skills/pi-en-progressive/_frontmatter" 2>/dev/null || true
+        smart_copy "$SCRIPT_DIR/claude-code/pi-en-progressive/SKILL.md" "$target/skills/pi-en-progressive/SKILL.md"
+        smart_copy "$SCRIPT_DIR/claude-code/pi-en-progressive/_frontmatter" "$target/skills/pi-en-progressive/_frontmatter" 2>/dev/null || true
       else
-        cp "$SCRIPT_DIR/skills/pi-en-progressive/SKILL.md" "$target/skills/pi-en-progressive/SKILL.md" 2>/dev/null || true
+        smart_copy "$SCRIPT_DIR/skills/pi-en-progressive/SKILL.md" "$target/skills/pi-en-progressive/SKILL.md" 2>/dev/null || true
       fi
       if [[ -d "$SCRIPT_DIR/claude-code/pi-en-progressive/references" ]]; then
-        cp -r "$SCRIPT_DIR/claude-code/pi-en-progressive/references" "$target/skills/pi-en-progressive/references" 2>/dev/null || true
+        smart_copy_dir "$SCRIPT_DIR/claude-code/pi-en-progressive/references" "$target/skills/pi-en-progressive/references" 2>/dev/null || true
       elif [[ -d "$SCRIPT_DIR/skills/pi-en-progressive/references" ]]; then
-        cp -r "$SCRIPT_DIR/skills/pi-en-progressive/references" "$target/skills/pi-en-progressive/references" 2>/dev/null || true
+        smart_copy_dir "$SCRIPT_DIR/skills/pi-en-progressive/references" "$target/skills/pi-en-progressive/references" 2>/dev/null || true
       fi
     fi
   fi
   mkdir -p "$target/agents"
   if [[ "$lang" == "1" || "$lang" == "3" ]]; then
-    cp "$SCRIPT_DIR/agents/pi-coach.md" "$target/agents/" 2>/dev/null || true
-    cp "$SCRIPT_DIR/agents/pi-teammate.md" "$target/agents/" 2>/dev/null || true
+    smart_copy "$SCRIPT_DIR/agents/pi-coach.md" "$target/agents/" 2>/dev/null || true
+    smart_copy "$SCRIPT_DIR/agents/pi-teammate.md" "$target/agents/" 2>/dev/null || true
   fi
   if [[ "$lang" == "2" || "$lang" == "3" ]]; then
-    cp "$SCRIPT_DIR/agents/pi-coach-en.md" "$target/agents/" 2>/dev/null || true
-    cp "$SCRIPT_DIR/agents/pi-teammate-en.md" "$target/agents/" 2>/dev/null || true
+    smart_copy "$SCRIPT_DIR/agents/pi-coach-en.md" "$target/agents/" 2>/dev/null || true
+    smart_copy "$SCRIPT_DIR/agents/pi-teammate-en.md" "$target/agents/" 2>/dev/null || true
   fi
   if [[ -d "$SCRIPT_DIR/commands" ]]; then
-    cp -r "$SCRIPT_DIR/commands" "$target/commands" 2>/dev/null || true
+    smart_copy_dir "$SCRIPT_DIR/commands" "$target/commands" 2>/dev/null || true
   fi
   echo "  $MSG_INSTALLING $target"
 }
@@ -655,23 +686,23 @@ install_cursor() {
   mkdir -p "$target"
   if [[ "$lang" == "1" || "$lang" == "3" ]]; then
     if [[ "$edition" == "1" || "$edition" == "3" ]]; then
-      [[ -f "$SCRIPT_DIR/cursor/rules/pi.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi.mdc" "$target/pi.mdc"
+      [[ -f "$SCRIPT_DIR/cursor/rules/pi.mdc" ]] && smart_copy "$SCRIPT_DIR/cursor/rules/pi.mdc" "$target/pi.mdc"
     fi
     if [[ "$edition" == "2" ]]; then
       # Cursor doesn't support references/, progressive uses full version
-      [[ -f "$SCRIPT_DIR/cursor/rules/pi.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi.mdc" "$target/pi.mdc"
+      [[ -f "$SCRIPT_DIR/cursor/rules/pi.mdc" ]] && smart_copy "$SCRIPT_DIR/cursor/rules/pi.mdc" "$target/pi.mdc"
     fi
   fi
   if [[ "$lang" == "2" || "$lang" == "3" ]]; then
     if [[ "$edition" == "1" || "$edition" == "3" ]]; then
-      [[ -f "$SCRIPT_DIR/cursor/rules/pi-en.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi-en.mdc" "$target/pi-en.mdc"
+      [[ -f "$SCRIPT_DIR/cursor/rules/pi-en.mdc" ]] && smart_copy "$SCRIPT_DIR/cursor/rules/pi-en.mdc" "$target/pi-en.mdc"
     fi
     if [[ "$edition" == "2" ]]; then
       # Cursor doesn't support references/, progressive uses full version
-      [[ -f "$SCRIPT_DIR/cursor/rules/pi-en.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi-en.mdc" "$target/pi-en.mdc"
+      [[ -f "$SCRIPT_DIR/cursor/rules/pi-en.mdc" ]] && smart_copy "$SCRIPT_DIR/cursor/rules/pi-en.mdc" "$target/pi-en.mdc"
     fi
   fi
-  [[ -f "$SCRIPT_DIR/cursor/rules/pi-visualize.mdc" ]] && cp "$SCRIPT_DIR/cursor/rules/pi-visualize.mdc" "$target/pi-visualize.mdc"
+  [[ -f "$SCRIPT_DIR/cursor/rules/pi-visualize.mdc" ]] && smart_copy "$SCRIPT_DIR/cursor/rules/pi-visualize.mdc" "$target/pi-visualize.mdc"
   echo "  $MSG_INSTALLING $target"
 }
 
@@ -682,20 +713,20 @@ install_kiro() {
   mkdir -p "$target"
   if [[ "$lang" == "1" || "$lang" == "3" ]]; then
     if [[ "$edition" == "1" || "$edition" == "3" ]]; then
-      [[ -f "$SCRIPT_DIR/kiro/steering/pi.md" ]] && cp "$SCRIPT_DIR/kiro/steering/pi.md" "$target/pi.md"
+      [[ -f "$SCRIPT_DIR/kiro/steering/pi.md" ]] && smart_copy "$SCRIPT_DIR/kiro/steering/pi.md" "$target/pi.md"
     fi
     if [[ "$edition" == "2" ]]; then
       # Kiro doesn't support references/, progressive uses full version
-      [[ -f "$SCRIPT_DIR/kiro/steering/pi.md" ]] && cp "$SCRIPT_DIR/kiro/steering/pi.md" "$target/pi.md"
+      [[ -f "$SCRIPT_DIR/kiro/steering/pi.md" ]] && smart_copy "$SCRIPT_DIR/kiro/steering/pi.md" "$target/pi.md"
     fi
   fi
   if [[ "$lang" == "2" || "$lang" == "3" ]]; then
     if [[ "$edition" == "1" || "$edition" == "3" ]]; then
-      [[ -f "$SCRIPT_DIR/kiro/steering/pi-en.md" ]] && cp "$SCRIPT_DIR/kiro/steering/pi-en.md" "$target/pi-en.md"
+      [[ -f "$SCRIPT_DIR/kiro/steering/pi-en.md" ]] && smart_copy "$SCRIPT_DIR/kiro/steering/pi-en.md" "$target/pi-en.md"
     fi
     if [[ "$edition" == "2" ]]; then
       # Kiro doesn't support references/, progressive uses full version
-      [[ -f "$SCRIPT_DIR/kiro/steering/pi-en.md" ]] && cp "$SCRIPT_DIR/kiro/steering/pi-en.md" "$target/pi-en.md"
+      [[ -f "$SCRIPT_DIR/kiro/steering/pi-en.md" ]] && smart_copy "$SCRIPT_DIR/kiro/steering/pi-en.md" "$target/pi-en.md"
     fi
   fi
   echo "  $MSG_INSTALLING $target"
@@ -850,6 +881,9 @@ PLATFORM_INSTALLERS=(
 echo ""
 echo "============================================"
 echo "  $MSG_TITLE"
+if [[ "$INSTALL_MODE" == "link" ]]; then
+  echo "  [symlink mode]"
+fi
 echo "============================================"
 echo ""
 
@@ -926,12 +960,12 @@ if [[ $coach_result -eq 0 ]]; then
   rm -f "$coach_dir/pi-teammate.md" "$coach_dir/pi-teammate-en.md" "$coach_dir/pi-coach.md" "$coach_dir/pi-coach-en.md" 2>/dev/null || true
   mkdir -p "$coach_dir"
   if [[ "$lang_choice" == "1" || "$lang_choice" == "3" ]]; then
-    cp "$SCRIPT_DIR/agents/pi-teammate.md" "$coach_dir/pi-teammate.md"
-    cp "$SCRIPT_DIR/agents/pi-coach.md" "$coach_dir/pi-coach.md"
+    smart_copy "$SCRIPT_DIR/agents/pi-teammate.md" "$coach_dir/pi-teammate.md"
+    smart_copy "$SCRIPT_DIR/agents/pi-coach.md" "$coach_dir/pi-coach.md"
   fi
   if [[ "$lang_choice" == "2" || "$lang_choice" == "3" ]]; then
-    cp "$SCRIPT_DIR/agents/pi-teammate-en.md" "$coach_dir/pi-teammate-en.md"
-    cp "$SCRIPT_DIR/agents/pi-coach-en.md" "$coach_dir/pi-coach-en.md"
+    smart_copy "$SCRIPT_DIR/agents/pi-teammate-en.md" "$coach_dir/pi-teammate-en.md"
+    smart_copy "$SCRIPT_DIR/agents/pi-coach-en.md" "$coach_dir/pi-coach-en.md"
   fi
   echo "  $MSG_COACH_DONE $coach_dir/"
 fi
