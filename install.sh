@@ -586,21 +586,19 @@ install_claude_code() {
   local target="$HOME/.claude/skills/pi"
   # Clean old install to ensure full overwrite
   rm -rf "${target:?}"
-  mkdir -p "$target"
-  # plugin.json must be at plugin root for Claude Code to recognize the plugin
-  smart_copy "$SCRIPT_DIR/.claude-plugin/plugin.json" "$target/plugin.json" 2>/dev/null || true
-  smart_copy "$SCRIPT_DIR/.claude-plugin/marketplace.json" "$target/marketplace.json" 2>/dev/null || true
+  mkdir -p "$target/.claude-plugin"
+  # plugin.json must be in .claude-plugin/ for Claude Code to recognize the plugin
+  smart_copy "$SCRIPT_DIR/.claude-plugin/plugin.json" "$target/.claude-plugin/plugin.json" 2>/dev/null || true
+  smart_copy "$SCRIPT_DIR/.claude-plugin/marketplace.json" "$target/.claude-plugin/marketplace.json" 2>/dev/null || true
   if [[ "$lang" == "1" || "$lang" == "3" ]]; then
     if [[ "$edition" == "1" || "$edition" == "3" ]]; then
       mkdir -p "$target/skills/pi"
       smart_copy "$SCRIPT_DIR/claude-code/pi/SKILL.md" "$target/skills/pi/SKILL.md" 2>/dev/null || true
-      smart_copy "$SCRIPT_DIR/claude-code/pi/_frontmatter" "$target/skills/pi/_frontmatter" 2>/dev/null || true
     fi
     if [[ "$edition" == "2" ]]; then
       # Progressive only → install as main skill (name stays "pi")
       mkdir -p "$target/skills/pi"
       smart_copy "$SCRIPT_DIR/claude-code/pi-progressive/SKILL.md" "$target/skills/pi/SKILL.md" 2>/dev/null || true
-      smart_copy "$SCRIPT_DIR/claude-code/pi-progressive/_frontmatter" "$target/skills/pi/_frontmatter" 2>/dev/null || true
       if [[ -d "$SCRIPT_DIR/claude-code/pi-progressive/references" ]]; then
         smart_copy_dir "$SCRIPT_DIR/claude-code/pi-progressive/references" "$target/skills/pi/references" 2>/dev/null || true
       fi
@@ -609,7 +607,6 @@ install_claude_code() {
       # Both → progressive goes to separate dir
       mkdir -p "$target/skills/pi-progressive"
       smart_copy "$SCRIPT_DIR/claude-code/pi-progressive/SKILL.md" "$target/skills/pi-progressive/SKILL.md" 2>/dev/null || true
-      smart_copy "$SCRIPT_DIR/claude-code/pi-progressive/_frontmatter" "$target/skills/pi-progressive/_frontmatter" 2>/dev/null || true
       if [[ -d "$SCRIPT_DIR/claude-code/pi-progressive/references" ]]; then
         smart_copy_dir "$SCRIPT_DIR/claude-code/pi-progressive/references" "$target/skills/pi-progressive/references" 2>/dev/null || true
       fi
@@ -621,7 +618,6 @@ install_claude_code() {
       # Use claude-code/ variants (optimized for Claude Code)
       if [[ -f "$SCRIPT_DIR/claude-code/pi-en/SKILL.md" ]]; then
         smart_copy "$SCRIPT_DIR/claude-code/pi-en/SKILL.md" "$target/skills/pi-en/SKILL.md"
-        smart_copy "$SCRIPT_DIR/claude-code/pi-en/_frontmatter" "$target/skills/pi-en/_frontmatter" 2>/dev/null || true
       else
         smart_copy "$SCRIPT_DIR/skills/pi-en/SKILL.md" "$target/skills/pi-en/SKILL.md" 2>/dev/null || true
       fi
@@ -631,7 +627,6 @@ install_claude_code() {
       mkdir -p "$target/skills/pi-en"
       if [[ -f "$SCRIPT_DIR/claude-code/pi-en-progressive/SKILL.md" ]]; then
         smart_copy "$SCRIPT_DIR/claude-code/pi-en-progressive/SKILL.md" "$target/skills/pi-en/SKILL.md"
-        smart_copy "$SCRIPT_DIR/claude-code/pi-en-progressive/_frontmatter" "$target/skills/pi-en/_frontmatter" 2>/dev/null || true
       else
         smart_copy "$SCRIPT_DIR/skills/pi-en-progressive/SKILL.md" "$target/skills/pi-en/SKILL.md" 2>/dev/null || true
       fi
@@ -646,7 +641,6 @@ install_claude_code() {
       mkdir -p "$target/skills/pi-en-progressive"
       if [[ -f "$SCRIPT_DIR/claude-code/pi-en-progressive/SKILL.md" ]]; then
         smart_copy "$SCRIPT_DIR/claude-code/pi-en-progressive/SKILL.md" "$target/skills/pi-en-progressive/SKILL.md"
-        smart_copy "$SCRIPT_DIR/claude-code/pi-en-progressive/_frontmatter" "$target/skills/pi-en-progressive/_frontmatter" 2>/dev/null || true
       else
         smart_copy "$SCRIPT_DIR/skills/pi-en-progressive/SKILL.md" "$target/skills/pi-en-progressive/SKILL.md" 2>/dev/null || true
       fi
