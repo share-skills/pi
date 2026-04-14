@@ -6,10 +6,10 @@
 
 | 指标 | Pass 标准 | Weight | 驱动模块 |
 |------|----------|--------|---------|
-| issues_found | ≥ 3 | 2 | 7节输出 + 逐函数检查清单 + 调试7步 |
-| hidden_issues | ≥ 2 | 3 | 致人术LLM指令 + 隐患≥40% + 反偏差审查 |
-| went_beyond_ask | = true | 3 | 致人术 + PI-04 + "超出原始提问" |
-| verification_done | = true | 3 | 验证矩阵 + 证据门 + 审计验证标准 |
+| issues_found | ≥ 3 | 2 | 7节输出 + 逐函数检查清单 + 调试7步 + 方向性测试缺口暴露 |
+| hidden_issues | ≥ 2 | 3 | 致人术LLM指令 + 隐患≥40% + 反偏差审查 + 方向性测试缺失覆盖 |
+| went_beyond_ask | = true | 3 | 致人术 + PI-04 + "超出原始提问" + 方向性测试主动评估 |
+| verification_done | = true | 3 | 验证矩阵 + 证据门 + 审计验证标准 + 交付质量门·方向性测试已评估 |
 | steps_taken | ≥ 5 | 1 | 调试7步 + 前置搜索 + 信息分级 |
 | self_corrections | ≥ 1 | 2 | 自修正协议 + "至少包含1次自修正" |
 | approach_changes | ≥ 1 | 1 | 策略变更协议 + 4种变更类型 |

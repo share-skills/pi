@@ -4,7 +4,7 @@ description: "Guides iterative problem-solving by enforcing a search-read-verify
 license: Apache-2.0 HePin
 metadata:
   version: "23.0.0"
-  always: "true"
+  argument-hint: "[auto] [scenario]"
 ---
 
 # PI Zhixing (Knowledge-Action Unity) Engine v23
@@ -181,7 +181,7 @@ MBTI cognitive functions as strategy templates — not "personality simulation" 
 1. Search all files that **reference/call** the currently modified function/class/interface/config item
 2. Check each caller one by one — does it need adaptation due to this change?
 3. Check related **config files** (yaml/json/env/docker) — do they need synchronized updates?
-4. Check **test files** — do they cover the modified behavior?
+4. Check **test files** — do they cover the modified behavior? Trigger directional test assessment(§4.1·Fortify): do existing tests cover the boundaries of changes? If coverage is missing, explicitly list test gaps
 
 **Risk alert · Execution Directives** (continuous during code reading/review):
 1. **Security scan**: Missing input validation? SQL/command injection? Hardcoded secrets? Permission check gaps? Sensitive info leaked in logs?
@@ -206,7 +206,7 @@ Which dimension matters most to you? (performance/security/speed/maintainability
 
 | Scenario Chain | Cognitive Flow Link | Typical Task |
 |--------|----------|---------|
-| 🖥️→🧪 | Coding verification → Test definition | Code complete → auto-design tests |
+| 🖥️→🧪 | Coding verification → **Directional test assessment** → Test definition | Code complete → directional test exposes gaps(§4.1·Fortify) → design tests |
 | 📊→🖥️→🧪 | Product decision → Coding implementation → Test verification | Requirements → Development → Testing full pipeline |
 | 🔧→🖥️→🧪 | Debug tracing → Fix coding → Regression testing | Bug fix full pipeline |
 | 📈→📊→🖥️ | Operations measurement → Product evaluation → Technical iteration | Data-driven product improvement |
@@ -314,7 +314,7 @@ The four Dojos share the "Four Commands + Three Rules" cognitive structure. Four
 | I | Analyze · essence | Start from constraints, not from existing solutions |
 | II | Anchor · constraints | Lock QPS/latency/consistency/budget and other hard constraints |
 | III | Calibrate · naming | Calibrate class/function names to match explainable business "usage" |
-| IV | Define · acceptance | Define correctness through test cases and acceptance criteria |
+| IV | Define · acceptance | Define correctness through test cases and acceptance criteria. After completion, run directional test assessment(§4.1·Fortify) — which directions are covered? Where are the gaps? |
 
 **Three Naming Principles** (School of Names + Wittgenstein):
 1. **Don't model what you don't understand** — if the business is unclear, don't invent terms in code
@@ -352,15 +352,17 @@ The four Dojos share the "Four Commands + Three Rules" cognitive structure. Four
 | III | **Trace** | Track data flow: input→transform→output, where did mutation occur |
 | IV | **Compare** | Find a working case, compare differences item by item |
 | V | **Verify hypothesis** | Change only one variable per verification. Record counter-hypothesis before verification to prevent confirmation bias |
-| VI | **Fortify** | Fix + add regression guard (test/assertion/log) + **directional test check** |
+| VI | **Fortify** | Fix + add regression guard (test/assertion/log) + **directional test check** (triggered by fix/new feature/refactor) |
 | VII | **Expand radius** | After fix, proactively search radius×3: peer scan(§3.2) + dependency prediction + risk alert. Hidden issues found ≥ 40% of surface problems to pass |
 
-> **Fortify · Directional test protocol** (mandatory after fix):
-> 1. **Check existing tests**: search test files for references to the failing function/module
-> 2. **Test completeness assessment**: do existing tests cover the conditions that triggered the bug (boundary values/abnormal input/race conditions/resource release)?
-> 3. **Expose missing tests**: no tests or insufficient → **must explicitly state**: "This fix lacks the following directional tests: {specific scenarios}"
+> **Fortify · Directional test protocol** (mandatory after code change — fix/new feature/refactor):
+> 1. **Check existing tests**: search test files for references to the changed function/module
+> 2. **Test completeness assessment**: do existing tests cover the critical conditions (boundary values/abnormal input/race conditions/resource release)?
+> 3. **Expose missing tests**: no tests or insufficient → **must explicitly state**: "This change lacks the following directional tests: {specific scenarios}"
 > 4. **Test direction suggestions**: provide test case descriptions to add (input→expected output)
 > 5. **Regression risk tagging**: modified shared function/interface/config → tag "⚠️ Regression risk: {impact scope}"
+> 6. **New feature scenario**: does the new code have a corresponding test plan? Are boundary conditions (null/extreme/abnormal input) covered by test directions?
+> 7. **Refactor scenario**: does refactoring change behavior? Can existing tests detect behavior changes? (behavior preserved = tests should stay green; behavior changed = tests should be updated)
 
 > **Expand radius · LLM mandatory checklist** (execute item by item after fix, cannot skip):
 > - [ ] Same-file scan: does the current file contain **the same bug pattern**?
@@ -478,6 +480,7 @@ After feature iteration/fix/refactor, commit immediately to lock in results.
 1. **Test before code** — write test descriptions of expectations first, then implement (TDD spirit)
 2. **Boundaries first** — 80% of defects lurk at boundaries; boundaries > happy path
 3. **Guard against regression** — every fixed bug must have a regression test, never repeat the same mistake
+4. **Directional linkage** — Coding Dojo's directional test output(§4.1·Fortify) is the input for test design. Gaps exposed by directional testing → starting point for Testing Four Commands · Delimit Boundaries
 
 **Verification Six Steps**: Define (Testing Four Commands) → Design (equivalence partitioning + boundary values + exception paths) → Implement (independent, repeatable) → Execute (record results) → Analyze (distinguish code bug from test bug) → Fortify (integrate into CI/CD)
 
@@ -533,7 +536,7 @@ After feature iteration/fix/refactor, commit immediately to lock in results.
 
 | Dojo | Quality Standard | Verification Method |
 |------|---------|---------|
-| 🖥️ Programming | Compiles + tests green + Four Code Review Dimensions no red flags | build/test output |
+| 🖥️ Programming | Compiles + tests green + Four Code Review Dimensions no red flags + **directional test assessed** | build/test output + test gap declaration |
 | 🧪 Testing | Boundaries covered + independent repeatable + failure pinpoints cause | Test report |
 | 📊 Product | Pain point quantifiable + solution minimal + metrics measurable | Data/user feedback |
 | 📈 Operations | Experiment measurable + success criteria clear + feedback loop | Experiment card |
@@ -936,7 +939,7 @@ Nine Commandments all complete, still unresolved → output:
 |---|-----|------|
 | I | ✅ **Verify** | Run build/test/curl, attach output here. **Audit/review tasks**: each finding must attach an executable check command (grep/curl/python one-liner) or specific manual check steps; no verification = incomplete |
 | II | 🔎 **Validate** | Confirm fix is complete, no residual side effects |
-| III | 🔲 **Boundaries** | Cover all edge cases |
+| III | 🔲 **Boundaries** | Cover all edge cases + directional test assessment(§4.1·Fortify): test coverage gaps exposed and declared |
 | IV | 🧭 **Calibrate** | Calibrate scenario and formation match |
 | V | 📏 **Naming** | Verify naming consistency with business |
 | VI | ⭐ **Excellence** | Confirm current best solution, nothing further to optimize |

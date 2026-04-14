@@ -307,7 +307,7 @@ Format: `📝 Tried: ❌{approach}→{failure reason}→ruled out {X} | ⚡Next:
 | 3·Trace | Track data flow: input→transform→output, which step mutated |
 | 4·Compare | Find working example, compare item by item |
 | 5·Verify hypothesis | Change only one variable per test. Record counter-hypothesis before testing |
-| 6·Fortify | Fix + add regression guard + **directional test check**: verify test coverage → expose missing tests → mark regression risk |
+| 6·Fortify | Fix/new feature/refactor + add regression guard + **directional test check**: verify test coverage → expose missing tests → test direction suggestions → regression risk → new feature test plan → refactor behavior change detection |
 | 7·Expand radius | Post-fix search radius ×3: peer scan + dependency prediction + risk alert. Hidden issues ≥ 40% of surface issues |
 
 > **Expand Radius · LLM Execution Checklist** (mandatory post-fix, cannot skip):
@@ -381,7 +381,7 @@ When reading source code, check each function against these points, listing each
 1. Search all files that **reference/call** the modified function/class/interface/config
 2. Check each caller for adaptation needed due to this change
 3. Check related **config files** for sync updates needed
-4. Check **test files** for coverage of modified behavior
+4. Check **test files** for coverage of modified behavior — trigger directional test assessment(§4.1·Fortify): do existing tests cover change boundaries? If missing, list test gaps
 
 **Risk Alert**:
 1. **Security**: input validation? SQL/command injection? hardcoded secrets? auth gaps?
@@ -576,7 +576,7 @@ Nine Investigative Commands all complete, still unresolved → output:
 |---|-----|------|
 | I | ✅ **Verify** | Run build/test/curl, attach output here |
 | II | 🔎 **Validate** | Confirm fix is complete, no residual side effects |
-| III | 🔲 **Boundaries** | Cover all edge cases |
+| III | 🔲 **Boundaries** | Cover all edge cases + directional test assessment(§4.1·Fortify): test coverage gaps exposed and declared |
 | IV | 🧭 **Calibrate** | Calibrate scene and formation match |
 | V | 📏 **Naming** | Verify naming consistency with business |
 | VI | ⭐ **Excellence** | Confirm current best solution, nothing further to optimize |
@@ -611,6 +611,60 @@ Nine Investigative Commands all complete, still unresolved → output:
 
 > User replies "deliver" to confirm; replies with changes to iterate. Mark ❓ on any item that cannot be verified, with explanation.
 
+---
+
+## Five Resonance Modes · Output Formats
+
+| Mode | Name | Essence | Trigger |
+|---|-----|------|------|
+| I | 💭 **Chain** | Explicit thinking chain output | Standard/Deep mandatory |
+| II | 🎯 **Proof** | Conclusion must attach hypothesis + evidence + ruled-out | Battle stage 2+ |
+| III | 🌳 **Tree** | Problem decomposition visualization | Sub-problems >3 |
+| IV | 🧠 **Heart** | Confidence · resource status report | Every 3 interactions |
+| V | 📋 **Pact** | Pre-delivery dual human-AI confirmation | Before delivery |
+
+### Chain Format
+
+| Mode | Output Format |
+|------|----------|
+| 🏋️Standard | `💭 Chain: Observe({input})→Analyze({breakdown})→Plan({approach})→Verify({verification})` |
+| 🐲Deep | `💭 Full chain: ①Read failure→②Active search→③Read source→④Verify hypothesis→⑤Reverse→⑥Narrow scope→⑦Switch tools→⑧Change perspective→⑨Survey landscape` |
+
+> Debug shorthand: `💭 Ruled out: {eliminated} → Narrowed: {scope reduced to}`
+
+### Proof Format
+
+```
+🎯 Conclusion: {statement}
+   ├── 💡 Hypothesis: {core hypothesis}
+   ├── ✅ Evidence: {tool verification result}
+   └── ❌ Ruled out: {falsified items}
+```
+
+### Tree Format
+
+```
+🌳 Problem Tree
+├─ ✅ Resolved: {sub-problem}[evidence]
+├─ ⚡ Pending: {sub-problem}[complexity]
+├─ 🔄 In progress: {sub-problem}[progress]
+└─ ❓ Needs human: {boundary issue}[what's needed]
+```
+
+### Heart Format
+
+`🧠 PI Status: Confidence {🟢High/🟡Medium/🔴Low}({N} evidence) · Resources {🟢Ample/🟡Tight/🔴Warning}`
+
+### Pact Format
+
+```
+📋 Delivery Confirmation
+□ Goal match: {requirement → solution mapping}
+□ Boundary coverage: {key boundaries verified}
+□ Risk controlled: {potential risks + mitigation}
+```
+
+---
 
 > 📂 See [references/resonance-forms.md](references/resonance-forms.md)
 

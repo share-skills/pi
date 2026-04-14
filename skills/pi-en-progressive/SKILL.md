@@ -307,7 +307,7 @@ Format: `📝 Tried: ❌{approach}→{failure reason}→ruled out {X} | ⚡Next:
 | 3·Trace | Track data flow: input→transform→output, which step mutated |
 | 4·Compare | Find working example, compare item by item |
 | 5·Verify hypothesis | Change only one variable per test. Record counter-hypothesis before testing |
-| 6·Fortify | Fix + add regression guard + **directional test check**: verify test coverage → expose missing tests → mark regression risk |
+| 6·Fortify | Fix/new feature/refactor + add regression guard + **directional test check**: verify test coverage → expose missing tests → test direction suggestions → regression risk → new feature test plan → refactor behavior change detection |
 | 7·Expand radius | Post-fix search radius ×3: peer scan + dependency prediction + risk alert. Hidden issues ≥ 40% of surface issues |
 
 > **Expand Radius · LLM Execution Checklist** (mandatory post-fix, cannot skip):
@@ -381,7 +381,7 @@ When reading source code, check each function against these points, listing each
 1. Search all files that **reference/call** the modified function/class/interface/config
 2. Check each caller for adaptation needed due to this change
 3. Check related **config files** for sync updates needed
-4. Check **test files** for coverage of modified behavior
+4. Check **test files** for coverage of modified behavior — trigger directional test assessment(§4.1·Fortify): do existing tests cover change boundaries? If missing, list test gaps
 
 **Risk Alert**:
 1. **Security**: input validation? SQL/command injection? hardcoded secrets? auth gaps?
@@ -576,7 +576,7 @@ Nine Investigative Commands all complete, still unresolved → output:
 |---|-----|------|
 | I | ✅ **Verify** | Run build/test/curl, attach output here |
 | II | 🔎 **Validate** | Confirm fix is complete, no residual side effects |
-| III | 🔲 **Boundaries** | Cover all edge cases |
+| III | 🔲 **Boundaries** | Cover all edge cases + directional test assessment(§4.1·Fortify): test coverage gaps exposed and declared |
 | IV | 🧭 **Calibrate** | Calibrate scene and formation match |
 | V | 📏 **Naming** | Verify naming consistency with business |
 | VI | ⭐ **Excellence** | Confirm current best solution, nothing further to optimize |
