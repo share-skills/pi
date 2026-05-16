@@ -771,8 +771,38 @@ install_antigravity() {
 install_opencode() {
   local lang="$1"
   local edition="$2"
-  install_skill_to_dir "$HOME/.config/opencode/skills" "$SCRIPT_DIR/skills" "pi" "pi-en" "$lang" "$edition"
-  echo "  $MSG_INSTALLING ~/.config/opencode/skills/"
+  local base="$HOME/.config/opencode"
+  local skills_src="$SCRIPT_DIR/opencode"
+  [[ -d "$skills_src" ]] || skills_src="$SCRIPT_DIR/skills"
+
+  install_skill_to_dir "$base/skills" "$skills_src" "pi" "pi-en" "$lang" "$edition"
+
+  # --- Agents → ~/.config/opencode/agents/ ---
+  local agents_dir="$base/agents"
+  mkdir -p "$agents_dir"
+  rm -f "$agents_dir/pi-coach.md" "$agents_dir/pi-teammate.md" \
+        "$agents_dir/pi-coach-en.md" "$agents_dir/pi-teammate-en.md" 2>/dev/null || true
+  if [[ "$lang" == "1" || "$lang" == "3" ]]; then
+    [[ -f "$SCRIPT_DIR/agents/pi-coach.md" ]]    && smart_copy "$SCRIPT_DIR/agents/pi-coach.md"    "$agents_dir/pi-coach.md"
+    [[ -f "$SCRIPT_DIR/agents/pi-teammate.md" ]] && smart_copy "$SCRIPT_DIR/agents/pi-teammate.md" "$agents_dir/pi-teammate.md"
+  fi
+  if [[ "$lang" == "2" || "$lang" == "3" ]]; then
+    [[ -f "$SCRIPT_DIR/agents/pi-coach-en.md" ]]    && smart_copy "$SCRIPT_DIR/agents/pi-coach-en.md"    "$agents_dir/pi-coach-en.md"
+    [[ -f "$SCRIPT_DIR/agents/pi-teammate-en.md" ]] && smart_copy "$SCRIPT_DIR/agents/pi-teammate-en.md" "$agents_dir/pi-teammate-en.md"
+  fi
+
+  # --- Commands → ~/.config/opencode/commands/ ---
+  if [[ -d "$SCRIPT_DIR/commands" ]]; then
+    local commands_dir="$base/commands"
+    mkdir -p "$commands_dir"
+    local cmd
+    for cmd in "$SCRIPT_DIR/commands"/*.md; do
+      [[ -f "$cmd" ]] || continue
+      smart_copy "$cmd" "$commands_dir/$(basename "$cmd")"
+    done
+  fi
+
+  echo "  $MSG_INSTALLING ~/.config/opencode/{skills,agents,commands}/"
 }
 
 install_gemini_cli() {
