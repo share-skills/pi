@@ -30,6 +30,29 @@ from pathlib import Path
 # --- 项目根目录 ---
 ROOT = Path(__file__).resolve().parent.parent
 
+EN_TRIGGER_DESCRIPTION = (
+    "PI Cognitive AI. Trigger: $pi/coding/dev/code/architecture/API/refactor/"
+    "debug/bug/error/exception/crash/timeout/performance/optimization/test/"
+    "compile/git/release/verify/review/CR/product/requirements/ops/growth/"
+    "design/team/support, or deep/2+ failures/looping/stuck/giving-up/retry/"
+    "nevermind"
+)
+
+PLAIN_DESCRIPTION_MARKERS = (
+    "工作流",
+    "结构化",
+    "证据驱动",
+    "引导迭代式",
+    "适用于",
+    "Guides iterative",
+    "workflow",
+    "structured 7-step",
+    "evidence-based",
+    "Use when",
+)
+
+MAX_COMPILED_DESCRIPTION_LEN = 300
+
 # --- 平台配置 ---
 # (frontmatter_dir, output_path, needs_purge)
 # frontmatter_dir: _frontmatter 文件所在目录（相对 ROOT）
@@ -216,6 +239,49 @@ def parse_frontmatter_simple(content: str) -> dict:
     return data
 
 
+def read_compiler_meta_description() -> str:
+    """Read the canonical Chinese trigger description from SKILL_META.md."""
+    meta_path = ROOT / "compiler" / "SKILL_META.md"
+    with open(meta_path, 'r', encoding='utf-8') as f:
+        meta = parse_frontmatter_simple(f.read())
+    description = meta.get('description', '')
+    if not description:
+        raise ValueError(f"Missing description in {meta_path}")
+    return description
+
+
+def canonical_description(lang: str) -> str:
+    """Return trigger-optimized description for the output language."""
+    if lang == "cn":
+        return read_compiler_meta_description()
+    if lang == "en":
+        return EN_TRIGGER_DESCRIPTION
+    raise ValueError(f"Unsupported language for description: {lang}")
+
+
+def validate_trigger_description(description: str, lang: str) -> None:
+    """Fail fast if description regresses to prose instead of trigger terms."""
+    if not description:
+        raise ValueError("description is empty")
+    if len(description) > MAX_COMPILED_DESCRIPTION_LEN:
+        raise ValueError(
+            f"description too long for compiled output: {len(description)} > "
+            f"{MAX_COMPILED_DESCRIPTION_LEN}"
+        )
+    if "触发：" not in description and "Trigger:" not in description:
+        raise ValueError(f"description must include a trigger marker: {description}")
+    marker_hits = [marker for marker in PLAIN_DESCRIPTION_MARKERS if marker in description]
+    if marker_hits:
+        raise ValueError(
+            f"description looks like prose, not trigger terms ({', '.join(marker_hits)}): "
+            f"{description}"
+        )
+    if lang == "cn" and not any(token in description for token in ("编程", "调试", "失败2+次")):
+        raise ValueError(f"Chinese description missing expected trigger terms: {description}")
+    if lang == "en" and not any(token in description for token in ("coding", "debug", "2+ failures")):
+        raise ValueError(f"English description missing expected trigger terms: {description}")
+
+
 def extract_body(filepath: str) -> str:
     """提取 body（frontmatter 之后的内容）"""
     with open(filepath, 'r', encoding='utf-8') as f:
@@ -260,7 +326,9 @@ def distribute(source_file: str, variant: str):
     # 解析 frontmatter 元数据
     fm_data = parse_frontmatter_simple(content)
     metadata = fm_data.get('metadata', {})
-    description = fm_data.get('description', '')
+    source_description = fm_data.get('description', '')
+    description = canonical_description(lang)
+    validate_trigger_description(description, lang)
     version = metadata.get('version', '20.0.0')
     homepage = metadata.get('homepage', 'https://github.com/share-skills/pi')
     copyright_val = metadata.get('copyright', 'Copyright (c) 2026 HePin. All rights reserved.')
@@ -275,6 +343,10 @@ def distribute(source_file: str, variant: str):
     # 统计
     print(f"📦 Distributing: {variant} (name={variant_name})")
     print(f"   Source: {source_file}")
+    if source_description != description:
+        print("   Description: canonical trigger terms (overrides source frontmatter)")
+    else:
+        print("   Description: canonical trigger terms")
     print(f"   Full body: {len(body.splitlines())} lines")
     if needs_any_purge:
         print(f"   Purged body: {len(purged_body.splitlines())} lines")

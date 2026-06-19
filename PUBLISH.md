@@ -183,6 +183,7 @@
           - 提取 SKILL_META.md 的 description
           - 确认所有平台文件的 description 与之一致
           - 如不一致，更新为最新版
+          - 执行 `python3 tools/validate_descriptions.py`，防止白话 description 回归
 
 步骤 3.5b 同步可视化发布配套物：
           - 确认 `install.sh` 会放置 `~/.pi/visualize.sh` 启动器

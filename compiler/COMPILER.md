@@ -63,9 +63,9 @@ SKILL_META.md 的 description 已是纯触发关键词（≤400字符），编�
 **编译模板**（从 SKILL_META.md 触发词原样保留，可微调压缩）：
 
 ```
-中文：PI 智行合一。触发：编程/开发/fleet/代码/架构/API/调试/bug/报错/测试/编译/compile/test/git/make/发布/验证/产品/需求/运营/增长/创意/设计/协作/团队/沟通/交互/陪伴/情感，或失败2+次/打转/言退/再试试/换个参数/算了
+中文：PI 智行合一。触发：$pi/编程/开发/dev/code/代码/实现/架构/API/重构/调试/debug/bug/报错/异常/崩溃/超时/性能/优化/测试/test/编译/compile/git/make/发布/验证/审查/review/CR/产品/需求/运营/增长/创意/设计/协作/团队/沟通/交互/陪伴/情感，或深度/deep/失败2+次/反复失败/打转/卡住/言退/再试试/换个参数/算了
 白话：已废弃
-英文：PI Cognitive AI. Trigger: coding/development/fleet/architecture/API/debugging/bug/error/testing/compile/test/git/make/release/verify/product/requirements/ops/growth/creative/design/collaboration/team/communication/interaction/support, or 2+ failures/looping/giving-up/retry/nevermind
+英文：PI Cognitive AI. Trigger: $pi/coding/dev/code/architecture/API/refactor/debug/bug/error/exception/crash/timeout/performance/optimization/test/compile/git/release/verify/review/CR/product/requirements/ops/growth/design/team/support, or deep/2+ failures/looping/stuck/giving-up/retry/nevermind
 ```
 
 **metadata 固定要求**：标准版 frontmatter 必须保留 `metadata.version`、`metadata.homepage`、`metadata.copyright`、`metadata.argument-hint`。v23.1.1 起 `argument-hint` 固定为 `[loop|auto|wenyan] [场景名]`，Loop/Auto 管接续节奏，Wenyan/文言只管输出。

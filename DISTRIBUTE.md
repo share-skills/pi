@@ -42,6 +42,7 @@ SKILL.md (精简版·字节码·含全部规则)
 2. **执行 PURGE**：v23.1 默认不执行平台裁剪；如未来某平台确需裁剪，按 PURGE.md 单独启用
 3. **保留 frontmatter**：各平台 frontmatter 格式不同，保持原样
 4. **校验 description**：确认所有平台 description 一致（字符级一致），且为 COMPILER.md 规定的触发优化版本（纯关键词，≤300 字符）
+   - 执行：`python3 tools/validate_descriptions.py`
 5. **Qoder 特化**：仅保留 name+description 两个字段，删除 license/metadata/其他非标字段
 
 ### 2. 渐进式版本分发（按需）
