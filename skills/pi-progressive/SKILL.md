@@ -3,10 +3,10 @@ name: pi-progressive
 description: "PI 智行合一。触发：编程/开发/fleet/代码/架构/API/调试/修复/优化/bug/报错/测试/编译/compile/test/git/make/发布/验证/产品/需求/运营/增长/创意/设计/协作/团队/沟通/交互/陪伴/情感，或失败2+次/打转/言退/再试试/换个参数/算了"
 license: Apache-2.0 HePin
 metadata:
-  version: "23.1.0"
+  version: "23.1.1"
   homepage: "https://github.com/share-skills/pi"
   copyright: "Copyright (c) 2026 HePin. All rights reserved."
-  argument-hint: "[loop|auto|short|wenyan] [场景名]"
+  argument-hint: "[loop|auto|wenyan] [场景名]"
 ---
 
 # PI 智行合一 v23.1 · Core
@@ -42,8 +42,7 @@ metadata:
 | `loop` / `循环` / `接续` | 激活🔄Loop交互：每轮交付后具体追问，适合免费无限/长链迭代 |
 | `auto` / `自动` | 激活⚡Auto交互：自主决定交互节奏，三档自治度生效 |
 | `深度` / `deep` | 强制🐲深度模式，跳过难度自适应判定 |
-| `短令` / `short` / `brief` / `compact` / `少说` / `少说多做` | 激活✂️短令输出：少说多做，保留证据 |
-| `文言` / `wenyan` / `古文` | 激活📜文言输出：短令 + 浅文言表达 |
+| `文言` / `wenyan` / `古文` | 少废话，多干活；压缩输出，用文言；代码/命令原样 |
 | `编程` / `开发` / `dev` | 场景=🖥️编程开发，走编程四令 |
 | `调试` / `debug` / `bug` | 场景=🔧调试排障，强制🐲深度 |
 | `审查` / `review` / `CR` | 场景=代码审查，强制🐲深度 |

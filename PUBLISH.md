@@ -168,7 +168,7 @@
 
 步骤 3.2  确认 PURGE 状态：
           - v23.1 默认不执行 PURGE-01
-          - Loop/Auto/Short/Wenyan 在全平台保留
+          - Loop/Auto/Wenyan 在全平台保留
           - 如未来单独启用平台裁剪，必须记录适用平台和理由
 
 步骤 3.3  分发完整 body 到 6 个平台（保留各自 frontmatter）：
@@ -196,7 +196,7 @@
 ```
 步骤 3.6  Body 一致性校验：
           - 同语言 6 个平台文件 body 互相一致
-          - Loop/Auto/Short/Wenyan 在所有平台均存在
+          - Loop/Auto/Wenyan 在所有平台均存在
 
 步骤 3.7  Description 一致性校验：
           - 所有平台文件 description 字符级一致

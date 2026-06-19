@@ -44,7 +44,9 @@ VARIANTS = {
             ("skills/pi",              "skills/pi/SKILL.md",              False),
             ("claude-code/pi",         "claude-code/pi/SKILL.md",         False),
             ("cursor/rules",           "cursor/rules/pi.mdc",             False),
+            ("cursor/rules",           ".cursor/rules/pi.mdc",            False),
             ("kiro/steering",          "kiro/steering/pi.md",             False),
+            ("kiro/steering",          ".kiro/steering/pi.md",            False),
             ("openclaw/pi",            "openclaw/pi/SKILL.md",            False),
             ("copilot-cli/pi",         "copilot-cli/pi/SKILL.md",         False),
         ],
@@ -262,7 +264,7 @@ def distribute(source_file: str, variant: str):
     version = metadata.get('version', '20.0.0')
     homepage = metadata.get('homepage', 'https://github.com/share-skills/pi')
     copyright_val = metadata.get('copyright', 'Copyright (c) 2026 HePin. All rights reserved.')
-    argument_hint = metadata.get('argument-hint', '[loop|auto|short|wenyan] [场景名]')
+    argument_hint = metadata.get('argument-hint', '[loop|auto|wenyan] [场景名]')
 
     # 提取 body
     body = extract_body(source_file)

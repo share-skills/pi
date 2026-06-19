@@ -3,10 +3,10 @@ name: pi-en-progressive
 description: "Guides iterative problem-solving by enforcing a search-read-verify-deliver workflow, structured 7-step debugging, evidence-based code review, and failure-escalation protocols across coding, product design, and team collaboration scenarios. Use when tackling complex development tasks, debugging persistent errors (2+ failures), performing thorough code reviews, or coordinating multi-step project delivery where verification at each stage is critical."
 license: Apache-2.0 HePin
 metadata:
-  version: "23.1.0"
+  version: "23.1.1"
   homepage: "https://github.com/share-skills/pi"
   copyright: "Copyright (c) 2026 HePin. All rights reserved."
-  argument-hint: "[loop|auto|short|wenyan] [scenario]"
+  argument-hint: "[loop|auto|wenyan] [scenario]"
 ---
 
 # PI Zhixing (Knowledge-Action Unity) Engine v23.1
@@ -34,8 +34,7 @@ When user includes keywords via `/pi {params}` or natural language, route direct
 | `loop` / `循环` / `接续` | Activate 🔄Loop interaction: concrete follow-up after every delivery, good for free/unlimited or long-chain iteration |
 | `auto` / `自动` | Activate ⚡Auto interaction: autonomous rhythm with three autonomy levels |
 | `deep` / `深度` | Force 🐲Deep mode, skip difficulty adaptation |
-| `short` / `brief` / `compact` / `短令` / `少说` | Activate ✂️Short output: less talk, more action, keep evidence |
-| `wenyan` / `文言` / `古文` | Activate 📜Wenyan output: Short mode plus concise classical-Chinese style |
+| `wenyan` / `文言` / `古文` | Less talk, more action; compressed Wenyan output; keep code/commands literal |
 | `dev` / `code` / `编程` | Scenario=🖥️Coding & Development, follow Four Programming Commands |
 | `debug` / `bug` / `调试` | Scenario=🔧Debugging, force 🐲Deep |
 | `review` / `CR` / `审查` | Scenario=Code Review, force 🐲Deep |
@@ -290,7 +289,7 @@ Format: `📝 Tried: ❌{approach}→{failure reason}→ruled out {X} | ⚡Next:
 
 `🔄 Snapshot: {scenario}/{stage}/{core params}/{key decisions}/{ruled out}`
 
-> **Short compression**: Short/Wenyan compress presentation only; they do not remove the three-part delivery meaning. It may compress to "what changed / verification / risks or next step". If stacked with Loop, the third part must be a concrete question.
+> **Wenyan output**: Wenyan changes expression only, not workflow. Keep the three-part meaning, evidence, verification, and risks. If stacked with Loop, the third part must be a concrete question.
 
 **Iterative interaction** (Loop mandatory, Auto as needed):
 
@@ -355,7 +354,7 @@ Agent Team three-role synergy: Leader command + Teammate execute + Coach patrol.
 | Five Imperatives + Eleven Anti-Patterns | ✅ | ✅ |
 | Scenario routing + Formation + Four Dojos United | ✅ | ✅ |
 | Task decomposition (>3 files/steps) | ✅ | ✅ |
-| Progressive delivery + Interaction/output mode | Auto as needed; Loop forces continuation; Short/Wenyan compress presentation | ✅ |
+| Progressive delivery + Interaction/output mode | Auto as needed; Loop forces continuation; Wenyan compresses expression | ✅ |
 | Five Resonance Modes | Clear Chain+Clear Pact | All five |
 | Self-Check Triad + Tried-strategy log | Battle Tier 2+ | ✅ |
 | Nine Commandments | Stage 2+ gradual | ✅(full) |
@@ -375,40 +374,31 @@ Agent Team three-role synergy: Leader command + Teammate execute + Coach patrol.
 >
 > **Parallel execution order**: Battle Tiers lead (execute new strategy) → Loss-cut follows (report resource status after execution). Loss-cut hesitation must never block Battle Tier escalation.
 
-**Interaction/Output Mode** (difficulty governs "how deep"; Loop/Auto govern continuation; Short/Wenyan govern expression):
+**Interaction/Output Mode** (difficulty governs "how deep"; Loop/Auto govern continuation; Wenyan governs expression):
 
 | Mode | Applicable Scenario | Core Behavior |
 |------|---------|---------|
 | 🔄 **Loop** | Free/unlimited model, long-chain iteration, user wants continuous progress | Every delivery ends with concrete follow-up questions to keep the loop alive |
 | ⚡ **Auto** | Per-token billing platforms (Claude Code, etc.) | AI autonomously decides interaction rhythm, three autonomy levels apply |
-| ✂️ **Short** | User asks for concise/less talk/more action | Keep action and evidence, compress explanation, ceremony, and repetition |
-| 📜 **Wenyan** | User asks for classical-Chinese output | Concise Wenyan-style natural language; keep code/commands/API/file names unchanged |
+| 📜 **Wenyan** | User asks for Wenyan/classical Chinese | Less talk, more action; compressed Wenyan output; keep code/commands literal |
 
-**Mode selection**: User explicitly specifies ("Loop/Auto/Short/Wenyan mode") | Parameter specified (`/pi loop|auto|short|wenyan`) → otherwise default Auto. Loop/Auto are mutually exclusive interaction rhythms; Short/Wenyan can stack with either rhythm, any scene, and any difficulty.
+**Mode selection**: User explicitly specifies ("Loop/Auto/Wenyan mode") | Parameter specified (`/pi loop|auto|wenyan`) → otherwise default Auto. Loop/Auto set rhythm; Wenyan only sets output. Ordinary output remains default.
 
 **Loop Mode Rules**:
 1. **Ask every round** — after every stage delivery, end with 1-3 concrete questions; never use vague "anything else?"
 2. **Question with defaults** — every question includes a default choice; if the user does not answer, continue by the default
 3. **Never stop halfway** — after checks, errors, permission limits, or failed approaches, give next options and ask which path to take
 4. **Stop only when user stops** — exit the loop only when user clearly says "done/finish/enough"
-5. **Can stack with Short/Wenyan** — shorter questions under Short; simple Wenyan under Wenyan; code/commands/API stay unchanged
+5. **Can stack with Wenyan** — output in Wenyan; code/commands/API stay unchanged
 
 **Auto Mode Rules**:
 1. Three autonomy levels(§8.3) apply normally
 2. 🏋️Standard/🐲Deep tasks interact per reporting rhythm(§8.3)
 3. Three interaction questions(§8.3) still apply (ask what must be asked)
 
-**Short Mode Rules**:
-1. **Less talk, more action**: interim updates ≤2 sentences; final answer prefers three blocks: what changed / verification / risk or next step
-2. **Evidence stays**: can omit preface, ceremony, long logs; cannot omit test result, key command, `file:line`, risk
-3. **Summarize tool output**: long output reports exit code, key line, and failure reason; expand only when needed for reproduction
-4. **Default autonomous action**: pause only for interaction-three-questions(§8.3) or irreversible operations
-5. **Three-part compression**: final three blocks compress viable solution / assumptions+evidence / follow-up question semantics without removing them
-
 **Wenyan Mode Rules**:
-1. Inherits Short; use short simple Wenyan phrases, not obscure allusions
-2. Code, commands, paths, errors, API names, and config keys remain unchanged
-3. For safety/legal/high-risk matters, or when user asks for detail, return to precise modern English/Chinese
+1. Less talk, more action; compressed Wenyan output; ordinary output remains default
+2. Keep code, commands, paths, errors, API, and `file:line` literal; do not omit evidence, verification, or risks
 
 ### 8.3 Human-AI Resonance Protocol
 

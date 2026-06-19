@@ -8,7 +8,7 @@
 ```
 SKILL.md (精简版·字节码·含全部规则)
     │
-    ├──→ [不裁剪] 保留完整规则（含 Loop/Auto/Short/Wenyan）
+    ├──→ [不裁剪] 保留完整规则（含 Loop/Auto/Wenyan）
     │       ├──→ skills/pi/SKILL.md          (AgentSkills 标准)
     │       ├──→ claude-code/pi/SKILL.md     (AgentSkills frontmatter)
     │       ├──→ cursor/rules/pi.mdc         (alwaysApply: true)
@@ -59,7 +59,7 @@ SKILL.md (精简版·字节码·含全部规则)
 | 序 | 检项 | 动效 |
 |---|------|------|
 | 一 | **body 一致** | 同语言全平台 body 保持一致 |
-| 二 | **Loop 保留** | 所有平台均含 Loop/Auto/Short/Wenyan 模式 |
+| 二 | **Loop 保留** | 所有平台均含 Loop/Auto/Wenyan 模式 |
 | 三 | **description 一致** | 所有平台 description 字符级一致（同语言同版本） |
 | 三b | **description 触发优化** | description 为纯触发关键词版本（≤300字符），无内部概念 |
 | 三c | **Qoder 合规** | Qoder frontmatter 仅含 name+description，无其他字段 |

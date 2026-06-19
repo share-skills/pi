@@ -2,14 +2,22 @@
 
 ## v23 迭代记录
 
-### R6a — 复用门 + 短令/文言输出模式 (2026-06-19)
+### R6b — 移除短令 + 文言输出收敛 (2026-06-19)
 
 **核心变更**:
-- **Loop 全平台保留**: 恢复 `loop/循环/接续` 为一等交互模式；Loop/Auto 管会话节奏，短令/文言管表达风格，可组合使用（如 `/pi loop 编程 文言 深度`）
+- **移除短令**: 删除 `short/brief/compact/短令/少说/少说多做` 参数；普通输出仍为默认，不被替代
+- **文言语义收敛**: `wenyan/文言/古文` 仅表示"少废话，多干活；压缩输出，用文言；代码/命令原样"
+- **发布链修正**: compiler、validator、command、distribution 文档和平台产物均改为 `loop|auto|wenyan`
+
+**同步范围**: compiler/SKILL_META.md + compiler/COMPILER.md + compiler/VALIDATOR.md + tools/distribute.py + skills/* + commands/pi.md + 发布文档 + 全平台分发
+
+### R6a — 复用门 + Loop/Auto 全平台保留 (2026-06-19，R6b 已更正输出参数)
+
+**核心变更**:
+- **Loop 全平台保留**: 恢复 `loop/循环/接续` 为一等交互模式；Loop/Auto 管会话节奏，可组合使用（如 `/pi loop 编程 深度`）
 - **实现复用门**: 编程道场新增写/改代码前强制检查，要求先搜现有函数、组件、配置、测试，优先复用本地 helper/API，重复稳定后再抽象
-- **短令模式**: 新增 `short/brief/compact/短令/少说/少说多做` 参数，压缩中间汇报和最终交付，只保留结论、证据、下一步
-- **文言模式**: 新增 `wenyan/文言/古文` 参数，继承短令并使用浅文言表达；代码、命令、路径、错误和 API 名保持原文
-- **命令入口同步**: `$pi` 参数路由更新为 v23.1 Loop/Auto/Short/Wenyan，并补充 `deep/dev` 组合示例
+- **命令入口同步**: `$pi` 参数路由补充 `loop/auto/deep/dev`
+- **输出参数更正**: 此轮输出参数设计被 R6b 修正，以 R6b 为准
 
 **同步范围**: compiler/SKILL_META.md + compiler/COMPILER.md + compiler/VALIDATOR.md + tools/distribute.py + skills/pi/SKILL.md + commands/pi.md + CHANGE_LOG.md + 中文原版平台分发
 

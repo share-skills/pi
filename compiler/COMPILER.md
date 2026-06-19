@@ -68,13 +68,13 @@ SKILL_META.md 的 description 已是纯触发关键词（≤400字符），编�
 英文：PI Cognitive AI. Trigger: coding/development/fleet/architecture/API/debugging/bug/error/testing/compile/test/git/make/release/verify/product/requirements/ops/growth/creative/design/collaboration/team/communication/interaction/support, or 2+ failures/looping/giving-up/retry/nevermind
 ```
 
-**metadata 固定要求**：标准版 frontmatter 必须保留 `metadata.version`、`metadata.homepage`、`metadata.copyright`、`metadata.argument-hint`。v23.1 起 `argument-hint` 固定为 `[loop|auto|short|wenyan] [场景名]`，Loop/Auto 管接续节奏，Short/Wenyan 管表达风格。
+**metadata 固定要求**：标准版 frontmatter 必须保留 `metadata.version`、`metadata.homepage`、`metadata.copyright`、`metadata.argument-hint`。v23.1.1 起 `argument-hint` 固定为 `[loop|auto|wenyan] [场景名]`，Loop/Auto 管接续节奏，Wenyan/文言只管输出。
 
 **关键词选取原则**：每个关键词必须是用户可能输入的搜索词。用户不会输入的词（五敕令/反模式十戒/认知原型/战势/九令洞鉴/经验三域/三司会审/战域卡等）一律删除。description 的唯一使命是**触发**，不是**描述**。
 
 ### 开头（L1-18）
 - frontmatter：description 按上述规则编译为触发版本
-- frontmatter metadata：保留版本、主页、版权、`argument-hint: "[loop|auto|short|wenyan] [场景名]"`
+- frontmatter metadata：保留版本、主页、版权、`argument-hint: "[loop|auto|wenyan] [场景名]"`
 - 标题保留
 - 古典引语 **删**
 - 伙伴宣言 **压缩为 1 行**
@@ -110,7 +110,7 @@ SKILL_META.md 的 description 已是纯触发关键词（≤400字符），编�
 - **3.5 天行飞轮** → 原样保留
 - **3.6 战域卡** → 原样保留
 - **3.7 任务拆解** → 原样保留
-- **3.8 渐进式交付** → 保留所有行为规则。删边界注解。删"会话断开后"说明。v23.1 起必须保留"Loop强接续/Auto可收束"与"短令压缩"规则，短令/文言只压缩呈现，不取消三段式语义
+- **3.8 渐进式交付** → 保留所有行为规则。删边界注解。删"会话断开后"说明。v23.1 起必须保留"Loop强接续/Auto可收束"；v23.1.1 起文言只改输出，不取消三段式语义
 
 ### Ch4 器 — 四道场保持完整
 - 古典引语 **删**
@@ -137,7 +137,7 @@ SKILL_META.md 的 description 已是纯触发关键词（≤400字符），编�
 ### Ch8 人 — 最大压缩区
 - 古典引语 **删**
 - **8.1 宣言** → 保留 1 行
-- **8.2 难度自适应** → 原样保留。交互/输出模式必须包含 Loop、Auto、短令、文言；Loop/Auto 是接续节奏，短令/文言是输出风格，可与场景和难度叠加，且不得省略证据、验证、file:line
+- **8.2 难度自适应** → 原样保留。交互/输出模式必须包含 Loop、Auto、文言；Loop/Auto 是接续节奏，文言只管输出，可与场景和难度叠加，且不得省略证据、验证、file:line
 - **8.3 人机共振协议** → 原样保留。删说明性注解
 - **8.4 自演化** → 原样保留
 - **8.5 善始善终** → 删古典引语，保留输出格式
@@ -397,9 +397,9 @@ Core 文件末尾添加：
 18. **场景路由+认知阵必须内联**：Zone 1 必须包含参数快捷路由表、九大场景激活表（含认知阵+认知流管线）、场景公示格式。这三项是用户感知场景模式的唯一入口，缺失会导致场景激活时无认知阵输出（`/pi 编程 深度` 只输出"深度已激活"而无🧠最强大脑信息）
 19. **共振五式输出格式必须内联**：Core 末尾（references 指针前）必须包含共振五式框架表 + 明链/明证/明树/明心/明约的格式模板。原因：不支持 references/ 自动加载的平台（Copilot CLI、Gemini CLI、Codex CLI 等）仅加载 SKILL.md 主文件，缺失格式模板会导致 AI 知道"要输出明链"但不知道格式长什么样，认知栈输出缺失
 20. **方向性测试多点落地**：方向性测试协议在 SKILL_META 中有 8 个落地点（编程四令·定验收、调试七步·步六固防、测试道场·质保、致人术·关联预判、场景链·🖥️→🧪、交付质量门、交付六令·边界、审码协议），编译时各落地点的方向性测试引用不可删除——它们共同驱动 issues_found/hidden_issues/went_beyond_ask/verification_done 四个高权重指标
-21. **输出模式参数必须内联**：Zone 1 参数快捷路由必须包含 `loop/循环/接续`、`auto`、`deep/深度`、`short/brief/compact/短令/少说/少说多做`、`wenyan/文言/古文`、`dev/code/编程/开发`。Loop/Auto 决定接续节奏，短令/文言只压缩表达，不改变执行深度
+21. **输出模式参数必须内联**：Zone 1 参数快捷路由必须包含 `loop/循环/接续`、`auto`、`deep/深度`、`wenyan/文言/古文`、`dev/code/编程/开发`。Loop/Auto 决定接续节奏，文言只管输出，不改变执行深度
 22. **实现复用门必须保留**：标准版、Core 和 `references/dev.md` 都必须有"先搜现有能力→先贴本地模式→复用不足再抽象→改动收口"链路。任何新增代码规则不得鼓励重复造 helper/组件/API
-23. **短令/文言不得削弱证据门**：短令/文言可压缩模板和解释，但必须保留验证结果、关键命令、失败原因、风险、`file:line`。渐进式交付在短令下可压成"改了什么/验证/风险或下一步"
+23. **文言不得削弱证据门**：文言只改输出；必须保留验证结果、关键命令、失败原因、风险、`file:line`
 
 ### Core行数预算
 
