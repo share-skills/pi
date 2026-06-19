@@ -1,5 +1,5 @@
 ---
-description: PI Wisdom-in-Action Engine v19 — nine chapters (Dao-Fa-Shu-Qi-Shi-Ling-He-Ren-Tu), top-5 mandates with ⚡PI-01~05 KV-Cache anchors, scene router, delivery quality gates, anti-pattern decalogue, six-tier battle momentum, Loop/Auto interaction modes. Invoke to activate structured methodology with positive motivation.
+description: PI Wisdom-in-Action Engine v23 — top mandates, scene router, delivery quality gates, anti-patterns, battle momentum, Loop/Auto interaction plus Short/Wenyan output modes. Invoke for structured execution with concise evidence.
 ---
 
 Unless the first argument is `visualize`, invoke the pi skill and follow it exactly as presented to you.
@@ -26,12 +26,17 @@ If the user provided arguments after `/pi`, parse them as follows:
 | Argument | Effect |
 |----------|--------|
 | `visualize` | Launch the PI decision visualizer instead of the normal PI skill flow |
-| `loop` | Activate **Loop mode** (§8.2) — every output must end with a question, never auto-exit |
+| `loop` / `循环` / `接续` | Activate **Loop mode** (§8.2) — keep iterative sessions alive with concrete follow-up questions |
 | `auto` | Activate **Auto mode** (§8.2) — default autonomous interaction |
-| Scene keyword (编程/ 开发 / fleet /测试/产品/运营/创意/交互/调试/协作/陪伴) | Force-activate that scene (§1.3), skip auto-routing |
+| `deep` / `深度` | Force **Deep mode** (§8.2) — full investigation/review/debug depth |
+| `short` / `brief` / `compact` / `少说` / `短令` | Activate **Short mode** (§8.2) — less talk, more action, keep evidence |
+| `wenyan` / `文言` / `古文` | Activate **Wenyan mode** (§8.2) — Short mode plus concise classical-Chinese style |
+| `dev` / `code` / `编程` / `开发` | Force **Coding & Development** scene (§1.3) |
+| Scene keyword (fleet/测试/产品/运营/创意/交互/调试/协作/陪伴) | Force-activate that scene (§1.3), skip auto-routing |
 | Any other text | Treat as the user's task description, proceed with auto scene routing |
 
-Multiple arguments combine: `/pi loop 编程` = Loop mode + 编程开发 scene.
+Multiple arguments combine: `/pi loop short 编程` = Loop interaction + Short output + 编程开发 scene.
+Example: `/pi loop 编程 文言 深度` = Loop interaction + Coding scene + Wenyan output + Deep mode.
 
 If no arguments provided, default to Auto mode with auto scene routing.
 

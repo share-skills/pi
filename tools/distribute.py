@@ -11,7 +11,7 @@ variant:
 
 工作流：
   1. 从 source_file 提取 frontmatter 元数据 + body
-  2. 按需 PURGE-01（删 Loop 规则）
+  2. 按需执行平台特化 PURGE（v23.1 默认不裁剪 Loop）
   3. 读取各平台 _frontmatter 模板文件，填充变量
   4. 拼接 frontmatter + body → 写入目标文件
 
@@ -34,18 +34,18 @@ ROOT = Path(__file__).resolve().parent.parent
 # (frontmatter_dir, output_path, needs_purge)
 # frontmatter_dir: _frontmatter 文件所在目录（相对 ROOT）
 # output_path: 输出文件路径（相对 ROOT）
-# needs_purge: 是否需要 PURGE-01（删 Loop）
+# needs_purge: 是否需要平台特化裁剪（v23.1 默认 False，Loop 全平台保留）
 
 VARIANTS = {
     "cn": {
         "name": "pi",
         "lang": "cn",
         "targets": [
-            ("skills/pi",              "skills/pi/SKILL.md",              True),
-            ("claude-code/pi",         "claude-code/pi/SKILL.md",         True),
-            ("cursor/rules",           "cursor/rules/pi.mdc",             True),
-            ("kiro/steering",          "kiro/steering/pi.md",             True),
-            ("openclaw/pi",            "openclaw/pi/SKILL.md",            True),
+            ("skills/pi",              "skills/pi/SKILL.md",              False),
+            ("claude-code/pi",         "claude-code/pi/SKILL.md",         False),
+            ("cursor/rules",           "cursor/rules/pi.mdc",             False),
+            ("kiro/steering",          "kiro/steering/pi.md",             False),
+            ("openclaw/pi",            "openclaw/pi/SKILL.md",            False),
             ("copilot-cli/pi",         "copilot-cli/pi/SKILL.md",         False),
         ],
     },
@@ -53,11 +53,11 @@ VARIANTS = {
         "name": "pi-en",
         "lang": "en",
         "targets": [
-            ("skills/pi-en",           "skills/pi-en/SKILL.md",           True),
-            ("claude-code/pi-en",      "claude-code/pi-en/SKILL.md",      True),
-            ("cursor/rules",           "cursor/rules/pi-en.mdc",          True),
-            ("kiro/steering",          "kiro/steering/pi-en.md",          True),
-            ("openclaw/pi-en",         "openclaw/pi-en/SKILL.md",         True),
+            ("skills/pi-en",           "skills/pi-en/SKILL.md",           False),
+            ("claude-code/pi-en",      "claude-code/pi-en/SKILL.md",      False),
+            ("cursor/rules",           "cursor/rules/pi-en.mdc",          False),
+            ("kiro/steering",          "kiro/steering/pi-en.md",          False),
+            ("openclaw/pi-en",         "openclaw/pi-en/SKILL.md",         False),
             ("copilot-cli/pi-en",      "copilot-cli/pi-en/SKILL.md",      False),
         ],
     },
@@ -67,10 +67,10 @@ VARIANTS = {
         "progressive": True,
         "refs_source": "skills/pi-progressive/references",
         "targets": [
-            ("skills/pi-progressive",          "skills/pi-progressive/SKILL.md",           True),
-            ("claude-code/pi-progressive",      "claude-code/pi-progressive/SKILL.md",      True),
+            ("skills/pi-progressive",          "skills/pi-progressive/SKILL.md",           False),
+            ("claude-code/pi-progressive",      "claude-code/pi-progressive/SKILL.md",      False),
             ("copilot-cli/pi-progressive",      "copilot-cli/pi-progressive/SKILL.md",      False),
-            ("openclaw/pi-progressive",         "openclaw/pi-progressive/SKILL.md",         True),
+            ("openclaw/pi-progressive",         "openclaw/pi-progressive/SKILL.md",         False),
         ],
     },
     "prog-en": {
@@ -79,18 +79,18 @@ VARIANTS = {
         "progressive": True,
         "refs_source": "skills/pi-en-progressive/references",
         "targets": [
-            ("skills/pi-en-progressive",        "skills/pi-en-progressive/SKILL.md",        True),
-            ("claude-code/pi-en-progressive",    "claude-code/pi-en-progressive/SKILL.md",   True),
+            ("skills/pi-en-progressive",        "skills/pi-en-progressive/SKILL.md",        False),
+            ("claude-code/pi-en-progressive",    "claude-code/pi-en-progressive/SKILL.md",   False),
             ("copilot-cli/pi-en-progressive",    "copilot-cli/pi-en-progressive/SKILL.md",   False),
-            ("openclaw/pi-en-progressive",       "openclaw/pi-en-progressive/SKILL.md",      True),
+            ("openclaw/pi-en-progressive",       "openclaw/pi-en-progressive/SKILL.md",      False),
         ],
     },
 }
 
 
-# --- PURGE-01: 删除 Loop 规则 ---
+# --- Legacy PURGE-01: 删除 Loop 规则（v23.1 默认不启用） ---
 def purge_loop(body: str, lang: str = "cn") -> str:
-    """从 body 中删除 Loop 模式相关内容"""
+    """从 body 中删除 Loop 模式相关内容。仅在目标显式 needs_purge=True 时使用。"""
     lines = body.split('\n')
     result = []
     i = 0
@@ -262,20 +262,23 @@ def distribute(source_file: str, variant: str):
     version = metadata.get('version', '20.0.0')
     homepage = metadata.get('homepage', 'https://github.com/share-skills/pi')
     copyright_val = metadata.get('copyright', 'Copyright (c) 2026 HePin. All rights reserved.')
-    argument_hint = metadata.get('argument-hint', '[loop|auto] [场景名]')
+    argument_hint = metadata.get('argument-hint', '[loop|auto|short|wenyan] [场景名]')
 
     # 提取 body
     body = extract_body(source_file)
 
-    # 生成 purged body
-    purged_body = purge_loop(body, lang)
+    needs_any_purge = any(target[2] for target in targets)
+    purged_body = purge_loop(body, lang) if needs_any_purge else body
 
     # 统计
     print(f"📦 Distributing: {variant} (name={variant_name})")
     print(f"   Source: {source_file}")
     print(f"   Full body: {len(body.splitlines())} lines")
-    print(f"   Purged body: {len(purged_body.splitlines())} lines")
-    print(f"   PURGE-01 removed: {len(body.splitlines()) - len(purged_body.splitlines())} lines")
+    if needs_any_purge:
+        print(f"   Purged body: {len(purged_body.splitlines())} lines")
+        print(f"   PURGE removed: {len(body.splitlines()) - len(purged_body.splitlines())} lines")
+    else:
+        print("   PURGE: disabled (full body for all targets)")
     print()
 
     for fm_dir, output_path, needs_purge in targets:

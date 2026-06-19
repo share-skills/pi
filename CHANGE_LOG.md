@@ -2,6 +2,17 @@
 
 ## v23 迭代记录
 
+### R6a — 复用门 + 短令/文言输出模式 (2026-06-19)
+
+**核心变更**:
+- **Loop 全平台保留**: 恢复 `loop/循环/接续` 为一等交互模式；Loop/Auto 管会话节奏，短令/文言管表达风格，可组合使用（如 `/pi loop 编程 文言 深度`）
+- **实现复用门**: 编程道场新增写/改代码前强制检查，要求先搜现有函数、组件、配置、测试，优先复用本地 helper/API，重复稳定后再抽象
+- **短令模式**: 新增 `short/brief/compact/短令/少说/少说多做` 参数，压缩中间汇报和最终交付，只保留结论、证据、下一步
+- **文言模式**: 新增 `wenyan/文言/古文` 参数，继承短令并使用浅文言表达；代码、命令、路径、错误和 API 名保持原文
+- **命令入口同步**: `$pi` 参数路由更新为 v23.1 Loop/Auto/Short/Wenyan，并补充 `deep/dev` 组合示例
+
+**同步范围**: compiler/SKILL_META.md + compiler/COMPILER.md + compiler/VALIDATOR.md + tools/distribute.py + skills/pi/SKILL.md + commands/pi.md + CHANGE_LOG.md + 中文原版平台分发
+
 ### R6 — Eval驱动优化：自修正100% + verification稳定性 + 全链发布 (2026-03-26)
 
 **Eval 结果**: Round 6 — 场景通过率 8/9, self_corrections 100%, verification_done 稳定性提升
@@ -160,4 +171,3 @@
 - **图文并茂**: P1~P4 各阶段独立架构图（输入/产出/工具/校验门禁），P2 编译决策树，P3 分发拓扑图（PURGE 分支），完整数据流序列图
 - **文件架构总览**: 项目所有文件的层级关系 + 角色标注
 - **触发条件速查表**: 8 种常见场景→应触发哪些阶段
-

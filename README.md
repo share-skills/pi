@@ -1,7 +1,7 @@
-# PI — 智行合一引擎 v20
+# PI — 智行合一引擎 v23.1
 
 <p>
-  <img src="https://img.shields.io/badge/version-20.0.0-blue?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/badge/version-23.1.0-blue?style=flat-square" alt="Version">
   <img src="https://img.shields.io/badge/license-Apache_2.0-green?style=flat-square" alt="License">
   <img src="https://img.shields.io/badge/lang-中文_|_English-orange?style=flat-square" alt="Language">
 </p>

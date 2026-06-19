@@ -150,16 +150,15 @@
 │                                                             │
 │                     SKILL.md                                │
 │                        │                                    │
-│            ┌───────────┴───────────┐                        │
-│            │                       │                        │
-│            ▼                       ▼                        │
-│     ┌──────────┐           ┌──────────────┐                 │
-│     │  PURGE   │           │  不裁剪       │                 │
-│     │ 裁剪 Loop │           │  保留 Loop    │                 │
-│     └────┬─────┘           └──────┬───────┘                 │
-│          │                        │                         │
-│    ┌─────┼─────┬─────┬─────┐      │                         │
-│    ▼     ▼     ▼     ▼     ▼      ▼                         │
+│                        │                                    │
+│                        ▼                                    │
+│              ┌──────────────────┐                           │
+│              │ 完整 body 分发     │                           │
+│              │ 保留 Loop/Auto/短令 │                           │
+│              └────────┬─────────┘                           │
+│                       │                                     │
+│    ┌─────┬─────┬─────┬─────┬─────┬─────┐                   │
+│    ▼     ▼     ▼     ▼     ▼     ▼                         │
 │  skills claude cursor kiro open  copilot                    │
 │  /pi   -code  /rules /str -claw  -cli                      │
 │         /pi   /pi   /pi   /pi    /pi                        │
@@ -182,25 +181,25 @@
 
 | 规则 | 裁剪内容 | 适用平台 | 保留平台 |
 |------|---------|---------|---------|
-| PURGE-01 | Loop 模式规则（~35 行） | Claude Code · Cursor · Kiro · OpenClaw | Copilot CLI |
+| PURGE-01 | Loop 模式规则（历史规则，默认停用） | 无 | 全平台 |
 
 **平台 frontmatter 差异**：
 
 | 平台 | 关键差异 | body |
 |------|---------|------|
-| skills/pi | AgentSkills 标准 | purged |
-| claude-code/pi | AgentSkills 标准 | purged |
-| cursor/rules/pi | `alwaysApply: true` | purged |
-| kiro/steering/pi | `inclusion: auto` | purged |
-| openclaw/pi | metadata 单行 JSON · `always: true` | purged |
-| copilot-cli/pi | AgentSkills 标准 | **完整**（含 Loop） |
+| skills/pi | AgentSkills 标准 | 完整（含 Loop） |
+| claude-code/pi | AgentSkills 标准 | 完整（含 Loop） |
+| cursor/rules/pi | `alwaysApply: true` | 完整（含 Loop） |
+| kiro/steering/pi | `inclusion: auto` | 完整（含 Loop） |
+| openclaw/pi | metadata 单行 JSON · `always: true` | 完整（含 Loop） |
+| copilot-cli/pi | AgentSkills 标准 | 完整（含 Loop） |
 
 **校验门禁**：
 
 | 序 | 检项 |
 |----|------|
-| 一 | 裁剪后 5 平台 body 一致 |
-| 二 | Copilot CLI body 与 SKILL.md body 一致 |
+| 一 | 同语言 6 平台 body 一致 |
+| 二 | Loop/Auto/Short/Wenyan 全平台存在 |
 | 三 | 所有平台 description 字符级一致 |
 | 三b | 中文/英文 description 均 ≤ 1024 字符 |
 | 四 | 各平台 frontmatter 合规 |
@@ -272,7 +271,7 @@ pi/
 ├── COMPILER.md            ← ⚙️ P2 编译器
 ├── PUBLISH.md             ← 🚀 发布流程（一键触发）
 ├── DISTRIBUTE.md          ← 📡 P3 分发规则
-├── PURGE.md               ← ✂️ P3 裁剪规则（PURGE-01: Loop）
+├── PURGE.md               ← ✂️ P3 裁剪机制（PURGE-01 历史规则，默认停用）
 ├── TRANSLATE.md           ← 🌐 P4 翻译规则
 ├── CHANGE_LOG.md          ← 📝 变更日志
 │
@@ -294,7 +293,7 @@ pi/
 │   └── pi-progressive/    ← 📡 Claude Code 渐进式版本
 │
 ├── copilot-cli/
-│   └── pi/SKILL.md        ← 📡 Copilot CLI 版（含 Loop）
+│   └── pi/SKILL.md        ← 📡 Copilot CLI 版
 │
 ├── cursor/rules/
 │   ├── pi.mdc             ← 📡 Cursor 中文版
@@ -411,11 +410,11 @@ pi/
 │  🔄 行为等价    编译/翻译后的产物与真源行为一致       │
 │                 祈使句一一对应，触发条件完整         │
 │                                                  │
-│  ✂️ 按需裁剪    PURGE 在分发阶段执行               │
+│  ✂️ 显式裁剪    PURGE 默认不执行；启用需说明平台与理由 │
 │                 不修改 SKILL.md 本身               │
 │                                                  │
 │  🧬 平台适配    各平台 frontmatter 独立            │
-│                 body 统一（purged/unpurged）       │
+│                 同语言 body 默认一致               │
 │                                                  │
 └──────────────────────────────────────────────────┘
 ```

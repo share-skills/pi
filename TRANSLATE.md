@@ -11,7 +11,7 @@
 | SKILL_META.md | *暂不翻译* | 设计文档仅中文 |
 | skills/pi/SKILL.md | skills/pi-en/SKILL.md | AgentSkills 标准 |
 | claude-code/pi/SKILL.md | claude-code/pi-en/SKILL.md | Claude Code 版 |
-| copilot-cli/pi/SKILL.md | copilot-cli/pi-en/SKILL.md | Copilot CLI 版（含 Loop） |
+| copilot-cli/pi/SKILL.md | copilot-cli/pi-en/SKILL.md | Copilot CLI 版 |
 | cursor/rules/pi.mdc | cursor/rules/pi-en.mdc | Cursor 版 |
 | kiro/steering/pi.md | kiro/steering/pi-en.md | Kiro 版 |
 | openclaw/pi/SKILL.md | openclaw/pi-en/SKILL.md | OpenClaw 版 |

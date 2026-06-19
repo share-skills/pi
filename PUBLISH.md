@@ -166,23 +166,18 @@
 ```
 步骤 3.1  提取 SKILL.md 的 body（frontmatter 以下内容）
 
-步骤 3.2  执行 PURGE-01 裁剪（生成 purged body）：
-          - 删除 Loop 模式规则（交互模式表 Loop 行、Loop 规则7条、
-            退出陷阱表、启动协议、Loop 警告注解）
-          - 调整：模式加载矩阵 Loop 列引用、渐进式交付 Loop 引用、
-            循环交互 Loop 标注
-          - 校验裁剪后无悬空 Loop 引用
+步骤 3.2  确认 PURGE 状态：
+          - v23.1 默认不执行 PURGE-01
+          - Loop/Auto/Short/Wenyan 在全平台保留
+          - 如未来单独启用平台裁剪，必须记录适用平台和理由
 
-步骤 3.3  分发 purged body 到 5 个平台（保留各自 frontmatter）：
+步骤 3.3  分发完整 body 到 6 个平台（保留各自 frontmatter）：
           3.3.1  读取 skills/pi/SKILL.md → 替换 body → 写回
           3.3.2  读取 claude-code/pi/SKILL.md → 替换 body → 写回
           3.3.3  读取 cursor/rules/pi.mdc → 替换 body → 写回
           3.3.4  读取 kiro/steering/pi.md → 替换 body → 写回
           3.3.5  读取 openclaw/pi/SKILL.md → 替换 body → 写回
-
-步骤 3.4  分发完整 body 到 Copilot CLI（不裁剪）：
-          3.4.1  确认 copilot-cli/pi/ 目录存在（不存在则创建）
-          3.4.2  读取或创建 copilot-cli/pi/SKILL.md → 写入完整 body
+          3.3.6  读取或创建 copilot-cli/pi/SKILL.md → 写入完整 body
 
 步骤 3.5  同步 description：
           - 提取 SKILL_META.md 的 description
@@ -200,8 +195,8 @@
 
 ```
 步骤 3.6  Body 一致性校验：
-          - 5 个 purged 平台文件 body 互相一致
-          - copilot-cli body 与 SKILL.md body 一致
+          - 同语言 6 个平台文件 body 互相一致
+          - Loop/Auto/Short/Wenyan 在所有平台均存在
 
 步骤 3.7  Description 一致性校验：
           - 所有平台文件 description 字符级一致
@@ -214,9 +209,9 @@
           - openclaw/pi: metadata 单行 JSON, always: true 存在
           - copilot-cli/pi: AgentSkills 标准格式
 
-步骤 3.9  PURGE 无悬空校验：
-          - 在 purged 文件中搜索 "Loop" 关键词
-          - 确认无残留的 Loop 引用（允许 Auto 模式中的合理提及）
+步骤 3.9  PURGE 状态校验：
+          - 确认本次发布未执行 PURGE-01
+          - 在所有平台搜索 "Loop"，确认 Loop 模式规则存在
 
 步骤 3.10 Description 内容校验：
           - description 中提到的概念在 SKILL.md 中均有定义
@@ -232,7 +227,7 @@
 
 > ❌ 任一失败 → 修复后重新执行对应步骤。
 >
-> ✅ 全部通过 → 输出：`✅ P3 分发完成。6 平台已同步。PURGE-01 已执行。Description 一致。`
+> ✅ 全部通过 → 输出：`✅ P3 分发完成。6 平台已同步。PURGE 未执行，Loop 全平台保留。Description 一致。`
 
 ---
 
@@ -251,12 +246,12 @@
           - 灵兽名翻译：鹰 Eagle、狼 Wolf、狮 Lion 等
 
 步骤 4.2  分发英文版到各平台：
-          4.2.1  skills/pi-en/SKILL.md（purged body 英文版）
-          4.2.2  claude-code/pi-en/SKILL.md（purged body 英文版）-- 如果目录存在
+          4.2.1  skills/pi-en/SKILL.md（完整 body 英文版）
+          4.2.2  claude-code/pi-en/SKILL.md（完整 body 英文版）-- 如果目录存在
           4.2.3  copilot-cli/pi-en/SKILL.md（完整 body 英文版）-- 如果目录存在
-          4.2.4  cursor/rules/pi-en.mdc（purged body 英文版）
-          4.2.5  kiro/steering/pi-en.md（purged body 英文版）
-          4.2.6  openclaw/pi-en/SKILL.md（purged body 英文版）-- 如果目录存在
+          4.2.4  cursor/rules/pi-en.mdc（完整 body 英文版）
+          4.2.5  kiro/steering/pi-en.md（完整 body 英文版）
+          4.2.6  openclaw/pi-en/SKILL.md（完整 body 英文版）-- 如果目录存在
 
 步骤 4.3  翻译 agents：
           4.3.1  agents/pi-coach.md → agents/pi-coach-en.md
@@ -371,7 +366,7 @@
           Modification:
           - SKILL_META.md: {本轮核心改动}
           - SKILL.md: 从 SKILL_META.md 编译（{行数}行）
-          - 6 平台中文版同步 + PURGE-01 执行
+          - 6 平台中文版同步 + Loop 全平台保留
           - 英文版翻译同步
           - {其他改动}
 

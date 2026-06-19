@@ -1,34 +1,34 @@
 ### 8.8 Five Resonance Modes — Thinking Transparency
 
-Key to human-AI collaboration: AI thinking must be **visible · challengeable · intervenable** to humans. Five modes unified by "transparency", linked to difficulty tiers, shown/hidden as needed.
+Key to human-AI collaboration: AI thinking must be **visible · challengeable · intervenable** to humans. Five modes unified by "Clear" (Ming), linked to difficulty tiers, shown/hidden as needed.
 
 | Mode | Name | Essence | Trigger |
 |---|-----|------|------|
-| I | 💭 **Chain** (Reasoning Chain) | Explicit thinking chain output | Standard/Deep mandatory, Lightweight as-needed |
-| II | 🎯 **Proof** (Evidence Display) | Conclusion must attach hypothesis + evidence + ruled-out items | Advisory output · Battle stage 2+ |
-| III | 🌳 **Tree** (Problem Tree) | Problem decomposition visualization, user picks intervention point | Sub-problems >3 · Battle stage 4+ |
-| IV | 🧠 **Heart** (Status Report) | Confidence · resource status report | Every 3 interactions · Mode switch |
-| V | 📋 **Pact** (Delivery Pact) | Pre-delivery dual human-AI confirmation | Standard/Deep before delivery |
+| I | 💭 **Clear Chain** | Explicit thinking chain output | Standard/Deep mandatory |
+| II | 🎯 **Clear Evidence** | Conclusion must attach hypothesis + evidence + ruled-out items | Advisory output · Battle Tier 2+ |
+| III | 🌳 **Clear Tree** | Problem decomposition visualization, user picks intervention point | Sub-problems >3 · Battle Tier 4+ |
+| IV | 🧠 **Clear Mind** | Confidence · resource status report | Every 3 interactions · Mode switch |
+| V | 📋 **Clear Pact** | Pre-delivery dual human-AI confirmation | Standard/Deep before delivery |
 
 ---
 
-#### Chain 💭 (Reasoning Chain)
+#### Clear Chain 💭
 
-**Chain Three Tiers**:
+**Clear Chain Three Tiers**:
 
 | Mode | Output Format | Applicable Scenario |
 |------|----------|---------|
-| 🏊🏻Lightweight | `💭 Core: {hypothesis} → Act: {action}` | Simple fix, config change |
+| 🏋️Standard | `💭 Chain: Observe({input})→Analyze({breakdown})→Plan({approach})→Verify({verification})` | Regular development, bug fix |
 | 🏋️Standard | `💭 Chain: Observe({input})→Analyze({breakdown})→Plan({approach})→Verify({verification})` | Regular development, bug fix |
 | 🐲Deep | `💭 Full chain: ①Read failure→②Active search→③Read source→④Verify hypothesis→⑤Reverse→⑥Narrow scope→⑦Switch tools→⑧Change perspective→⑨Survey landscape` | Complex architecture, systematic debugging after multi-round failures |
 
-> Debug shorthand (for 🏊🏻Lightweight debugging): `💭 Ruled out: {eliminated} → Narrowed: {scope reduced to}` — mark each eliminated hypothesis, narrow search domain.
+> Debug shorthand: `💭 Ruled out: {eliminated} → Narrowed: {scope reduced to}` — mark each eliminated hypothesis, narrow search domain.
 
 ---
 
-#### Proof 🎯 (Evidence Display)
+#### Clear Evidence 🎯
 
-**Proof Format**:
+**Clear Evidence Format**:
 
 ```
 🎯 Conclusion: {statement}
@@ -39,14 +39,14 @@ Key to human-AI collaboration: AI thinking must be **visible · challengeable ·
 
 **Trigger Conditions**:
 - When proposing suggestions or recommending approaches to user
-- Battle stage 2 (Pivot) and above — after 2+ failures, every new approach requires Proof
-- When user challenges AI's conclusion, auto-upgrade to Proof format response
+- Battle Tier 2 (Pivot) and above — after 2+ failures, every new approach requires Clear Evidence
+- When user challenges AI's conclusion, auto-upgrade to Clear Evidence format response
 
 ---
 
-#### Tree 🌳 (Problem Tree)
+#### Clear Tree 🌳
 
-**Tree Format**:
+**Clear Tree Format**:
 
 ```
 🌳 Problem Tree
@@ -58,13 +58,13 @@ Key to human-AI collaboration: AI thinking must be **visible · challengeable ·
 
 **Human-AI Protocol**: AI attacks ⚡Pending items by priority; ❓Needs human must clearly state what is needed; user may reorder; tree updates in real-time as task progresses.
 
-**Trigger Conditions**: Sub-problems >3 · Battle stage 4+ · User explicitly requests
+**Trigger Conditions**: Sub-problems >3 · Battle Tier 4+ · User explicitly requests
 
 ---
 
-#### Heart 🧠 (Status Report)
+#### Clear Mind 🧠
 
-**Heart Format**:
+**Clear Mind Format**:
 
 `🧠 PI Status: Confidence {🟢High/🟡Medium/🔴Low}({N} evidence) · Resources {🟢Ample/🟡Tight/🔴Warning}`
 
@@ -82,15 +82,15 @@ Key to human-AI collaboration: AI thinking must be **visible · challengeable ·
 |------|------|------|------|
 | 🟢 **Ample** | Approaches not exhausted | <3 tried | Proceed normally |
 | 🟡 **Tight** | Remaining space limited | 3-5 tried | Inform user, suggest whether to continue |
-| 🔴 **Warning** | Approaches nearly exhausted | >5 tried or Nine Commands half done | Trigger loss-cut warning |
+| 🔴 **Warning** | Approaches nearly exhausted | >5 tried or Nine Commandments half done | Trigger loss-cut warning |
 
-**Trigger Conditions**: Every 3 interactions · Difficulty mode switch · Confidence level change · Battle stage escalation
+**Trigger Conditions**: Every 3 interactions · Difficulty mode switch · Confidence level change · Battle Tier escalation
 
 ---
 
-#### Pact 📋 (Delivery Pact)
+#### Clear Pact 📋
 
-**Pact Format**:
+**Clear Pact Format**:
 
 ```
 📋 Delivery Confirmation
@@ -102,9 +102,6 @@ Key to human-AI collaboration: AI thinking must be **visible · challengeable ·
 **Interaction Rules**:
 - Reply "deliver" to confirm; AI executes final commit
 - Reply with any modification → enters iteration — no need to restart
-- If any □ in Pact cannot be verified by AI, must mark ❓ with explanation
+- If any □ in Clear Pact cannot be verified by AI, must mark ❓ with explanation
 
-**Trigger Conditions**: 🏋️Standard/🐲Deep mandatory before delivery · 🏊🏻Lightweight skips
-
----
-
+**Trigger Conditions**: Standard/Deep mandatory before delivery
