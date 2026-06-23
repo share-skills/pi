@@ -21,6 +21,7 @@ PI 渐进式披露拆分器：将完整版 SKILL.md 拆分为核心版 + referen
 import sys
 import os
 import re
+import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -34,7 +35,7 @@ SUMMARIES = {
             "## 4. 四道合一\n\n"
             '四大道场共享"四令+三则"认知结构。四令 = 必达的认知关卡；三则 = 必守的行动准则。\n\n'
             "> 📂 详见 [references/four-dojos.md](references/four-dojos.md) — "
-            "编程(四令·正名三则·调试六步·审码四维)·测试·产品·运营 + 验证矩阵 + 步步为营"
+            "编程(四令·正名三则·调试六步·审码五维)·测试·产品·运营 + 验证矩阵 + 步步为营"
         ),
         "battle-momentum": (
             "## 5. 动态响应 + 6. 灵兽图腾\n\n"
@@ -243,6 +244,8 @@ def progressive_split(input_file: str, output_dir: str, name_override: str = Non
     # --- 写入文件 ---
     output_path.mkdir(parents=True, exist_ok=True)
     refs_dir = output_path / 'references'
+    if refs_dir.exists():
+        shutil.rmtree(refs_dir)
     refs_dir.mkdir(parents=True, exist_ok=True)
 
     # 核心版

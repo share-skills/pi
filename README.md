@@ -1,7 +1,7 @@
-# PI — 智行合一引擎 v23.1.1
+# PI — 智行合一引擎 v23.2.0
 
 <p>
-  <img src="https://img.shields.io/badge/version-23.1.1-blue?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/badge/version-23.2.0-blue?style=flat-square" alt="Version">
   <img src="https://img.shields.io/badge/license-Apache_2.0-green?style=flat-square" alt="License">
   <img src="https://img.shields.io/badge/lang-中文_|_English-orange?style=flat-square" alt="Language">
 </p>
@@ -161,7 +161,7 @@
 
 | 道场 | 质量标准 | 验证方式 |
 |------|---------|---------|
-| 🖥️ 编程 | 编译通过 + 测试绿 + 审码四维无红线 | build/test 输出 |
+| 🖥️ 编程 | 编译通过 + 测试绿 + 审码五维无红线 | build/test 输出 |
 | 🧪 测试 | 覆盖边界 + 独立可重复 + 失败定位精准 | 测试报告 |
 | 📊 产品 | 痛点可量化 + 方案最简 + 指标可度量 | 数据/用户反馈 |
 | 📈 运营 | 实验可度量 + 成功标准明确 + 反馈回路 | 实验卡片 |
@@ -177,7 +177,7 @@
 | **编程四令** | 本质→约束→命名→验证 |
 | **正名三则** | 概念不清不建模 · 一词一义 · 争论先校准 |
 | **调试六步** | 读败→定界→溯源→比对→验假→固防 |
-| **审码四维** | 安全 · 性能 · 可读 · 正确 |
+| **审码五维** | 安全 · 性能 · 可读 · 正确 · 健壮 |
 | **重构之道** | 三信号 + 三原则 |
 | **架构决策树** | 第一性原理驱动选型 |
 

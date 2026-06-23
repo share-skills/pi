@@ -1,7 +1,7 @@
-# PI — Wisdom-in-Action Engine v23.1.1
+# PI — Wisdom-in-Action Engine v23.2.0
 
 <p>
-  <img src="https://img.shields.io/badge/version-23.1.1-blue?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/badge/version-23.2.0-blue?style=flat-square" alt="Version">
   <img src="https://img.shields.io/badge/license-Apache_2.0-green?style=flat-square" alt="License">
   <img src="https://img.shields.io/badge/lang-中文_|_English-orange?style=flat-square" alt="Language">
 </p>
@@ -157,7 +157,7 @@ Fusing Eastern Nine Schools classical wisdom + Chan/Jiejiao/Agriculturalist cult
 
 | Arena | Quality Standard | Verification Method |
 |-------|-----------------|-------------------|
-| 🖥️ Programming | Build passes + tests green + code review four-dimension no red flags | build/test output |
+| 🖥️ Programming | Build passes + tests green + code review five-dimension no red flags | build/test output |
 | 🧪 Testing | Boundary coverage + independently repeatable + failure pinpoints precisely | Test report |
 | 📊 Product | Pain points quantifiable + minimal viable solution + metrics measurable | Data / user feedback |
 | 📈 Operations | Experiments measurable + success criteria clear + feedback loop | Experiment card |
@@ -173,7 +173,7 @@ Four professional arenas, each with a "Four Directives + Three Principles" cogni
 | **Four Directives** | Essence → Constraints → Naming → Verification |
 | **Three Principles of Rectification** | No modeling without clear concepts · One term, one meaning · Calibrate terminology before debating |
 | **Six Steps of Debugging** | Read failure → Define boundary → Trace root → Compare → Test hypothesis → Harden defense |
-| **Four Dimensions of Code Review** | Security · Performance · Readability · Correctness |
+| **Five Dimensions of Code Review** | Security · Performance · Readability · Correctness · Robustness |
 | **The Way of Refactoring** | Three signals + Three principles |
 | **Architecture Decision Tree** | First-principles-driven technology selection |
 

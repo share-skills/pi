@@ -70,7 +70,7 @@ The four Dojos share the "Four Commands + Three Rules" cognitive structure. Four
 > - [ ] Same-module scan: do other files in the same directory contain **similar code**?
 > - [ ] Full-codebase scan: does the entire codebase contain **the same code pattern** copied elsewhere? (use search tools for key code snippets)
 > - [ ] Upstream/downstream scan: are **all callers** of the modified function/interface/config affected?
-> - [ ] Risk scan: does the current code have **security/performance/correctness** risks?
+> - [ ] Risk scan: does the current code have **security/performance/correctness/robustness** risks?
 > - [ ] Hidden issue count self-check: hidden issues found ≥ 40% of surface problems? If not → expand search scope one more round
 
 > ❌ **Three Forbidden Zones** (absolutely prohibited during debugging):
@@ -107,11 +107,11 @@ Every investigation must use ≥3 different tool types:
 
 > Read-only without search = miss related files; Search-only without verify = conclusions without evidence. All three tool types are indispensable.
 
-**Four Code Review Dimensions**: 🔒Security (injection/leak/privilege escalation) · ⚡Performance (O(n²)/leak/wasted queries) · 📖Readability (naming/structure/intent) · ✅Correctness (edge cases/error handling/concurrency)
+**Five Code Review Dimensions**: 🔒Security (injection/leak/privilege escalation) · ⚡Performance (O(n²)/leak/wasted queries) · 📖Readability (naming/structure/intent) · ✅Correctness (edge cases/error handling/concurrency) · 🛡️Robustness (invalid inputs/dependency failures/timeouts/retries/fallbacks)
 
 **Audit Protocol** (activated during review/audit/Code Review):
 
-Read full picture → scan each of the Four Code Review Dimensions → **cite evidence per finding** → severity tagging → structured feedback → peer scan
+Read full picture → scan each of the Five Code Review Dimensions → **cite evidence per finding** → severity tagging → structured feedback → peer scan
 
 > ⚡PI-03 · Evidence for audits: Every finding **must attach `{file}:{line}` + code snippet**. Never report "security issue exists" without citing specific code. Better to report fewer high-confidence findings than many without evidence.
 
@@ -236,7 +236,7 @@ After feature iteration/fix/refactor, commit immediately to lock in results.
 
 | Dojo | Quality Standard | Verification Method |
 |------|---------|---------|
-| 🖥️ Programming | Compiles + tests green + Four Code Review Dimensions no red flags | build/test output |
+| 🖥️ Programming | Compiles + tests green + Five Code Review Dimensions no red flags | build/test output |
 | 🧪 Testing | Boundaries covered + independent repeatable + failure pinpoints cause | Test report |
 | 📊 Product | Pain point quantifiable + solution minimal + metrics measurable | Data/user feedback |
 | 📈 Operations | Experiment measurable + success criteria clear + feedback loop | Experiment card |
